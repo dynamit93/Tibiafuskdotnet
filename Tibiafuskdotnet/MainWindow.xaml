@@ -1,0 +1,18 @@
+﻿<Window x:Class="Tibiafuskdotnet.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tibiafuskdotnet"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="Login_btn" Content="Login" HorizontalAlignment="Left" Margin="400,273,0,0" VerticalAlignment="Top" Click="Login_btn_Click"/>
+        <TextBox x:Name="UsernameText" HorizontalAlignment="Left" Margin="213,115,0,0" Text="123" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PasswordText" HorizontalAlignment="Left" Margin="514,115,0,0" Text="123" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Forgotten_btn" Content="Forgotten Password" HorizontalAlignment="Left" Margin="362,312,0,0" VerticalAlignment="Top" Click="Forgotten_btn_Click"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="241,84,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="555,84,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
