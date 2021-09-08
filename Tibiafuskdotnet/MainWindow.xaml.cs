@@ -57,7 +57,6 @@ namespace Tibiafuskdotnet
                 MessageBox.Show("Invalid Login please check username and password");
             }
             con.Close();
-
         }
 
         private void Forgotten_btn_Click(object sender, RoutedEventArgs e)
