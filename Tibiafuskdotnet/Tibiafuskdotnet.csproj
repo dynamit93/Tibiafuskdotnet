@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="class.cs" />
     <Compile Include="Forgottenpassword.xaml.cs">
       <DependentUpon>Forgottenpassword.xaml</DependentUpon>
     </Compile>
