@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,9 @@ namespace Tibiafuskdotnet
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+
+
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader dr;
@@ -47,9 +51,16 @@ namespace Tibiafuskdotnet
             dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                MessageBox.Show("Login sucess Welcome to Homepage https://csharp-console-examples.com");
-                MainMenu Menu = new MainMenu();
-                Menu.Show();
+                if (Class1.appRunning())
+                {
+
+                    MainMenu Menu = new MainMenu();
+                    Menu.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Start tibia first");
+                }
                 this.Close();
             }
             else

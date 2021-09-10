@@ -4,20 +4,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Tibiafuskdotnet
 {
-    class Class1
+    public class Class1
     {
 
-        static void Main(string[] args)
+        /*static void Main(string[] args)
         {
 
             appRunning("Tibia");
 
-        }
+        }*/
 
-        static void appRunning(string appName = "optinal")
+        public static bool appRunning(string appName = "Tibia")
         {
             Process[] localByName = Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();
@@ -27,16 +28,18 @@ namespace Tibiafuskdotnet
                 Console.WriteLine(p.ProcessName);
                 if(p.ProcessName.Contains(appName))
                 {
-                    ///lägg in program
+                    return true;
                     
                 }
-                /*else
+                else
                 {
-                    Console.WriteLine("start tibia");
-                }*/
+                    MessageBox.Show("start tibia");
+                    return false;
+                }
                 
             }
-            Console.ReadLine();
+            
+            return false;
         }
 
 
