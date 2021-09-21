@@ -15,24 +15,18 @@ using System.Windows.Shapes;
 namespace Tibiafuskdotnet
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for HealingMenu.xaml
     /// </summary>
-    public partial class MainMenu : Window
+    public partial class HealingMenu : Window
     {
-        public MainMenu()
+        public HealingMenu()
         {
             InitializeComponent();
-
-
-
-
-
         }
 
-        private void Healing_btn_Click(object sender, RoutedEventArgs e)
+        public void Healingkey_TextChanged(object sender, TextChangedEventArgs e)
         {
-            HealingMenu Healingkey = new HealingMenu();
-            Healingkey.Show();
+
         }
     }
 }

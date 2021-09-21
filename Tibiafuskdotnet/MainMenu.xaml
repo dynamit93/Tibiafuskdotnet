@@ -9,7 +9,7 @@
     <Grid>
         <Button x:Name="Cavebot_btn" Content="Cavebot" HorizontalAlignment="Left" Margin="44,58,0,0" VerticalAlignment="Top" Height="31" Width="66"/>
         <Button x:Name="targeting_btn" Content="Targeting" HorizontalAlignment="Left" Margin="115,58,0,0" VerticalAlignment="Top" Height="31" Width="66"/>
-        <Button x:Name="Healing_btn" Content="Healing" HorizontalAlignment="Left" Margin="186,58,0,0" VerticalAlignment="Top" Height="31" Width="66"/>
+        <Button x:Name="Healing_btn" Content="Healing" HorizontalAlignment="Left" Margin="186,58,0,0" VerticalAlignment="Top" Height="31" Width="66" Click="Healing_btn_Click"/>
         <Button x:Name="Extras_btn" Content="Extras" HorizontalAlignment="Left" Margin="257,58,0,0" VerticalAlignment="Top" Height="31" Width="66"/>
 
     </Grid>

@@ -41,13 +41,13 @@ namespace Tibiafuskdotnet
 
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            // TODO Lägg till Premium Checker
             string username = UsernameText.Text;
             string password = PasswordText.Text;
             cmd = new MySqlCommand();
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+            cmd.CommandText = = "SELECT * FROM account where username='" + UsernameText.Text + = "' AND password='" + PasswordText.Text + = "'";
             dr = cmd.ExecuteReader();
             if (dr.Read())
             {
