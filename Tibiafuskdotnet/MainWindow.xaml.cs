@@ -38,30 +38,45 @@ namespace Tibiafuskdotnet
 
         }
 
-
+        
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
             // TODO Lägg till Premium Checker
             string username = UsernameText.Text;
             string password = PasswordText.Text;
+            
+
+
             cmd = new MySqlCommand();
+            // är databasen på???
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = = "SELECT * FROM account where username='" + UsernameText.Text + = "' AND password='" + PasswordText.Text + = "'";
+            cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+
+            // cmd.CommandText = "SELECT '" + premiumdays + "' FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+            //cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "' AND premium='" + premiumdays + "'"; 
             dr = cmd.ExecuteReader();
+            
             if (dr.Read())
             {
-                if (Class1.appRunning())
-                {
+               // if ((premiumdays) >=1) { 
+               
+                    if (Class1.appRunning())
+                    {
 
-                    MainMenu Menu = new MainMenu();
-                    Menu.Show();
-                }
+                        MainMenu Menu = new MainMenu();
+                        Menu.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Start tibia first");
+                    }
+                    this.Close();
+               /* }
                 else
                 {
-                    MessageBox.Show("Start tibia first");
-                }
-                this.Close();
+                    MessageBox.Show("No Premium Days");
+                }*/
             }
             else
             {

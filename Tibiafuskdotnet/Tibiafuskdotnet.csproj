@@ -56,7 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ExtrasMenu.xaml.cs">
+      <DependentUpon>ExtrasMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spells.cs" />
+    <Page Include="ExtrasMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forgottenpassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

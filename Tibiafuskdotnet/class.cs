@@ -18,7 +18,7 @@ namespace Tibiafuskdotnet
 
         }*/
 
-        public static bool appRunning(string appName = = "Tibia")
+        public static bool appRunning(string appName =  "Tibia")
         {
             Process[] localByName = Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();

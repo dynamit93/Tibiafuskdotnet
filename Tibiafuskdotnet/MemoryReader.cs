@@ -37,7 +37,7 @@ namespace Tibia_Bot_Project
         private Int32 currentManaAddr = 0x63FE78 - 0x400000;
         private Int32 maxManaAddr = 0x63FE74 - 0x400000;
         private Int32 xorAddr = 0x934658 - 0x400000;
-        private Int32 chattAddr = 0x270D880;
+        private Int32 chattAddr = 0x27361B0;
 
         private double manaPercentInput;
         private double hpPercentLightHealInput;
@@ -99,7 +99,7 @@ namespace Tibia_Bot_Project
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
-
+             
             bool isExhausted = false;
             
             if (((double)(int)manaValue / (int)maxManaValue) < manaPercentInput)
@@ -110,7 +110,7 @@ namespace Tibia_Bot_Project
             }
             if (((double)(int)hpValue / (int)maxHpValue) < hpPercentIntenseHealInput)
             {
-
+                
                 chatt =  "Healing";
                 MessageBox.Show("error");
                 //keyboardSimulator.useIntenseHeal();
