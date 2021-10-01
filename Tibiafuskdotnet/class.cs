@@ -11,12 +11,10 @@ namespace Tibiafuskdotnet
     public class Class1
     {
 
-        /*static void Main(string[] args)
-        {
 
-            appRunning("Tibia");
 
-        }*/
+
+
 
         public static bool appRunning(string appName =  "Tibia")
         {

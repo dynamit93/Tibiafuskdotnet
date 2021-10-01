@@ -10,12 +10,11 @@ using Tibiafuskdotnet;
 
 namespace Tibia_Bot_Project
 {
-    class MemoryReader
+    public class MemoryReader
     {
         private Timer timer;
         private Tibiafuskdotnet.MainWindow lb;
-        public Tibiafuskdotnet.HealingMenu HealingMenu;
-
+    
         private const int PROCESS_WM_READ = 0x0010;
 
         private Int32 baseAddress;

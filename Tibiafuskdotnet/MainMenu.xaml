@@ -14,5 +14,6 @@
         <Label Target="{Binding Maxhp, Mode=OneWay}"  x:Name="maxhpValue" Content="{Binding Maxhp, Mode=OneWay}" HorizontalAlignment="Left" Margin="82,22,0,0" VerticalAlignment="Top" Width="155"/>
         <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="-284,369,0,0" VerticalAlignment="Top"/>
 
+       
     </Grid>
 </Window>

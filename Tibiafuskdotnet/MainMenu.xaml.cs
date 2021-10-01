@@ -22,6 +22,7 @@ namespace Tibiafuskdotnet
     /// </summary>
     public partial class MainMenu : INotifyPropertyChanged
     {
+
         private readonly RoutedCommand command = new RoutedCommand();
         public MainMenu()
         {
@@ -47,7 +48,7 @@ namespace Tibiafuskdotnet
             if (window.ShowActivated)
             {
                 this.Hide();
-                
+
             }
             else
             {
@@ -57,19 +58,20 @@ namespace Tibiafuskdotnet
 
 
 
-
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            
         }
 
-       
+        
 
         private int _maxhp = 1;
         public int Maxhp
-                
+
 
         {
             get { return _maxhp; }
@@ -83,7 +85,7 @@ namespace Tibiafuskdotnet
             }
         }
 
-
+    
 
         private void Healing_btn_Click(object sender, RoutedEventArgs e)
         {
