@@ -21,7 +21,7 @@ namespace Tibia_Bot_Project
         private Int32 baseAddress;
 
         private int currentHp;
-        private int maxHp;
+        public int maxHp;
         private int currentMana;
         private int maxMana;
         private int xor;
@@ -39,9 +39,13 @@ namespace Tibia_Bot_Project
         private Int32 xorAddr = 0x934658 - 0x400000;
         private Int32 chattAddr = 0x27361B0;
 
+       
+
         private double manaPercentInput;
         private double hpPercentLightHealInput;
         private double hpPercentIntenseHealInput;
+
+        
 
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);

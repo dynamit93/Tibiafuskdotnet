@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
+
+
 namespace Tibiafuskdotnet
 {
 
@@ -24,7 +26,7 @@ namespace Tibiafuskdotnet
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
 
 
         MySqlConnection con;
@@ -32,13 +34,17 @@ namespace Tibiafuskdotnet
         MySqlDataReader dr;
         public MainWindow()
         {
+            DataContext = this;
             InitializeComponent();
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
+            
 
         }
 
-        
+
+
+
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
             // TODO Lägg till Premium Checker
