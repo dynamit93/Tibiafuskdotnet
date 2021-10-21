@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="HealingMenu" Height="300" Width="300">
     <Grid>
-        <TextBox x:Name="Healhp" HorizontalAlignment="Left" Height="23" Margin="83,132,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="Healingkey_TextChanged"/>
+        <TextBox x:Name="hpPercentIntenseHealInput" HorizontalAlignment="Left" Height="23" Margin="83,132,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="Healingkey_TextChanged"/>
     </Grid>
 </Window>

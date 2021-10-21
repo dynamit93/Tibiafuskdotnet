@@ -102,6 +102,8 @@ namespace Tibia_Bot_Project
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
+
+            
              
             bool isExhausted = false;
             

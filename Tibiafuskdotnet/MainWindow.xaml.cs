@@ -55,7 +55,15 @@ namespace Tibiafuskdotnet
 
             cmd = new MySqlCommand();
             // är databasen på???
-            con.Open();
+            try
+            {
+                con.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("can't reach Database");
+                this.Close();
+            }
             cmd.Connection = con;
             cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
 

@@ -86,17 +86,15 @@ namespace Tibiafuskdotnet
         }
 
     
-
+        
         private void Healing_btn_Click(object sender, RoutedEventArgs e)
         {
-            HealingMenu Healingkey = new HealingMenu();
-            Healingkey.Show();
-        }
 
-        private void Extras_btn_Click(object sender, RoutedEventArgs e)
-        {
+                HealingMenu Healingkey = new HealingMenu();
+                Healingkey.Show();
 
         }
+
 
         private void Extras_btn_Click_1(object sender, RoutedEventArgs e)
         {
