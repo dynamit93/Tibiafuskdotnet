@@ -38,7 +38,7 @@ namespace Tibia_Bot_Project
         private Int32 xorAddr = 0x934658 - 0x400000;
         private Int32 chattAddr = 0x27361B0;
 
-       
+     
 
         private double manaPercentInput;
         private double hpPercentLightHealInput;

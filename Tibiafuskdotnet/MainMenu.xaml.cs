@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tibia_Bot_Project;
 
+
 namespace Tibiafuskdotnet
 {
     /// <summary>
@@ -101,5 +102,13 @@ namespace Tibiafuskdotnet
             ExtrasMenu Extraskey = new ExtrasMenu();
             Extraskey.Show();
         }
+
+        private void hpValue_Click(object sender, RoutedEventArgs e)
+        {
+            //fix it so its working
+           // MemoryReader.readValuesFromMemory.hpValue();
+            MessageBox.Show("hpValue");
+        }
+
     }
 }

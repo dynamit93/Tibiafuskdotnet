@@ -28,6 +28,7 @@
         <Button x:Name="Load_btn" Content="Load" HorizontalAlignment="Left" Margin="279,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
         <Button x:Name="Custom_btn" Content="Custom" HorizontalAlignment="Left" Margin="347,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
         <Button x:Name="Help_btn" Content="Help" HorizontalAlignment="Left" Margin="347,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
+        <Button x:Name="hpValue" Content="hpValue" HorizontalAlignment="Left" Margin="304,101,0,0" VerticalAlignment="Top" Width="75" Click="hpValue_Click"/>
 
 
 

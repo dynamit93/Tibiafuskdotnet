@@ -59,7 +59,7 @@ namespace Tibiafuskdotnet
             {
                 con.Open();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("can't reach Database");
                 this.Close();
