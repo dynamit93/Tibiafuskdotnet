@@ -47,14 +47,14 @@ namespace Tibiafuskdotnet
 
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
-            // TODO Lägg till Premium Checker
+            // TODO add premium checker.
             string username = UsernameText.Text;
             string password = PasswordText.Text;
             
 
 
             cmd = new MySqlCommand();
-            // är databasen på???
+           
             try
             {
                 con.Open();
@@ -62,6 +62,8 @@ namespace Tibiafuskdotnet
             catch (Exception)
             {
                 MessageBox.Show("can't reach Database");
+
+                //dossn't work to Exit client if its not possible to reach database.
                 this.Close();
             }
             cmd.Connection = con;

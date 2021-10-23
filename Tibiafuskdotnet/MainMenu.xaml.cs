@@ -110,5 +110,9 @@ namespace Tibiafuskdotnet
             MessageBox.Show("hpValue");
         }
 
+        private void Help_btn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("The main panel has several subsections that contain settings related to them within.This panel can be brought at any time by pressing 'Shift+F12'.A lighthack is also available to you and can be toggled by pressing 'Shift+F11'.When changing settings, it is IMPORTANT that you realise that you need to hit the 'Save' button on the main panel for them to apply and become active in game.Also, each character has 5 save slots available to him.There isn't just 5 slots for all your characters.Some bot function work straight from the interface, but for most others you will have to operate them through hotkeys and shortkeys.There is a wizard for creating those and you can also visit the forums and website for more examples.");
+        }
     }
 }
