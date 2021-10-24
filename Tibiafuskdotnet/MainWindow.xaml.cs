@@ -75,12 +75,15 @@ namespace Tibiafuskdotnet
             
             if (dr.Read())
             {
-               // if ((premiumdays) >=1) { 
-               
-                    if (Class1.appRunning())
-                    {
+                // if ((premiumdays) >=1) { 
 
-                        MainMenu Menu = new MainMenu();
+
+              if (MemoryReader.appRunning())
+
+               
+                {
+
+                    MainMenu Menu = new MainMenu();
                         Menu.Show();
                     }
                     else

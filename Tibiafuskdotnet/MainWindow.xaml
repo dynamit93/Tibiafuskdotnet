@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="Login_btn" Content="Login" HorizontalAlignment="Left" Margin="400,273,0,0" VerticalAlignment="Top" Click="Login_btn_Click"/>
-        <TextBox x:Name="UsernameText" HorizontalAlignment="Left" Margin="213,115,0,0" Text="123" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="PasswordText" HorizontalAlignment="Left" Margin="514,115,0,0" Text="123" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="Forgotten_btn" Content="Forgotten Password" HorizontalAlignment="Left" Margin="362,312,0,0" VerticalAlignment="Top" Click="Forgotten_btn_Click"/>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="241,84,0,0" VerticalAlignment="Top"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="555,84,0,0" VerticalAlignment="Top"/>
+        Title="MainWindow" Height="304.448" Width="383.962">
+    <Grid Margin="0,0,2,0">
+        <Button x:Name="Login_btn" Content="Login" HorizontalAlignment="Left" Margin="141,135,0,0" VerticalAlignment="Top" Click="Login_btn_Click" Width="109" Height="20"/>
+        <TextBox x:Name="UsernameText" HorizontalAlignment="Left" Margin="137,67,0,0" Text="123" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <TextBox x:Name="PasswordText" HorizontalAlignment="Left" Margin="137,103,0,0" Text="123" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <Button x:Name="Forgotten_btn" Content="Forgotten Password" HorizontalAlignment="Left" Margin="141,174,0,0" VerticalAlignment="Top" Click="Forgotten_btn_Click" Height="20" Width="109"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="62,67,0,0" VerticalAlignment="Top" Height="26" Width="63"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="62,103,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
 
     </Grid>
 </Window>

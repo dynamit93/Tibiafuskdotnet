@@ -8,12 +8,12 @@ using System.Windows.Threading;
 using Tibiafuskdotnet;
 
 
-namespace Tibia_Bot_Project
+namespace Tibiafuskdotnet
 {
     public class MemoryReader
     {
         private Timer timer;
-        private Tibiafuskdotnet.MainWindow lb;
+        private MainWindow lb;
     
         private const int PROCESS_WM_READ = 0x0010;
 
@@ -68,6 +68,33 @@ namespace Tibia_Bot_Project
 
             readValuesFromMemory();
         }
+
+
+        public static bool appRunning(string appName = "Tibia")
+        {
+            Process[] localByName = Process.GetProcessesByName("Tibia");
+            //Process[] ProcessList = Process.GetProcesses();
+
+            foreach (Process p in localByName)
+            {
+                Console.WriteLine(p.ProcessName);
+                if (p.ProcessName.Contains(appName))
+                {
+                    return true;
+
+                }
+                else
+                {
+                    MessageBox.Show("start tibia");
+                    return false;
+                }
+
+            }
+
+            return false;
+        }
+
+
 
         public void readValuesFromMemory()
         {

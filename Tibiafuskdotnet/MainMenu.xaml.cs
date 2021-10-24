@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Tibia_Bot_Project;
+using Tibiafuskdotnet;
 
 
 namespace Tibiafuskdotnet
