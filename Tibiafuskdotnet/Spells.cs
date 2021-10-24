@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Tibiafuskdotnet
 {
     class Spells
-    {
+    {/* Spells
 string AvalancheRune = "adori mas frigo";
 string Berserk = "exori";
 string BloodRage = "utito tempo";
@@ -66,7 +66,7 @@ string Food = "exevo pan";
 string GreatEnergyBeam = "exevo gran vis lux";
 string GreatFireballRune = "adori mas flam";
 string UltimateHealing = "exura vita";
-
+*/
 
     }
 }

@@ -41,7 +41,7 @@ namespace Tibiafuskdotnet
 
 
 
-        /// TODO gör att den öppnar Fönstret när man klickar igen ALT F12
+        /// TODO make so its opening the window again when pressing ALT F12
         private void OnCommand(object sender, EventArgs e)
         {
             MainMenu window = new MainMenu();
