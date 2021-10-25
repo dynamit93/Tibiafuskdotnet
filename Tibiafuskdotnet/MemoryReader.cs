@@ -13,16 +13,16 @@ namespace Tibiafuskdotnet
     public class MemoryReader
     {
         private Timer timer;
-        private MainWindow lb;
+        //private MainWindow lb;
     
         private const int PROCESS_WM_READ = 0x0010;
 
         private Int32 baseAddress;
 
-        private int currentHp;
+        public int currentHp;
         public int maxHp;
-        private int currentMana;
-        private int maxMana;
+        public int currentMana;
+        public int maxMana;
         private int xor;
         private string chatt;
 
@@ -53,9 +53,9 @@ namespace Tibiafuskdotnet
         public static extern bool ReadProcessMemory(int hProcess,
           int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
-        public MemoryReader(Tibiafuskdotnet.MainWindow lb, double manaPercentInput, double hpPercentLightHealInput, double hpPercentIntenseHealInput)
+        public MemoryReader(double manaPercentInput, double hpPercentLightHealInput, double hpPercentIntenseHealInput)
         {
-            this.lb = lb;
+            //this.lb = lb;
             this.manaPercentInput = manaPercentInput;
             this.hpPercentLightHealInput = hpPercentLightHealInput;
             this.hpPercentIntenseHealInput = hpPercentIntenseHealInput;

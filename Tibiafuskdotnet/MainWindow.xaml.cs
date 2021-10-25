@@ -26,7 +26,7 @@ namespace Tibiafuskdotnet
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        public MemoryReader mr;
 
 
         MySqlConnection con;
@@ -38,8 +38,8 @@ namespace Tibiafuskdotnet
             InitializeComponent();
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
-            
 
+            mr = new MemoryReader(0,0,0);
         }
 
 
@@ -102,6 +102,8 @@ namespace Tibiafuskdotnet
                 MessageBox.Show("Invalid Login please check username and password");
             }
             con.Close();
+
+            new MemoryReader(0, 0, 0);
         }
 
         private void Forgotten_btn_Click(object sender, RoutedEventArgs e)
