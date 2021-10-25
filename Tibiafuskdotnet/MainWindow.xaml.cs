@@ -39,6 +39,8 @@ namespace Tibiafuskdotnet
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
+            
+
             mr = new MemoryReader(0,0,0);
         }
 
