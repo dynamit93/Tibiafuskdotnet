@@ -6,7 +6,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
 using Tibiafuskdotnet;
-
+using Tibiafuskdotnet.BL;
 
 namespace Tibiafuskdotnet
 {
@@ -170,6 +170,11 @@ namespace Tibiafuskdotnet
             if (isExhausted)
             {
                 System.Threading.Thread.Sleep(800);
+            }
+
+            if (currentHp <= Helper.SpellHiHealth && currentMana > Helper.SpellHiMana)
+            {
+                MessageBox.Show("cast healing spell");
             }
 
         }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Tibiafuskdotnet.BL;
 
 namespace Tibiafuskdotnet
 {
@@ -41,7 +42,12 @@ namespace Tibiafuskdotnet
 
         private void SpellHiHealth_TextChanged(object sender, TextChangedEventArgs e)
         {
+            Helper.SpellHiHealth = Convert.ToInt32(SpellHiHealth.Text);
+        }
 
+        private void SpellHiMana_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Helper.SpellHiMana = Convert.ToInt32(SpellHiMana.Text);
         }
     }
 }
