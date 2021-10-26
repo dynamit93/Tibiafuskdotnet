@@ -31,14 +31,28 @@ namespace Tibiafuskdotnet
         private int manaValue;
         private int hpValue;
 
+       
+        private Int32 xorAddr = 0x934658 - 0x400000;
+        private Int32 chattAddr = 0x27361B0;
+
+
+        //character
+
+
+        //Skills
         private Int32 currentHpAddr = 0x63FE94 - 0x400000;
         private Int32 maxHpAddr = 0x63FE90 - 0x400000;
         private Int32 currentManaAddr = 0x63FE78 - 0x400000;
         private Int32 maxManaAddr = 0x63FE74 - 0x400000;
-        private Int32 xorAddr = 0x934658 - 0x400000;
-        private Int32 chattAddr = 0x27361B0;
+        public Int32 StaminaAddr = 0x63FE6C;
+        public Int32 MagicLevelAddr = 0x63FE84;
+        public Int32 LevelAddr = 0x63fe88;
+        public Int32 ExpAddr = 0x63FE8C;
+        public Int32 CapAddr = 0x63FE68;
+        public Int32 SoulAddr = 0x63FE70;
+        
 
-     
+
 
         private double manaPercentInput;
         private double hpPercentLightHealInput;
