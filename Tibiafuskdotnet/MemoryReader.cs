@@ -50,6 +50,21 @@ namespace Tibiafuskdotnet
         public Int32 ExpAddr = 0x63FE8C;
         public Int32 CapAddr = 0x63FE68;
         public Int32 SoulAddr = 0x63FE70;
+
+
+        /// hottkeys
+        public Int32 hottkeyf1 = 0x799F08;
+        public Int32 hottkeyf2 = 0x79A008;
+        public Int32 hottkeyf3 = 0x79A108;
+        public Int32 hottkeyf4 = 0x79A208;
+        public Int32 hottkeyf5 = 0x79A308;
+        public Int32 hottkeyf6 = 0x79A408;
+        public Int32 hottkeyf7 = 0x79A508;
+        public Int32 hottkeyf8 = 0x79A608;
+        public Int32 hottkeyf9 = 0x79A708;
+        public Int32 hottkeyf10 = 0x79A808;
+        public Int32 hottkeyf11 = 0x79A908;
+        public Int32 hottkeyf12 = 0x79AA08;
         
 
 
@@ -172,7 +187,7 @@ namespace Tibiafuskdotnet
                 System.Threading.Thread.Sleep(800);
             }
 
-            if (currentHp <= Helper.SpellHiHealth && currentMana > Helper.SpellHiMana)
+            if (currentHp <= Helper.SpellHiHealth && currentMana >= Helper.SpellHiMana)
             {
                 MessageBox.Show("cast healing spell");
             }

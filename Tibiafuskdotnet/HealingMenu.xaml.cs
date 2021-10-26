@@ -23,8 +23,7 @@ namespace Tibiafuskdotnet
         public HealingMenu()
         {
             InitializeComponent();
-            ///((MainWindow)Application.Current.MainWindow).txtForm1TextBox.Text = "Some text";
-            //((MainWindow)Application.Current.MainWindow).mr.maxHp
+
         }
 
 
