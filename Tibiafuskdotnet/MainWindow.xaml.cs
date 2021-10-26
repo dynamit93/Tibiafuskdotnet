@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 
 
@@ -56,17 +57,40 @@ namespace Tibiafuskdotnet
 
 
             cmd = new MySqlCommand();
-           
+         /*   
+            var dbversion = Convert.ToInt32(cmd.ExecuteScalar());
+            try
+            {
+                // Open the text file using a stream reader.
+                using (var sr = new StreamReader("version.txt"))
+                   // sr = Convert.ToInt32(sr);
+                {
+                    // Read the stream as a string, and write the string to the console.
+                    // check if dbversion is bigger then sr.ReadToEnd
+                    if ((dbversion) > (sr.ReadToEnd()))
+                    //((dbversion) > (sr.ReadToEnd))
+                    {
+                        MessageBox.Show("Update needed!" + "Download from: http://appbot.com/Downloads");
+                    }
+                }
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(ex.Message);
+            }*/
+
             try
             {
                 con.Open();
             }
             catch (Exception)
             {
-                MessageBox.Show("can't reach Database");
-
-                //dossn't work to Exit client if its not possible to reach database.
-                this.Close();
+                
+                MessageBox.Show("can't reach Database");               
+                //exit Appliaction
+                Environment.Exit(0);
+                
             }
             cmd.Connection = con;
             cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
