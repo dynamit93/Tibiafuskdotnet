@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
+using Tibiafuskdotnet.BL;
 
 namespace Tibiafuskdotnet
 {
@@ -35,6 +36,7 @@ namespace Tibiafuskdotnet
         {
             DataContext = this;
             InitializeComponent();
+            Helper.Initialize();
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
