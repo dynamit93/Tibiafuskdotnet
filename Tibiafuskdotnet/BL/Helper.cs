@@ -13,6 +13,8 @@ namespace Tibiafuskdotnet.BL
         public static Int32 SpellHiHealth = 0;
         public static Int32 SpellHiMana = 0;
         public static Int32 SpellHitext = 0;
+        public static string TestSpellHitext = "";
+
         public static void Initialize()
         {
 
@@ -52,6 +54,7 @@ namespace Tibiafuskdotnet.BL
 
         public static Cheat ReadFromFile()
         {
+            return new Cheat();
             using (StreamReader r = new StreamReader(GetPath()))
             {
                 var a = r.ReadLine();

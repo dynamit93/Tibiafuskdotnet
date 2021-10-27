@@ -44,7 +44,16 @@ namespace Tibiafuskdotnet
         
         public void Healingkey_TextChanged(object sender, TextChangedEventArgs e)
         {
+            try
+            {
+
             Helper.SpellHitext = Convert.ToInt32(SpellHitext.Text);
+            Helper.TestSpellHitext = SpellHitext.Text;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void SpellHiHealth_TextChanged(object sender, TextChangedEventArgs e)

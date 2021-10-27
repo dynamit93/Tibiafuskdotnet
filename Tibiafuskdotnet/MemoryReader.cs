@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
@@ -56,8 +57,10 @@ namespace Tibiafuskdotnet
 
 
         /// hottkeys
+        /// pub
         public Int32 hottkeyf1 = 0x799F08;
         public Int32 hottkeyf2 = 0x79A008;
+        string hotkeyf2 = "exura gran";
         public Int32 hottkeyf3 = 0x79A108;
         public Int32 hottkeyf4 = 0x79A208;
         public Int32 hottkeyf5 = 0x79A308;
@@ -195,8 +198,15 @@ namespace Tibiafuskdotnet
             {
                 var spelhitext = Helper.SpellHitext;
                 VirtualKeyCode k = new VirtualKeyCode();
-                if (spelhitext == hottkeyf1)
+                if (Helper.TestSpellHitext == hotkeyf2 ) // check the spelling of hotkey its should be hottkey right?  we wil change it it is just for testing
+                {
+                    
+                    k = VirtualKeyCode.F2;
+                }
+
+             else   if (spelhitext == hottkeyf1)
                     k = VirtualKeyCode.F1;
+
                 else if (spelhitext == hottkeyf2)
                     k = VirtualKeyCode.F2;
                 else if (spelhitext == hottkeyf3)
@@ -226,9 +236,9 @@ namespace Tibiafuskdotnet
 
 
             }
-
+             string ascii = Encoding.ASCII.GetString(hottkeyf2.ToString());
         }
-
+        //just one sec need to fix movie for my girlfriend done
         private void TimerTick(object sender, EventArgs e)
         {
             readValuesFromMemory();
