@@ -17,8 +17,6 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
 
-
-
 namespace Tibiafuskdotnet
 {
 
@@ -138,7 +136,10 @@ namespace Tibiafuskdotnet
             forgottenpassword.Show();
             this.Close();
         }
- 
-    
+
+        private void d(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
