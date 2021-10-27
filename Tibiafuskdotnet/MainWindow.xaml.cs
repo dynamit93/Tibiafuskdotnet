@@ -15,8 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data;
 using MySql.Data.MySqlClient;
-
-
+using Tibiafuskdotnet.BL;
+using WindowsInput;
+using WindowsInput.Native;
 
 namespace Tibiafuskdotnet
 {
@@ -36,6 +37,8 @@ namespace Tibiafuskdotnet
         {
             DataContext = this;
             InitializeComponent();
+            Helper.Initialize();
+           
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
@@ -114,7 +117,10 @@ namespace Tibiafuskdotnet
             forgottenpassword.Show();
             this.Close();
         }
- 
-    
+
+        private void d(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

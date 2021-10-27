@@ -20,9 +20,17 @@ namespace Tibiafuskdotnet
 
     public partial class HealingMenu : Window
     {
+       
         public HealingMenu()
         {
             InitializeComponent();
+            this.DataContext = this;
+            var data = Helper.ReadFromFile();
+            if (data == null)
+                data = new Cheat();
+            Helper.SpellHiHealth = data.SpellHiHealth;
+            Helper.SpellHiMana = data.SpellHiMana;
+            Helper.SpellHitext = data.SpellHitext;
 
         }
 
@@ -36,7 +44,7 @@ namespace Tibiafuskdotnet
         
         public void Healingkey_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Helper.SpellHitext = Convert.ToInt32(SpellHitext.Text);
         }
 
         private void SpellHiHealth_TextChanged(object sender, TextChangedEventArgs e)
@@ -47,6 +55,11 @@ namespace Tibiafuskdotnet
         private void SpellHiMana_TextChanged(object sender, TextChangedEventArgs e)
         {
             Helper.SpellHiMana = Convert.ToInt32(SpellHiMana.Text);
+        }
+
+        private void lost(object sender, RoutedEventArgs e)
+        {
+            Helper.WriteToFile();
         }
     }
 }

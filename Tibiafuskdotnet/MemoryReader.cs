@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -7,6 +8,8 @@ using System.Windows;
 using System.Windows.Threading;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+using WindowsInput;
+using WindowsInput.Native;
 
 namespace Tibiafuskdotnet
 {
@@ -186,10 +189,42 @@ namespace Tibiafuskdotnet
             {
                 System.Threading.Thread.Sleep(800);
             }
+          
 
             if (currentHp <= Helper.SpellHiHealth && currentMana >= Helper.SpellHiMana)
             {
-                MessageBox.Show("cast healing spell");
+                var spelhitext = Helper.SpellHitext;
+                VirtualKeyCode k = new VirtualKeyCode();
+                if (spelhitext == hottkeyf1)
+                    k = VirtualKeyCode.F1;
+                else if (spelhitext == hottkeyf2)
+                    k = VirtualKeyCode.F2;
+                else if (spelhitext == hottkeyf3)
+                    k = VirtualKeyCode.F3;
+                else if (spelhitext == hottkeyf4)
+                    k = VirtualKeyCode.F4;
+                else if (spelhitext == hottkeyf5)
+                    k = VirtualKeyCode.F5;
+                else if (spelhitext == hottkeyf6)
+                    k = VirtualKeyCode.F6;
+                else if (spelhitext == hottkeyf7)
+                    k = VirtualKeyCode.F7;
+                else if (spelhitext == hottkeyf8)
+                    k = VirtualKeyCode.F8;
+                else if (spelhitext == hottkeyf9)
+                    k = VirtualKeyCode.F9;
+                else if (spelhitext == hottkeyf10)
+                    k = VirtualKeyCode.F10;
+                else if (spelhitext == hottkeyf11)
+                    k = VirtualKeyCode.F11;
+                else if (spelhitext == hottkeyf12)
+                    k = VirtualKeyCode.F12;
+
+                var sim = new InputSimulator();
+                sim.Keyboard.KeyDown(k);
+
+
+
             }
 
         }
