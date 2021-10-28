@@ -160,15 +160,12 @@ namespace Tibiafuskdotnet
             ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
             chatt = BitConverter.ToString(buffer, 0);
 
-            ReadProcessMemory((int)handle, hottkeyf5, buffer, buffer.Length, ref bytesRead);
-          var   schatt = BitConverter.ToString(buffer, 0);
-           var aasd= Helper.ConvertStringToHex("askldjaslkdutani gran hur", Encoding.UTF8);
+          
             hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
             Memory.Mem m = new Memory.Mem();
-           var a= m.ReadString(hottkeyf2.ToString());
             bool isExhausted = false;
             
             if (((double)(int)manaValue / (int)maxManaValue) < manaPercentInput)
@@ -194,11 +191,38 @@ namespace Tibiafuskdotnet
             {
                 System.Threading.Thread.Sleep(800);
             }
-          
+            ReadProcessMemory((int)handle, hottkeyf1, buffer, buffer.Length, ref bytesRead);
+            var strHotkey1 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf2, buffer, buffer.Length, ref bytesRead);
+            var strHotkey2 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf3, buffer, buffer.Length, ref bytesRead);
+            var strHotkey3 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf4, buffer, buffer.Length, ref bytesRead);
+            var strHotkey4 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf5, buffer, buffer.Length, ref bytesRead);
+            var strHotkey5 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf6, buffer, buffer.Length, ref bytesRead);
+            var strHotkey6 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf7, buffer, buffer.Length, ref bytesRead);
+            var strHotkey7 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf8, buffer, buffer.Length, ref bytesRead);
+            var strHotkey8 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf9, buffer, buffer.Length, ref bytesRead);
+            var strHotkey9 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf10, buffer, buffer.Length, ref bytesRead);
+            var strHotkey10 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf11, buffer, buffer.Length, ref bytesRead);
+            var strHotkey11 = BitConverter.ToString(buffer, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf12, buffer, buffer.Length, ref bytesRead);
+            var strHotkey12 = BitConverter.ToString(buffer, 0).Replace("-","");
+
+
+           
 
             if (currentHp <= Helper.SpellHiHealth && currentMana >= Helper.SpellHiMana)
             {
-                var spelhitext = Helper.SpellHitext;
+                var spelhitext = Helper.ConvertStringToHex(Helper.SpellHitext.ToString(), Encoding.UTF8).ToString().Substring(0,7);
+               
                 VirtualKeyCode k = new VirtualKeyCode();
                 if (Helper.TestSpellHitext == hotkeyf2 ) // check the spelling of hotkey its should be hottkey right?  we wil change it it is just for testing
                 {
@@ -206,30 +230,30 @@ namespace Tibiafuskdotnet
                     k = VirtualKeyCode.F2;
                 }
 
-             else   if (spelhitext == hottkeyf1)
+             else   if (spelhitext == strHotkey1)
                     k = VirtualKeyCode.F1;
 
-                else if (spelhitext == hottkeyf2)
+                else if (spelhitext == strHotkey2)
                     k = VirtualKeyCode.F2;
-                else if (spelhitext == hottkeyf3)
+                else if (spelhitext == strHotkey3)
                     k = VirtualKeyCode.F3;
-                else if (spelhitext == hottkeyf4)
+                else if (spelhitext == strHotkey4)
                     k = VirtualKeyCode.F4;
-                else if (spelhitext == hottkeyf5)
+                else if (spelhitext == strHotkey5)
                     k = VirtualKeyCode.F5;
-                else if (spelhitext == hottkeyf6)
+                else if (spelhitext == strHotkey6)
                     k = VirtualKeyCode.F6;
-                else if (spelhitext == hottkeyf7)
+                else if (spelhitext == strHotkey7)
                     k = VirtualKeyCode.F7;
-                else if (spelhitext == hottkeyf8)
+                else if (spelhitext == strHotkey8)
                     k = VirtualKeyCode.F8;
-                else if (spelhitext == hottkeyf9)
+                else if (spelhitext == strHotkey9)
                     k = VirtualKeyCode.F9;
-                else if (spelhitext == hottkeyf10)
+                else if (spelhitext == strHotkey10)
                     k = VirtualKeyCode.F10;
-                else if (spelhitext == hottkeyf11)
+                else if (spelhitext == strHotkey11)
                     k = VirtualKeyCode.F11;
-                else if (spelhitext == hottkeyf12)
+                else if (spelhitext == strHotkey12)
                     k = VirtualKeyCode.F12;
 
                 var sim = new InputSimulator();
@@ -240,6 +264,8 @@ namespace Tibiafuskdotnet
             }
              
         }
+
+       
         //just one sec need to fix movie for my girlfriend done
         private void TimerTick(object sender, EventArgs e)
         {

@@ -76,7 +76,9 @@ namespace Tibiafuskdotnet.BL
 
         public static Cheat ReadFromFile()
         {
-            return new Cheat();
+            try
+            {
+
             using (StreamReader r = new StreamReader(GetPath()))
             {
                 var a = r.ReadLine();
@@ -85,6 +87,11 @@ namespace Tibiafuskdotnet.BL
                     return JsonConvert.DeserializeObject<Cheat>(r.ReadLine());
                 }
                 r.Close();
+            }
+            }
+            catch (Exception)
+            {
+
             }
             return new Cheat();
 
