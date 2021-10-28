@@ -134,7 +134,7 @@ namespace Tibiafuskdotnet
         public void readValuesFromMemory()
         {
             //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
-            var tibia = Process.GetProcessById(21568);
+            var tibia = Process.GetProcessesByName("Tibia");
             baseAddress = tibia.MainModule.BaseAddress.ToInt32();
             IntPtr handle = OpenProcess(PROCESS_WM_READ, false, tibia.Id);
 
