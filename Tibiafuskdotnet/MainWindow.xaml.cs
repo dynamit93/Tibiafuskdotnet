@@ -33,6 +33,8 @@ namespace Tibiafuskdotnet
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader dr;
+        private int premium;
+
         public MainWindow()
         {
             DataContext = this;
@@ -89,6 +91,10 @@ namespace Tibiafuskdotnet
                 Console.WriteLine(ex.Message);
             }*/
 
+
+
+
+
             try
             {
                 con.Open();
@@ -103,21 +109,20 @@ namespace Tibiafuskdotnet
             }
             cmd.Connection = con;
             cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
-
-            // cmd.CommandText = "SELECT '" + premiumdays + "' FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
-            //cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "' AND premium='" + premiumdays + "'"; 
+            //SELECT premium FROM account WHERE username ='123' and password='123'
+            //cmd.CommandText = "SELECT '" + premium + "' FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
             dr = cmd.ExecuteReader();
             
             if (dr.Read())
             {
-                // if ((premiumdays) >=1) { 
+                 //if ((premium) >=1) { 
 
 
               if (MemoryReader.appRunning())
 
                
                 {
-
+                    
                     MainMenu Menu = new MainMenu();
                         Menu.Show();
                     }
