@@ -160,14 +160,15 @@ namespace Tibiafuskdotnet
             ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
             chatt = BitConverter.ToString(buffer, 0);
 
-
+            ReadProcessMemory((int)handle, hottkeyf5, buffer, buffer.Length, ref bytesRead);
+          var   schatt = BitConverter.ToString(buffer, 0);
+           var aasd= Helper.ConvertStringToHex("askldjaslkdutani gran hur", Encoding.UTF8);
             hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
-
             Memory.Mem m = new Memory.Mem();
-           var a= m.ReadString(hotkeyf2);
+           var a= m.ReadString(hottkeyf2.ToString());
             bool isExhausted = false;
             
             if (((double)(int)manaValue / (int)maxManaValue) < manaPercentInput)
