@@ -40,6 +40,13 @@ namespace Tibiafuskdotnet
          
 
                 Helper.Initialize();
+            var data = Helper.ReadFromFile();
+            data = data ?? new Cheat();
+            data.SpellHitext = data.SpellHitext ?? "";
+            
+            Helper.SpellHiHealth = data.SpellHiHealth;
+            Helper.SpellHiMana = data.SpellHiMana;
+            Helper.SpellHitext = data.SpellHitext;
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 

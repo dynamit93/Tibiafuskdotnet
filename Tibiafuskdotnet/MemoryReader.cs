@@ -221,16 +221,17 @@ namespace Tibiafuskdotnet
 
             if (currentHp <= Helper.SpellHiHealth && currentMana >= Helper.SpellHiMana)
             {
-                var spelhitext = Helper.ConvertStringToHex(Helper.SpellHitext.ToString(), Encoding.UTF8).ToString().Substring(0,7);
+                var text = Helper.SpellHitext;
+                if (text==null)
+                {
+                    text = "";
+                }
+                var spelhitext = Helper.ConvertStringToHex(text, Encoding.UTF8).ToString().Substring(0,8);
                
                 VirtualKeyCode k = new VirtualKeyCode();
-                if (Helper.TestSpellHitext == hotkeyf2 ) // check the spelling of hotkey its should be hottkey right?  we wil change it it is just for testing
-                {
-                    
-                    k = VirtualKeyCode.F2;
-                }
+                
 
-             else   if (spelhitext == strHotkey1)
+                if (spelhitext == strHotkey1)
                     k = VirtualKeyCode.F1;
 
                 else if (spelhitext == strHotkey2)

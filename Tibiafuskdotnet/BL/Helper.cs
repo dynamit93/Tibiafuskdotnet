@@ -12,8 +12,7 @@ namespace Tibiafuskdotnet.BL
     {
         public static Int32 SpellHiHealth = 0;
         public static Int32 SpellHiMana = 0;
-        public static Int32 SpellHitext = 0;
-        public static string TestSpellHitext = "";
+        public static string SpellHitext = "";
         public static string ConvertStringToHex(String input, System.Text.Encoding encoding)
         {
             Byte[] stringBytes = encoding.GetBytes(input);
@@ -59,7 +58,8 @@ namespace Tibiafuskdotnet.BL
         public static string GetPath()
         {
 
-            return AppDomain.CurrentDomain.GetData("DataDirectory") + "//TibiaCheat//Cheat.txt";
+                var path=AppDomain.CurrentDomain.GetData("DataDirectory") + "\\TibiaCheat\\Cheat.txt";
+            return path;
 
 
         }
@@ -84,12 +84,12 @@ namespace Tibiafuskdotnet.BL
                 var a = r.ReadLine();
                 if (a != null)
                 {
-                    return JsonConvert.DeserializeObject<Cheat>(r.ReadLine());
+                    return JsonConvert.DeserializeObject<Cheat>(a);
                 }
                 r.Close();
             }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
             }

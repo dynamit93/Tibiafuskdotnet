@@ -11,6 +11,6 @@ namespace Tibiafuskdotnet.BL
        
         public Int32 SpellHiHealth { get; set; }
         public Int32 SpellHiMana { get; set; }
-        public Int32 SpellHitext { get; set; }
+        public string SpellHitext { get; set; }
     }
 }

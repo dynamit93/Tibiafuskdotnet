@@ -28,9 +28,10 @@ namespace Tibiafuskdotnet
             var data = Helper.ReadFromFile();
             if (data == null)
                 data = new Cheat();
-            Helper.SpellHiHealth = data.SpellHiHealth;
-            Helper.SpellHiMana = data.SpellHiMana;
-            Helper.SpellHitext = data.SpellHitext;
+
+            SpellHiHealth.Text = data.SpellHiHealth.ToString();
+            SpellHiMana.Text = data.SpellHiMana.ToString();
+            SpellHitext.Text = data.SpellHitext.ToString();
 
         }
 
@@ -47,8 +48,7 @@ namespace Tibiafuskdotnet
             try
             {
 
-            Helper.SpellHitext = Convert.ToInt32(SpellHitext.Text);
-            Helper.TestSpellHitext = SpellHitext.Text;
+            Helper.SpellHitext = SpellHitext.Text;
             }
             catch (Exception ex)
             {
@@ -58,12 +58,29 @@ namespace Tibiafuskdotnet
 
         private void SpellHiHealth_TextChanged(object sender, TextChangedEventArgs e)
         {
+            try
+            {
+
             Helper.SpellHiHealth = Convert.ToInt32(SpellHiHealth.Text);
+            }
+            catch(Exception ex)
+            {
+                SpellHiHealth.Text = "0";
+            }
         }
 
         private void SpellHiMana_TextChanged(object sender, TextChangedEventArgs e)
         {
+            try
+            {
+
+            
             Helper.SpellHiMana = Convert.ToInt32(SpellHiMana.Text);
+            }
+            catch (Exception ex)
+            {
+                SpellHiMana.Text = "0";
+            }
         }
 
         private void lost(object sender, RoutedEventArgs e)
