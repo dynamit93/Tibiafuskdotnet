@@ -191,12 +191,24 @@ namespace Tibiafuskdotnet
             {
                 System.Threading.Thread.Sleep(800);
             }
-            ReadProcessMemory((int)handle, hottkeyf1, buffer, buffer.Length, ref bytesRead);
-            var strHotkey1 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf2, buffer, buffer.Length, ref bytesRead);
-            var strHotkey2 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf3, buffer, buffer.Length, ref bytesRead);
-            var strHotkey3 = BitConverter.ToString(buffer, 0).Replace("-","");
+            byte[] arr =Encoding.UTF8.GetBytes(hottkeyf1.ToString());
+            byte[] arr3 =Encoding.UTF8.GetBytes(hottkeyf3.ToString());
+            byte[] arr2 =Encoding.UTF8.GetBytes(hottkeyf2.ToString());
+            byte[] data = Encoding.UTF8.GetBytes(Helper.SpellHitext);
+            var spelhitext2 = Helper.ConvertStringToHex(Helper.SpellHitext, Encoding.ASCII).ToString();
+            buffer = new byte[10];
+
+
+
+
+
+
+            ReadProcessMemory((int)handle, hottkeyf1, arr, arr.Length, ref bytesRead);
+            var strHotkey1 = BitConverter.ToString(arr, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf2, arr2, arr2.Length, ref bytesRead);
+            var strHotkey2 = BitConverter.ToString(arr2, 0).Replace("-","");
+            ReadProcessMemory((int)handle, hottkeyf3, arr3, arr3.Length, ref bytesRead);
+            var strHotkey3 = BitConverter.ToString(arr3, 0).Replace("-","");
             ReadProcessMemory((int)handle, hottkeyf4, buffer, buffer.Length, ref bytesRead);
             var strHotkey4 = BitConverter.ToString(buffer, 0).Replace("-","");
             ReadProcessMemory((int)handle, hottkeyf5, buffer, buffer.Length, ref bytesRead);
@@ -265,8 +277,16 @@ namespace Tibiafuskdotnet
             }
              
         }
-
-       
+        [DllImport("kernel32.dll")]
+        public static extern Int32 ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress,
+           [In, Out] byte[] buffer, UInt32 size, out IntPtr lpNumberOfBytesRead);
+        public byte[] ReadBytes(IntPtr Handle, Int64 Address, uint BytesToRead)
+        {
+            IntPtr ptrBytesRead;
+            byte[] buffer = new byte[BytesToRead];
+            ReadProcessMemory(Handle, new IntPtr(Address), buffer, BytesToRead, out ptrBytesRead);
+            return buffer;
+        }
         //just one sec need to fix movie for my girlfriend done
         private void TimerTick(object sender, EventArgs e)
         {
