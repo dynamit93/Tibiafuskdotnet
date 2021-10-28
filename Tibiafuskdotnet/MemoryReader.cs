@@ -133,7 +133,8 @@ namespace Tibiafuskdotnet
 
         public void readValuesFromMemory()
         {
-            Process tibia = Process.GetProcessesByName("Tibia").FirstOrDefault();
+            //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
+            var tibia = Process.GetProcessById(21568);
             baseAddress = tibia.MainModule.BaseAddress.ToInt32();
             IntPtr handle = OpenProcess(PROCESS_WM_READ, false, tibia.Id);
 
@@ -165,8 +166,8 @@ namespace Tibiafuskdotnet
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
 
-            
-             
+            Memory.Mem m = new Memory.Mem();
+           var a= m.ReadString(hotkeyf2);
             bool isExhausted = false;
             
             if (((double)(int)manaValue / (int)maxManaValue) < manaPercentInput)
@@ -236,7 +237,7 @@ namespace Tibiafuskdotnet
 
 
             }
-             string ascii = Encoding.ASCII.GetString(hottkeyf2.ToString());
+             
         }
         //just one sec need to fix movie for my girlfriend done
         private void TimerTick(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -26,9 +27,9 @@ namespace Tibiafuskdotnet
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MemoryReader mr;
+       
 
-
+        Memory.Mem m = new Memory.Mem();
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader dr;
@@ -36,16 +37,17 @@ namespace Tibiafuskdotnet
         {
             DataContext = this;
             InitializeComponent();
-            Helper.Initialize();
+         
+
+                Helper.Initialize();
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
             
 
-            mr = new MemoryReader(0,0,0);
+          
         }
-
-
+      
 
 
         private void Login_btn_Click(object sender, RoutedEventArgs e)
