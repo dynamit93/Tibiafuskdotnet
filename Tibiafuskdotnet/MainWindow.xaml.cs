@@ -29,7 +29,7 @@ namespace Tibiafuskdotnet
     {
        
 
-        Memory.Mem m = new Memory.Mem();
+      
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader dr;
