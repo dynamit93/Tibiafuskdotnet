@@ -110,12 +110,12 @@ namespace Tibiafuskdotnet
             cmd.Connection = con;
             cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
             //SELECT premium FROM account WHERE username ='123' and password='123'
-            //cmd.CommandText = "SELECT '" + premium + "' FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+            // cmd.CommandText = "SELECT '" + premium + "' FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+            //var prem = (int)cmd.ExecuteScalar();
             dr = cmd.ExecuteReader();
-            
-            if (dr.Read())
+          if (dr.Read())
             {
-                 //if ((premium) >=1) { 
+                // if ((premium) >=1) { 
 
 
               if (MemoryReader.appRunning())
@@ -131,12 +131,12 @@ namespace Tibiafuskdotnet
                         MessageBox.Show("Start tibia first");
                     }
                     this.Close();
-               /* }
-                else
+                }
+              /*  else
                 {
                     MessageBox.Show("No Premium Days");
-                }*/
-            }
+                }
+            }*/
             else
             {
                 MessageBox.Show("Invalid Login please check username and password");

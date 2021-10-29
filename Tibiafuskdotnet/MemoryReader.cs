@@ -159,13 +159,19 @@ namespace Tibiafuskdotnet
 
             ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
             chatt = BitConverter.ToString(buffer, 0);
+            ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
+            int * data =(int32*)BitConverter.ToInt32(buffer, 0);
 
-          
+
+
             hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
             Memory.Mem m = new Memory.Mem();
+           var res= m.OpenProcess("Tibia");
+            var result=m.WriteMemory("0x79A008", "string",Helper.SpellHitext);
+            
             bool isExhausted = false;
             
             if (((double)(int)manaValue / (int)maxManaValue) < manaPercentInput)
@@ -191,86 +197,58 @@ namespace Tibiafuskdotnet
             {
                 System.Threading.Thread.Sleep(800);
             }
-            byte[] arr =Encoding.UTF8.GetBytes(hottkeyf1.ToString());
-            byte[] arr3 =Encoding.UTF8.GetBytes(hottkeyf3.ToString());
-            byte[] arr2 =Encoding.UTF8.GetBytes(hottkeyf2.ToString());
-            byte[] data = Encoding.UTF8.GetBytes(Helper.SpellHitext);
-            var spelhitext2 = Helper.ConvertStringToHex(Helper.SpellHitext, Encoding.ASCII).ToString();
-            buffer = new byte[10];
 
 
 
 
 
 
-            ReadProcessMemory((int)handle, hottkeyf1, arr, arr.Length, ref bytesRead);
-            var strHotkey1 = BitConverter.ToString(arr, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf2, arr2, arr2.Length, ref bytesRead);
-            var strHotkey2 = BitConverter.ToString(arr2, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf3, arr3, arr3.Length, ref bytesRead);
-            var strHotkey3 = BitConverter.ToString(arr3, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf4, buffer, buffer.Length, ref bytesRead);
-            var strHotkey4 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf5, buffer, buffer.Length, ref bytesRead);
-            var strHotkey5 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf6, buffer, buffer.Length, ref bytesRead);
-            var strHotkey6 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf7, buffer, buffer.Length, ref bytesRead);
-            var strHotkey7 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf8, buffer, buffer.Length, ref bytesRead);
-            var strHotkey8 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf9, buffer, buffer.Length, ref bytesRead);
-            var strHotkey9 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf10, buffer, buffer.Length, ref bytesRead);
-            var strHotkey10 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf11, buffer, buffer.Length, ref bytesRead);
-            var strHotkey11 = BitConverter.ToString(buffer, 0).Replace("-","");
-            ReadProcessMemory((int)handle, hottkeyf12, buffer, buffer.Length, ref bytesRead);
-            var strHotkey12 = BitConverter.ToString(buffer, 0).Replace("-","");
 
 
-           
+
+
+
 
             if (currentHp <= Helper.SpellHiHealth && currentMana >= Helper.SpellHiMana)
             {
                 var text = Helper.SpellHitext;
-                if (text==null)
-                {
-                    text = "";
-                }
-                var spelhitext = Helper.ConvertStringToHex(text, Encoding.UTF8).ToString().Substring(0,8);
-               
-                VirtualKeyCode k = new VirtualKeyCode();
-                
+                //if (text == null)
+                    //    {
+                    //        text = "";
+                    //    }
+                    //    var spelhitext = Helper.ConvertStringToHex(text, Encoding.UTF8).ToString().Substring(0,8);
 
-                if (spelhitext == strHotkey1)
-                    k = VirtualKeyCode.F1;
+                    //    VirtualKeyCode k = new VirtualKeyCode();
 
-                else if (spelhitext == strHotkey2)
-                    k = VirtualKeyCode.F2;
-                else if (spelhitext == strHotkey3)
-                    k = VirtualKeyCode.F3;
-                else if (spelhitext == strHotkey4)
-                    k = VirtualKeyCode.F4;
-                else if (spelhitext == strHotkey5)
-                    k = VirtualKeyCode.F5;
-                else if (spelhitext == strHotkey6)
-                    k = VirtualKeyCode.F6;
-                else if (spelhitext == strHotkey7)
-                    k = VirtualKeyCode.F7;
-                else if (spelhitext == strHotkey8)
-                    k = VirtualKeyCode.F8;
-                else if (spelhitext == strHotkey9)
-                    k = VirtualKeyCode.F9;
-                else if (spelhitext == strHotkey10)
-                    k = VirtualKeyCode.F10;
-                else if (spelhitext == strHotkey11)
-                    k = VirtualKeyCode.F11;
-                else if (spelhitext == strHotkey12)
-                    k = VirtualKeyCode.F12;
 
-                var sim = new InputSimulator();
-                sim.Keyboard.KeyDown(k);
+                    //    if (spelhitext == strHotkey1)
+                    //        k = VirtualKeyCode.F1;
+
+                    //    else if (spelhitext == strHotkey2)
+                    //        k = VirtualKeyCode.F2;
+                    //    else if (spelhitext == strHotkey3)
+                    //        k = VirtualKeyCode.F3;
+                    //    else if (spelhitext == strHotkey4)
+                    //        k = VirtualKeyCode.F4;
+                    //    else if (spelhitext == strHotkey5)
+                    //        k = VirtualKeyCode.F5;
+                    //    else if (spelhitext == strHotkey6)
+                    //        k = VirtualKeyCode.F6;
+                    //    else if (spelhitext == strHotkey7)
+                    //        k = VirtualKeyCode.F7;
+                    //    else if (spelhitext == strHotkey8)
+                    //        k = VirtualKeyCode.F8;
+                    //    else if (spelhitext == strHotkey9)
+                    //        k = VirtualKeyCode.F9;
+                    //    else if (spelhitext == strHotkey10)
+                    //        k = VirtualKeyCode.F10;
+                    //    else if (spelhitext == strHotkey11)
+                    //        k = VirtualKeyCode.F11;
+                    //    else if (spelhitext == strHotkey12)
+                    //        k = VirtualKeyCode.F12;
+
+                    var sim = new InputSimulator();
+                sim.Keyboard.KeyDown(VirtualKeyCode.F2);
 
 
 
