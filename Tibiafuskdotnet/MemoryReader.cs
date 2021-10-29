@@ -168,9 +168,9 @@ namespace Tibiafuskdotnet
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
-           // Memory.Mem m = new Memory.Mem();
-          // var res= m.OpenProcess("Tibia");
-            //var result=m.WriteMemory("0x79A008", "string",Helper.SpellHitext);
+            Memory.Mem m = new Memory.Mem();
+           var res= m.OpenProcess("Tibia");
+            var result=m.WriteMemory("base+0x79A008", "string",Helper.SpellHitext);
             
             bool isExhausted = false;
             
