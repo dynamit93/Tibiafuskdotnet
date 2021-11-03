@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,6 +12,7 @@ using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
 using WindowsInput;
 using WindowsInput.Native;
+using static Memory.Mem;
 
 namespace Tibiafuskdotnet
 {
@@ -107,10 +109,10 @@ namespace Tibiafuskdotnet
 
         public static bool appRunning(string appName = "Tibia")
         {
-            Process[] localByName = Process.GetProcessesByName("Tibia");
+            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();
 
-            foreach (Process p in localByName)
+            foreach (System.Diagnostics.Process p in localByName)
             {
                 Console.WriteLine(p.ProcessName);
                 if (p.ProcessName.Contains(appName))
@@ -134,7 +136,7 @@ namespace Tibiafuskdotnet
         public void readValuesFromMemory()
         {
             //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
-            var tibia = Process.GetProcessesByName("Tibia").FirstOrDefault();
+            var tibia = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
             baseAddress = tibia.MainModule.BaseAddress.ToInt32();
             IntPtr handle = OpenProcess(PROCESS_WM_READ, false, tibia.Id);
 
@@ -168,10 +170,28 @@ namespace Tibiafuskdotnet
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
-            Memory.Mem m = new Memory.Mem();
-           var res= m.OpenProcess("Tibia");
-            var result=m.WriteMemory("base+39A008", "string",Helper.SpellHitext);
+            //VAMemory vm = new VAMemory("Tibia");
+            // intpr
+            //  var result=  vm.WriteStringUnicode((IntPtr)"Tibia.exe+39A908", "alskdjaslkdjasldj");
+
             
+           Memory.Mem m = new Memory.Mem();
+           var res= m.OpenProcess("Tibia");
+            MemoryProtection mm;
+            var sa=m.ChangeProtection("0079A008", MemoryProtection.ExecuteReadWrite, out mm);
+          m.WriteMemory("0079A008", "string", Helper.SpellHitext);
+            //var process = new Process.NET.ProcessSharp(System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault(), Process.NET.Memory.MemoryType.Local);
+            //process.Memory = new Process.NET.Memory.ExternalProcessMemory(process.Handle);
+           System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia")[0];
+            IntPtr processHandle = OpenProcess(0x1F0FFF, false, process.Id);
+
+            int bytesWritten = 0;
+            byte[] buffer2 = Encoding.Unicode.GetBytes("It works!\0");
+            // '\0' marks the end of string
+
+            // replace 0x0046A3B8 with your address
+        var res4=   WriteProcessMemory((int)processHandle, hottkeyf2, buffer2, buffer2.Length, ref bytesWritten);
+            //m.CloseProcess();
             bool isExhausted = false;
             
             if (((double)(int)manaValue / (int)maxManaValue) < manaPercentInput)
@@ -271,9 +291,11 @@ namespace Tibiafuskdotnet
             readValuesFromMemory();
             
         }
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool WriteProcessMemory(int hProcess, int lpBaseAddress,
+         byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
 
-
-        }
+    }
 
     }
 

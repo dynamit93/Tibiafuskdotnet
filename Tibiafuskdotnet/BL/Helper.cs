@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -96,6 +97,17 @@ namespace Tibiafuskdotnet.BL
             return new Cheat();
 
         }
-    }
+        const int PROCESS_VM_WRITE = 0x0020;
+        const int PROCESS_VM_OPERATION = 0x0008;
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr OpenProcess(int dwDesiredAccess,
+               bool bInheritHandle, int dwProcessId);
+
+       
+
+       
+        
+        }
 }
 
