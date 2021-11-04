@@ -12,9 +12,14 @@ namespace Tibiafuskdotnet.BL
 {
     public static class Helper
     {
+
+        
+        public static Int32 SpellLoHealth = 0;
+        public static string SpellLotext = "";
         public static Int32 SpellHiHealth = 0;
         public static Int32 TempSpellHiHealth = 0;
         public static Int32 SpellHiMana = 0;
+        public static Int32 SpellLoMana = 0;
         public static Int32 TempSpellHiMana = 0;
         public static string SpellHitext = "";
         public static string TempSpellHitext = "";
@@ -51,7 +56,8 @@ namespace Tibiafuskdotnet.BL
         }
         public static void WriteToFile()
         {
-            Cheat cheat = new Cheat() { SpellHiHealth = SpellHiHealth, SpellHiMana = SpellHiMana, SpellHitext = SpellHitext };
+            
+            Cheat cheat = new Cheat() { SpellLoHealth = SpellLoHealth, SpellHiHealth = SpellHiHealth, SpellHiMana = SpellHiMana, SpellLoMana = SpellLoMana, SpellHitext = SpellHitext, SpellLotext = SpellLotext};
             using (StreamWriter r = new StreamWriter(GetPath()))
             {
                 var path = JsonConvert.SerializeObject(cheat);

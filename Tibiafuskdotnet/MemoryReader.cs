@@ -89,13 +89,10 @@ namespace Tibiafuskdotnet
         const int VK_F11 = 0x80;
         const int VK_F12 = 0x81;
         const UInt32 WM_KEYDOWN = 0x0100;
-
-
-
+        
         private double manaPercentInput;
         private double hpPercentLightHealInput;
         private double hpPercentIntenseHealInput;
-
         
 
         [DllImport("kernel32.dll")]
@@ -116,12 +113,11 @@ namespace Tibiafuskdotnet
             timer.Interval = 300;
             timer.Elapsed += new ElapsedEventHandler(TimerTick);
             timer.Start();
-            
+           
 
             readValuesFromMemory();
         }
-
-
+        
         public static bool appRunning(string appName = "Tibia")
         {
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
@@ -146,8 +142,7 @@ namespace Tibiafuskdotnet
             return false;
         }
 
-
-
+        
         public void readValuesFromMemory()
         {
             //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
@@ -172,21 +167,18 @@ namespace Tibiafuskdotnet
 
             ReadProcessMemory((int)handle, maxManaAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
             maxMana = BitConverter.ToInt32(buffer, 0);
-
+            
 
             ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
             chatt = BitConverter.ToString(buffer, 0);
             ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
           //  int * data =(int32*)BitConverter.ToInt32(buffer, 0);
-
-
-
+          
             hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
-        
-            
+                   
       
             bool isExhausted = false;
             
@@ -213,17 +205,7 @@ namespace Tibiafuskdotnet
             {
                 System.Threading.Thread.Sleep(800);
             }
-
-
-
-
-
-
-
-
-
-
-
+            
 
             if (currentHp <= Helper.SpellHiHealth && currentMana >= Helper.SpellHiMana)
             {
@@ -282,10 +264,80 @@ namespace Tibiafuskdotnet
 
          System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
                 var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
-
+//healbot working
 
 
             }
+
+
+
+
+            if (currentHp <= Helper.SpellLoHealth && currentMana >= Helper.SpellLoMana)
+            {
+                var text = Helper.SpellLotext;
+
+                var spellotext = Helper.SpellLotext;
+
+                int key = 0;
+
+
+                if (spellotext == "F1")
+                    key = VK_F1;
+
+
+                else if (spellotext == "F2")
+                    key = VK_F2;
+
+
+                else if (spellotext == "F3")
+                    key = VK_F3;
+
+
+                else if (spellotext == "F4")
+                    key = VK_F4;
+
+
+                else if (spellotext == "F5")
+                    key = VK_F5;
+
+
+                else if (spellotext == "F6")
+                    key = VK_F6;
+
+
+                else if (spellotext == "F7")
+                    key = VK_F7;
+
+
+                else if (spellotext == "F8")
+                    key = VK_F8;
+
+                else if (spellotext == "F9")
+                    key = VK_F9;
+
+
+                else if (spellotext == "F10")
+                    key = VK_F10;
+
+
+                else if (spellotext == "F11")
+                    key = VK_F11;
+
+
+                else if (spellotext == "F12")
+                    key = VK_F12;
+
+                System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
+                //healbot working
+
+
+            }
+
+
+
+
+
 
         }
    
