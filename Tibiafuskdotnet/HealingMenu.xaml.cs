@@ -31,7 +31,8 @@ namespace Tibiafuskdotnet
 
             SpellHiHealth.Text = data.SpellHiHealth.ToString();
             SpellHiMana.Text = data.SpellHiMana.ToString();
-            SpellHitext.Text = data.SpellHitext.ToString();
+            cmbHotkey.ItemsSource = Helper.GetKeys();
+            cmbHotkey.SelectedItem= data.SpellHitext;
 
         }
 
