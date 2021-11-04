@@ -90,7 +90,7 @@ namespace Tibiafuskdotnet
             try
             {
 
-                Helper.SpellHitext = SpellHitext.SelectedItem.ToString();
+                Helper.SpellHitext = cmbHotkey.SelectedItem as string;
                 Helper.WriteToFile();
 
             }
