@@ -15,11 +15,14 @@ namespace Tibiafuskdotnet.BL
 
         
         public static Int32 SpellLoHealth = 0;
+        public static Int32 TempSpellLoHealth = 0;
         public static string SpellLotext = "";
+        public static string TempSpellLotext = "";
         public static Int32 SpellHiHealth = 0;
         public static Int32 TempSpellHiHealth = 0;
         public static Int32 SpellHiMana = 0;
         public static Int32 SpellLoMana = 0;
+        public static Int32 TempSpellLoMana = 0;
         public static Int32 TempSpellHiMana = 0;
         public static string SpellHitext = "";
         public static string TempSpellHitext = "";

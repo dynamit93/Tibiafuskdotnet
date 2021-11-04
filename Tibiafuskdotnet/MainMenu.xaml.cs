@@ -120,6 +120,9 @@ namespace Tibiafuskdotnet
             Helper.SpellHiHealth = Helper.TempSpellHiHealth;
             Helper.SpellHiMana = Helper.TempSpellHiMana;
             Helper.SpellHitext = Helper.TempSpellHitext;
+            Helper.SpellLoHealth = Helper.TempSpellLoHealth;
+            Helper.SpellLoMana = Helper.TempSpellLoMana;
+            Helper.SpellLotext = Helper.TempSpellLotext;
             Helper.WriteToFile();
         }
     }
