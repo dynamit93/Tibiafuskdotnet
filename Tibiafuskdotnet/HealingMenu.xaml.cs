@@ -45,15 +45,7 @@ namespace Tibiafuskdotnet
         
         public void Healingkey_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-
-            Helper.SpellHitext = SpellHitext.Text;
-            }
-            catch (Exception ex)
-            {
-
-            }
+           
         }
 
         private void SpellHiHealth_TextChanged(object sender, TextChangedEventArgs e)
@@ -62,8 +54,10 @@ namespace Tibiafuskdotnet
             {
 
             Helper.SpellHiHealth = Convert.ToInt32(SpellHiHealth.Text);
+                Helper.WriteToFile();
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 SpellHiHealth.Text = "0";
             }
@@ -76,6 +70,8 @@ namespace Tibiafuskdotnet
 
             
             Helper.SpellHiMana = Convert.ToInt32(SpellHiMana.Text);
+                Helper.WriteToFile();
+
             }
             catch (Exception ex)
             {
@@ -85,7 +81,22 @@ namespace Tibiafuskdotnet
 
         private void lost(object sender, RoutedEventArgs e)
         {
-            Helper.WriteToFile();
+           // Helper.WriteToFile();
+        }
+
+        private void Healingkey_TextChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+
+                Helper.SpellHitext = SpellHitext.SelectedItem.ToString();
+                Helper.WriteToFile();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

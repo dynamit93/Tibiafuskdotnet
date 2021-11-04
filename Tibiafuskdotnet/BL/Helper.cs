@@ -14,29 +14,10 @@ namespace Tibiafuskdotnet.BL
         public static Int32 SpellHiHealth = 0;
         public static Int32 SpellHiMana = 0;
         public static string SpellHitext = "";
-        public static string ConvertStringToHex(String input, System.Text.Encoding encoding)
-        {
-            Byte[] stringBytes = encoding.GetBytes(input);
-            StringBuilder sbBytes = new StringBuilder(stringBytes.Length * 2);
-            foreach (byte b in stringBytes)
-            {
-                sbBytes.AppendFormat("{0:X2}", b);
-            }
-            return sbBytes.ToString();
-        }
+     
 
        
 
-         public static string ConvertHexToString(String hexInput, System.Text.Encoding encoding)
-        {
-            int numberChars = hexInput.Length;
-            byte[] bytes = new byte[numberChars / 2];
-            for (int i = 0; i < numberChars; i += 2)
-            {
-                bytes[i / 2] = Convert.ToByte(hexInput.Substring(i, 2), 16);
-            }
-            return encoding.GetString(bytes);
-        }
         public static void Initialize()
         {
 
@@ -97,12 +78,7 @@ namespace Tibiafuskdotnet.BL
             return new Cheat();
 
         }
-        const int PROCESS_VM_WRITE = 0x0020;
-        const int PROCESS_VM_OPERATION = 0x0008;
-
-        [DllImport("kernel32.dll")]
-        public static extern IntPtr OpenProcess(int dwDesiredAccess,
-               bool bInheritHandle, int dwProcessId);
+     
 
        
 

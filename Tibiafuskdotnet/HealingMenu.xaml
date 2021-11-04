@@ -7,7 +7,20 @@
         mc:Ignorable="d"
         Title="HealingMenu" Height="269.552" Width="415.522">
     <Grid Margin="0,0,2,2">
-        <TextBox x:Name="SpellHitext" LostFocus="lost" HorizontalAlignment="Left" Height="23" Margin="63,13,0,0" TextWrapping="Wrap" Text="Healing Spell" VerticalAlignment="Top" Width="81" TextChanged="Healingkey_TextChanged"/>
+        <ComboBox SelectedIndex="0" x:Name="SpellHitext"  HorizontalAlignment="Left" Height="23" Margin="63,13,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
+            <ComboBoxItem>F1</ComboBoxItem>
+            <ComboBoxItem>F2</ComboBoxItem>
+            <ComboBoxItem>F3</ComboBoxItem>
+            <ComboBoxItem>F4</ComboBoxItem>
+            <ComboBoxItem>F5</ComboBoxItem>
+            <ComboBoxItem>F6</ComboBoxItem>
+            <ComboBoxItem>F7</ComboBoxItem>
+            <ComboBoxItem>F8</ComboBoxItem>
+            <ComboBoxItem>F9</ComboBoxItem>
+            <ComboBoxItem>F10</ComboBoxItem>
+            <ComboBoxItem>F11</ComboBoxItem>
+            <ComboBoxItem>F12</ComboBoxItem>
+        </ComboBox>
         <Label x:Name="label" Content="Spell Hi:" HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Health:" HorizontalAlignment="Left" Margin="167,13,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="SpellHiHealth" HorizontalAlignment="Left" Height="23" Margin="219,14,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="SpellHiHealth_TextChanged"/>

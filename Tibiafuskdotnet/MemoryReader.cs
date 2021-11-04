@@ -12,7 +12,7 @@ using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
 using WindowsInput;
 using WindowsInput.Native;
-using static Memory.Mem;
+
 
 namespace Tibiafuskdotnet
 {
@@ -62,7 +62,6 @@ namespace Tibiafuskdotnet
         /// pub
         public Int32 hottkeyf1 = 0x799F08;
         public Int32 hottkeyf2 = 0x79A008;
-        string hotkeyf2 = "exura gran";
         public Int32 hottkeyf3 = 0x79A108;
         public Int32 hottkeyf4 = 0x79A208;
         public Int32 hottkeyf5 = 0x79A308;
@@ -170,28 +169,9 @@ namespace Tibiafuskdotnet
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
-            //VAMemory vm = new VAMemory("Tibia");
-            // intpr
-            //  var result=  vm.WriteStringUnicode((IntPtr)"Tibia.exe+39A908", "alskdjaslkdjasldj");
-
+        
             
-           Memory.Mem m = new Memory.Mem();
-           var res= m.OpenProcess("Tibia");
-            MemoryProtection mm;
-            var sa=m.ChangeProtection("0079A008", MemoryProtection.ExecuteReadWrite, out mm);
-          m.WriteMemory("0079A008", "string", Helper.SpellHitext);
-            //var process = new Process.NET.ProcessSharp(System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault(), Process.NET.Memory.MemoryType.Local);
-            //process.Memory = new Process.NET.Memory.ExternalProcessMemory(process.Handle);
-           System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia")[0];
-            IntPtr processHandle = OpenProcess(0x1F0FFF, false, process.Id);
-
-            int bytesWritten = 0;
-            byte[] buffer2 = Encoding.Unicode.GetBytes("It works!\0");
-            // '\0' marks the end of string
-
-            // replace 0x0046A3B8 with your address
-        var res4=   WriteProcessMemory((int)processHandle, hottkeyf2, buffer2, buffer2.Length, ref bytesWritten);
-            //m.CloseProcess();
+      
             bool isExhausted = false;
             
             if (((double)(int)manaValue / (int)maxManaValue) < manaPercentInput)
@@ -232,42 +212,39 @@ namespace Tibiafuskdotnet
             if (currentHp <= Helper.SpellHiHealth && currentMana >= Helper.SpellHiMana)
             {
                 var text = Helper.SpellHitext;
-                //if (text == null)
-                    //    {
-                    //        text = "";
-                    //    }
-                    //    var spelhitext = Helper.ConvertStringToHex(text, Encoding.UTF8).ToString().Substring(0,8);
+               
+                var spelhitext = Helper.SpellHitext;
 
-                    //    VirtualKeyCode k = new VirtualKeyCode();
+                VirtualKeyCode k = new VirtualKeyCode();
 
 
-                    //    if (spelhitext == strHotkey1)
-                    //        k = VirtualKeyCode.F1;
+                if (spelhitext == "F1")
+                    k = VirtualKeyCode.F1;
 
-                    //    else if (spelhitext == strHotkey2)
-                    //        k = VirtualKeyCode.F2;
-                    //    else if (spelhitext == strHotkey3)
-                    //        k = VirtualKeyCode.F3;
-                    //    else if (spelhitext == strHotkey4)
-                    //        k = VirtualKeyCode.F4;
-                    //    else if (spelhitext == strHotkey5)
-                    //        k = VirtualKeyCode.F5;
-                    //    else if (spelhitext == strHotkey6)
-                    //        k = VirtualKeyCode.F6;
-                    //    else if (spelhitext == strHotkey7)
-                    //        k = VirtualKeyCode.F7;
-                    //    else if (spelhitext == strHotkey8)
-                    //        k = VirtualKeyCode.F8;
-                    //    else if (spelhitext == strHotkey9)
-                    //        k = VirtualKeyCode.F9;
-                    //    else if (spelhitext == strHotkey10)
-                    //        k = VirtualKeyCode.F10;
-                    //    else if (spelhitext == strHotkey11)
-                    //        k = VirtualKeyCode.F11;
-                    //    else if (spelhitext == strHotkey12)
-                    //        k = VirtualKeyCode.F12;
+                else if (spelhitext == "F2")
+                    k = VirtualKeyCode.F2;
+                else if (spelhitext == "F3")
+                    k = VirtualKeyCode.F3;
+                else if (spelhitext == "F4")
+                    k = VirtualKeyCode.F4;
+                else if (spelhitext == "F5")
+                    k = VirtualKeyCode.F5;
+                else if (spelhitext == "F6")
+                    k = VirtualKeyCode.F6;
+                else if (spelhitext == "F7")
+                    k = VirtualKeyCode.F7;
+                else if (spelhitext == "F8")
+                    k = VirtualKeyCode.F8;
+                else if (spelhitext == "F9")
+                    k = VirtualKeyCode.F9;
+                else if (spelhitext == "F10")
+                    k = VirtualKeyCode.F10;
+                else if (spelhitext == "F11")
+                    k = VirtualKeyCode.F11;
+                else if (spelhitext == "F2")
+                    k = VirtualKeyCode.F12;
 
-                    var sim = new InputSimulator();
+                var sim = new InputSimulator();
                 sim.Keyboard.KeyDown(VirtualKeyCode.F2);
 
 
@@ -275,25 +252,13 @@ namespace Tibiafuskdotnet
             }
              
         }
-        [DllImport("kernel32.dll")]
-        public static extern Int32 ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress,
-           [In, Out] byte[] buffer, UInt32 size, out IntPtr lpNumberOfBytesRead);
-        public byte[] ReadBytes(IntPtr Handle, Int64 Address, uint BytesToRead)
-        {
-            IntPtr ptrBytesRead;
-            byte[] buffer = new byte[BytesToRead];
-            ReadProcessMemory(Handle, new IntPtr(Address), buffer, BytesToRead, out ptrBytesRead);
-            return buffer;
-        }
-        //just one sec need to fix movie for my girlfriend done
+      //just one sec need to fix movie for my girlfriend done
         private void TimerTick(object sender, EventArgs e)
         {
             readValuesFromMemory();
             
         }
-        [DllImport("kernel32.dll", SetLastError = true)]
-        static extern bool WriteProcessMemory(int hProcess, int lpBaseAddress,
-         byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
+       
 
     }
 
