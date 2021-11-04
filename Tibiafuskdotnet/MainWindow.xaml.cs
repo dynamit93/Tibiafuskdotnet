@@ -33,7 +33,6 @@ namespace Tibiafuskdotnet
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader dr;
-        private int premium;
 
         public MainWindow()
         {

@@ -6,14 +6,18 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Tibiafuskdotnet.BL
 {
     public static class Helper
     {
         public static Int32 SpellHiHealth = 0;
+        public static Int32 TempSpellHiHealth = 0;
         public static Int32 SpellHiMana = 0;
+        public static Int32 TempSpellHiMana = 0;
         public static string SpellHitext = "";
+        public static string TempSpellHitext = "";
      
 
        
@@ -73,6 +77,7 @@ namespace Tibiafuskdotnet.BL
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message.ToString());
 
             }
             return new Cheat();

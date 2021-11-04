@@ -54,8 +54,7 @@ namespace Tibiafuskdotnet
             try
             {
 
-            Helper.SpellHiHealth = Convert.ToInt32(SpellHiHealth.Text);
-                Helper.WriteToFile();
+            Helper.TempSpellHiHealth = Convert.ToInt32(SpellHiHealth.Text);
 
             }
             catch (Exception ex)
@@ -70,8 +69,7 @@ namespace Tibiafuskdotnet
             {
 
             
-            Helper.SpellHiMana = Convert.ToInt32(SpellHiMana.Text);
-                Helper.WriteToFile();
+            Helper.TempSpellHiMana = Convert.ToInt32(SpellHiMana.Text);
 
             }
             catch (Exception ex)
@@ -90,8 +88,7 @@ namespace Tibiafuskdotnet
             try
             {
 
-                Helper.SpellHitext = cmbHotkey.SelectedItem as string;
-                Helper.WriteToFile();
+                Helper.TempSpellHitext = cmbHotkey.SelectedItem as string;
 
             }
             catch (Exception ex)
