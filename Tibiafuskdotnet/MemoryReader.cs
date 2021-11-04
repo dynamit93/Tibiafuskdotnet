@@ -7,9 +7,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Timers;
 using System.Windows;
+
 using System.Windows.Threading;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+
 using WindowsInput;
 using WindowsInput.Native;
 
@@ -219,40 +221,73 @@ namespace Tibiafuskdotnet
 
 
                 if (spelhitext == "F1")
-                    k = VirtualKeyCode.F1;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F1);
+
 
                 else if (spelhitext == "F2")
-                    k = VirtualKeyCode.F2;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F2);
+
                 else if (spelhitext == "F3")
-                    k = VirtualKeyCode.F3;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F3);
+
                 else if (spelhitext == "F4")
-                    k = VirtualKeyCode.F4;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F4);
+
                 else if (spelhitext == "F5")
-                    k = VirtualKeyCode.F5;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F5);
+
                 else if (spelhitext == "F6")
-                    k = VirtualKeyCode.F6;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F6);
+
                 else if (spelhitext == "F7")
-                    k = VirtualKeyCode.F7;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F7);
+
                 else if (spelhitext == "F8")
-                    k = VirtualKeyCode.F8;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F8);
+
                 else if (spelhitext == "F9")
-                    k = VirtualKeyCode.F9;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F9);
+
                 else if (spelhitext == "F10")
-                    k = VirtualKeyCode.F10;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F10);
+
                 else if (spelhitext == "F11")
-                    k = VirtualKeyCode.F11;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F11);
+
                 else if (spelhitext == "F2")
-                    k = VirtualKeyCode.F12;
+                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F12);
 
-                var sim = new InputSimulator();
-                sim.Keyboard.KeyDown(VirtualKeyCode.F2);
+                SetForegroundWindow(tibia.MainWindowHandle);
+                System.Windows.Forms.SendKeys.SendWait("{PGDN}");
 
 
+                // its working ingame but for some reason its pressing some other key. when we debug.
+                //i think yes
+                //wait for a minute
+                //sure but can we try to set focus on client?`and then chose hottkey=? maybe easyer.
+                ///
 
             }
-             
+
         }
-      //just one sec need to fix movie for my girlfriend done
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+        class KeyHandle
+        {
+            private static Int32 WM_KEYDOWN = 0x100;
+            private static Int32 WM_KEYUP = 0x101;
+
+            [return: MarshalAs(UnmanagedType.Bool)]
+            [DllImport("user32.dll", SetLastError = true)]
+            static extern bool PostMessage(IntPtr hWnd, int Msg, System.Windows.Forms.Keys wParam, int lParam);
+
+            public static void SendKey(IntPtr hWnd, System.Windows.Forms.Keys key)
+            {
+                PostMessage(hWnd, WM_KEYUP, key, 0);
+            }
+
+
+        }
         private void TimerTick(object sender, EventArgs e)
         {
             readValuesFromMemory();
