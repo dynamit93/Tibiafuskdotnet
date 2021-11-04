@@ -29,10 +29,14 @@ namespace Tibiafuskdotnet
             if (data == null)
                 data = new Cheat();
 
+            SpellLoHealth.Text = data.SpellLoHealth.ToString();
             SpellHiHealth.Text = data.SpellHiHealth.ToString();
             SpellHiMana.Text = data.SpellHiMana.ToString();
+            SpellLoMana.Text = data.SpellLoMana.ToString();
             cmbHotkey.ItemsSource = Helper.GetKeys();
             cmbHotkey.SelectedItem= data.SpellHitext;
+            cmb2Hotkey.ItemsSource = Helper.GetKeys();
+            cmb2Hotkey.SelectedItem = data.SpellLotext;
 
         }
 
@@ -91,12 +95,44 @@ namespace Tibiafuskdotnet
             {
 
                 Helper.SpellHitext = cmbHotkey.SelectedItem as string;
+                Helper.SpellLotext = cmb2Hotkey.SelectedItem as string;
                 Helper.WriteToFile();
 
             }
             catch (Exception ex)
             {
 
+            }
+        }
+
+        private void SpellLohealth_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+
+                Helper.SpellLoHealth = Convert.ToInt32(SpellLoHealth.Text);
+                Helper.WriteToFile();
+
+            }
+            catch (Exception ex)
+            {
+                SpellLoHealth.Text = "0";
+            }
+        }
+
+        private void SpellLoMana_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+
+
+                Helper.SpellLoMana = Convert.ToInt32(SpellLoMana.Text);
+                Helper.WriteToFile();
+
+            }
+            catch (Exception ex)
+            {
+                SpellLoMana.Text = "0";
             }
         }
     }
