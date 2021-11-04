@@ -74,7 +74,21 @@ namespace Tibiafuskdotnet
         public Int32 hottkeyf10 = 0x79A808;
         public Int32 hottkeyf11 = 0x79A908;
         public Int32 hottkeyf12 = 0x79AA08;
-        
+        [DllImport("user32.dll")]
+        static extern bool PostMessage(IntPtr hWnd, UInt32 Msg, int wParam, int lParam);
+        const int VK_F1 = 0x70;
+        const int VK_F2 = 0x71;
+        const int VK_F3 = 0x72;
+        const int VK_F4 = 0x73;
+        const int VK_F5 = 0x74;
+        const int VK_F6 = 0x75;
+        const int VK_F7 = 0x76;
+        const int VK_F8 = 0x77;
+        const int VK_F9 = 0x78;
+        const int VK_F10 = 0x79;
+        const int VK_F11 = 0x80;
+        const int VK_F12 = 0x81;
+        const UInt32 WM_KEYDOWN = 0x0100;
 
 
 
@@ -217,77 +231,64 @@ namespace Tibiafuskdotnet
                
                 var spelhitext = Helper.SpellHitext;
 
-                VirtualKeyCode k = new VirtualKeyCode();
+                int key = 0;
 
 
                 if (spelhitext == "F1")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F1);
+                    key = VK_F1;
 
 
                 else if (spelhitext == "F2")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F2);
+                    key = VK_F2;
+
 
                 else if (spelhitext == "F3")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F3);
+                    key = VK_F3;
+
 
                 else if (spelhitext == "F4")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F4);
+                    key = VK_F4;
+
 
                 else if (spelhitext == "F5")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F5);
+                    key = VK_F5;
+
 
                 else if (spelhitext == "F6")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F6);
+                    key = VK_F6;
+
 
                 else if (spelhitext == "F7")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F7);
+                    key = VK_F7;
+
 
                 else if (spelhitext == "F8")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F8);
+                    key = VK_F8;
 
                 else if (spelhitext == "F9")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F9);
+                    key = VK_F9;
+
 
                 else if (spelhitext == "F10")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F10);
+                    key = VK_F10;
+
 
                 else if (spelhitext == "F11")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F11);
+                    key = VK_F11;
+
 
                 else if (spelhitext == "F2")
-                    KeyHandle.SendKey(tibia.MainWindowHandle, System.Windows.Forms.Keys.F12);
+                    key = VK_F12;
 
-                SetForegroundWindow(tibia.MainWindowHandle);
-                System.Windows.Forms.SendKeys.SendWait("{PGDN}");
+         System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
 
 
-                // its working ingame but for some reason its pressing some other key. when we debug.
-                //i think yes
-                //wait for a minute
-                //sure but can we try to set focus on client?`and then chose hottkey=? maybe easyer.
-                ///
 
             }
 
         }
-        [DllImport("user32.dll")]
-        private static extern bool SetForegroundWindow(IntPtr hWnd);
-        class KeyHandle
-        {
-            private static Int32 WM_KEYDOWN = 0x100;
-            private static Int32 WM_KEYUP = 0x101;
-
-            [return: MarshalAs(UnmanagedType.Bool)]
-            [DllImport("user32.dll", SetLastError = true)]
-            static extern bool PostMessage(IntPtr hWnd, int Msg, System.Windows.Forms.Keys wParam, int lParam);
-
-            public static void SendKey(IntPtr hWnd, System.Windows.Forms.Keys key)
-            {
-                PostMessage(hWnd, WM_KEYUP, key, 0);
-            }
-
-
-        }
+   
         private void TimerTick(object sender, EventArgs e)
         {
             readValuesFromMemory();

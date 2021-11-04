@@ -18,18 +18,18 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
 using Tibiafuskdotnet.BL;
+using System.Runtime.InteropServices;
 
 namespace Tibiafuskdotnet
 {
-
+   
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-       
 
-      
+        
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader dr;
@@ -39,9 +39,9 @@ namespace Tibiafuskdotnet
         {
             DataContext = this;
             InitializeComponent();
-         
 
-                Helper.Initialize();
+      
+            Helper.Initialize();
             var data = Helper.ReadFromFile();
             data = data ?? new Cheat();
             data.SpellHitext = data.SpellHitext ?? "";
