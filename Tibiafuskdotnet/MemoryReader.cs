@@ -277,7 +277,7 @@ namespace Tibiafuskdotnet
                     key = VK_F11;
 
 
-                else if (spelhitext == "F2")
+                else if (spelhitext == "F12")
                     key = VK_F12;
 
          System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
