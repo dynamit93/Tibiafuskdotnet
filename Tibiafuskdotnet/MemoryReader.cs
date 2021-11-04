@@ -282,7 +282,7 @@ namespace Tibiafuskdotnet
 
          System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
                 var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
-
+//healbot working
 
 
             }
