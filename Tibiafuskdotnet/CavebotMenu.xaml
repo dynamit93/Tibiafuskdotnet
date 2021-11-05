@@ -11,39 +11,39 @@
             <ColumnDefinition Width="205*"/>
             <ColumnDefinition Width="132*"/>
         </Grid.ColumnDefinitions>
-        <ListView HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged">
+        <ListView Name="CavebotWaypointsList" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="&lt;" HorizontalAlignment="Left" Height="19" Margin="38,217,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="&gt;&#xD;&#xA;" HorizontalAlignment="Left" Height="19" Margin="68,217,0,0" VerticalAlignment="Top" Width="25" Click="Button_Click"/>
-        <Button Content="Clear" HorizontalAlignment="Left" Height="19" Margin="98,217,0,0" VerticalAlignment="Top" Width="47"/>
-        <Button Content="Lable" HorizontalAlignment="Left" Height="19" Margin="150,217,0,0" VerticalAlignment="Top" Width="47"/>
-        <Button Content="Del" HorizontalAlignment="Left" Height="19" Margin="202,217,0,0" VerticalAlignment="Top" Width="47"/>
-        <Label Content="Emplacement" HorizontalAlignment="Left" Margin="249,9,0,0" VerticalAlignment="Top" Height="28"/>
-        <Button Content="Stand" HorizontalAlignment="Left" Height="21" Margin="263,42,0,0" VerticalAlignment="Top" Width="48" Click="Button_Click_1"/>
-        <Button Content="Rope" HorizontalAlignment="Left" Height="21" Margin="263,63,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="Walk" HorizontalAlignment="Left" Height="21" Margin="311,42,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="Node" HorizontalAlignment="Left" Height="21" Margin="359,42,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="Ladder" HorizontalAlignment="Left" Height="21" Margin="311,63,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="Shovel" HorizontalAlignment="Left" Height="21" Margin="359,63,0,0" VerticalAlignment="Top" Width="48"/>
-        <ListView HorizontalAlignment="Left" Height="28" Margin="331,9,0,0" VerticalAlignment="Top" Width="124" Grid.ColumnSpan="2">
+        <Button Name="CavebotWaypointGoUp" Content="&lt;" HorizontalAlignment="Left" Height="19" Margin="38,217,0,0" VerticalAlignment="Top" Width="25"/>
+        <Button Name="CavebotWaypointGoDown" Content="&gt;&#xD;&#xA;" HorizontalAlignment="Left" Height="19" Margin="68,217,0,0" VerticalAlignment="Top" Width="25" Click="Button_Click"/>
+        <Button Name="CavebotWaypointClear" Content="Clear" HorizontalAlignment="Left" Height="19" Margin="98,217,0,0" VerticalAlignment="Top" Width="47"/>
+        <Button Name="CavebotWaypointLable" Content="Lable" HorizontalAlignment="Left" Height="19" Margin="150,217,0,0" VerticalAlignment="Top" Width="47"/>
+        <Button Name="CavebotWaypointDel" Content="Del" HorizontalAlignment="Left" Height="19" Margin="202,217,0,0" VerticalAlignment="Top" Width="47"/>
+        <Label Content="Emplacement" HorizontalAlignment="Left" Margin="265,8,0,0" VerticalAlignment="Top" Height="28"/>
+        <Button Name="CavebotWaypointStand" Content="Stand" HorizontalAlignment="Left" Height="21" Margin="279,41,0,0" VerticalAlignment="Top" Width="48" Click="Button_Click_1"/>
+        <Button Name="CavebotWaypointRope" Content="Rope" HorizontalAlignment="Left" Height="21" Margin="279,62,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button Name="CavebotWaypointWalk" Content="Walk" HorizontalAlignment="Left" Height="21" Margin="327,41,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button Name="CavebotWaypointNode" Content="Node" HorizontalAlignment="Left" Height="21" Margin="375,41,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
+        <Button Name="CavebotWaypointLadder" Content="Ladder" HorizontalAlignment="Left" Height="21" Margin="327,62,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button Name="CavebotWaypointShovel" Content="Shovel" HorizontalAlignment="Left" Height="21" Margin="375,62,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
+        <ListView Name="CavebotWaypointEmplacement" HorizontalAlignment="Left" Height="28" Margin="347,8,0,0" VerticalAlignment="Top" Width="124" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Action" HorizontalAlignment="Left" Height="21" Margin="407,42,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
-        <Button Content="Lure" HorizontalAlignment="Left" Height="21" Margin="407,63,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="254,218,0,0" VerticalAlignment="Top" Width="20"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="349,216,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-0.79,0.5"/>
-        <Label Content="Show Labels" HorizontalAlignment="Left" Margin="274,210,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.945,-0.037"/>
-        <Label Content="Follow Waypoints" HorizontalAlignment="Left" Margin="359,210,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <ListView HorizontalAlignment="Left" Height="75" Margin="40,279,0,0" VerticalAlignment="Top" Width="210">
+        <Button Name="CavebotWaypointAction" Content="Action" HorizontalAlignment="Left" Height="21" Margin="1,41,0,0" VerticalAlignment="Top" Width="48" Grid.Column="1"/>
+        <Button Name="CavebotWaypointLure" Content="Lure" HorizontalAlignment="Left" Height="21" Margin="1,62,0,0" VerticalAlignment="Top" Width="48" Grid.Column="1"/>
+        <CheckBox Name="CavebotWaypointShowLable" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="270,221,0,0" VerticalAlignment="Top" Width="20"/>
+        <CheckBox Name="CavebotWaypointFollowWaypoints" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="364,221,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-0.79,0.5"/>
+        <Label Content="Show Labels" HorizontalAlignment="Left" Margin="290,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.945,-0.037"/>
+        <Label Content="Follow Waypoints" HorizontalAlignment="Left" Margin="384,215,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.518,0.603"/>
+        <ListView Name=" CavebotSettingsList" HorizontalAlignment="Left" Height="75" Margin="40,279,0,0" VerticalAlignment="Top" Width="210">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -51,13 +51,11 @@
             </ListView.View>
         </ListView>
         <Label Content="Saving &amp; Loading Settings" HorizontalAlignment="Left" Margin="55,252,0,0" VerticalAlignment="Top" Height="27"/>
-        <TextBox HorizontalAlignment="Left" Height="16" Margin="98,359,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="151"/>
+        <TextBox Name="CavebotSettingsEditSaveLoad" HorizontalAlignment="Left" Height="16" Margin="98,359,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="151"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="40,354,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.358,-0.071"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="38,385,0,0" VerticalAlignment="Top" Width="70"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="109,385,0,0" VerticalAlignment="Top" Width="70"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="179,385,0,0" VerticalAlignment="Top" Width="70"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="253" VerticalAlignment="Top" Width="446" RenderTransformOrigin="0.46,0.51" Grid.ColumnSpan="2" Margin="30,-1,0,0"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="161" Margin="31,257,0,0" VerticalAlignment="Top" Width="243"/>
+        <Button Name="CavebotSettingsEdit" Content="Edit" HorizontalAlignment="Left" Margin="40,385,0,0" VerticalAlignment="Top" Width="70" Click="Button_Click_3"/>
+        <Button Name="CavebotSettingsSave" Content="Save" HorizontalAlignment="Left" Margin="109,385,0,0" VerticalAlignment="Top" Width="70"/>
+        <Button Name="CavebotSettingsLoad" Content="Load" HorizontalAlignment="Left" Margin="179,385,0,0" VerticalAlignment="Top" Width="70"/>
         <Label Content="Alerts" HorizontalAlignment="Left" Margin="291,257,0,0" VerticalAlignment="Top"/>
         <Label Content="Player On Screen" HorizontalAlignment="Left" Margin="279,284,0,0" VerticalAlignment="Top"/>
         <Label Content="GM/CM Detected" HorizontalAlignment="Left" Margin="279,297,0,0" VerticalAlignment="Top"/>
@@ -65,75 +63,78 @@
         <Label Content="Default Chat Msg" HorizontalAlignment="Left" Margin="279,323,0,0" VerticalAlignment="Top"/>
         <Label Content="Private Chat Msg" HorizontalAlignment="Left" Margin="279,336,0,0" VerticalAlignment="Top"/>
         <Label Content="Disconnected" HorizontalAlignment="Left" Margin="279,349,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="387,290,0,0" VerticalAlignment="Top" Width="23"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="407,290,0,0" VerticalAlignment="Top" Width="23" Grid.ColumnSpan="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="19,290,0,0" VerticalAlignment="Top" Width="23" Grid.Column="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="387,304,0,0" VerticalAlignment="Top" Width="23"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="407,304,0,0" VerticalAlignment="Top" Width="23" Grid.ColumnSpan="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="19,304,0,0" VerticalAlignment="Top" Width="23" Grid.Column="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="387,318,0,0" VerticalAlignment="Top" Width="23"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="407,318,0,0" VerticalAlignment="Top" Width="23" Grid.ColumnSpan="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="19,318,0,0" VerticalAlignment="Top" Width="23" Grid.Column="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="387,332,0,0" VerticalAlignment="Top" Width="23"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="407,332,0,0" VerticalAlignment="Top" Width="23" Grid.ColumnSpan="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="19,332,0,0" VerticalAlignment="Top" Width="23" Grid.Column="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="387,346,0,0" VerticalAlignment="Top" Width="23"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="407,346,0,0" VerticalAlignment="Top" Width="23" Grid.ColumnSpan="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="19,346,0,0" VerticalAlignment="Top" Width="23" Grid.Column="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="387,360,0,0" VerticalAlignment="Top" Width="23"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="407,360,0,0" VerticalAlignment="Top" Width="23" Grid.ColumnSpan="2"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="19,360,0,0" VerticalAlignment="Top" Width="23" Grid.Column="2"/>
+        <CheckBox Name="CavebotAlertPmS" HorizontalAlignment="Left" Height="14" Margin="387,342,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
         <Label Content="S    P    X" HorizontalAlignment="Left" Margin="387,264,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="161" Margin="279,257,0,0" VerticalAlignment="Top" Width="197" Grid.ColumnSpan="2"/>
         <Label Content="Waypoints" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Cavebot Hotkeys" HorizontalAlignment="Left" Margin="159,12,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Height="20" Margin="149,33,-5,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <ListView HorizontalAlignment="Left" Height="128" Margin="149,85,-77,0" VerticalAlignment="Top" Width="192" Grid.Column="1">
+        <Label Content="Cavebot Hotkeys" HorizontalAlignment="Left" Margin="114,9,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button Name="CavebotHotkeyEdit" Content="Edit" HorizontalAlignment="Left" Height="20" Margin="104,30,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <ListView Name=" CavebotLootList" HorizontalAlignment="Left" Height="128" Margin="104,82,-25,0" VerticalAlignment="Top" Width="192" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="Looting" HorizontalAlignment="Left" Margin="149,58,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="17" Margin="149,220,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="41" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="17" Margin="195,220,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="26" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="17" Margin="226,220,-39,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="77" Grid.Column="1"/>
-        <Button Content="Del" HorizontalAlignment="Left" Height="18" Margin="308,219,-77,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="0.49,0.316" Grid.Column="1"/>
-        <Label Content="Options" HorizontalAlignment="Left" Margin="149,254,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.245,0.624" Grid.Column="1"/>
-        <Label Content="Use Rope" HorizontalAlignment="Left" Margin="149,279,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Use Shovel" HorizontalAlignment="Left" Margin="149,298,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.404,-0.611" Grid.Column="1"/>
-        <Label Content="Skip Nearby Nodes" HorizontalAlignment="Left" Margin="149,324,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <ListView HorizontalAlignment="Left" Height="20" Margin="269,280,-77,0" VerticalAlignment="Top" Width="72" Grid.Column="1">
+        <Label Content="Looting" HorizontalAlignment="Left" Margin="104,55,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox Name="CavebotLootId" HorizontalAlignment="Left" Height="17" Margin="104,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="41" Grid.Column="1"/>
+        <TextBox Name="CavebotLootBp" HorizontalAlignment="Left" Height="17" Margin="150,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="26" Grid.Column="1"/>
+        <TextBox Name="CavebotLootDiscription" HorizontalAlignment="Left" Height="17" Margin="181,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="77" Grid.Column="1"/>
+        <Button Name="CavebotLootDel" Content="Del" HorizontalAlignment="Left" Height="18" Margin="263,216,-25,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="0.49,0.316" Grid.Column="1"/>
+        <Label Content="Options" HorizontalAlignment="Left" Margin="104,251,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.245,0.624" Grid.Column="1"/>
+        <Label Content="Use Rope" HorizontalAlignment="Left" Margin="104,276,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Use Shovel" HorizontalAlignment="Left" Margin="104,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.404,-0.611" Grid.Column="1"/>
+        <Label Content="Skip Nearby Nodes" HorizontalAlignment="Left" Margin="104,321,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <ListView Name="CavebotOptionRope" HorizontalAlignment="Left" Height="20" Margin="224,277,-25,0" VerticalAlignment="Top" Width="72" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView HorizontalAlignment="Left" Height="20" Margin="269,303,-77,0" VerticalAlignment="Top" Width="72" Grid.Column="1">
+        <ListView Name="CavebotOptionShovel" HorizontalAlignment="Left" Height="20" Margin="224,300,-25,0" VerticalAlignment="Top" Width="72" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView HorizontalAlignment="Left" Height="20" Margin="269,327,-77,0" VerticalAlignment="Top" Width="72" Grid.Column="1">
+        <ListView Name="CavebotOptionSkipNode" HorizontalAlignment="Left" Height="20" Margin="224,324,-25,0" VerticalAlignment="Top" Width="72" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="149,358,0,0" VerticalAlignment="Top" Width="21" Grid.Column="1"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="149,376,0,0" VerticalAlignment="Top" Width="21" Grid.Column="1"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="149,394,0,0" VerticalAlignment="Top" Width="21" Grid.Column="1"/>
-        <Label Content="Open Next Bp" HorizontalAlignment="Left" Margin="177,352,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Loot Nearby Targets" HorizontalAlignment="Left" Margin="175,370,-27,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Loot Distant Targets" HorizontalAlignment="Left" Margin="175,388,-27,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="59" Margin="130,0,-90,0" VerticalAlignment="Top" Width="224" Grid.Column="1"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="189" Margin="130,64,-90,0" VerticalAlignment="Top" Width="224" Grid.Column="1"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="161" Margin="130,258,-90,0" VerticalAlignment="Top" Width="224" Grid.Column="1"/>
+        <CheckBox Name="CavebotOptionOpenNextBp" Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="109,355,0,0" VerticalAlignment="Top" Width="16" Grid.Column="1"/>
+        <CheckBox Name="CavebotOptionLootNearbyTargets" Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="109,373,0,0" VerticalAlignment="Top" Width="16" Grid.Column="1"/>
+        <CheckBox Name="CavebotOptionLootDistantTargets" Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="109,391,0,0" VerticalAlignment="Top" Width="16" Grid.Column="1"/>
+        <Label Content="Open Next Bp" HorizontalAlignment="Left" Margin="132,349,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Loot Nearby Targets" HorizontalAlignment="Left" Margin="130,367,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Loot Distant Targets" HorizontalAlignment="Left" Margin="130,385,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox Name="CavebotAlertDefaultPmS" Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="387,329,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.396,-1"/>
+        <CheckBox Name="CavebotAlertPlayerAttackS" HorizontalAlignment="Left" Height="14" Margin="387,316,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertGMS" HorizontalAlignment="Left" Height="14" Margin="387,302,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertPlayerOnScreenS" HorizontalAlignment="Left" Height="14" Margin="387,289,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertDcS" HorizontalAlignment="Left" Height="14" Margin="387,356,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertPmP" HorizontalAlignment="Left" Height="14" Margin="406,342,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertDefaultPmP" Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="406,329,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.396,-1"/>
+        <CheckBox Name="CavebotAlertPlayerAttackP" HorizontalAlignment="Left" Height="14" Margin="406,316,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertGMP" HorizontalAlignment="Left" Height="14" Margin="406,302,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertPlayerOnScreenP" HorizontalAlignment="Left" Height="14" Margin="406,289,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertDcP" HorizontalAlignment="Left" Height="14" Margin="406,356,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertPmX" HorizontalAlignment="Left" Height="14" Margin="5,342,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952" Grid.Column="1"/>
+        <CheckBox Name="CavebotAlertDefaultPmX" Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="5,329,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.396,-1" Grid.Column="1"/>
+        <CheckBox Name="CavebotAlertPlayerAttackX" HorizontalAlignment="Left" Height="14" Margin="5,316,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952" Grid.Column="1"/>
+        <CheckBox Name="CavebotAlertGMX" HorizontalAlignment="Left" Height="14" Margin="5,302,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952" Grid.Column="1"/>
+        <CheckBox Name="CavebotAlertPlayerOnScreenX" HorizontalAlignment="Left" Height="14" Margin="5,289,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952" Grid.Column="1"/>
+        <CheckBox Name="CavebotAlertDcX" HorizontalAlignment="Left" Height="14" Margin="5,356,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952" Grid.Column="1"/>
+        <ListView Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="122" Margin="279,88,0,0" VerticalAlignment="Top" Width="192">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>
