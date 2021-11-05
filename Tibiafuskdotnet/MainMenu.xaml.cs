@@ -121,5 +121,11 @@ namespace Tibiafuskdotnet
             Helper.UhRuneHealth = Helper.TempUhRuneHealth; 
             Helper.WriteToFile();
         }
+
+        private void Cavebot_btn_Click(object sender, RoutedEventArgs e)
+        {
+            CavebotMenu Cavebotkey = new CavebotMenu();
+            Cavebotkey.Show();
+        }
     }
 }

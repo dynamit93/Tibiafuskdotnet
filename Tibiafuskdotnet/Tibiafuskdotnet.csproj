@@ -180,10 +180,17 @@
     </ApplicationDefinition>
     <Compile Include="BL\Cheat.cs" />
     <Compile Include="BL\Helper.cs" />
+    <Compile Include="CavebotMenu.xaml.cs">
+      <DependentUpon>CavebotMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ExtrasMenu.xaml.cs">
       <DependentUpon>ExtrasMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spells.cs" />
+    <Page Include="CavebotMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExtrasMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
