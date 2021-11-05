@@ -253,6 +253,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Mysql databse schema\test1-db_2021-10-24.sql" />
+    <Content Include="Mysql databse schema\test1-db_2021-11-05.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

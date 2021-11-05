@@ -103,12 +103,6 @@ namespace Tibiafuskdotnet
             Extraskey.Show();
         }
 
-        private void hpValue_Click(object sender, RoutedEventArgs e)
-        {
-            //fix it so its working
-           // MemoryReader.readValuesFromMemory.hpValue();
-            MessageBox.Show("hpValue");
-        }
 
         private void Help_btn_Click(object sender, RoutedEventArgs e)
         {
@@ -123,6 +117,8 @@ namespace Tibiafuskdotnet
             Helper.SpellLoHealth = Helper.TempSpellLoHealth;
             Helper.SpellLoMana = Helper.TempSpellLoMana;
             Helper.SpellLotext = Helper.TempSpellLotext;
+            Helper.UhRunetext = Helper.TempUhRunetext;
+            Helper.UhRuneHealth = Helper.TempUhRuneHealth; 
             Helper.WriteToFile();
         }
     }

@@ -39,13 +39,15 @@ namespace Tibiafuskdotnet
         private int manaValue;
         private int hpValue;
 
+        //character 
+        public string Charactername;
        
         private Int32 xorAddr = 0x934658 - 0x400000;
         private Int32 chattAddr = 0x27361B0;
 
 
         //character
-
+        public Int32 CharacterNameAddr = 0x63FEFC;
 
         //Skills
         private Int32 currentHpAddr = 0x63FE94 - 0x400000;
@@ -151,13 +153,16 @@ namespace Tibiafuskdotnet
             IntPtr handle = OpenProcess(PROCESS_WM_READ, false, tibia.Id);
 
             int bytesRead = 0;
-            byte[] buffer = new byte[4];
+            byte[] buffer = new byte[30];
 
             ReadProcessMemory((int)handle, xorAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
             xor = BitConverter.ToInt32(buffer, 0);
 
             ReadProcessMemory((int)handle, currentHpAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
             currentHp = BitConverter.ToInt32(buffer, 0);
+
+          //  ReadProcessMemory((int)handle, CharacterNameAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
+          //  Charactername = BitConverter.ToString(buffer, 0);
 
             ReadProcessMemory((int)handle, currentManaAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
             currentMana = BitConverter.ToInt32(buffer, 0);
@@ -334,9 +339,65 @@ namespace Tibiafuskdotnet
 
             }
 
+            if (currentHp <= Helper.UhRuneHealth)
+            {
+                var text = Helper.UhRunetext;
+
+                var UhRunetext = Helper.UhRunetext;
+
+                int key = 0;
 
 
+                if (UhRunetext == "F1")
+                    key = VK_F1;
 
+
+                else if (UhRunetext == "F2")
+                    key = VK_F2;
+
+
+                else if (UhRunetext == "F3")
+                    key = VK_F3;
+
+
+                else if (UhRunetext == "F4")
+                    key = VK_F4;
+
+
+                else if (UhRunetext == "F5")
+                    key = VK_F5;
+
+
+                else if (UhRunetext == "F6")
+                    key = VK_F6;
+
+
+                else if (UhRunetext == "F7")
+                    key = VK_F7;
+
+
+                else if (UhRunetext == "F8")
+                    key = VK_F8;
+
+                else if (UhRunetext == "F9")
+                    key = VK_F9;
+
+
+                else if (UhRunetext == "F10")
+                    key = VK_F10;
+
+
+                else if (UhRunetext == "F11")
+                    key = VK_F11;
+
+
+                else if (UhRunetext == "F12")
+                    key = VK_F12;
+
+                System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
+                
+            }
 
 
         }

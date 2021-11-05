@@ -29,6 +29,7 @@ namespace Tibiafuskdotnet
             if (data == null)
                 data = new Cheat();
 
+            UhRuneHealth.Text = data.UhRuneHealth.ToString();
             SpellLoHealth.Text = data.SpellLoHealth.ToString();
             SpellHiHealth.Text = data.SpellHiHealth.ToString();
             SpellHiMana.Text = data.SpellHiMana.ToString();
@@ -37,7 +38,9 @@ namespace Tibiafuskdotnet
             cmbHotkey.SelectedItem= data.SpellHitext;
             cmb2Hotkey.ItemsSource = Helper.GetKeys();
             cmb2Hotkey.SelectedItem = data.SpellLotext;
-
+            cmb3Hotkey.ItemsSource = Helper.GetKeys();
+            cmb3Hotkey.SelectedItem = data.UhRunetext;
+            
         }
 
 
@@ -94,6 +97,7 @@ namespace Tibiafuskdotnet
 
                 Helper.TempSpellHitext = cmbHotkey.SelectedItem as string;
                 Helper.TempSpellLotext = cmb2Hotkey.SelectedItem as string;
+                Helper.TempUhRunetext = cmb3Hotkey.SelectedItem as string;
 
             }
             catch (Exception ex)
@@ -128,6 +132,20 @@ namespace Tibiafuskdotnet
             catch (Exception ex)
             {
                 SpellLoMana.Text = "0";
+            }
+        }
+
+        private void UHRuneHealth_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+
+                Helper.TempUhRuneHealth = Convert.ToInt32(UhRuneHealth.Text);
+
+            }
+            catch (Exception ex)
+            {
+                UhRuneHealth.Text = "0";
             }
         }
     }
