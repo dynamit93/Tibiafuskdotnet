@@ -40,7 +40,11 @@ namespace Tibiafuskdotnet
             cmb2Hotkey.SelectedItem = data.SpellLotext;
             cmb3Hotkey.ItemsSource = Helper.GetKeys();
             cmb3Hotkey.SelectedItem = data.UhRunetext;
-            
+           // cmb4hotkey.SelectedItem = Helper.TempHpPotiontext;
+           // cmb4Hotkey.SelectedItem = data.TempHpPotiontext;
+            cmb5Hotkey.ItemsSource = Helper.GetKeys();
+            cmb5Hotkey.SelectedItem = data.ManaPotiontext;
+
         }
 
 
@@ -66,6 +70,7 @@ namespace Tibiafuskdotnet
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 SpellHiHealth.Text = "0";
             }
         }
@@ -81,6 +86,7 @@ namespace Tibiafuskdotnet
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 SpellHiMana.Text = "0";
             }
         }
@@ -98,11 +104,13 @@ namespace Tibiafuskdotnet
                 Helper.TempSpellHitext = cmbHotkey.SelectedItem as string;
                 Helper.TempSpellLotext = cmb2Hotkey.SelectedItem as string;
                 Helper.TempUhRunetext = cmb3Hotkey.SelectedItem as string;
+               // Helper.TempHpPotiontext = (string)cmb4Hotkey;
+                Helper.TempManaPotiontext = (string)cmb5Hotkey.SelectedItem;
 
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -116,6 +124,7 @@ namespace Tibiafuskdotnet
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 SpellLoHealth.Text = "0";
             }
         }
@@ -131,6 +140,7 @@ namespace Tibiafuskdotnet
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 SpellLoMana.Text = "0";
             }
         }
@@ -145,7 +155,29 @@ namespace Tibiafuskdotnet
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 UhRuneHealth.Text = "0";
+            }
+        }
+
+        private void HPPotionHealth_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ManapotionText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+
+
+                Helper.TempManaPotion = Convert.ToInt32(ManapotionText.Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ManapotionText.Text = "0";
             }
         }
     }

@@ -400,6 +400,73 @@ namespace Tibiafuskdotnet
             }
 
 
+            if (currentMana <= Helper.ManaPotion)
+            {
+                var text = Helper.ManaPotion;
+
+                var spellotext = Helper.SpellLotext;
+
+                int key = 0;
+
+
+                if (spellotext == "F1")
+                    key = VK_F1;
+
+
+                else if (spellotext == "F2")
+                    key = VK_F2;
+
+
+                else if (spellotext == "F3")
+                    key = VK_F3;
+
+
+                else if (spellotext == "F4")
+                    key = VK_F4;
+
+
+                else if (spellotext == "F5")
+                    key = VK_F5;
+
+
+                else if (spellotext == "F6")
+                    key = VK_F6;
+
+
+                else if (spellotext == "F7")
+                    key = VK_F7;
+
+
+                else if (spellotext == "F8")
+                    key = VK_F8;
+
+                else if (spellotext == "F9")
+                    key = VK_F9;
+
+
+                else if (spellotext == "F10")
+                    key = VK_F10;
+
+
+                else if (spellotext == "F11")
+                    key = VK_F11;
+
+
+                else if (spellotext == "F12")
+                    key = VK_F12;
+
+                System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
+                
+
+
+            }
+
+
+
+
+
+
         }
    
         private void TimerTick(object sender, EventArgs e)
