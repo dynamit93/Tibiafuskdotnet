@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet"
         mc:Ignorable="d"
-        Title="CavebotMenu" Height="450" Width="801.23">
-    <Grid RenderTransformOrigin="0.361,0.493" Margin="0,0,100,0">
+        Title="CavebotMenu" Height="453.857" Width="801.23">
+    <Grid RenderTransformOrigin="0.361,0.493" Margin="11,0,80,-3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="205*"/>
             <ColumnDefinition Width="132*"/>
@@ -27,10 +27,10 @@
         <Button Name="CavebotWaypointStand" Content="Stand" HorizontalAlignment="Left" Height="21" Margin="279,41,0,0" VerticalAlignment="Top" Width="48" Click="Button_Click_1"/>
         <Button Name="CavebotWaypointRope" Content="Rope" HorizontalAlignment="Left" Height="21" Margin="279,62,0,0" VerticalAlignment="Top" Width="48"/>
         <Button Name="CavebotWaypointWalk" Content="Walk" HorizontalAlignment="Left" Height="21" Margin="327,41,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Name="CavebotWaypointNode" Content="Node" HorizontalAlignment="Left" Height="21" Margin="375,41,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
+        <Button Name="CavebotWaypointNode" Content="Node" HorizontalAlignment="Left" Height="21" Margin="375,41,0,0" VerticalAlignment="Top" Width="48"/>
         <Button Name="CavebotWaypointLadder" Content="Ladder" HorizontalAlignment="Left" Height="21" Margin="327,62,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Name="CavebotWaypointShovel" Content="Shovel" HorizontalAlignment="Left" Height="21" Margin="375,62,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
-        <ListView Name="CavebotWaypointEmplacement" HorizontalAlignment="Left" Height="28" Margin="347,8,0,0" VerticalAlignment="Top" Width="124" Grid.ColumnSpan="2">
+        <Button Name="CavebotWaypointShovel" Content="Shovel" HorizontalAlignment="Left" Height="21" Margin="375,62,0,0" VerticalAlignment="Top" Width="48"/>
+        <ListView Name="CavebotWaypointEmplacement" HorizontalAlignment="Left" Height="28" Margin="347,8,0,0" VerticalAlignment="Top" Width="124">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -43,7 +43,7 @@
         <CheckBox Name="CavebotWaypointFollowWaypoints" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="364,221,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-0.79,0.5"/>
         <Label Content="Show Labels" HorizontalAlignment="Left" Margin="290,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.945,-0.037"/>
         <Label Content="Follow Waypoints" HorizontalAlignment="Left" Margin="384,215,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.518,0.603"/>
-        <ListView Name=" CavebotSettingsList" HorizontalAlignment="Left" Height="75" Margin="40,279,0,0" VerticalAlignment="Top" Width="210">
+        <ListView Name="CavebotSettingsList" HorizontalAlignment="Left" Height="75" Margin="40,279,0,0" VerticalAlignment="Top" Width="210">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -68,7 +68,7 @@
         <Label Content="Waypoints" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Cavebot Hotkeys" HorizontalAlignment="Left" Margin="114,9,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Button Name="CavebotHotkeyEdit" Content="Edit" HorizontalAlignment="Left" Height="20" Margin="104,30,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <ListView Name=" CavebotLootList" HorizontalAlignment="Left" Height="128" Margin="104,82,-25,0" VerticalAlignment="Top" Width="192" Grid.Column="1">
+        <ListView Name="CavebotLootList" HorizontalAlignment="Left" Height="128" Margin="104,82,-25,0" VerticalAlignment="Top" Width="192" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
