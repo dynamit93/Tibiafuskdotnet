@@ -7,37 +7,37 @@
         mc:Ignorable="d"
         Title="HealingMenu" Height="269.552" Width="415.522">
     <Grid Margin="0,0,2,2">
-        <ComboBox Name="cmbHotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="81,13,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
+        <ComboBox ToolTip="Chose your hottkey to asigan to Spell Hi healing" Name="cmbHotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="81,13,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>
-        <ComboBox Name="cmb2Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="81,43,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
+        <ComboBox ToolTip="Chose your hottkey to asigan to Spell Lo healing" Name="cmb2Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="81,43,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>
-        <ComboBox Name="cmb3Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="81,69,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
+        <ComboBox ToolTip="Chose your hottkey to asigan to UH Rune healing" Name="cmb3Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="81,69,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>
-        <ComboBox Name="cmb4Hotkey" SelectedIndex="0" HorizontalAlignment="Left" Margin="82,98,0,0" VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
+        <ComboBox ToolTip="Chose your hottkey to asigan to HP Potion healing" Name="cmb4Hotkey" SelectedIndex="0" HorizontalAlignment="Left" Margin="82,98,0,0" VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>
-        <ComboBox Name="cmb5Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="82,125,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
+        <ComboBox ToolTip="Chose your hottkey to asigan to Mana Potion to Restore your Mana " Name="cmb5Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="82,125,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>
 
         <Label x:Name="label" Content="Spell Hi:" HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Health:" HorizontalAlignment="Left" Margin="167,13,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SpellHiHealth" HorizontalAlignment="Left" Height="23" Margin="219,14,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="SpellHiHealth_TextChanged"/>
+        <TextBox ToolTip="The amout of hitpoints needed to trigger the Spell hi healing metod." x:Name="SpellHiHealth" HorizontalAlignment="Left" Height="23" Margin="219,14,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="SpellHiHealth_TextChanged"/>
         <Label x:Name="label2" Content="Mana:&#xD;&#xA;" HorizontalAlignment="Left" Margin="294,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,0.386" Height="30"/>
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="22" Margin="219,40,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55"/>
         <Label x:Name="label3" Content="Health:" HorizontalAlignment="Left" Margin="167,40,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label4" Content="Spell Lo:" HorizontalAlignment="Left" Margin="6,40,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label5" Content="Mana:" HorizontalAlignment="Left" Margin="294,40,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SpellLoMana" HorizontalAlignment="Left" Height="23" Margin="341,44,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="41" TextChanged="SpellLoMana_TextChanged"/>
-        <TextBox x:Name="UhRuneHealth" HorizontalAlignment="Left" Height="22" Margin="219,67,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="UHRuneHealth_TextChanged"/>
+        <TextBox ToolTip="The Minimum ammount of the needed for the Spell Lo healing metod. can be set as more then the spell cost to keep some mana in reserve." x:Name="SpellLoMana" HorizontalAlignment="Left" Height="23" Margin="341,44,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="41" TextChanged="SpellLoMana_TextChanged"/>
+        <TextBox ToolTip="The ammout of hitpoints needed to trigger the UH Rune healing metod. the response on the healing is verry fast and double uhing is avoided. this metod has prioity over Spell Hi" x:Name="UhRuneHealth" HorizontalAlignment="Left" Height="22" Margin="219,67,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="UHRuneHealth_TextChanged"/>
         <Label x:Name="label3_Copy" Content="Health:" HorizontalAlignment="Left" Margin="167,67,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="HpPotionHealth" HorizontalAlignment="Left" Height="22" Margin="219,92,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="HPPotionHealth_TextChanged"/>
+        <TextBox ToolTip="The ammout of hitpoints needed to trigger the Potion healing metod. this metod is independent of the other healing methods and can trigger at the same time as them" x:Name="HpPotionHealth" HorizontalAlignment="Left" Height="22" Margin="219,92,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="HPPotionHealth_TextChanged"/>
         <Label x:Name="label3_Copy1" Content="Health:" HorizontalAlignment="Left" Margin="167,92,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SpellLoHealth" HorizontalAlignment="Left" Height="22" Margin="219,40,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="SpellLohealth_TextChanged"/>
+        <TextBox ToolTip="The amout of hitpoints needed to trigger the Spell Lo healing metod." x:Name="SpellLoHealth" HorizontalAlignment="Left" Height="22" Margin="219,40,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="SpellLohealth_TextChanged"/>
         <Label x:Name="label3_Copy2" Content="Health:" HorizontalAlignment="Left" Margin="167,40,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ManapotionText" HorizontalAlignment="Left" Height="22" Margin="219,116,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="ManapotionText_TextChanged"/>
+        <TextBox ToolTip="The amout of mana needed to trigger Mana potion restoration." x:Name="ManapotionText" HorizontalAlignment="Left" Height="22" Margin="219,116,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="ManapotionText_TextChanged"/>
         <Label x:Name="label3_Copy3" Content="Mana:" HorizontalAlignment="Left" Margin="167,116,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label6" Content="UH Rune" HorizontalAlignment="Left" Margin="6,66,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label7" Content="HP Potion" HorizontalAlignment="Left" Margin="6,88,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SpellHiMana" LostFocus="lost" HorizontalAlignment="Left" Height="21" Margin="341,18,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="41" TextChanged="SpellHiMana_TextChanged"/>
+        <TextBox ToolTip="The Minimum ammount of the needed for the Spell Hi healing metod. can be set as more then the spell cost to keep some mana in reserve." x:Name="SpellHiMana" LostFocus="lost" HorizontalAlignment="Left" Height="21" Margin="341,18,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="41" TextChanged="SpellHiMana_TextChanged"/>
         <Label x:Name="label8" Content="Mana Potion" HorizontalAlignment="Left" Margin="0,115,0,0" VerticalAlignment="Top" Width="77"/>
         <Label x:Name="label9" Content="FOR THE CHANGES TO TAKE EFECT, HIT THE SAVE BUTTON ON THE BOT!" HorizontalAlignment="Left" Margin="0,206,0,0" VerticalAlignment="Top" Width="406"/>
         
