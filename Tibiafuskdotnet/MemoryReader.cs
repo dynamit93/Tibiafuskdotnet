@@ -398,7 +398,7 @@ namespace Tibiafuskdotnet
                 var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
                 
             }
-            //-
+            //--
             if (currentHp <= Helper.HpPotionHealth)
             {
                 var text = Helper.HpPotiontext;
