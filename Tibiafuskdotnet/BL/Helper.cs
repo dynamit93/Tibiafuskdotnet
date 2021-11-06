@@ -19,10 +19,14 @@ namespace Tibiafuskdotnet.BL
         public static string SpellLotext = "";
         public static string TempSpellLotext = "";
         public static string UhRunetext = "";
+        public static string HpPotiontext = "";
         public static string TempUhRunetext = "";
+        public static string TempHpPotiontext = "";
         public static string TempManaPotiontext = "";
         public static Int32 UhRuneHealth = 0;
+        public static Int32 HpPotionHealth = 0;
         public static Int32 TempUhRuneHealth = 0;
+        public static Int32 TempHpPotionHealth = 0;
         public static Int32 SpellHiHealth = 0;
         public static Int32 TempSpellHiHealth = 0;
         public static Int32 SpellHiMana = 0;
@@ -67,7 +71,7 @@ namespace Tibiafuskdotnet.BL
         public static void WriteToFile()
         {
             
-            Cheat cheat = new Cheat() { UhRuneHealth = UhRuneHealth, SpellLoHealth = SpellLoHealth, SpellHiHealth = SpellHiHealth, SpellHiMana = SpellHiMana, SpellLoMana = SpellLoMana, SpellHitext = SpellHitext, SpellLotext = SpellLotext, UhRunetext = UhRunetext };
+            Cheat cheat = new Cheat() { HpPotionHealth = HpPotionHealth, UhRuneHealth = UhRuneHealth, SpellLoHealth = SpellLoHealth, SpellHiHealth = SpellHiHealth, SpellHiMana = SpellHiMana, SpellLoMana = SpellLoMana, SpellHitext = SpellHitext, SpellLotext = SpellLotext, UhRunetext = UhRunetext, HpPotiontext = HpPotiontext };
             using (StreamWriter r = new StreamWriter(GetPath()))
             {
                 var path = JsonConvert.SerializeObject(cheat);

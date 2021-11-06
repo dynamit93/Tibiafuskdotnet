@@ -88,8 +88,8 @@ namespace Tibiafuskdotnet
         const int VK_F8 = 0x77;
         const int VK_F9 = 0x78;
         const int VK_F10 = 0x79;
-        const int VK_F11 = 0x80;
-        const int VK_F12 = 0x81;
+        const int VK_F11 = 0x7A;
+        const int VK_F12 = 0x7B;
         const UInt32 WM_KEYDOWN = 0x0100;
         
         private double manaPercentInput;
@@ -338,7 +338,7 @@ namespace Tibiafuskdotnet
 
 
             }
-
+            
             if (currentHp <= Helper.UhRuneHealth)
             {
                 var text = Helper.UhRunetext;
@@ -390,7 +390,7 @@ namespace Tibiafuskdotnet
                 else if (UhRunetext == "F11")
                     key = VK_F11;
 
-
+                //here is the code for this?
                 else if (UhRunetext == "F12")
                     key = VK_F12;
 
@@ -399,6 +399,65 @@ namespace Tibiafuskdotnet
                 
             }
 
+            if (currentHp <= Helper.HpPotionHealth)
+            {
+                var text = Helper.HpPotiontext;
+
+                var HpPotiontext = Helper.HpPotiontext;
+
+                int key = 0;
+
+
+                if (HpPotiontext == "F1")
+                    key = VK_F1;
+
+
+                else if (HpPotiontext == "F2")
+                    key = VK_F2;
+
+
+                else if (HpPotiontext == "F3")
+                    key = VK_F3;
+
+
+                else if (HpPotiontext == "F4")
+                    key = VK_F4;
+
+
+                else if (HpPotiontext == "F5")
+                    key = VK_F5;
+
+
+                else if (HpPotiontext == "F6")
+                    key = VK_F6;
+
+
+                else if (HpPotiontext == "F7")
+                    key = VK_F7;
+
+
+                else if (HpPotiontext == "F8")
+                    key = VK_F8;
+
+                else if (HpPotiontext == "F9")
+                    key = VK_F9;
+
+
+                else if (HpPotiontext == "F10")
+                    key = VK_F10;
+
+
+                else if (HpPotiontext == "F11")
+                    key = VK_F11;
+
+                
+                else if (HpPotiontext == "F12")
+                    key = VK_F12;
+
+                System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
+
+            }
 
             if (currentMana <= Helper.ManaPotion)
             {
@@ -464,11 +523,16 @@ namespace Tibiafuskdotnet
 
 
 
-
-
-
         }
    
+
+
+
+
+
+
+
+
         private void TimerTick(object sender, EventArgs e)
         {
             readValuesFromMemory();

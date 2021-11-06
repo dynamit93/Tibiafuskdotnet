@@ -11,13 +11,16 @@ namespace Tibiafuskdotnet.BL
        
         public Int32 SpellHiHealth { get; set; }
         public Int32 SpellLoHealth { get; set; }
+        public Int32 HpPotionHealth { get; set; }
         public Int32 UhRuneHealth { get; set; }
         public Int32 SpellHiMana { get; set; }
         public Int32 SpellLoMana { get; set; }
         public Int32 ManaPotiontext { get; set; }
+        //public Int32 HpPotionteaxt { get; set; }
         public string SpellHitext { get; set; }
         public string SpellLotext { get; set; }
         public string UhRunetext { get; set; }
+        public string HpPotiontext { get; set; }
 
 
     }

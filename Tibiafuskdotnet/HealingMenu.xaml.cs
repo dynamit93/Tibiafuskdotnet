@@ -30,6 +30,7 @@ namespace Tibiafuskdotnet
                 data = new Cheat();
 
             UhRuneHealth.Text = data.UhRuneHealth.ToString();
+            HpPotionHealth.Text = data.HpPotionHealth.ToString();
             SpellLoHealth.Text = data.SpellLoHealth.ToString();
             SpellHiHealth.Text = data.SpellHiHealth.ToString();
             SpellHiMana.Text = data.SpellHiMana.ToString();
@@ -40,8 +41,8 @@ namespace Tibiafuskdotnet
             cmb2Hotkey.SelectedItem = data.SpellLotext;
             cmb3Hotkey.ItemsSource = Helper.GetKeys();
             cmb3Hotkey.SelectedItem = data.UhRunetext;
-           // cmb4hotkey.SelectedItem = Helper.TempHpPotiontext;
-           // cmb4Hotkey.SelectedItem = data.TempHpPotiontext;
+            cmb4Hotkey.SelectedItem = data.HpPotiontext;
+            cmb4Hotkey.ItemsSource = Helper.GetKeys();
             cmb5Hotkey.ItemsSource = Helper.GetKeys();
             cmb5Hotkey.SelectedItem = data.ManaPotiontext;
 
@@ -104,7 +105,7 @@ namespace Tibiafuskdotnet
                 Helper.TempSpellHitext = cmbHotkey.SelectedItem as string;
                 Helper.TempSpellLotext = cmb2Hotkey.SelectedItem as string;
                 Helper.TempUhRunetext = cmb3Hotkey.SelectedItem as string;
-               // Helper.TempHpPotiontext = (string)cmb4Hotkey;
+                Helper.TempHpPotiontext = (string)cmb4Hotkey.SelectedItem;
                 Helper.TempManaPotiontext = (string)cmb5Hotkey.SelectedItem;
 
             }
@@ -162,7 +163,17 @@ namespace Tibiafuskdotnet
 
         private void HPPotionHealth_TextChanged(object sender, TextChangedEventArgs e)
         {
+            try
+            {
 
+                Helper.TempHpPotionHealth = Convert.ToInt32(HpPotionHealth.Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                HpPotionHealth.Text = "0";
+            }
         }
 
         private void ManapotionText_TextChanged(object sender, TextChangedEventArgs e)

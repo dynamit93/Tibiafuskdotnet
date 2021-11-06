@@ -50,6 +50,7 @@ namespace Tibiafuskdotnet
             Helper.SpellHitext = data.SpellHitext;
             Helper.SpellLoHealth = data.SpellLoHealth;
             Helper.UhRuneHealth = data.UhRuneHealth;
+            Helper.HpPotionHealth = data.HpPotionHealth;
             Helper.SpellLoMana= data.SpellLoMana;
             Helper.SpellLotext= data.SpellLotext;
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");

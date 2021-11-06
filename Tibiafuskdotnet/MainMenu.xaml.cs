@@ -118,7 +118,10 @@ namespace Tibiafuskdotnet
             Helper.SpellLoMana = Helper.TempSpellLoMana;
             Helper.SpellLotext = Helper.TempSpellLotext;
             Helper.UhRunetext = Helper.TempUhRunetext;
-            Helper.UhRuneHealth = Helper.TempUhRuneHealth; 
+            Helper.UhRuneHealth = Helper.TempUhRuneHealth;
+            Helper.HpPotionHealth = Helper.TempHpPotionHealth;
+            Helper.HpPotiontext = Helper.TempHpPotiontext;
+
             Helper.WriteToFile();
         }
 

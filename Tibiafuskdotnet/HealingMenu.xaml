@@ -13,7 +13,7 @@
         </ComboBox>
         <ComboBox Name="cmb3Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="81,69,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>
-        <ComboBox Name="cmb4Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="82,97,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
+        <ComboBox Name="cmb4Hotkey" SelectedIndex="0" HorizontalAlignment="Left" Margin="82,98,0,0" VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>
         <ComboBox Name="cmb5Hotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="82,125,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>
@@ -29,7 +29,7 @@
         <TextBox x:Name="SpellLoMana" HorizontalAlignment="Left" Height="23" Margin="341,44,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="41" TextChanged="SpellLoMana_TextChanged"/>
         <TextBox x:Name="UhRuneHealth" HorizontalAlignment="Left" Height="22" Margin="219,67,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="UHRuneHealth_TextChanged"/>
         <Label x:Name="label3_Copy" Content="Health:" HorizontalAlignment="Left" Margin="167,67,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="HPPotionHealth" HorizontalAlignment="Left" Height="22" Margin="219,92,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="HPPotionHealth_TextChanged"/>
+        <TextBox x:Name="HpPotionHealth" HorizontalAlignment="Left" Height="22" Margin="219,92,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="HPPotionHealth_TextChanged"/>
         <Label x:Name="label3_Copy1" Content="Health:" HorizontalAlignment="Left" Margin="167,92,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="SpellLoHealth" HorizontalAlignment="Left" Height="22" Margin="219,40,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="SpellLohealth_TextChanged"/>
         <Label x:Name="label3_Copy2" Content="Health:" HorizontalAlignment="Left" Margin="167,40,0,0" VerticalAlignment="Top"/>
@@ -40,5 +40,7 @@
         <TextBox x:Name="SpellHiMana" LostFocus="lost" HorizontalAlignment="Left" Height="21" Margin="341,18,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="41" TextChanged="SpellHiMana_TextChanged"/>
         <Label x:Name="label8" Content="Mana Potion" HorizontalAlignment="Left" Margin="0,115,0,0" VerticalAlignment="Top" Width="77"/>
         <Label x:Name="label9" Content="FOR THE CHANGES TO TAKE EFECT, HIT THE SAVE BUTTON ON THE BOT!" HorizontalAlignment="Left" Margin="0,206,0,0" VerticalAlignment="Top" Width="406"/>
+        
+        
     </Grid>
 </Window>
