@@ -182,13 +182,13 @@ namespace Tibiafuskdotnet
             {
 
 
-                Helper.TempManaPotion = Convert.ToInt32(ManapotionText.Text);
+                Helper.TempManaPotion = Convert.ToInt32(ManaPotiontext.Text);
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                ManapotionText.Text = "0";
+                ManaPotiontext.Text = "0";
             }
         }
     }

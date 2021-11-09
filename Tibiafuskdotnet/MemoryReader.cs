@@ -275,7 +275,7 @@ namespace Tibiafuskdotnet
             }
 
 
-
+            //SpellLo Heal
 
             if (currentHp <= Helper.SpellLoHealth && currentMana >= Helper.SpellLoMana)
             {
@@ -338,7 +338,7 @@ namespace Tibiafuskdotnet
 
 
             }
-            
+            //UH Rune Heal
             if (currentHp <= Helper.UhRuneHealth)
             {
                 var text = Helper.UhRunetext;
@@ -398,7 +398,7 @@ namespace Tibiafuskdotnet
                 var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
                 
             }
-            //--
+            //--HP Potion Heal
             if (currentHp <= Helper.HpPotionHealth)
             {
                 var text = Helper.HpPotiontext;
@@ -459,59 +459,59 @@ namespace Tibiafuskdotnet
 
             }
 
-            if (currentMana <= Helper.ManaPotion)
+            if (currentMana <= Helper.ManapotionHealth)
             {
-                var text = Helper.ManaPotion;
+                //var text = Helper.ManaPotion;
 
-                var spellotext = Helper.SpellLotext;
+                var ManaPotiontext = Helper.ManaPotiontext;
 
                 int key = 0;
 
 
-                if (spellotext == "F1")
+                if (ManaPotiontext == "F1")
                     key = VK_F1;
 
 
-                else if (spellotext == "F2")
+                else if (ManaPotiontext == "F2")
                     key = VK_F2;
 
 
-                else if (spellotext == "F3")
+                else if (ManaPotiontext == "F3")
                     key = VK_F3;
 
 
-                else if (spellotext == "F4")
+                else if (ManaPotiontext == "F4")
                     key = VK_F4;
 
 
-                else if (spellotext == "F5")
+                else if (ManaPotiontext == "F5")
                     key = VK_F5;
 
 
-                else if (spellotext == "F6")
+                else if (ManaPotiontext == "F6")
                     key = VK_F6;
 
 
-                else if (spellotext == "F7")
+                else if (ManaPotiontext == "F7")
                     key = VK_F7;
 
 
-                else if (spellotext == "F8")
+                else if (ManaPotiontext == "F8")
                     key = VK_F8;
 
-                else if (spellotext == "F9")
+                else if (ManaPotiontext == "F9")
                     key = VK_F9;
 
 
-                else if (spellotext == "F10")
+                else if (ManaPotiontext == "F10")
                     key = VK_F10;
 
 
-                else if (spellotext == "F11")
+                else if (ManaPotiontext == "F11")
                     key = VK_F11;
 
 
-                else if (spellotext == "F12")
+                else if (ManaPotiontext == "F12")
                     key = VK_F12;
 
                 System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();

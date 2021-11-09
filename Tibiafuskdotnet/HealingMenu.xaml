@@ -33,7 +33,7 @@
         <Label x:Name="label3_Copy1" Content="Health:" HorizontalAlignment="Left" Margin="167,92,0,0" VerticalAlignment="Top"/>
         <TextBox ToolTip="The amout of hitpoints needed to trigger the Spell Lo healing metod." x:Name="SpellLoHealth" HorizontalAlignment="Left" Height="22" Margin="219,40,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="SpellLohealth_TextChanged"/>
         <Label x:Name="label3_Copy2" Content="Health:" HorizontalAlignment="Left" Margin="167,40,0,0" VerticalAlignment="Top"/>
-        <TextBox ToolTip="The amout of mana needed to trigger Mana potion restoration." x:Name="ManapotionText" HorizontalAlignment="Left" Height="22" Margin="219,116,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="ManapotionText_TextChanged"/>
+        <TextBox ToolTip="The amout of mana needed to trigger Mana potion restoration." x:Name="ManaPotiontext" HorizontalAlignment="Left" Height="22" Margin="219,116,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55" TextChanged="ManapotionText_TextChanged"/>
         <Label x:Name="label3_Copy3" Content="Mana:" HorizontalAlignment="Left" Margin="167,116,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label6" Content="UH Rune" HorizontalAlignment="Left" Margin="6,66,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label7" Content="HP Potion" HorizontalAlignment="Left" Margin="6,88,0,0" VerticalAlignment="Top"/>
