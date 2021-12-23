@@ -132,5 +132,11 @@ namespace Tibiafuskdotnet
             CavebotMenu Cavebotkey = new CavebotMenu();
             Cavebotkey.Show();
         }
+
+        private void targeting_btn_Click(object sender, RoutedEventArgs e)
+        {
+            TargetMenu Targetkey = new TargetMenu();
+            Targetkey.Show();
+        }
     }
 }

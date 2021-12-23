@@ -1,0 +1,51 @@
+﻿<Window x:Class="Tibiafuskdotnet.TargetMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tibiafuskdotnet"
+        mc:Ignorable="d"
+        Title="TargetMenu" Height="429.158" Width="556.287">
+    <Grid Margin="0,0,2,5" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="0.018"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Frame x:Name="frame" Content="Monster definition and Behaviours" HorizontalAlignment="Left" Height="247" Margin="10,10,0,0" VerticalAlignment="Top" Width="341"/>
+        <Frame x:Name="frame1" Content="Target Selection" HorizontalAlignment="Left" Height="277" Margin="369,14,0,0" VerticalAlignment="Top" Width="167"/>
+        <Label x:Name="label" Content="List order" HorizontalAlignment="Left" Margin="369,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.118,0"/>
+        <Label x:Name="label1" Content="Health" HorizontalAlignment="Left" Margin="369,87,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Proximity" HorizontalAlignment="Left" Margin="369,117,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Danger" HorizontalAlignment="Left" Margin="369,148,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label4" Content="Random" HorizontalAlignment="Left" Margin="369,180,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label5" Content="Stick" HorizontalAlignment="Left" Margin="369,211,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="ListOrderSlider" Value="{Binding Path=ListOrder, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="425,43,0,0" VerticalAlignment="Top" Height="26" Width="111"/>
+        <Slider x:Name="HealthSlider" Value="{Binding Path=HealthTarget, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="425,84,0,0" VerticalAlignment="Top" Height="29" Width="111"/>
+        <Slider x:Name="ProximitySlider" Value="{Binding Path=ProximityTarget, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="425,118,0,0" VerticalAlignment="Top" Height="30" Width="111"/>
+        <Slider x:Name="DangerSlider" Value="{Binding Path=DangerTarget, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="425,148,0,0" VerticalAlignment="Top" Height="31" Width="111"/>
+        <Slider x:Name="RandomSlider" Value="{Binding Path=RandomTarget, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="425,184,0,0" VerticalAlignment="Top" Height="22" Width="111"/>
+        <Slider x:Name="StickSlider" Value="{Binding Path=StickTarget, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="425,218,0,0" VerticalAlignment="Top" Height="19" Width="111"/>
+        <CheckBox x:Name="ReachableCheckBox" IsChecked="{Binding Path=ReachableTarget, Mode=OneWayToSource}"  Content="Target must be Reachable" HorizontalAlignment="Left" Margin="369,242,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ShootableCheckBox" IsChecked="{Binding Path=ShootableTarget, Mode=OneWayToSource}"  Content="Target Must be shootable" HorizontalAlignment="Left" Margin="369,262,0,0" VerticalAlignment="Top"/>
+        <Frame x:Name="frame2" Content="" HorizontalAlignment="Left" Height="113" Margin="151,30,0,0" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="TargetNameTextBox" HorizontalAlignment="Left" Height="23" Margin="215,43,0,0" TextWrapping="Wrap" Text="{Binding ElementName=listBoxTargettingName , Path=SelectedItem.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="120" TextChanged="TargetNameTextBox_TextChanged"/>
+        <Label x:Name="label6" Content="Name" HorizontalAlignment="Left" Margin="165,43,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label7" Content="Label" HorizontalAlignment="Left" Margin="165,69,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label8" Content="Label" HorizontalAlignment="Left" Margin="165,95,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="215,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label9" Content="Label" HorizontalAlignment="Left" Margin="275,69,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listBoxTargettingName" HorizontalAlignment="Left" Height="198" Margin="10,30,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="listBoxTargettingName_SelectionChanged" />
+
+        <Button x:Name="button" Content="&lt;" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Width="30" Height="20"/>
+        <Button x:Name="button1" Content="&gt;" HorizontalAlignment="Left" Margin="50,233,0,0" VerticalAlignment="Top" Width="30" Height="20"/>
+        <Button x:Name="DelBtn" Content="Del" HorizontalAlignment="Left" Margin="132,233,0,0" VerticalAlignment="Top" Width="28" Height="20" Click="DelBtn_Click"/>
+        <CheckBox Content="Play alarm" HorizontalAlignment="Left" Margin="178,236,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Loot monster" HorizontalAlignment="Left" Margin="280,236,0,0" VerticalAlignment="Top"/>
+        <ListBox HorizontalAlignment="Left" Height="16" Margin="216,74,0,0" VerticalAlignment="Top" Width="54"/>
+        <ListBox HorizontalAlignment="Left" Height="16" Margin="313,74,0,0" VerticalAlignment="Top" Width="54"/>
+    </Grid>
+</Window>
