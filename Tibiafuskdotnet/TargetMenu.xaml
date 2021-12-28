@@ -15,7 +15,7 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Frame x:Name="frame" Content="Monster definition and Behaviours" HorizontalAlignment="Left" Height="247" Margin="10,10,0,0" VerticalAlignment="Top" Width="341"/>
+        <Frame x:Name="frame" Content="Monster definition and Behaviours" HorizontalAlignment="Left" Height="247" Margin="10,10,0,0" VerticalAlignment="Top" Width="348"/>
         <Frame x:Name="frame1" Content="Target Selection" HorizontalAlignment="Left" Height="277" Margin="369,14,0,0" VerticalAlignment="Top" Width="167"/>
         <Label x:Name="label" Content="List order" HorizontalAlignment="Left" Margin="369,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.118,0"/>
         <Label x:Name="label1" Content="Health" HorizontalAlignment="Left" Margin="369,87,0,0" VerticalAlignment="Top"/>
@@ -31,21 +31,21 @@
         <Slider x:Name="StickSlider" Value="{Binding Path=StickTarget, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="425,218,0,0" VerticalAlignment="Top" Height="19" Width="111"/>
         <CheckBox x:Name="ReachableCheckBox" IsChecked="{Binding Path=ReachableTarget, Mode=OneWayToSource}"  Content="Target must be Reachable" HorizontalAlignment="Left" Margin="369,242,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="ShootableCheckBox" IsChecked="{Binding Path=ShootableTarget, Mode=OneWayToSource}"  Content="Target Must be shootable" HorizontalAlignment="Left" Margin="369,262,0,0" VerticalAlignment="Top"/>
-        <Frame x:Name="frame2" Content="" HorizontalAlignment="Left" Height="113" Margin="151,30,0,0" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="TargetNameTextBox" HorizontalAlignment="Left" Height="23" Margin="215,43,0,0" TextWrapping="Wrap" Text="{Binding ElementName=listBoxTargettingName , Path=SelectedItem.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="120" TextChanged="TargetNameTextBox_TextChanged"/>
+        <Frame x:Name="frame2" Content="" HorizontalAlignment="Left" Height="113" Margin="164,30,0,0" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="TargetNameTextBox" HorizontalAlignment="Left" Height="23" Margin="212,43,0,0" TextWrapping="Wrap" Text="{Binding ElementName=listBoxTargettingName , Path=SelectedItem.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="139" TextChanged="TargetNameTextBox_TextChanged"/>
         <Label x:Name="label6" Content="Name" HorizontalAlignment="Left" Margin="165,43,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label7" Content="Label" HorizontalAlignment="Left" Margin="165,69,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label8" Content="Label" HorizontalAlignment="Left" Margin="165,95,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="215,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label9" Content="Label" HorizontalAlignment="Left" Margin="275,69,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label7" Content="Count" HorizontalAlignment="Left" Margin="165,69,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label8" Content="Categories" HorizontalAlignment="Left" Margin="168,95,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="235,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label9" Content="Setting #" HorizontalAlignment="Left" Margin="264,69,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="listBoxTargettingName" HorizontalAlignment="Left" Height="198" Margin="10,30,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="listBoxTargettingName_SelectionChanged" />
 
         <Button x:Name="button" Content="&lt;" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Width="30" Height="20"/>
         <Button x:Name="button1" Content="&gt;" HorizontalAlignment="Left" Margin="50,233,0,0" VerticalAlignment="Top" Width="30" Height="20"/>
         <Button x:Name="DelBtn" Content="Del" HorizontalAlignment="Left" Margin="132,233,0,0" VerticalAlignment="Top" Width="28" Height="20" Click="DelBtn_Click"/>
-        <CheckBox Content="Play alarm" HorizontalAlignment="Left" Margin="178,236,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Loot monster" HorizontalAlignment="Left" Margin="280,236,0,0" VerticalAlignment="Top"/>
-        <ListBox HorizontalAlignment="Left" Height="16" Margin="216,74,0,0" VerticalAlignment="Top" Width="54"/>
-        <ListBox HorizontalAlignment="Left" Height="16" Margin="313,74,0,0" VerticalAlignment="Top" Width="54"/>
+        <CheckBox x:Name="playAlram"  Content="Play alarm" HorizontalAlignment="Left" Margin="171,236,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_1" Unchecked="playAlram_Unchecked"/>
+        <CheckBox Content="Loot monster" HorizontalAlignment="Left" Margin="260,236,0,0" VerticalAlignment="Top" />
+        <ListBox HorizontalAlignment="Left" Height="16" Margin="210,74,0,0" VerticalAlignment="Top" Width="54"/>
+        <ListBox HorizontalAlignment="Left" Height="16" Margin="319,74,0,0" VerticalAlignment="Top" Width="38"/>
     </Grid>
 </Window>

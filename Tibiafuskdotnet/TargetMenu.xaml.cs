@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Media;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using Tibiafuskdotnet.BL;
 
 namespace Tibiafuskdotnet
 {
@@ -21,6 +15,9 @@ namespace Tibiafuskdotnet
     /// </summary>
     public partial class TargetMenu : INotifyPropertyChanged
     {
+
+
+        
         
         public TargetMenu()
         {
@@ -36,7 +33,12 @@ namespace Tibiafuskdotnet
                 }
             };
             this.listBoxTargettingName.ItemsSource = ListTargeting;
-            
+
+
+
+
+
+
         }
 
         private void listBoxTargettingName_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -165,8 +167,6 @@ namespace Tibiafuskdotnet
         }
 
 
-
-
         private int _ShootableTarget;
         public int ShootableTarget
         {
@@ -181,7 +181,7 @@ namespace Tibiafuskdotnet
             }
         }
 
-        
+
         private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
             String ListOrderstring = ListOrder.ToString();
@@ -198,10 +198,43 @@ namespace Tibiafuskdotnet
 
         }
 
+        private SoundPlayer Player = new SoundPlayer();
 
+        private void  CheckBox_Checked_1(object sender, RoutedEventArgs e)
+        {
+            Player.SoundLocation = @"./sounds/monster.wav";
+            Player.PlayLooping();
+
+            /*Uri uri = new Uri("./sounds/monster.wav", UriKind.Relative);
+            var player = new MediaPlayer();
+            
+            player.MediaFailed += (o, args) =>
+            {
+
+
+                Console.WriteLine(o);
+                Console.WriteLine(args); //here you can get hint of what causes the failure 
+                //from method parameter args 
+            };
+            player.Open(uri);
+            player.Position = TimeSpan.Zero;
+            player.Play();*/
+
+
+            ///Make it repeat
+
+        }
+
+        private void playAlram_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Player.Stop();
+        }
     }
 
-    public class Targeting
+
+
+
+   /* public class Targeting
     {
 
         public string Name { get; set; }
@@ -212,6 +245,6 @@ namespace Tibiafuskdotnet
 
 
         
-    }
+    }*/
     
 }

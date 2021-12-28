@@ -195,6 +195,7 @@
     </ApplicationDefinition>
     <Compile Include="BL\Cheat.cs" />
     <Compile Include="BL\Helper.cs" />
+    <Compile Include="BL\Targeting.cs" />
     <Compile Include="CavebotMenu.xaml.cs">
       <DependentUpon>CavebotMenu.xaml</DependentUpon>
     </Compile>
