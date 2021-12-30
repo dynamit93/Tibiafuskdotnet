@@ -17,29 +17,20 @@ namespace Tibiafuskdotnet
     {
 
 
-        
-        
+
+        List<Targeting> ListTargeting = new List<Targeting>();
+
         public TargetMenu()
         {
             
             DataContext = this;
             InitializeComponent();
-            List<Targeting> ListTargeting = new List<Targeting>()
-                {
 
-                new Targeting()
-                {
-                    Name = "john"
-                }
-            };
-            this.listBoxTargettingName.ItemsSource = ListTargeting;
-
-
-
-
-
-
+            ListTargeting.Add(new Targeting() { Name = "Monster" });
+            listBoxTargettingName.ItemsSource = ListTargeting;
         }
+
+ 
 
         private void listBoxTargettingName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -184,7 +175,7 @@ namespace Tibiafuskdotnet
 
         private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
-            String ListOrderstring = ListOrder.ToString();
+            /*String ListOrderstring = ListOrder.ToString();
             String HealthTargetstring = HealthTarget.ToString();         
             String ProximityTargetstring = ProximityTarget.ToString();
             String DangerTargetstring = RandomTarget.ToString();
@@ -192,9 +183,8 @@ namespace Tibiafuskdotnet
             String StickTargetstring = StickTarget.ToString();
             String ReachableTargetstring = ReachableTarget.ToString();
             String ShootableTargetstring = ShootableTarget.ToString();
-
             MessageBox.Show( "ListOrder = " + ListOrderstring + "\n" + "HealthTarget = " + HealthTargetstring + "\n" + "ProximityTarget  = " + ProximityTargetstring + "\n" + "DangerTarget  = " + DangerTargetstring + "\n" + "RandomTarget  = " + RandomTargetstring + "\n" + "StickTarget  = " + StickTargetstring + "\n" + "ReachableTarget = " + ReachableTargetstring + "\n" + "ShootableTarget = " + ShootableTargetstring + "\n");
-
+            */
 
         }
 
@@ -204,30 +194,16 @@ namespace Tibiafuskdotnet
         {
             Player.SoundLocation = @"./sounds/monster.wav";
             Player.PlayLooping();
-
-            /*Uri uri = new Uri("./sounds/monster.wav", UriKind.Relative);
-            var player = new MediaPlayer();
-            
-            player.MediaFailed += (o, args) =>
-            {
-
-
-                Console.WriteLine(o);
-                Console.WriteLine(args); //here you can get hint of what causes the failure 
-                //from method parameter args 
-            };
-            player.Open(uri);
-            player.Position = TimeSpan.Zero;
-            player.Play();*/
-
-
-            ///Make it repeat
-
         }
 
         private void playAlram_Unchecked(object sender, RoutedEventArgs e)
         {
             Player.Stop();
+        }
+
+        private void Addbtn_Click(object sender, RoutedEventArgs e)
+        {
+            ListTargeting.Add(new Targeting() { Name = "<New Monster>" });   
         }
     }
 
