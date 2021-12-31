@@ -33,9 +33,11 @@ namespace Tibiafuskdotnet
         public int maxMana;
         private int xor;
         private string chatt;
+        public int light;
 
         private int maxHpValue;
         private int maxManaValue;
+        private int maxlight;
         private int manaValue;
         private int hpValue;
 
@@ -91,7 +93,17 @@ namespace Tibiafuskdotnet
         const int VK_F11 = 0x7A;
         const int VK_F12 = 0x7B;
         const UInt32 WM_KEYDOWN = 0x0100;
-        
+
+
+        //Utilities
+        public Int32 LightAddr = 0x4EAFAC;
+
+
+
+
+
+
+
         private double manaPercentInput;
         private double hpPercentLightHealInput;
         private double hpPercentIntenseHealInput;
@@ -110,6 +122,7 @@ namespace Tibiafuskdotnet
             this.manaPercentInput = manaPercentInput;
             this.hpPercentLightHealInput = hpPercentLightHealInput;
             this.hpPercentIntenseHealInput = hpPercentIntenseHealInput;
+            
 
             timer = new Timer();
             timer.Interval = 300;
@@ -119,7 +132,11 @@ namespace Tibiafuskdotnet
 
             readValuesFromMemory();
         }
-        
+
+        public MemoryReader()
+        {
+        }
+
         public static bool appRunning(string appName = "Tibia")
         {
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
@@ -177,12 +194,17 @@ namespace Tibiafuskdotnet
             ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
             chatt = BitConverter.ToString(buffer, 0);
             ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
-          //  int * data =(int32*)BitConverter.ToInt32(buffer, 0);
-          
+            //  int * data =(int32*)BitConverter.ToInt32(buffer, 0);
+
+
+            ReadProcessMemory((int)handle, LightAddr, buffer, buffer.Length, ref bytesRead);
+            light = BitConverter.ToInt32(buffer, 0);
+
             hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
+            maxlight = light;
                    
       
             bool isExhausted = false;

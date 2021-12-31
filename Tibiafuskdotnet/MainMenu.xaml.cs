@@ -36,6 +36,16 @@ namespace Tibiafuskdotnet
 
             KeyBinding kb = new KeyBinding(command, Key.F12, ModifierKeys.Alt);
             this.InputBindings.Add(kb);
+
+
+
+
+
+            CommandBinding cb11 = new CommandBinding(command, OnCommandf11);
+            this.CommandBindings.Add(cb11);
+
+            KeyBinding kb11 = new KeyBinding(command, Key.F11, ModifierKeys.Alt);
+            this.InputBindings.Add(kb11);
         }
 
 
@@ -56,10 +66,30 @@ namespace Tibiafuskdotnet
                 window.Show();
             }
         }
+        //public int light;
+
+        public void OnCommandf11(object sender, EventArgs e)
+        {
+
+            MemoryReader readers = new MemoryReader();
 
 
 
-       
+            if (readers.light != 255)
+            {
+                readers.light = 255;
+
+            }
+            else
+            {
+                readers.light = 0;
+            }
+        }
+
+
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
