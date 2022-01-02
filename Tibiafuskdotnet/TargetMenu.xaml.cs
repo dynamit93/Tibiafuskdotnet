@@ -175,6 +175,13 @@ namespace Tibiafuskdotnet
 
         private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
+
+
+
+            //ListTargeting<Targeting>.Items.RemoveAt(ListTargeting.SelectedIndex);
+            /// ListTargeting.Remove(new Targeting() { Name = ListTargeting.selectedItems });
+
+
             /*String ListOrderstring = ListOrder.ToString();
             String HealthTargetstring = HealthTarget.ToString();         
             String ProximityTargetstring = ProximityTarget.ToString();
@@ -203,7 +210,8 @@ namespace Tibiafuskdotnet
 
         private void Addbtn_Click(object sender, RoutedEventArgs e)
         {
-            ListTargeting.Add(new Targeting() { Name = "<New Monster>" });   
+            ListTargeting.Add(new Targeting() { Name = TargetNameTextBox.Text });
+            this.listBoxTargettingName.Items.Refresh();
         }
     }
 
