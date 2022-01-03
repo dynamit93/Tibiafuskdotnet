@@ -28,6 +28,7 @@ namespace Tibiafuskdotnet
         public MainMenu()
         {
 
+
             DataContext = this;
             InitializeComponent();
             //this.KeyDown += new KeyEventHandler(BankView_KeyDown);
@@ -46,6 +47,8 @@ namespace Tibiafuskdotnet
 
             KeyBinding kb11 = new KeyBinding(command, Key.F11, ModifierKeys.Alt);
             this.InputBindings.Add(kb11);
+
+
         }
 
 
@@ -71,18 +74,15 @@ namespace Tibiafuskdotnet
         public void OnCommandf11(object sender, EventArgs e)
         {
 
-            MemoryReader readers = new MemoryReader();
-
-
-
-            if (readers.light != 255)
+            
+            if (MemoryReader.light != 255)
             {
-                readers.light = 255;
+                MemoryReader.light = 255;
 
             }
             else
             {
-                readers.light = 0;
+                MemoryReader.light = 0;
             }
         }
 

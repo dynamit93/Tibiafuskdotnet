@@ -34,11 +34,14 @@ namespace Tibiafuskdotnet
         MySqlCommand cmd;
         MySqlDataReader dr;
 
+       
+
         public MainWindow()
         {
             DataContext = this;
             InitializeComponent();
 
+            MemoryReader.Start(_manaPercentInput, _hpPercentLightHealInput, _hpPercentIntenseHealInput);
       
             Helper.Initialize();
             var data = Helper.ReadFromFile();
@@ -147,7 +150,7 @@ namespace Tibiafuskdotnet
             }
             con.Close();
 
-            new MemoryReader(0, 0, 0);
+            //new MemoryReader(0, 0, 0);
         }
 
         private void Forgotten_btn_Click(object sender, RoutedEventArgs e)

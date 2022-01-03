@@ -18,66 +18,66 @@ using WindowsInput.Native;
 
 namespace Tibiafuskdotnet
 {
-    public class MemoryReader
+    public static class MemoryReader
     {
-        private Timer timer;
+        public static Timer timer;
         //private MainWindow lb;
     
         private const int PROCESS_WM_READ = 0x0010;
 
-        private Int32 baseAddress;
+        public static Int32 baseAddress;
 
-        public int currentHp;
-        public int maxHp;
-        public int currentMana;
-        public int maxMana;
-        private int xor;
-        private string chatt;
-        public int light;
+        public static int currentHp;
+        public static int maxHp;
+        public static int currentMana;
+        public static int maxMana;
+        public static int xor;
+        public static string chatt;
+        public static int light;
 
-        private int maxHpValue;
-        private int maxManaValue;
-        private int maxlight;
-        private int manaValue;
-        private int hpValue;
+        public static int maxHpValue;
+        public static int maxManaValue;
+        public static int maxlight;
+        public static int manaValue;
+        public static int hpValue;
 
         //character 
-        public string Charactername;
-       
-        private Int32 xorAddr = 0x934658 - 0x400000;
-        private Int32 chattAddr = 0x27361B0;
+        public static string Charactername;
+
+        public static Int32 xorAddr = 0x934658 - 0x400000;
+        public static Int32 chattAddr = 0x27361B0;
 
 
         //character
-        public Int32 CharacterNameAddr = 0x63FEFC;
+        public static Int32 CharacterNameAddr = 0x63FEFC;
 
         //Skills
-        private Int32 currentHpAddr = 0x63FE94 - 0x400000;
-        private Int32 maxHpAddr = 0x63FE90 - 0x400000;
-        private Int32 currentManaAddr = 0x63FE78 - 0x400000;
-        private Int32 maxManaAddr = 0x63FE74 - 0x400000;
-        public Int32 StaminaAddr = 0x63FE6C;
-        public Int32 MagicLevelAddr = 0x63FE84;
-        public Int32 LevelAddr = 0x63fe88;
-        public Int32 ExpAddr = 0x63FE8C;
-        public Int32 CapAddr = 0x63FE68;
-        public Int32 SoulAddr = 0x63FE70;
+        public static Int32 currentHpAddr = 0x63FE94 - 0x400000;
+        public static Int32 maxHpAddr = 0x63FE90 - 0x400000;
+        public static Int32 currentManaAddr = 0x63FE78 - 0x400000;
+        public static Int32 maxManaAddr = 0x63FE74 - 0x400000;
+        public static Int32 StaminaAddr = 0x63FE6C;
+        public static Int32 MagicLevelAddr = 0x63FE84;
+        public static Int32 LevelAddr = 0x63fe88;
+        public static Int32 ExpAddr = 0x63FE8C;
+        public static Int32 CapAddr = 0x63FE68;
+        public static Int32 SoulAddr = 0x63FE70;
 
 
         /// hottkeys
         /// pub
-        public Int32 hottkeyf1 = 0x799F08;
-        public Int32 hottkeyf2 = 0x79A008;
-        public Int32 hottkeyf3 = 0x79A108;
-        public Int32 hottkeyf4 = 0x79A208;
-        public Int32 hottkeyf5 = 0x79A308;
-        public Int32 hottkeyf6 = 0x79A408;
-        public Int32 hottkeyf7 = 0x79A508;
-        public Int32 hottkeyf8 = 0x79A608;
-        public Int32 hottkeyf9 = 0x79A708;
-        public Int32 hottkeyf10 = 0x79A808;
-        public Int32 hottkeyf11 = 0x79A908;
-        public Int32 hottkeyf12 = 0x79AA08;
+        public static Int32 hottkeyf1 = 0x799F08;
+        public static Int32 hottkeyf2 = 0x79A008;
+        public static Int32 hottkeyf3 = 0x79A108;
+        public static Int32 hottkeyf4 = 0x79A208;
+        public static Int32 hottkeyf5 = 0x79A308;
+        public static Int32 hottkeyf6 = 0x79A408;
+        public static Int32 hottkeyf7 = 0x79A508;
+        public static Int32 hottkeyf8 = 0x79A608;
+        public static Int32 hottkeyf9 = 0x79A708;
+        public static Int32 hottkeyf10 = 0x79A808;
+        public static Int32 hottkeyf11 = 0x79A908;
+        public static Int32 hottkeyf12 = 0x79AA08;
         [DllImport("user32.dll")]
         static extern bool PostMessage(IntPtr hWnd, UInt32 Msg, int wParam, int lParam);
         const int VK_F1 = 0x70;
@@ -96,7 +96,7 @@ namespace Tibiafuskdotnet
 
 
         //Utilities
-        public Int32 LightAddr = 0x4EAFAC;
+        public static Int32 LightAddr = 0x4EAFAC;
 
 
 
@@ -104,9 +104,9 @@ namespace Tibiafuskdotnet
 
 
 
-        private double manaPercentInput;
-        private double hpPercentLightHealInput;
-        private double hpPercentIntenseHealInput;
+        public static double manaPercentInput;
+        public static double hpPercentLightHealInput;
+        public static double hpPercentIntenseHealInput;
         
 
         [DllImport("kernel32.dll")]
@@ -116,12 +116,12 @@ namespace Tibiafuskdotnet
         public static extern bool ReadProcessMemory(int hProcess,
           int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
-        public MemoryReader(double manaPercentInput, double hpPercentLightHealInput, double hpPercentIntenseHealInput)
+        public static void Start(double _manaPercentInput, double _hpPercentLightHealInput, double _hpPercentIntenseHealInput)
         {
             //this.lb = lb;
-            this.manaPercentInput = manaPercentInput;
-            this.hpPercentLightHealInput = hpPercentLightHealInput;
-            this.hpPercentIntenseHealInput = hpPercentIntenseHealInput;
+            manaPercentInput = _manaPercentInput;
+            hpPercentLightHealInput = _hpPercentLightHealInput;
+            hpPercentIntenseHealInput = _hpPercentIntenseHealInput;
             
 
             timer = new Timer();
@@ -133,9 +133,7 @@ namespace Tibiafuskdotnet
             readValuesFromMemory();
         }
 
-        public MemoryReader()
-        {
-        }
+ 
 
         public static bool appRunning(string appName = "Tibia")
         {
@@ -161,8 +159,8 @@ namespace Tibiafuskdotnet
             return false;
         }
 
-        
-        public void readValuesFromMemory()
+
+        public static void readValuesFromMemory()
         {
             //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
             var tibia = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
@@ -555,7 +553,7 @@ namespace Tibiafuskdotnet
 
 
 
-        private void TimerTick(object sender, EventArgs e)
+        public static void TimerTick(object sender, EventArgs e)
         {
             readValuesFromMemory();
             
