@@ -19,6 +19,7 @@ namespace Tibiafuskdotnet
 
 
         List<Targeting> ListTargeting = new List<Targeting>();
+        private string SelectedItemName = null;
 
         public TargetMenu()
         {
@@ -34,7 +35,15 @@ namespace Tibiafuskdotnet
 
         private void listBoxTargettingName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            try
+            {
+                SelectedItemName = (e.AddedItems[0] as Targeting).Name;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
         }
         
         private void TargetNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -176,8 +185,13 @@ namespace Tibiafuskdotnet
         private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
 
+            // this one works its remove everything.
+            //ListTargeting.Clear();
 
-
+  
+            var index = ListTargeting.FindIndex(x => x.Name == SelectedItemName);
+            ListTargeting.RemoveAt(index);
+            this.listBoxTargettingName.Items.Refresh();
             //ListTargeting<Targeting>.Items.RemoveAt(ListTargeting.SelectedIndex);
             /// ListTargeting.Remove(new Targeting() { Name = ListTargeting.selectedItems });
 
