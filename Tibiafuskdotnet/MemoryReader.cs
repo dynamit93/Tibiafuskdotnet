@@ -116,6 +116,11 @@ namespace Tibiafuskdotnet
         public static extern bool ReadProcessMemory(int hProcess,
           int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool WriteProcessMemory(int hProcess, int lpBaseAddress,
+        byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
+
+
         public static void Start(double _manaPercentInput, double _hpPercentLightHealInput, double _hpPercentIntenseHealInput)
         {
             //this.lb = lb;
@@ -160,6 +165,21 @@ namespace Tibiafuskdotnet
             return false;
         }
 
+        const int PROCESS_VM_WRITE = 0x0020;
+        const int PROCESS_VM_OPERATION = 0x0008;
+
+        public static void WriteValuesToMemory(int address, byte[] buffer)
+
+        {
+            var tibia = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+            baseAddress = tibia.MainModule.BaseAddress.ToInt32();
+            IntPtr processHandle = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, tibia.Id);
+
+            int bytesWritten = 0;
+            WriteProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesWritten);
+            Console.WriteLine(bytesWritten);
+        }
+
 
         public static void readValuesFromMemory()
         {
@@ -198,6 +218,11 @@ namespace Tibiafuskdotnet
 
             ReadProcessMemory((int)handle, LightAddr, buffer, buffer.Length, ref bytesRead);
             light = BitConverter.ToInt32(buffer, 0);
+
+
+
+
+
 
             hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
@@ -545,14 +570,7 @@ namespace Tibiafuskdotnet
 
 
         }
-   
-
-
-
-
-
-
-
+              
 
         public static void TimerTick(object sender, EventArgs e)
         {

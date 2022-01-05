@@ -38,11 +38,12 @@ namespace Tibiafuskdotnet
 
         public MainWindow()
         {
+            
             DataContext = this;
             InitializeComponent();
 
-            MemoryReader.Start(_manaPercentInput, _hpPercentLightHealInput, _hpPercentIntenseHealInput);
-      
+            MemoryReader.Start(0,0,0);
+
             Helper.Initialize();
             var data = Helper.ReadFromFile();
             data = data ?? new Cheat();

@@ -25,6 +25,7 @@ namespace Tibiafuskdotnet
     {
 
         private readonly RoutedCommand command = new RoutedCommand();
+        private readonly RoutedCommand commandf11 = new RoutedCommand();
         public MainMenu()
         {
 
@@ -42,10 +43,10 @@ namespace Tibiafuskdotnet
 
 
 
-            CommandBinding cb11 = new CommandBinding(command, OnCommandf11);
+            CommandBinding cb11 = new CommandBinding(commandf11, OnCommandf11);
             this.CommandBindings.Add(cb11);
 
-            KeyBinding kb11 = new KeyBinding(command, Key.F11, ModifierKeys.Alt);
+            KeyBinding kb11 = new KeyBinding(commandf11, Key.F11, ModifierKeys.Alt);
             this.InputBindings.Add(kb11);
 
 
@@ -73,16 +74,24 @@ namespace Tibiafuskdotnet
 
         public void OnCommandf11(object sender, EventArgs e)
         {
-
+            
             
             if (MemoryReader.light != 255)
             {
+                MemoryReader.WriteValuesToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(255));
+               /*
                 MemoryReader.light = 255;
-
+                string addrslightstr = Convert.ToString(MemoryReader.LightAddr);
+                MessageBox.Show(addrslightstr);
+                */
             }
             else
             {
-                MemoryReader.light = 0;
+                MemoryReader.WriteValuesToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(0));
+               /* MemoryReader.light = 0;
+                string strlight = Convert.ToString(MemoryReader.light);
+                MessageBox.Show(strlight);
+                */
             }
         }
 
