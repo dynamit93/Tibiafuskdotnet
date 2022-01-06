@@ -6,7 +6,7 @@ namespace Tibia
 {
     public partial class Version
     {
-        public static void SetVersion910(Process p)
+        /*public static void SetVersion910(Process p)
         {
             uint BaseAddress = Convert.ToUInt32(p.MainModule.BaseAddress.ToInt32());
 
@@ -271,6 +271,6 @@ namespace Tibia
             Vip.DistanceStatus = 34;
             Vip.DistanceIcon = 40;
             Vip.End = Vip.Start + (Vip.StepPlayers * Vip.MaxPlayers);
-        }
+        }*/
     }
 }

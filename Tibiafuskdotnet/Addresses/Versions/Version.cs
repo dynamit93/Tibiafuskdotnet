@@ -21,7 +21,7 @@ namespace Tibia
             int secondary = int.Parse(split[1]);
             return (ushort)(main * 100 + secondary);
         }
-
+/*
         public static void Set(string version,Process p)
             {
 
@@ -107,6 +107,6 @@ namespace Tibia
             }
 
         }
-
+        */
     }
 }
