@@ -70,28 +70,21 @@ namespace Tibiafuskdotnet
                 window.Show();
             }
         }
-        //public int light;
+        //Full light when pressing F11
 
         public void OnCommandf11(object sender, EventArgs e)
         {
             
-            
+           
             if (MemoryReader.light != 255)
             {
                 MemoryReader.WriteValuesToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(255));
-               /*
-                MemoryReader.light = 255;
-                string addrslightstr = Convert.ToString(MemoryReader.LightAddr);
-                MessageBox.Show(addrslightstr);
-                */
+
             }
             else
             {
                 MemoryReader.WriteValuesToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(0));
-               /* MemoryReader.light = 0;
-                string strlight = Convert.ToString(MemoryReader.light);
-                MessageBox.Show(strlight);
-                */
+
             }
         }
 
