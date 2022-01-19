@@ -126,7 +126,7 @@ namespace Tibiafuskdotnet
                 // if ((premium) >=1) { 
 
 
-              if (MemoryReader.appRunning())
+              if (MemoryReader.AppRunning())
 
                
                 {

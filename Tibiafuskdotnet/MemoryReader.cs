@@ -22,7 +22,7 @@ namespace Tibiafuskdotnet
     {
         public static Timer timer;
         //private MainWindow lb;
-    
+
         private const int PROCESS_WM_READ = 0x0010;
 
         public static Int32 baseAddress;
@@ -38,7 +38,9 @@ namespace Tibiafuskdotnet
         public static int maxHpValue;
         public static int maxManaValue;
         public static int maxlight;
+        public static int BattleListconvert;
         public static int manaValue;
+        public static string BattleList;
         public static int hpValue;
 
         //character 
@@ -46,7 +48,16 @@ namespace Tibiafuskdotnet
 
         public static Int32 xorAddr = 0x934658 - 0x400000;
         public static Int32 chattAddr = 0x27361B0;
+/*
+        public static void SetVersion860()
+        {
+        //battlelist
+            BattleList.Start = 0x63FEF8;
+            BattleList.StepCreatures = 0xA8;
+            BattleList.MaxCreatures = 250;
+            BattleList.End = BattleList.Start + (BattleList.StepCreatures* BattleList.MaxCreatures);
 
+            }*/
 
         //character
         public static Int32 CharacterNameAddr = 0x63FEFC;
@@ -100,7 +111,10 @@ namespace Tibiafuskdotnet
 
 
 
-
+           public static Int32 BattleListStart = 0x63FEF8;
+           public static Int32 BattleListStepCreatures = 0xA8;
+           public static Int32 BattleListMaxCreatures = 250;
+           public static Int32 BatteListEnd = BattleListStart + (BattleListStepCreatures * BattleListMaxCreatures);
 
 
 
@@ -135,12 +149,12 @@ namespace Tibiafuskdotnet
             timer.Start();
            
 
-            readValuesFromMemory();
+            ReadValuesFromMemory();
         }
 
  
 
-        public static bool appRunning(string appName = "Tibia")
+        public static bool AppRunning(string appName = "Tibia")
         {
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();
@@ -181,8 +195,10 @@ namespace Tibiafuskdotnet
         }
 
 
-        public static void readValuesFromMemory()
+        public static void ReadValuesFromMemory()
         {
+
+
             //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
             var tibia = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
             baseAddress = tibia.MainModule.BaseAddress.ToInt32();
@@ -190,6 +206,7 @@ namespace Tibiafuskdotnet
 
             int bytesRead = 0;
             byte[] buffer = new byte[30];
+            
 
             ReadProcessMemory((int)handle, xorAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
             xor = BitConverter.ToInt32(buffer, 0);
@@ -219,18 +236,60 @@ namespace Tibiafuskdotnet
             ReadProcessMemory((int)handle, LightAddr, buffer, buffer.Length, ref bytesRead);
             light = BitConverter.ToInt32(buffer, 0);
 
+            // ReadProcessMemory((int)handle, BattleListStart, buffer, buffer.Length, ref bytesRead);
+           // BattleListconvert = BitConverter.ToInt32(buffer, 0);
 
 
-
-
+            
 
             hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
             maxlight = light;
-                   
-      
+            //BattleList = BattleListconvert;
+
+
+            //byte[] BattleListArray = new byte[buffer.Length - 4];
+            //Buffer.BlockCopy(buffer, 4, BattleListArray, 0, BattleListArray.Length);
+
+
+            //var trimmedArray = BattleListArray.Skip(0).Take(BattleListArray.Count() - 7).ToArray();
+
+            //string str = Encoding.Default.GetString(trimmedArray);
+            //str = str.Substring(0, str.IndexOf('\0'));
+            //Console.WriteLine("The String is: " + str);
+
+            
+
+            
+            for (int i = BattleListStart; i < BatteListEnd; i += BattleListStepCreatures)
+            {
+                
+                if ((i + Creature.DistanceIsVisible) == 1)
+                {
+                    ReadProcessMemory((int)handle, i, buffer, buffer.Length, ref bytesRead);
+                    byte[] BattleListArray = new byte[buffer.Length - 4];
+                    Buffer.BlockCopy(buffer, 4, BattleListArray, 0, BattleListArray.Length);
+
+
+                    //var trimmedArray = BattleListArray.Skip(0).Take(BattleListArray.Count() - 7).ToArray();
+
+                    string str = Encoding.Default.GetString(BattleListArray);
+                    str = str.Substring(0, str.IndexOf('\0'));
+                if(str =="")
+                { break; }
+                    Console.WriteLine(str);
+                }
+            }
+            
+           // Console.WriteLine("The String is: " + str);
+
+
+            //string result = System.Text.Encoding.UTF8.GetString(buffer);
+            //Console.WriteLine(result);
+
+
             bool isExhausted = false;
             
             if (((double)(int)manaValue / (int)maxManaValue) < manaPercentInput)
@@ -567,14 +626,17 @@ namespace Tibiafuskdotnet
 
             }
 
-
-
         }
-              
+
+
+
+
+       
+
 
         public static void TimerTick(object sender, EventArgs e)
         {
-            readValuesFromMemory();
+            ReadValuesFromMemory();
             
         }
        

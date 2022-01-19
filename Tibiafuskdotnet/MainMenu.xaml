@@ -19,7 +19,7 @@
         <Button x:Name="Lists_btn" Content="Lists" HorizontalAlignment="Left" Margin="143,36,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
         <Button x:Name="Shortkeys_btn" Content="Shortkeys" HorizontalAlignment="Left" Margin="143,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
         <Button x:Name="Links_btn" Content="Links" HorizontalAlignment="Left" Margin="143,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
-        <Button x:Name="Icons_btn" Content="Icons" HorizontalAlignment="Left" Margin="143,96,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
+        <Button x:Name="Icons_btn" Content="Icons" HorizontalAlignment="Left" Margin="143,96,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Icons_btn_Click"/>
         <Button x:Name="HUD_btn" Content="HUD" HorizontalAlignment="Left" Margin="211,36,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
         <Button x:Name="Reconnect_btn" Content="Reconnect" HorizontalAlignment="Left" Margin="211,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
         <Button x:Name="Creature_Spy_btn" Content="Creature Spy" HorizontalAlignment="Left" Margin="211,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>

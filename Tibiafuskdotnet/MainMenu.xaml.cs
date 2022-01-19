@@ -170,5 +170,10 @@ namespace Tibiafuskdotnet
             TargetMenu Targetkey = new TargetMenu();
             Targetkey.Show();
         }
+
+        private void Icons_btn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(MemoryReader.BattleList);
+        }
     }
 }
