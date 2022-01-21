@@ -11,6 +11,8 @@
 
 namespace Tibiafuskdotnet.Properties
 {
+    using System;
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -64,6 +66,16 @@ namespace Tibiafuskdotnet.Properties
             set
             {
                 resourceCulture = value;
+            }
+        }
+
+
+        public static byte[] TibiaAPI_Inject
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("TibiaAPI_Inject", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

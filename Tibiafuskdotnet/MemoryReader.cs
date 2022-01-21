@@ -14,15 +14,17 @@ using Tibiafuskdotnet.BL;
 
 using WindowsInput;
 using WindowsInput.Native;
-
+using Tibia;
+using Tibia.Addresses;
 
 namespace Tibiafuskdotnet
 {
+
     public static class MemoryReader
     {
         public static Timer timer;
         //private MainWindow lb;
-
+       
         private const int PROCESS_WM_READ = 0x0010;
 
         public static Int32 baseAddress;
@@ -133,7 +135,8 @@ namespace Tibiafuskdotnet
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern bool WriteProcessMemory(int hProcess, int lpBaseAddress,
         byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
-
+       
+        
 
         public static void Start(double _manaPercentInput, double _hpPercentLightHealInput, double _hpPercentIntenseHealInput)
         {

@@ -19,7 +19,9 @@ using MySql.Data.MySqlClient;
 using System.IO;
 using Tibiafuskdotnet.BL;
 using System.Runtime.InteropServices;
-
+using Tibia.Util;
+using Tibia.Objects;
+using Tibia;
 namespace Tibiafuskdotnet
 {
    
@@ -60,10 +62,29 @@ namespace Tibiafuskdotnet
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
-            
+            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
+            //Process[] ProcessList = Process.GetProcesses();
 
-          
-        }
+            foreach (System.Diagnostics.Process p in localByName)
+            {
+                System.Console.WriteLine(p.ProcessName);
+                if (p.ProcessName.Contains("Tibia"))
+                {
+                    Client c = new Client(p);
+                    BattleList bc = new BattleList(c);
+                    // Version.Set(client.Version, client.Process);
+                    Tibia.Version.SetVersion860();
+
+                    foreach (Creature C in bc.GetCreatures())
+                    {
+                        System.Console.WriteLine("Creature " + C.Name);
+                    }
+                    System.Console.WriteLine(bc.GetCreatures());
+                }
+            }
+
+
+            }
       
 
 
@@ -126,9 +147,9 @@ namespace Tibiafuskdotnet
                 // if ((premium) >=1) { 
 
 
-              if (MemoryReader.AppRunning())
+                if (MemoryReader.AppRunning())
 
-               
+                    
                 {
                     
                     MainMenu Menu = new MainMenu();
@@ -163,6 +184,13 @@ namespace Tibiafuskdotnet
 
         private void d(object sender, KeyEventArgs e)
         {
+
+        }
+
+        private void Testbutton_Click(object sender, RoutedEventArgs e)
+        {
+            ClientChooser ClientChooser = new ClientChooser();
+            ClientChooser.Show();
 
         }
     }

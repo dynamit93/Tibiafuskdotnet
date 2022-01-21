@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -78,6 +79,7 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -111,10 +113,6 @@
     <Reference Include="netstandard" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Process.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Process.NET.1.0.8\lib\Process.NET.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Squalr.Engine, Version=2.3.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Squalr.Engine.2.3.0.1\lib\netstandard2.0\Squalr.Engine.dll</HintPath>
@@ -193,23 +191,244 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BL\BattleList.cs" />
+    <Compile Include="Adresses\BattleList.cs" />
+    <Compile Include="Adresses\Client.cs" />
+    <Compile Include="Adresses\Container.cs" />
+    <Compile Include="Adresses\ContextMenus.cs" />
+    <Compile Include="Adresses\DatItem.cs" />
+    <Compile Include="Adresses\DrawItem.cs" />
+    <Compile Include="Adresses\DrawSkin.cs" />
+    <Compile Include="Adresses\Hotkey.cs" />
+    <Compile Include="Adresses\Map.cs" />
+    <Compile Include="Adresses\Player.cs" />
+    <Compile Include="Adresses\TextDisplay.cs" />
+    <Compile Include="Adresses\Versions\Version.cs" />
+    <Compile Include="Adresses\Vip.cs" />
     <Compile Include="BL\Cheat.cs" />
-    <Compile Include="BL\Client.cs" />
-    <Compile Include="BL\Creature.cs" />
+    <Compile Include="Adresses\Creature.cs" />
     <Compile Include="BL\Helper.cs" />
     <Compile Include="BL\Targeting.cs" />
     <Compile Include="CavebotMenu.xaml.cs">
       <DependentUpon>CavebotMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Clientless\GameServerConnection.cs" />
+    <Compile Include="Clientless\LoginServerConnection.cs" />
+    <Compile Include="Constants\CreatureLists.cs" />
+    <Compile Include="Constants\Creatures.cs" />
+    <Compile Include="Constants\Enums.cs" />
+    <Compile Include="Constants\ItemDataLists.cs" />
+    <Compile Include="Constants\ItemLists.cs" />
+    <Compile Include="Constants\Items.cs" />
+    <Compile Include="Constants\ItemsData.cs" />
+    <Compile Include="Constants\Spells.cs" />
+    <Compile Include="Constants\TAConstants.cs" />
+    <Compile Include="Constants\TileLists.cs" />
+    <Compile Include="Constants\Tiles.cs" />
+    <Compile Include="Exceptions\Misc.cs" />
+    <Compile Include="Exceptions\Version.cs" />
     <Compile Include="ExtrasMenu.xaml.cs">
       <DependentUpon>ExtrasMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Objects\BattleList.cs" />
+    <Compile Include="Objects\Client.cs" />
+    <Compile Include="Objects\Client.DllHelper.cs" />
+    <Compile Include="Objects\Client.InputHelper.cs" />
+    <Compile Include="Objects\Client.IOHelper.cs" />
+    <Compile Include="Objects\Client.LoginHelper.cs" />
+    <Compile Include="Objects\Client.MemoryHelper.cs" />
+    <Compile Include="Objects\Client.PlayerHelper.cs" />
+    <Compile Include="Objects\Client.WindowHelper.cs" />
+    <Compile Include="Objects\Console.cs" />
+    <Compile Include="Objects\Container.cs" />
+    <Compile Include="Objects\ContextMenu.cs" />
+    <Compile Include="Objects\Creature.cs" />
+    <Compile Include="Objects\CreatureData.cs" />
+    <Compile Include="Objects\Hotkey.cs" />
+    <Compile Include="Objects\Icon.cs" />
+    <Compile Include="Objects\Inventory.cs" />
+    <Compile Include="Objects\Item.cs" />
+    <Compile Include="Objects\ItemData.cs" />
+    <Compile Include="Objects\Location.cs" />
+    <Compile Include="Objects\Map.cs" />
+    <Compile Include="Objects\Outfit.cs" />
+    <Compile Include="Objects\Player.cs" />
+    <Compile Include="Objects\Screen.cs" />
+    <Compile Include="Objects\Skin.cs" />
+    <Compile Include="Objects\Spell.cs" />
+    <Compile Include="Objects\Structures.cs" />
+    <Compile Include="Objects\Tile.cs" />
+    <Compile Include="Objects\Vip.cs" />
+    <Compile Include="Objects\VipList.cs" />
+    <Compile Include="Packets\AdlerChecksum.cs" />
+    <Compile Include="Packets\HookProxy.cs" />
+    <Compile Include="Packets\IncomingPacket.cs" />
+    <Compile Include="Packets\Incoming\AnimatedTextPacket.cs" />
+    <Compile Include="Packets\Incoming\CancelTargetPacket.cs" />
+    <Compile Include="Packets\Incoming\CanReportBugsPacket.cs" />
+    <Compile Include="Packets\Incoming\ChannelClosePrivatePacket.cs" />
+    <Compile Include="Packets\Incoming\ChannelListPacket.cs" />
+    <Compile Include="Packets\Incoming\ChannelOpenPacket.cs" />
+    <Compile Include="Packets\Incoming\ChannelOpenPrivatePacket.cs" />
+    <Compile Include="Packets\Incoming\ContainerAddItemPacket.cs" />
+    <Compile Include="Packets\Incoming\ContainerClosePacket.cs" />
+    <Compile Include="Packets\Incoming\ContainerOpenPacket.cs" />
+    <Compile Include="Packets\Incoming\ContainerRemoveItemPacket.cs" />
+    <Compile Include="Packets\Incoming\ContainerUpdateItemPacket.cs" />
+    <Compile Include="Packets\Incoming\CreatureHealthPacket.cs" />
+    <Compile Include="Packets\Incoming\CreatureLightPacket.cs" />
+    <Compile Include="Packets\Incoming\CreatureMovePacket.cs" />
+    <Compile Include="Packets\Incoming\CreatureOutfitPacket.cs" />
+    <Compile Include="Packets\Incoming\CreatureSkullPacket.cs" />
+    <Compile Include="Packets\Incoming\CreatureSpeechPacket.cs" />
+    <Compile Include="Packets\Incoming\CreatureSpeedPacket.cs" />
+    <Compile Include="Packets\Incoming\CreatureSquarePacket.cs" />
+    <Compile Include="Packets\Incoming\DeathPacket.cs" />
+    <Compile Include="Packets\Incoming\FloorChangeDownPacket.cs" />
+    <Compile Include="Packets\Incoming\FloorChangeUpPacket.cs" />
+    <Compile Include="Packets\Incoming\FYIMessagePacket.cs" />
+    <Compile Include="Packets\Incoming\InventoryResetSlotPacket.cs" />
+    <Compile Include="Packets\Incoming\InventorySetSlotPacket.cs" />
+    <Compile Include="Packets\Incoming\ItemTextWindowPacket.cs" />
+    <Compile Include="Packets\Incoming\MagicEffectPacket.cs" />
+    <Compile Include="Packets\Incoming\MapDescriptionPacket.cs" />
+    <Compile Include="Packets\Incoming\MapPacket.cs" />
+    <Compile Include="Packets\Incoming\MoveEastPacket.cs" />
+    <Compile Include="Packets\Incoming\MoveNorthPacket.cs" />
+    <Compile Include="Packets\Incoming\MoveSouthPacket.cs" />
+    <Compile Include="Packets\Incoming\MoveWestPacket.cs" />
+    <Compile Include="Packets\Incoming\OutfitWindowPacket.cs" />
+    <Compile Include="Packets\Incoming\PingPacket.cs" />
+    <Compile Include="Packets\Incoming\PlayerFlagsPacket.cs" />
+    <Compile Include="Packets\Incoming\PlayerSkillsPacket.cs" />
+    <Compile Include="Packets\Incoming\PlayerStatusPacket.cs" />
+    <Compile Include="Packets\Incoming\PlayerWalkCancelPacket.cs" />
+    <Compile Include="Packets\Incoming\PrivateChannelCreatePacket.cs" />
+    <Compile Include="Packets\Incoming\ProjectilePacket.cs" />
+    <Compile Include="Packets\Incoming\RuleViolationCancelPacket.cs" />
+    <Compile Include="Packets\Incoming\RuleViolationLockPacket.cs" />
+    <Compile Include="Packets\Incoming\RuleViolationOpenPacket.cs" />
+    <Compile Include="Packets\Incoming\RuleViolationRemovePacket.cs" />
+    <Compile Include="Packets\Incoming\SafeTradeClosePacket.cs" />
+    <Compile Include="Packets\Incoming\SafeTradeRequestAckPacket.cs" />
+    <Compile Include="Packets\Incoming\SafeTradeRequestNoAckPacket.cs" />
+    <Compile Include="Packets\Incoming\SelfAppearPacket.cs" />
+    <Compile Include="Packets\Incoming\ShopSaleGoldCountPacket.cs" />
+    <Compile Include="Packets\Incoming\ShopWindowClosePacket.cs" />
+    <Compile Include="Packets\Incoming\ShopWindowOpenPacket.cs" />
+    <Compile Include="Packets\Incoming\TextMessagePacket.cs" />
+    <Compile Include="Packets\Incoming\TileAddThingPacket.cs" />
+    <Compile Include="Packets\Incoming\TileRemoveThingPacket.cs" />
+    <Compile Include="Packets\Incoming\TileTransformThingPacket.cs" />
+    <Compile Include="Packets\Incoming\TileUpdatePacket.cs" />
+    <Compile Include="Packets\Incoming\VipLoginPacket.cs" />
+    <Compile Include="Packets\Incoming\VipLogoutPacket.cs" />
+    <Compile Include="Packets\Incoming\VipStatePacket.cs" />
+    <Compile Include="Packets\Incoming\WaitingListPacket.cs" />
+    <Compile Include="Packets\Incoming\WorldLightPacket.cs" />
+    <Compile Include="Packets\NetworkMessage.cs" />
+    <Compile Include="Packets\OutgoingPacket.cs" />
+    <Compile Include="Packets\Outgoing\AttackPacket.cs" />
+    <Compile Include="Packets\Outgoing\AutoWalkCancelPacket.cs" />
+    <Compile Include="Packets\Outgoing\AutoWalkPacket.cs" />
+    <Compile Include="Packets\Outgoing\CancelMovePacket.cs" />
+    <Compile Include="Packets\Outgoing\ChannelClosePacket.cs" />
+    <Compile Include="Packets\Outgoing\ChannelListPacket.cs" />
+    <Compile Include="Packets\Outgoing\ChannelOpenPacket.cs" />
+    <Compile Include="Packets\Outgoing\ContainerClosePacket.cs" />
+    <Compile Include="Packets\Outgoing\ContainerOpenParentPacket.cs" />
+    <Compile Include="Packets\Outgoing\FightModesPacket.cs" />
+    <Compile Include="Packets\Outgoing\FollowPacket.cs" />
+    <Compile Include="Packets\Outgoing\ItemMovePacket.cs" />
+    <Compile Include="Packets\Outgoing\ItemRotatePacket.cs" />
+    <Compile Include="Packets\Outgoing\ItemUseBattlelistPacket.cs" />
+    <Compile Include="Packets\Outgoing\ItemUseOnPacket.cs" />
+    <Compile Include="Packets\Outgoing\ItemUsePacket.cs" />
+    <Compile Include="Packets\Outgoing\LogoutPacket.cs" />
+    <Compile Include="Packets\Outgoing\LookAtPacket.cs" />
+    <Compile Include="Packets\Outgoing\MovePacket.cs" />
+    <Compile Include="Packets\Outgoing\NpcChannelClosePacket.cs" />
+    <Compile Include="Packets\Outgoing\PingPacket.cs" />
+    <Compile Include="Packets\Outgoing\PlayerSpeechPacket.cs" />
+    <Compile Include="Packets\Outgoing\PrivateChannelOpenPacket.cs" />
+    <Compile Include="Packets\Outgoing\SetOutfitPacket.cs" />
+    <Compile Include="Packets\Outgoing\ShopBuyPacket.cs" />
+    <Compile Include="Packets\Outgoing\ShopClosePacket.cs" />
+    <Compile Include="Packets\Outgoing\ShopSellPacket.cs" />
+    <Compile Include="Packets\Outgoing\TileUpdatePacket.cs" />
+    <Compile Include="Packets\Outgoing\TurnPacket.cs" />
+    <Compile Include="Packets\Outgoing\VipAddPacket.cs" />
+    <Compile Include="Packets\Outgoing\VipRemovePacket.cs" />
+    <Compile Include="Packets\Packet.cs" />
+    <Compile Include="Packets\Pipe.cs" />
+    <Compile Include="Packets\PipePacket.cs" />
+    <Compile Include="Packets\Pipes\AddContextMenuPacket.cs" />
+    <Compile Include="Packets\Pipes\AddIconPacket.cs" />
+    <Compile Include="Packets\Pipes\AddSkinPacket.cs" />
+    <Compile Include="Packets\Pipes\DisplayCreatureTextPacket.cs" />
+    <Compile Include="Packets\Pipes\DisplayTextPacket.cs" />
+    <Compile Include="Packets\Pipes\EventTriggerPacket.cs" />
+    <Compile Include="Packets\Pipes\HooksEnableDisablePacket.cs" />
+    <Compile Include="Packets\Pipes\HookSendToServerPacket.cs" />
+    <Compile Include="Packets\Pipes\OnClickContextMenuPacket.cs" />
+    <Compile Include="Packets\Pipes\OnClickIcon.cs" />
+    <Compile Include="Packets\Pipes\RemoveAllContextMenusPacket.cs" />
+    <Compile Include="Packets\Pipes\RemoveAllIconsPacket.cs" />
+    <Compile Include="Packets\Pipes\RemoveAllSkinsPacket.cs" />
+    <Compile Include="Packets\Pipes\RemoveAllTextPacket.cs" />
+    <Compile Include="Packets\Pipes\RemoveContextMenuPacket.cs" />
+    <Compile Include="Packets\Pipes\RemoveCreatureTextPacket.cs" />
+    <Compile Include="Packets\Pipes\RemoveIconPacket.cs" />
+    <Compile Include="Packets\Pipes\RemoveSkinPacket.cs" />
+    <Compile Include="Packets\Pipes\RemoveTextPacket.cs" />
+    <Compile Include="Packets\Pipes\SetConstantPacket.cs" />
+    <Compile Include="Packets\Pipes\UpdateCreatureTextPacket.cs" />
+    <Compile Include="Packets\Pipes\UpdateIconPacket.cs" />
+    <Compile Include="Packets\Pipes\UpdateSkinPacket.cs" />
+    <Compile Include="Packets\Proxy.cs" />
+    <Compile Include="Packets\ProxyBase.cs" />
+    <Compile Include="Packets\RawSocket.cs" />
+    <Compile Include="Packets\Rsa.cs" />
+    <Compile Include="Packets\RSA\GameServerRequestPacket.cs" />
+    <Compile Include="Packets\RSA\LoginServerRequestPacket.cs" />
+    <Compile Include="Packets\Xtea.cs" />
     <Compile Include="Spells.cs" />
     <Compile Include="TargetMenu.xaml.cs">
       <DependentUpon>TargetMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Versions\Version860.cs" />
+    <Compile Include="Adresses\Versions\Version860.cs" />
+    <Compile Include="Util\AStarPathFinder.cs" />
+    <Compile Include="Util\BigInteger.cs" />
+    <Compile Include="Util\Calculate.cs" />
+    <Compile Include="Util\ClientChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Util\ClientChooser.Designer.cs">
+      <DependentUpon>ClientChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\ClientChooserBase.cs" />
+    <Compile Include="Util\ClientChooserOptions.cs" />
+    <Compile Include="Util\ClientChooserWPF.xaml.cs">
+      <DependentUpon>ClientChooserWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Util\CreatureData.cs" />
+    <Compile Include="Util\Extensions.cs" />
+    <Compile Include="Util\FixedCollector.cs" />
+    <Compile Include="Util\Hooks.cs" />
+    <Compile Include="Util\ItemData.cs" />
+    <Compile Include="Util\KeyboardHook.cs" />
+    <Compile Include="Util\MapMerger.cs" />
+    <Compile Include="Util\MapViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Util\Memory.cs" />
+    <Compile Include="Util\Misc.cs" />
+    <Compile Include="Util\MouseHook.cs" />
+    <Compile Include="Util\Scheduler.cs" />
+    <Compile Include="Util\SpriteReader.cs" />
+    <Compile Include="Util\Timer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Util\WinApi.cs" />
     <Page Include="CavebotMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +474,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Util\ClientChooserWPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MemoryReader.cs" />
@@ -274,6 +497,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Util\ClientChooser.resx">
+      <DependentUpon>ClientChooser.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
