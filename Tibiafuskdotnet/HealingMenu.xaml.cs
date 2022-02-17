@@ -81,7 +81,7 @@ namespace Tibiafuskdotnet
             try
             {
 
-            
+                
             Helper.TempSpellHiMana = Convert.ToInt32(SpellHiMana.Text);
 
             }

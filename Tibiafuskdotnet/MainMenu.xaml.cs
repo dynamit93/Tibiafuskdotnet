@@ -15,6 +15,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+using Tibia;
+using Tibia.Objects;
 
 namespace Tibiafuskdotnet
 {
@@ -173,7 +175,19 @@ namespace Tibiafuskdotnet
 
         private void Icons_btn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(MemoryReader.BattleList);
+
+            // MessageBox.Show(MemoryReader.BattleList);
+            
+        }
+
+        private void Load_btn_Click()
+        {
+
+        }
+
+        private void Load_btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

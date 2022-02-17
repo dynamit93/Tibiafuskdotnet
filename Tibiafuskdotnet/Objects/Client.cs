@@ -460,7 +460,7 @@ namespace Tibia.Objects
                 StringBuilder classname = new StringBuilder();
                 Util.WinApi.GetClassName(process.MainWindowHandle, classname, 12);
 
-                if (classname.ToString().Equals("TibiaClient", StringComparison.CurrentCultureIgnoreCase))
+                if (classname.ToString().Equals("Tibia", StringComparison.CurrentCultureIgnoreCase))
                 {
                     if (version == null)
                     {

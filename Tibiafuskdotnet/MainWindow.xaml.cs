@@ -64,7 +64,7 @@ namespace Tibiafuskdotnet
 
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();
-
+/*
             foreach (System.Diagnostics.Process p in localByName)
             {
                 System.Console.WriteLine(p.ProcessName);
@@ -79,10 +79,10 @@ namespace Tibiafuskdotnet
                     {
                         System.Console.WriteLine("Creature " + C.Name);
                     }
-                    System.Console.WriteLine(bc.GetCreatures());
+                    System.Console.WriteLine(bc.GetCreatures()); 
                 }
             }
-
+            */
 
             }
       

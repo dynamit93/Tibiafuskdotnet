@@ -7,6 +7,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Tibiafuskdotnet.BL;
+using Tibia;
+using Tibia.Objects;
+using System.Linq;
 
 namespace Tibiafuskdotnet
 {
@@ -16,22 +19,53 @@ namespace Tibiafuskdotnet
     public partial class TargetMenu : INotifyPropertyChanged
     {
 
+        List<string> ListActions = new List<string>() {"Do Nothing", "Attack", "Follow" };
+        List<string> listStanceMode = new List<string>() { "No Movemnet", "Melee - Approach" };
 
-
+       
         List<Targeting> ListTargeting = new List<Targeting>();
         private string SelectedItemName = null;
 
         public TargetMenu()
         {
-            
+
             DataContext = this;
             InitializeComponent();
 
-            ListTargeting.Add(new Targeting() { Name = "Monster" });
-            listBoxTargettingName.ItemsSource = ListTargeting;
+            //ListTargeting.Add(new Targeting() { Name = "Trainer" });
+            //listBoxTargettingName.ItemsSource = ListTargeting;
+            //StanceMode.ItemsSource = listStanceMode;
+            //ActionMode.ItemsSource = ListActions;
+
+
+
+
+            Targeting obj = new Targeting()
+            {
+                MinHp = 0,
+                Name = "abc",
+                MaxHp = 100
+                
+        };
+           // ListTargeting.Add(new Targeting() { Name = "Trainer" });
+           // listBoxTargettingName.ItemsSource = ListTargeting;
+           listBoxTargettingName.ItemsSource = obj.Name;
+          TargetNameTextBox.Text = listBoxTargettingName.ItemsSource.ToString();
+            System.Console.WriteLine(TargetNameTextBox.Text);
+            StanceMode.ItemsSource = listStanceMode;
+            ActionMode.ItemsSource = ListActions;
+
+
+           
+            DataContext = obj;
+
+
+
+            OnPropertyChanged();
+
         }
 
- 
+
 
         private void listBoxTargettingName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -44,15 +78,16 @@ namespace Tibiafuskdotnet
                 MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             }
+            OnPropertyChanged();
         }
-        
+
         private void TargetNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             this.listBoxTargettingName.Items.Refresh();
         }
 
 
-        
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -60,7 +95,7 @@ namespace Tibiafuskdotnet
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
+
 
         private int _ListOrder;
         public int ListOrder
@@ -188,10 +223,13 @@ namespace Tibiafuskdotnet
             // this one works its remove everything.
             //ListTargeting.Clear();
 
-  
+
             var index = ListTargeting.FindIndex(x => x.Name == SelectedItemName);
             ListTargeting.RemoveAt(index);
             this.listBoxTargettingName.Items.Refresh();
+
+
+
             //ListTargeting<Targeting>.Items.RemoveAt(ListTargeting.SelectedIndex);
             /// ListTargeting.Remove(new Targeting() { Name = ListTargeting.selectedItems });
 
@@ -211,7 +249,7 @@ namespace Tibiafuskdotnet
 
         private SoundPlayer Player = new SoundPlayer();
 
-        private void  CheckBox_Checked_1(object sender, RoutedEventArgs e)
+        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
         {
             Player.SoundLocation = @"./sounds/monster.wav";
             Player.PlayLooping();
@@ -226,23 +264,114 @@ namespace Tibiafuskdotnet
         {
             ListTargeting.Add(new Targeting() { Name = TargetNameTextBox.Text });
             this.listBoxTargettingName.Items.Refresh();
+
+
+          
+        }
+       int TargetHPBar;
+        
+        
+
+        public void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+            
+            
+
+            foreach (var item in listBoxTargettingName.Items)
+            {
+                foreach (Creature C in MemoryReader.battleList.GetCreatures())
+                {
+                    TargetHPBar = C.HPBar;
+                    if (item.ToString() == C.Name)
+                    {
+                        System.Console.WriteLine(TargetHPBar);
+                        if (ActionMode.SelectedItem == "Attack") 
+                                                
+                        { 
+                        if (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax)
+                            {
+                                C.Attack();
+                            }
+                        }
+                        else if (ActionMode.SelectedItem == "Follow")
+                        {
+                            if (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax)
+
+                            {
+                                C.Follow();
+                            }
+                        }
+                        if (StanceMode.ItemsSource == "Melee - Approach")
+
+                        {
+                            if (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax)
+                            {
+                                C.Approach();
+                            }
+                            else { System.Console.WriteLine(StanceMode.ItemsSource); }
+                        }
+
+
+
+
+
+                        /* switch (ActionMode.SelectedItem)
+                         {
+                             case "Attack": 
+                             case int TargetHPBar when (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax):
+                                 C.Attack();
+                                 break;
+                             case "Follow":
+                                 C.Follow();
+                                 break;
+                         }*/
+                    }
+                }
+            }
+        }
+
+        private void ActionMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            System.Console.WriteLine("change action mode");
+            
+
+        }
+
+        private void HpMinRange_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+
+        }
+
+        private void TargetingHpMin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Helper.TargetingHpMin = Convert.ToInt32(TargetingHpMin.Text);
+        }
+
+        private void TargetingHpMax_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+            Helper.TargetingHpMax = Convert.ToInt32(TargetingHpMax.Text);
+        }
+
+        private void ReachableCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void StanceMode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void StanceMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 
 
 
 
-   /* public class Targeting
-    {
-
-        public string Name { get; set; }
-        public override string ToString()
-        {
-            return this.Name;
-        }
-
-
-        
-    }*/
     
 }

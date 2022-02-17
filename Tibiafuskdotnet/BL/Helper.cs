@@ -31,6 +31,9 @@ namespace Tibiafuskdotnet.BL
         public static Int32 SpellHiHealth = 0;
         public static Int32 TempSpellHiHealth = 0;
         public static Int32 SpellHiMana = 0;
+        public static Int32 TargetingHpMin = 0;
+        public static Int32 TargetingHpMax = 0;
+        
         public static Int32 SpellLoMana = 0;
         public static Int32 ManapotionHealth = 0;
         public static Int32 TempSpellLoMana = 0;

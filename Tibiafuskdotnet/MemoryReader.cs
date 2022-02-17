@@ -15,7 +15,8 @@ using Tibiafuskdotnet.BL;
 using WindowsInput;
 using WindowsInput.Native;
 using Tibia;
-using Tibia.Addresses;
+using Tibia.Objects;
+
 
 namespace Tibiafuskdotnet
 {
@@ -28,7 +29,7 @@ namespace Tibiafuskdotnet
         private const int PROCESS_WM_READ = 0x0010;
 
         public static Int32 baseAddress;
-
+        public static string Bc1;
         public static int currentHp;
         public static int maxHp;
         public static int currentMana;
@@ -42,9 +43,8 @@ namespace Tibiafuskdotnet
         public static int maxlight;
         public static int BattleListconvert;
         public static int manaValue;
-        public static string BattleList;
         public static int hpValue;
-
+        public static string bc;
         //character 
         public static string Charactername;
 
@@ -155,31 +155,47 @@ namespace Tibiafuskdotnet
             ReadValuesFromMemory();
         }
 
- 
+        public static BattleList battleList = null;
 
         public static bool AppRunning(string appName = "Tibia")
         {
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();
-
+           
             foreach (System.Diagnostics.Process p in localByName)
             {
-                Console.WriteLine(p.ProcessName);
+                //System.Console.WriteLine(p.ProcessName);
                 if (p.ProcessName.Contains(appName))
                 {
+                    Client c = new Client(p);
+                    battleList = new BattleList(c);
+                    Tibia.Version.SetVersion860();
+                    foreach (Creature C in battleList.GetCreatures())
+                    {
+                        System.Console.WriteLine("Creature " + C.Name);
+                        
+                    }
+
+                    //System.Console.WriteLine(bc.GetCreatures());
                     return true;
 
                 }
                 else
                 {
+                    
                     MessageBox.Show("start tibia");
                     
                     return false;
                 }
-
+               
             }
-
+            
             return false;
+        }
+
+        private static Creature[] NewMethod()
+        {
+            return new Creature[30];
         }
 
         const int PROCESS_VM_WRITE = 0x0020;
@@ -194,7 +210,7 @@ namespace Tibiafuskdotnet
 
             int bytesWritten = 0;
             WriteProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesWritten);
-            Console.WriteLine(bytesWritten);
+            System.Console.WriteLine(bytesWritten);
         }
 
 
@@ -250,47 +266,7 @@ namespace Tibiafuskdotnet
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
             maxlight = light;
-            //BattleList = BattleListconvert;
 
-
-            //byte[] BattleListArray = new byte[buffer.Length - 4];
-            //Buffer.BlockCopy(buffer, 4, BattleListArray, 0, BattleListArray.Length);
-
-
-            //var trimmedArray = BattleListArray.Skip(0).Take(BattleListArray.Count() - 7).ToArray();
-
-            //string str = Encoding.Default.GetString(trimmedArray);
-            //str = str.Substring(0, str.IndexOf('\0'));
-            //Console.WriteLine("The String is: " + str);
-
-            
-
-            
-            for (int i = BattleListStart; i < BatteListEnd; i += BattleListStepCreatures)
-            {
-                
-                if ((i + Creature.DistanceIsVisible) == 1)
-                {
-                    ReadProcessMemory((int)handle, i, buffer, buffer.Length, ref bytesRead);
-                    byte[] BattleListArray = new byte[buffer.Length - 4];
-                    Buffer.BlockCopy(buffer, 4, BattleListArray, 0, BattleListArray.Length);
-
-
-                    //var trimmedArray = BattleListArray.Skip(0).Take(BattleListArray.Count() - 7).ToArray();
-
-                    string str = Encoding.Default.GetString(BattleListArray);
-                    str = str.Substring(0, str.IndexOf('\0'));
-                if(str =="")
-                { break; }
-                    Console.WriteLine(str);
-                }
-            }
-            
-           // Console.WriteLine("The String is: " + str);
-
-
-            //string result = System.Text.Encoding.UTF8.GetString(buffer);
-            //Console.WriteLine(result);
 
 
             bool isExhausted = false;

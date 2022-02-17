@@ -13,6 +13,9 @@ namespace Tibiafuskdotnet.BL
         public Int32 SpellLoHealth { get; set; }
         public Int32 HpPotionHealth { get; set; }
         public Int32 UhRuneHealth { get; set; }
+        public Int32 TargetingHpMin { get; set; }
+                
+        public Int32 TargetingHpMax { get; set; }
         public Int32 SpellHiMana { get; set; }
         public Int32 SpellLoMana { get; set; }
         public string ManaPotiontext { get; set; }

@@ -8,9 +8,15 @@ using System.Runtime.CompilerServices;
 
 namespace Tibiafuskdotnet.BL
 {
+
+
+
     public partial class Targeting : INotifyPropertyChanged
     
     {
+
+
+
         public int Count { get; set; }
 
         public bool CountMore { get; set; }
@@ -25,11 +31,11 @@ namespace Tibiafuskdotnet.BL
 
         public int StanceMode { get; set; }
 
-        public int ActionMode { get; set; }
+        public string ActionMode { get; set; }
 
         public int ActionModeSpell { get; set; }
 
-        public int AttackMode { get; set; }
+        public string AttackMode { get; set; }
         public int Ring { get; set; }
 
         public bool Alarm { get; set; }
@@ -39,8 +45,9 @@ namespace Tibiafuskdotnet.BL
         public string Name { get; set; }
         public override string ToString()
         {
+            
             return this.Name;
-
+            
         }
 
         public int MyProperty { get; set; }
