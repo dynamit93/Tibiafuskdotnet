@@ -217,7 +217,10 @@ namespace Tibiafuskdotnet
         public static void ReadValuesFromMemory()
         {
 
+            try
+            {
 
+            
             //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
             var tibia = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
             baseAddress = tibia.MainModule.BaseAddress.ToInt32();
@@ -604,7 +607,12 @@ namespace Tibiafuskdotnet
 
 
             }
+            }
+            catch (Exception)
+            {
 
+                //throw;
+            }
         }
 
 

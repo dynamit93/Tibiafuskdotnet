@@ -1,13 +1,16 @@
 ﻿<Window
-    x:Class="Tibiafuskdotnet.TargetMenu"
+    x:Class="Tibiafuskdotnet.MVVM.Views.TargetMenu"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Tibiafuskdotnet"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="TargetMenu"
     Width="611.287"
     Height="474.158"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
+    Loaded="Window_Loaded"
     mc:Ignorable="d">
     <Grid Margin="0,-1,-1,3" RenderTransformOrigin="0.5,0.5">
 
@@ -174,9 +177,15 @@
             Margin="5.072,43,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="{Binding Path=obj.Name, Mode=TwoWay}"
+            Text="{Binding SelectedTarget.Name, UpdateSourceTrigger=PropertyChanged}"
             TextChanged="TargetNameTextBox_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="GotFocus">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="TargetNameTextBoxGotFocus" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
         <Label
             x:Name="label6"
             Margin="165,43,0,0"
@@ -204,7 +213,6 @@
             Margin="7.072,100,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text=""
             TextWrapping="Wrap" />
         <Label
             x:Name="label9"
@@ -220,10 +228,16 @@
             Margin="10,30,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ItemsSource="{Binding obj.Name, Mode=TwoWay}"
-            SelectedItem="{Binding Path=listBoxTargettingName, Mode=TwoWay}"
-            SelectionChanged="listBoxTargettingName_SelectionChanged" />
-        <Button
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding Targets, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding SelectedTarget, UpdateSourceTrigger=PropertyChanged}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ListBoxSelectionChanged" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+        <!--<Button
             x:Name="button"
             Width="30"
             Height="20"
@@ -238,8 +252,8 @@
             Margin="53,292,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="&gt;" />
-        <Button
+            Content="&gt;" />-->
+        <!--<Button
             x:Name="DelBtn"
             Width="28"
             Height="20"
@@ -247,7 +261,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Click="DelBtn_Click"
-            Content="Del" />
+            Content="Del" />-->
         <CheckBox
             x:Name="playAlram"
             Grid.ColumnSpan="2"
@@ -295,7 +309,7 @@
             Margin="39.072,134,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="{Binding MinHp, UpdateSourceTrigger=PropertyChanged}"
+            Text="{Binding SelectedTarget.MinHp, UpdateSourceTrigger=PropertyChanged}"
             TextChanged="TargetingHpMin_TextChanged"
             TextWrapping="Wrap" />
         <TextBox
@@ -306,7 +320,7 @@
             Margin="112.072,134,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="{Binding MaxHp, UpdateSourceTrigger=PropertyChanged}"
+            Text="{Binding SelectedTarget.MaxHp, UpdateSourceTrigger=PropertyChanged}"
             TextChanged="TargetingHpMax_TextChanged"
             TextWrapping="Wrap" />
         <Label
@@ -384,8 +398,10 @@
             Margin="39.072,205,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            ItemsSource="{Binding ListStanceMode}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.StanceMode, UpdateSourceTrigger=PropertyChanged}"
             SelectionChanged="StanceMode_SelectionChanged" />
         <ListBox
             x:Name="ActionMode"
@@ -395,8 +411,10 @@
             Margin="39.072,229,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            ItemsSource="{Binding ListActions, UpdateSourceTrigger=PropertyChanged}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.ActionMode}"
             SelectionChanged="ActionMode_SelectionChanged" />
         <TextBox
             x:Name="ActionModeSpell"
@@ -418,7 +436,7 @@
             VerticalAlignment="Top"
             Text="TextBox"
             TextWrapping="Wrap" />
-        <Button
+        <!--<Button
             x:Name="Addbtn"
             Width="32"
             Height="20"
@@ -426,7 +444,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Click="Addbtn_Click"
-            Content="Add" />
+            Content="Add" />-->
         <CheckBox
             Width="102"
             Height="20"
@@ -434,7 +452,13 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Checked="CheckBox_Checked"
-            Content="Run Targeting" />
+            Content="Run Targeting">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="RunTarget" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </CheckBox>
 
     </Grid>
 </Window>

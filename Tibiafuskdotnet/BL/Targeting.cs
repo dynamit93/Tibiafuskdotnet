@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using GalaSoft.MvvmLight;
 
 namespace Tibiafuskdotnet.BL
 {
 
 
 
-    public partial class Targeting : INotifyPropertyChanged
+    public partial class Targeting:ViewModelBase
     
     {
 
@@ -29,7 +30,7 @@ namespace Tibiafuskdotnet.BL
 
         public int DangerLevel { get; set; }
 
-        public int StanceMode { get; set; }
+        public string StanceMode { get; set; }
 
         public string ActionMode { get; set; }
 
@@ -42,23 +43,14 @@ namespace Tibiafuskdotnet.BL
 
         public bool Loot { get; set; }
 
-        public string Name { get; set; }
-        public override string ToString()
+
+        private string _name;
+
+        public string Name
         {
-            
-            return this.Name;
-            
+            get { return _name; }
+            set { _name = value; RaisePropertyChanged("Name"); }
         }
-
-        public int MyProperty { get; set; }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
 
 
     }
