@@ -1,5 +1,5 @@
-install mysql database.
-import database
-configre mysql root password
-install tibia.
-run project
+install mysql database.  
+import database  
+configre mysql root password  
+install tibia.  
+run project  
