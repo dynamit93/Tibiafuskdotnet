@@ -38,8 +38,29 @@ namespace Tibiafuskdotnet.ViewModel
             set { _selectedAction = value; RaisePropertyChanged("SelectedAction"); }
         }
 
-        
+        private ObservableCollection<string> _counts;
 
+	public ObservableCollection<string> Counts
+	{
+		get { return _counts;}
+		set { _counts = value;RaisePropertyChanged("Counts");}
+	}
+        private ObservableCollection<string> _monsterAttacks;
+
+	public ObservableCollection<string> MonsterAttacks
+	{
+		get { return _monsterAttacks;}
+		set { _monsterAttacks = value;RaisePropertyChanged("MonsterAttacks");}
+	}
+
+
+        private ObservableCollection<int> _dangerLevels;
+
+	public ObservableCollection<int> DangerLevels
+	{
+		get { return _dangerLevels;}
+		set { _dangerLevels = value;RaisePropertyChanged("DangerLevels");}
+	}
 
         private ObservableCollection<string> _listStanceMode;
 
@@ -55,7 +76,21 @@ namespace Tibiafuskdotnet.ViewModel
             get { return _selectedStanceMode; }
             set { _selectedStanceMode = value; RaisePropertyChanged("SelectedStanceMode"); }
         }
+        private ObservableCollection<string> _setting;
 
+	public ObservableCollection<string> Settings
+	{
+		get { return _setting;}
+		set { _setting = value;RaisePropertyChanged("Settings");}
+	}
+
+        private ObservableCollection<string> _actionModes;
+
+	public ObservableCollection<string> ActionModes
+	{
+		get { return _actionModes;}
+		set { _actionModes = value;RaisePropertyChanged("ActionModes");}
+	}
 
 
 
@@ -104,9 +139,15 @@ namespace Tibiafuskdotnet.ViewModel
         #endregion
         public TargetMenuViewModel()
         {
-            ListActions= new ObservableCollection<string>() { "No Movemnet", "Melee - Approach" };
+            ListActions= new ObservableCollection<string>() { "No Movement","Melee - Strike","Melee - Parry", "Dist - Away","Melee - Reach", "Melee - ParryReach", "Melee - Approach", "Melee - Circle", "Melee - ReachCircle", "Melee - ReachStrike","Dist - Wait", "Lose Target","Lure Target", "Dist - Straigt","Dist - Lure", "Dist - WaitStraight","Dist - WaitLure" };
             ListStanceMode = new ObservableCollection<string>() { "Do Nothing", "Attack", "Follow" };
             ListTargeting = new ObservableCollection<string>() { "<New Monseter>"};
+            Counts=new ObservableCollection<string>() { "Any","1","2+","2","3+","3","4+","4","5+","5"};
+            Settings=new ObservableCollection<string>(){"1","2","3","4" };
+            MonsterAttacks=new ObservableCollection<string>() {  "Don't avoid","Avoid wave","Avoid beam"};
+            DangerLevels=new ObservableCollection<int>() { 1,2,3,4,5,6,7,8,9,10};
+            ActionModes=new ObservableCollection<string>() { "No Change", "Stand/Offensive","Stand/Balanced","Stand/Defensive","Chase/Offensive","Chase/Balanced","Chase/Defensive","Wear ring", "No change","no ring","Axe ring" ,"Club ring","Power ring", "Sword ring","Energy ring", "Time ring","Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring"};
+            
             Targets = new ObservableCollection<Targeting>() { AddNewMonster() };
 
       
@@ -128,9 +169,11 @@ namespace Tibiafuskdotnet.ViewModel
 
 
                 case "ListBoxSelectionChanged":
-
                     break;
                 case "TargetNameTextBoxGotFocus":
+                    if (SelectedTarget == null)
+                        return;
+
                     if (SelectedTarget.Name.Equals("<New Monster>"))
                     {
                         if (Targets.Count > 1)
@@ -152,7 +195,7 @@ namespace Tibiafuskdotnet.ViewModel
                     break;
             }
         }
-
+        int TargetHPBar;
         private void StartTarget()
         {
             foreach (var item in Targets)

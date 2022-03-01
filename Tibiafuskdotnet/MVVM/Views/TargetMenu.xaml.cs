@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Tibiafuskdotnet.BL;
 using Tibiafuskdotnet.ViewModel;
 
 namespace Tibiafuskdotnet.MVVM.Views
@@ -54,12 +55,13 @@ namespace Tibiafuskdotnet.MVVM.Views
 
         private void TargetingHpMin_TextChanged(object sender, TextChangedEventArgs e)
         {
+            int.TryParse(TargetingHpMin.Text, out Helper.TargetingHpMax);
 
         }
 
         private void TargetingHpMax_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            int.TryParse(TargetingHpMax.Text, out Helper.TargetingHpMax);
         }
 
         private void StanceMode_SelectionChanged(object sender, SelectionChangedEventArgs e)

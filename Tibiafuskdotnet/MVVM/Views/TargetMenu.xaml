@@ -213,6 +213,7 @@
             Margin="7.072,100,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Text="{Binding SelectedTarget.Categories, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="Wrap" />
         <Label
             x:Name="label9"
@@ -281,17 +282,25 @@
         <ListBox
             Grid.ColumnSpan="2"
             Width="54"
-            Height="16"
+            Height="25"
             Margin="210,74,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+            VerticalAlignment="Top"
+            ItemsSource="{Binding Counts, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.Count, UpdateSourceTrigger=PropertyChanged}" />
         <ListBox
             Grid.Column="1"
             Width="38"
-            Height="16"
+            Height="25"
             Margin="105.072,74,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+            VerticalAlignment="Top"
+            ItemsSource="{Binding Settings, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.Setting, UpdateSourceTrigger=PropertyChanged}" />
         <Frame
             Grid.ColumnSpan="2"
             Width="187"
@@ -370,7 +379,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Wear ring" />
-        <TextBox
+        <ListBox
             x:Name="MonsterAttackMode"
             Grid.Column="1"
             Width="107"
@@ -378,9 +387,11 @@
             Margin="39.072,156,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="TextBox"
-            TextWrapping="Wrap" />
-        <TextBox
+            ItemsSource="{Binding MonsterAttacks, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.MonsterAttackMode, UpdateSourceTrigger=PropertyChanged}" />
+        <ListBox
             x:Name="DangerLevel"
             Grid.Column="1"
             Width="61"
@@ -388,8 +399,10 @@
             Margin="85.072,182,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="TextBox"
-            TextWrapping="Wrap" />
+            ItemsSource="{Binding DangerLevels, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.DangerLevel, UpdateSourceTrigger=PropertyChanged}" />
         <ListBox
             x:Name="StanceMode"
             Grid.Column="1"
@@ -416,7 +429,7 @@
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.ActionMode}"
             SelectionChanged="ActionMode_SelectionChanged" />
-        <TextBox
+        <ListBox
             x:Name="ActionModeSpell"
             Grid.Column="1"
             Width="48"
@@ -424,8 +437,10 @@
             Margin="97.072,230,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="TextBox"
-            TextWrapping="Wrap" />
+            ItemsSource="{Binding ActionModes}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="Ring"
             Grid.Column="1"
