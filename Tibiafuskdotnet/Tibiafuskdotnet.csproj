@@ -229,6 +229,9 @@
     <Compile Include="ExtrasMenu.xaml.cs">
       <DependentUpon>ExtrasMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HudMenu.xaml.cs">
+      <DependentUpon>HudMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Objects\BattleList.cs" />
     <Compile Include="Objects\Client.cs" />
     <Compile Include="Objects\Client.DllHelper.cs" />
@@ -442,6 +445,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HealingMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HudMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

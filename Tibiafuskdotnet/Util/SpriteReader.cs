@@ -14,7 +14,9 @@ namespace Tibia.Util
                     "Tibia.spr"),
                 spriteId);
         }
-
+        // Magic wall id 2128
+        // Magic wall id 2129
+        // Tree Rune 2130
         // Thanks to OpiF at http://otfans.net/showthread.php?t=102065
         // and to Thomac at http://otfans.net/showthread.php?t=141982
         public static Image GetSpriteImage(string file, int spriteId)

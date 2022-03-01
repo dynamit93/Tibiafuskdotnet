@@ -66,7 +66,7 @@
         <ListBox x:Name="StanceMode" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="23" Margin="39.072,205,0,0"  VerticalAlignment="Top" Width="107" Grid.Column="1" SelectionChanged="StanceMode_SelectionChanged" >
         </ListBox>
         <ListBox x:Name="ActionMode" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"  HorizontalAlignment="Left" Height="23" Margin="39.072,229,0,0" VerticalAlignment="Top" Width="57" Grid.Column="1" SelectionChanged="ActionMode_SelectionChanged" >
-            
+  
         </ListBox>
         <TextBox x:Name="ActionModeSpell" HorizontalAlignment="Left" Height="22" Margin="97.072,230,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="48" Grid.Column="1"/>
         <TextBox x:Name="Ring" HorizontalAlignment="Left" Height="23" Margin="40.072,252,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="107" Grid.Column="1"/>
