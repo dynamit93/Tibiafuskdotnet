@@ -55,7 +55,7 @@ namespace Tibiafuskdotnet.BL
         public string MonsterAttackMode
         {
             get { return _monsterAttackMode; }
-            set { _monsterAttackMode = value;RaisePropertyChanged("MonsterAttackMode "); }
+            set { _monsterAttackMode = value;RaisePropertyChanged("MonsterAttackMode"); }
         }
         private int _dangerLevel;
 
@@ -69,7 +69,7 @@ namespace Tibiafuskdotnet.BL
         public string StanceMode
         {
             get { return _stanceMode; }
-            set { _stanceMode = value; RaisePropertyChanged("StanceMode "); }
+            set { _stanceMode = value; RaisePropertyChanged("StanceMode"); }
         }
         private string _actionMode;
 

@@ -169,6 +169,7 @@ namespace Tibiafuskdotnet.ViewModel
                 case "Delete":
                     if (SelectedTarget!=null)
                     {
+                        if(SelectedTarget.Name!="<New Monster>")
                         Targets.Remove(SelectedTarget);
                     }
                     break;
