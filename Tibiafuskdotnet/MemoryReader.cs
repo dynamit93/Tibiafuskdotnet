@@ -157,6 +157,8 @@ namespace Tibiafuskdotnet
 
         public static BattleList battleList = null;
 
+        public static Client MyClient = null;
+
         public static bool AppRunning(string appName = "Tibia")
         {
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
@@ -167,8 +169,8 @@ namespace Tibiafuskdotnet
                 //System.Console.WriteLine(p.ProcessName);
                 if (p.ProcessName.Contains(appName))
                 {
-                    Client c = new Client(p);
-                    battleList = new BattleList(c);
+                    MyClient  = new Client(p);
+                    battleList = new BattleList(MyClient);
                     Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())
                     {

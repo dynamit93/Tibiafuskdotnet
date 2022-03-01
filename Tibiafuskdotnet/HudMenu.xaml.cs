@@ -28,8 +28,12 @@ namespace Tibiafuskdotnet
 
         private void Magic_Wall_Timer(object sender, RoutedEventArgs e)
         {
+           /* if (SpriteReader.GetSpriteImage(MemoryReader.MyClient, 2128) )
+            {
+                MessageBox.Show("working");
 
-            //SpriteReader.GetSpriteImage();
+            }*/
+           // SpriteReader.GetSpriteImage(MemoryReader.MyClient,2128);
 
 
 
