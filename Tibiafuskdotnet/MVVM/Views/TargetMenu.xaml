@@ -280,7 +280,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Loot monster" />
-        <ListBox
+        <ComboBox
             Grid.ColumnSpan="2"
             Width="54"
             Height="25"
@@ -291,7 +291,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.Count, UpdateSourceTrigger=PropertyChanged}" />
-        <ListBox
+        <ComboBox
             Grid.Column="1"
             Width="38"
             Height="25"
@@ -380,7 +380,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Wear ring" />
-        <ListBox
+        <ComboBox
             x:Name="MonsterAttackMode"
             Grid.Column="1"
             Width="107"
@@ -392,7 +392,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.MonsterAttackMode, UpdateSourceTrigger=PropertyChanged}" />
-        <ListBox
+        <ComboBox
             x:Name="DangerLevel"
             Grid.Column="1"
             Width="61"
@@ -404,7 +404,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.DangerLevel, UpdateSourceTrigger=PropertyChanged}" />
-        <ListBox
+        <ComboBox
             x:Name="StanceMode"
             Grid.Column="1"
             Width="107"
@@ -417,7 +417,7 @@
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.StanceMode, UpdateSourceTrigger=PropertyChanged}"
             SelectionChanged="StanceMode_SelectionChanged" />
-        <ListBox
+        <ComboBox
             x:Name="ActionMode"
             Grid.Column="1"
             Width="57"
@@ -430,7 +430,7 @@
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.ActionMode}"
             SelectionChanged="ActionMode_SelectionChanged" />
-        <ListBox
+        <ComboBox
             x:Name="ActionModeSpell"
             Grid.Column="1"
             Width="48"
