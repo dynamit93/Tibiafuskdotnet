@@ -166,7 +166,12 @@ namespace Tibiafuskdotnet.ViewModel
                     StartTarget();
                     break;
 
-
+                case "Delete":
+                    if (SelectedTarget!=null)
+                    {
+                        Targets.Remove(SelectedTarget);
+                    }
+                    break;
 
                 case "ListBoxSelectionChanged":
                     break;

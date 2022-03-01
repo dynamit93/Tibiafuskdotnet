@@ -254,15 +254,16 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="&gt;" />-->
-        <!--<Button
+        <Button
             x:Name="DelBtn"
             Width="28"
             Height="20"
             Margin="135,292,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Click="DelBtn_Click"
-            Content="Del" />-->
+            Command="{Binding command}"
+            CommandParameter="Delete"
+            Content="Del" />
         <CheckBox
             x:Name="playAlram"
             Grid.ColumnSpan="2"

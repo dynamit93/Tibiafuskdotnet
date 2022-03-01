@@ -83,5 +83,10 @@ namespace Tibiafuskdotnet.MVVM.Views
         {
             CommonServiceLocator.ServiceLocator.Current.GetInstance<TargetMenuViewModel>().txtTargetName=this.TargetNameTextBox;
         }
+
+        private void DelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
