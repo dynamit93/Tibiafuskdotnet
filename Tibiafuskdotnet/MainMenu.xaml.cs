@@ -189,5 +189,11 @@ namespace Tibiafuskdotnet
         {
 
         }
+
+        private void HUD_btn_Click(object sender, RoutedEventArgs e)
+        {
+            HudMenu Hudkey = new HudMenu();
+            Hudkey.Show();
+        }
     }
 }
