@@ -272,6 +272,7 @@
             VerticalAlignment="Top"
             Checked="CheckBox_Checked_1"
             Content="Play alarm"
+            IsChecked="{Binding SelectedTarget.Alarm, UpdateSourceTrigger=PropertyChanged}"
             Unchecked="playAlram_Unchecked" />
         <CheckBox
             x:Name="LootMonster"
@@ -279,7 +280,8 @@
             Margin="34.072,295,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Loot monster" />
+            Content="Loot monster"
+            IsChecked="{Binding SelectedTarget.Loot, UpdateSourceTrigger=PropertyChanged}" />
         <ComboBox
             Grid.ColumnSpan="2"
             Width="54"
