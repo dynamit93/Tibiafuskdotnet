@@ -39,26 +39,17 @@ namespace Tibiafuskdotnet.MVVM.Views
                 TargetNameTextBox.Text = "";
             }
         }
-        private SoundPlayer Player = new SoundPlayer();
 
 
         private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Player.SoundLocation = @"./sounds/monster.wav";
-                Player.PlayLooping();
-            }
-            catch (Exception)
-            {
-
-            }
+           
           
         }
 
         private void playAlram_Unchecked(object sender, RoutedEventArgs e)
         {
-            Player.Stop();
+           // Player.Stop();
         }
 
         private void TargetingHpMin_TextChanged(object sender, TextChangedEventArgs e)

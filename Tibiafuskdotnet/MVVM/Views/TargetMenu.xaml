@@ -273,7 +273,16 @@
             Checked="CheckBox_Checked_1"
             Content="Play alarm"
             IsChecked="{Binding SelectedTarget.Alarm, UpdateSourceTrigger=PropertyChanged}"
-            Unchecked="playAlram_Unchecked" />
+            Unchecked="playAlram_Unchecked">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="AlarmChecked" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="AlarmUnChecked" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </CheckBox>
         <CheckBox
             x:Name="LootMonster"
             Grid.Column="1"
