@@ -59,7 +59,7 @@ namespace Tibiafuskdotnet
             Helper.HpPotionHealth = data.HpPotionHealth;
             Helper.SpellLoMana= data.SpellLoMana;
             Helper.SpellLotext= data.SpellLotext;
-            con = new MySqlConnection("Server=localhost;Database=test1;user=root;;SslMode=none");
+            con = new MySqlConnection("Server=localhost;Database=test1;user=root;pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");

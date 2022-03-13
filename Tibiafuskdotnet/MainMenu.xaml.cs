@@ -17,6 +17,7 @@ using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
 using Tibia;
 using Tibia.Objects;
+using Tibiafuskdotnet.ViewModel;
 
 namespace Tibiafuskdotnet
 {
@@ -169,8 +170,10 @@ namespace Tibiafuskdotnet
 
         private void targeting_btn_Click(object sender, RoutedEventArgs e)
         {
-            TargetMenu Targetkey = new TargetMenu();
-            Targetkey.Show();
+            MVVM.Views.TargetMenu tG = new MVVM.Views.TargetMenu();
+            tG.ShowDialog();
+            //TargetMenuViewModel Targetkey = new TargetMenuViewModel();
+            //Targetkey.Show();
         }
 
         private void Icons_btn_Click(object sender, RoutedEventArgs e)
