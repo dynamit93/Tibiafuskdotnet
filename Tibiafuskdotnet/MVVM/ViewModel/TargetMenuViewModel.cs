@@ -2,6 +2,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Media;
 using System.Windows.Controls;
 using Tibia.Objects;
 using Tibiafuskdotnet.BL;
@@ -149,7 +151,7 @@ namespace Tibiafuskdotnet.ViewModel
             ActionModes=new ObservableCollection<string>() { "No Change", "Stand/Offensive","Stand/Balanced","Stand/Defensive","Chase/Offensive","Chase/Balanced","Chase/Defensive","Wear ring", "No change","no ring","Axe ring" ,"Club ring","Power ring", "Sword ring","Energy ring", "Time ring","Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring"};
             
             Targets = new ObservableCollection<Targeting>() { AddNewMonster() };
-
+            Player = new SoundPlayer();
       
 
         SelectedAction = ListActions[0];
@@ -157,10 +159,27 @@ namespace Tibiafuskdotnet.ViewModel
             command = new RelayCommand<string>(PerformAction);
         }
         public TextBox txtTargetName{ get; set; }
+        private SoundPlayer Player = new SoundPlayer();
+
         private void PerformAction(string obj)
         {
             switch (obj)
             {
+                case "AlarmUnChecked":
+                    if (Targets.Where(x => x.Alarm == true).FirstOrDefault() == null)
+                        Player.Stop();
+                    break;
+                case "AlarmChecked":
+                    try
+                    {
+                        Player.SoundLocation = @"./sounds/monster.wav";
+                        Player.PlayLooping();
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    break;
                 case "RunTarget":
 
                     StartTarget();
