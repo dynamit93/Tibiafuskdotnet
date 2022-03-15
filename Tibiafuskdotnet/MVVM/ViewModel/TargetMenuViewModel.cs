@@ -42,27 +42,27 @@ namespace Tibiafuskdotnet.ViewModel
 
         private ObservableCollection<string> _counts;
 
-	public ObservableCollection<string> Counts
-	{
-		get { return _counts;}
-		set { _counts = value;RaisePropertyChanged("Counts");}
-	}
+        public ObservableCollection<string> Counts
+        {
+            get { return _counts; }
+            set { _counts = value; RaisePropertyChanged("Counts"); }
+        }
         private ObservableCollection<string> _monsterAttacks;
 
-	public ObservableCollection<string> MonsterAttacks
-	{
-		get { return _monsterAttacks;}
-		set { _monsterAttacks = value;RaisePropertyChanged("MonsterAttacks");}
-	}
+        public ObservableCollection<string> MonsterAttacks
+        {
+            get { return _monsterAttacks; }
+            set { _monsterAttacks = value; RaisePropertyChanged("MonsterAttacks"); }
+        }
 
 
         private ObservableCollection<int> _dangerLevels;
 
-	public ObservableCollection<int> DangerLevels
-	{
-		get { return _dangerLevels;}
-		set { _dangerLevels = value;RaisePropertyChanged("DangerLevels");}
-	}
+        public ObservableCollection<int> DangerLevels
+        {
+            get { return _dangerLevels; }
+            set { _dangerLevels = value; RaisePropertyChanged("DangerLevels"); }
+        }
 
         private ObservableCollection<string> _listStanceMode;
 
@@ -80,20 +80,30 @@ namespace Tibiafuskdotnet.ViewModel
         }
         private ObservableCollection<string> _setting;
 
-	public ObservableCollection<string> Settings
-	{
-		get { return _setting;}
-		set { _setting = value;RaisePropertyChanged("Settings");}
-	}
+        public ObservableCollection<string> Settings
+        {
+            get { return _setting; }
+            set { _setting = value; RaisePropertyChanged("Settings"); }
+        }
 
         private ObservableCollection<string> _actionModes;
 
-	public ObservableCollection<string> ActionModes
-	{
-		get { return _actionModes;}
-		set { _actionModes = value;RaisePropertyChanged("ActionModes");}
-	}
+        public ObservableCollection<string> ActionModes
+        {
+            get { return _actionModes; }
+            set { _actionModes = value; RaisePropertyChanged("ActionModes"); }
+        }
 
+
+
+
+        private ObservableCollection<string> _ring;
+
+        public ObservableCollection<string> Ring
+        {
+            get { return _ring; }
+            set { _ring = value; RaisePropertyChanged("Ring"); }
+        }
 
 
 
@@ -110,8 +120,10 @@ namespace Tibiafuskdotnet.ViewModel
 
         public Targeting SelectedTarget
         {
-            get {
-                   return _selectedTarget; }
+            get
+            {
+                return _selectedTarget;
+            }
             set { _selectedTarget = value; RaisePropertyChanged("SelectedTarget"); }
         }
         private Targeting _selectedListBoxTarget;
@@ -131,7 +143,7 @@ namespace Tibiafuskdotnet.ViewModel
             set { _targets = value; RaisePropertyChanged("Targets"); }
         }
 
-        public RelayCommand<string> command{ get; set; }
+        public RelayCommand<string> command { get; set; }
         #endregion
         #region Methods
         private Targeting AddNewMonster()
@@ -141,24 +153,25 @@ namespace Tibiafuskdotnet.ViewModel
         #endregion
         public TargetMenuViewModel()
         {
-            ListActions= new ObservableCollection<string>() { "No Movement","Melee - Strike","Melee - Parry", "Dist - Away","Melee - Reach", "Melee - ParryReach", "Melee - Approach", "Melee - Circle", "Melee - ReachCircle", "Melee - ReachStrike","Dist - Wait", "Lose Target","Lure Target", "Dist - Straigt","Dist - Lure", "Dist - WaitStraight","Dist - WaitLure" };
+            ListActions = new ObservableCollection<string>() { "No Movement", "Melee - Strike", "Melee - Parry", "Dist - Away", "Melee - Reach", "Melee - ParryReach", "Melee - Approach", "Melee - Circle", "Melee - ReachCircle", "Melee - ReachStrike", "Dist - Wait", "Lose Target", "Lure Target", "Dist - Straigt", "Dist - Lure", "Dist - WaitStraight", "Dist - WaitLure" };
             ListStanceMode = new ObservableCollection<string>() { "Do Nothing", "Attack", "Follow" };
-            ListTargeting = new ObservableCollection<string>() { "<New Monseter>"};
-            Counts=new ObservableCollection<string>() { "Any","1","2+","2","3+","3","4+","4","5+","5"};
-            Settings=new ObservableCollection<string>(){"1","2","3","4" };
-            MonsterAttacks=new ObservableCollection<string>() {  "Don't avoid","Avoid wave","Avoid beam"};
-            DangerLevels=new ObservableCollection<int>() { 1,2,3,4,5,6,7,8,9,10};
-            ActionModes=new ObservableCollection<string>() { "No Change", "Stand/Offensive","Stand/Balanced","Stand/Defensive","Chase/Offensive","Chase/Balanced","Chase/Defensive","Wear ring", "No change","no ring","Axe ring" ,"Club ring","Power ring", "Sword ring","Energy ring", "Time ring","Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring"};
-            
+            ListTargeting = new ObservableCollection<string>() { "<New Monseter>" };
+            Counts = new ObservableCollection<string>() { "Any", "1", "2+", "2", "3+", "3", "4+", "4", "5+", "5" };
+            Settings = new ObservableCollection<string>() { "1", "2", "3", "4" };
+            MonsterAttacks = new ObservableCollection<string>() { "Don't avoid", "Avoid wave", "Avoid beam" };
+            DangerLevels = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            ActionModes = new ObservableCollection<string>() { "No Change", "Stand/Offensive", "Stand/Balanced", "Stand/Defensive", "Chase/Offensive", "Chase/Balanced", "Chase/Defensive" };
+            Ring = new ObservableCollection<string>() { "No change", "no ring", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
+
             Targets = new ObservableCollection<Targeting>() { AddNewMonster() };
             Player = new SoundPlayer();
-      
 
-        SelectedAction = ListActions[0];
+
+            SelectedAction = ListActions[0];
             SelectedStanceMode = ListStanceMode[0];
             command = new RelayCommand<string>(PerformAction);
         }
-        public TextBox txtTargetName{ get; set; }
+        public TextBox txtTargetName { get; set; }
         private SoundPlayer Player = new SoundPlayer();
 
         private void PerformAction(string obj)
@@ -186,10 +199,10 @@ namespace Tibiafuskdotnet.ViewModel
                     break;
 
                 case "Delete":
-                    if (SelectedTarget!=null)
+                    if (SelectedTarget != null)
                     {
-                        if(SelectedTarget.Name!="<New Monster>")
-                        Targets.Remove(SelectedTarget);
+                        if (SelectedTarget.Name != "<New Monster>")
+                            Targets.Remove(SelectedTarget);
                     }
                     break;
 
@@ -204,7 +217,7 @@ namespace Tibiafuskdotnet.ViewModel
                         if (Targets.Count > 1)
                         {
 
-                         if(Targets[Targets.Count - 2].Name == "")
+                            if (Targets[Targets.Count - 2].Name == "")
                             {
                                 SelectedTarget = Targets[Targets.Count - 2];
                                 txtTargetName.Focus();
@@ -228,13 +241,13 @@ namespace Tibiafuskdotnet.ViewModel
                 foreach (Creature C in MemoryReader.battleList.GetCreatures())
                 {
                     TargetHPBar = C.HPBar;
-                    if (item.ToString() == C.Name)
+                    if (item.Name == C.Name)
                     {
                         System.Console.WriteLine(TargetHPBar);
                         if (SelectedTarget.StanceMode == "Attack")
 
                         {
-                            if (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax)
+                            if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
                             {
                                 C.Attack();
                             }

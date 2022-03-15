@@ -453,7 +453,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBox
+        <ComboBox
             x:Name="Ring"
             Grid.Column="1"
             Width="107"
@@ -461,8 +461,10 @@
             Margin="40.072,252,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="TextBox"
-            TextWrapping="Wrap" />
+            ItemsSource="{Binding Ring}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.Ring, UpdateSourceTrigger=PropertyChanged}" />
         <!--<Button
             x:Name="Addbtn"
             Width="32"

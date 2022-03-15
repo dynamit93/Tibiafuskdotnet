@@ -92,9 +92,9 @@ namespace Tibiafuskdotnet.BL
             get { return _attackMode; }
             set { _attackMode = value;RaisePropertyChanged("AttackMode"); }
         }
-        private int _ring;
+        private string _ring;
 
-        public int Ring
+        public string Ring
         {
             get { return _ring; }
             set { _ring = value;RaisePropertyChanged("Ring"); }

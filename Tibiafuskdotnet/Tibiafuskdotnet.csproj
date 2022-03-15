@@ -410,9 +410,6 @@
     <Compile Include="Packets\RSA\LoginServerRequestPacket.cs" />
     <Compile Include="Packets\Xtea.cs" />
     <Compile Include="Spells.cs" />
-    <Compile Include="TargetMenu.xaml.cs">
-      <DependentUpon>TargetMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Adresses\Versions\Version860.cs" />
     <Compile Include="Util\AStarPathFinder.cs" />
     <Compile Include="Util\BigInteger.cs" />
@@ -491,10 +488,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MVVM\Views\TargetMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TargetMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
