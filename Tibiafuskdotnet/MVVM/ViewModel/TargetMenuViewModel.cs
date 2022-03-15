@@ -144,7 +144,7 @@ namespace Tibiafuskdotnet.ViewModel
             set { _targets = value; RaisePropertyChanged("Targets"); }
         }
 
-        public RelayCommand<string> Command { get; set; }
+        public RelayCommand<string> command { get; set; }
         #endregion
         #region Methods
         private Targeting AddNewMonster()
@@ -175,8 +175,8 @@ namespace Tibiafuskdotnet.ViewModel
             SelectedStanceMode = Ring[0];
             Command = new RelayCommand<string>(PerformAction);
         }
-        public TextBox TxtTargetName { get; set; }
-        private readonly SoundPlayer Player = new SoundPlayer();
+        public TextBox txtTargetName { get; set; }
+        private SoundPlayer Player = new SoundPlayer();
 
 
         private void PerformAction(string obj)
@@ -199,6 +199,7 @@ namespace Tibiafuskdotnet.ViewModel
 
                     }
                     break;
+                case "RunTarget":
 
                 case "RunTarget":
                     StartTarget();
@@ -228,7 +229,7 @@ namespace Tibiafuskdotnet.ViewModel
                             if (Targets[Targets.Count - 2].Name == "")
                             {
                                 SelectedTarget = Targets[Targets.Count - 2];
-                                TxtTargetName.Focus();
+                                txtTargetName.Focus();
                                 return;
                             }
                         }
@@ -260,31 +261,10 @@ namespace Tibiafuskdotnet.ViewModel
                         if (SelectedTarget.StanceMode == "Attack")
 
                         {
-
-                            if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
+                            if (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax)
                             {
-
-                                if (checked(SelectedTarget.Reachable))
-                                {
-
-                                   
-                                        C.IsReachable();
-                                        System.Console.WriteLine(C.Name);
-                                        C.Attack();
-
-                                    
-                                }
-                                else
-                                {
-                                        C.Attack();
-                                }
-                                
-                                
-                                
+                                C.Attack();
                             }
-                                                        
-                         
-
                         }
                         else if (SelectedTarget.StanceMode == "Follow")
                         {
