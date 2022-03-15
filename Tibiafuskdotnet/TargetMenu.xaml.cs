@@ -43,7 +43,7 @@ namespace Tibiafuskdotnet
             Targeting obj = new Targeting()
             {
                 MinHp = 0,
-                Name = "abc",
+                Name = "Training Monk",
                 MaxHp = 100
                 
         };
