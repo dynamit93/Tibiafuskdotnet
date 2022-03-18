@@ -16,7 +16,8 @@ using WindowsInput;
 using WindowsInput.Native;
 using Tibia;
 using Tibia.Objects;
-
+using Tibia.Constants;
+using System.Collections.Generic;
 
 namespace Tibiafuskdotnet
 {
@@ -156,6 +157,10 @@ namespace Tibiafuskdotnet
         }
 
         public static BattleList battleList = null;
+        /// <summary>
+        /// Dennis gjort
+        /// </summary>
+        public static Inventory inventory = null;
 
         public static bool AppRunning(string appName = "Tibia")
         {
@@ -169,12 +174,51 @@ namespace Tibiafuskdotnet
                 {
                     Client c = new Client(p);
                     battleList = new BattleList(c);
+                    // dennis gjort
+                    inventory = new Inventory(c);
+
+
                     Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())
                     {
                         System.Console.WriteLine("Creature " + C.Name);
                         
                     }
+                    // Dennis gjort Skriver ut alla backpacks finns med id + namn + Vilket nummer backpackn finns
+                    foreach (Container MyC in inventory.GetContainers())
+                    {
+                        
+                       // System.Console.WriteLine( MyC.Id +" "+ MyC.Name + " " + MyC.Number );
+                    }
+                    Item RingItem; 
+
+                    var Ring = ItemLists.Ring.TryGetValue(Items.Ring.TimeRing.Id, out RingItem );
+                    // Dennis gjort kollar vilka items som finns på Hela Gubben
+
+                   /* //System.Console.WriteLine(RingItem.Name + " " + RingItem.Id);
+                    foreach (Item MyItems in inventory.GetItems())
+                    {
+                        Item ringRingRingRingBananaPhone;
+                        ItemLists.Ring.TryGetValue(MyItems.Id, out ringRingRingRingBananaPhone);
+                        if(ringRingRingRingBananaPhone == null)
+                        {
+                            continue;
+                        }
+
+                        // Dennis gjort om id är lika skriver den ut namnet på id.
+                        System.Console.WriteLine($"{MyItems.Id} -> {ringRingRingRingBananaPhone.Name}" /*+ MyItems.Move(9)*/ /*);*/
+                       /* if (ringRingRingRingBananaPhone.Name == "Time Ring")
+                       /* {
+                           
+
+                            /* // Funkar inte men behöver använda Items.Move för att flytta items
+                            MyItems.Move(SlotNumber.Ring ,1 );
+                            */
+                     /*   }
+                    }*/
+
+
+
 
                     //System.Console.WriteLine(bc.GetCreatures());
                     return true;

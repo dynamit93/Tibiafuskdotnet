@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Media;
 using System.Windows.Controls;
+using Tibia.Constants;
 using Tibia.Objects;
 using Tibiafuskdotnet.BL;
 
@@ -161,7 +162,9 @@ namespace Tibiafuskdotnet.ViewModel
             MonsterAttacks = new ObservableCollection<string>() { "Don't avoid", "Avoid wave", "Avoid beam" };
             DangerLevels = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             ActionModes = new ObservableCollection<string>() { "No Change", "Stand/Offensive", "Stand/Balanced", "Stand/Defensive", "Chase/Offensive", "Chase/Balanced", "Chase/Defensive" };
-            Ring = new ObservableCollection<string>() { "No change", "no ring", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
+            Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
+            // Ring = new ObservableCollection<string>(.Ring);
+
 
             Targets = new ObservableCollection<Targeting>() { AddNewMonster() };
             Player = new SoundPlayer();
@@ -169,10 +172,18 @@ namespace Tibiafuskdotnet.ViewModel
 
             SelectedAction = ListActions[0];
             SelectedStanceMode = ListStanceMode[0];
+            SelectedStanceMode = Ring[0];
             command = new RelayCommand<string>(PerformAction);
         }
         public TextBox txtTargetName { get; set; }
         private SoundPlayer Player = new SoundPlayer();
+
+        private void EquipRing ()
+        {
+            //foreach Creature  if  monsterlist = Creature pickup ring
+           // Creature C in MemoryReader.battleList.GetCreatures()
+
+        }
 
         private void PerformAction(string obj)
         {
@@ -269,9 +280,28 @@ namespace Tibiafuskdotnet.ViewModel
                             }
                             else { System.Console.WriteLine(SelectedTarget.ActionMode); }
                         }
+                        // Dennis gjort
 
 
+                        foreach (Item MyItems in MemoryReader.inventory.GetItems())
+                        {
+                            Item ringRingRingRingBananaPhone;
+                            ItemLists.Ring.TryGetValue(MyItems.Id, out ringRingRingRingBananaPhone);
+                            if (ringRingRingRingBananaPhone == null)
+                            {
+                                continue;
+                            }
 
+                           
+                            if (ringRingRingRingBananaPhone.Name.Equals(SelectedTarget.Ring, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                System.Console.WriteLine("dsdfsdgsdhgshsh");
+                                
+                                
+                                MyItems.Move(ItemLocation.FromSlot(SlotNumber.Ring));
+                                break;
+                            }
+                        }
 
 
                         /* switch (ActionMode.SelectedItem)
