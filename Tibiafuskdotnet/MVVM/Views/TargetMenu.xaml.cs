@@ -31,6 +31,10 @@ namespace Tibiafuskdotnet.MVVM.Views
         {
 
         }
+        private void Reachable_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void TargetNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -157,6 +157,8 @@ namespace Tibiafuskdotnet
         }
 
         public static BattleList battleList = null;
+
+        public static Creature creature = null;
         /// <summary>
         /// Dennis gjort
         /// </summary>

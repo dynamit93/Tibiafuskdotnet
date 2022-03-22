@@ -151,7 +151,17 @@
             VerticalAlignment="Top"
             Checked="ReachableCheckBox_Checked"
             Content="Target must be Reachable"
-            IsChecked="{Binding Path=ReachableTarget, Mode=OneWayToSource}" />
+            IsChecked="{Binding SelectedTarget.Reachable, UpdateSourceTrigger=PropertyChanged}"
+            Unchecked="Reachable_Unchecked">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Checked">
+                <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableChecked" />
+            </i:EventTrigger>
+            <i:EventTrigger EventName="Unchecked">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableUnChecked" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        </CheckBox>
         <CheckBox
             x:Name="ShootableCheckBox"
             Grid.Column="1"

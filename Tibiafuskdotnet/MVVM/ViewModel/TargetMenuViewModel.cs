@@ -178,15 +178,16 @@ namespace Tibiafuskdotnet.ViewModel
         public TextBox txtTargetName { get; set; }
         private SoundPlayer Player = new SoundPlayer();
 
-        private void EquipRing ()
+        private void EquipRing()
         {
             //foreach Creature  if  monsterlist = Creature pickup ring
-           // Creature C in MemoryReader.battleList.GetCreatures()
+            // Creature C in MemoryReader.battleList.GetCreatures()
 
         }
-
+        
         private void PerformAction(string obj)
         {
+           
             switch (obj)
             {
                 case "AlarmUnChecked":
@@ -204,11 +205,13 @@ namespace Tibiafuskdotnet.ViewModel
 
                     }
                     break;
-                case "RunTarget":
 
+                case "RunTarget":
                     StartTarget();
                     break;
 
+
+                    
                 case "Delete":
                     if (SelectedTarget != null)
                     {
@@ -254,14 +257,39 @@ namespace Tibiafuskdotnet.ViewModel
                     TargetHPBar = C.HPBar;
                     if (item.Name == C.Name)
                     {
+                        bool result = false;
+
+
                         System.Console.WriteLine(TargetHPBar);
                         if (SelectedTarget.StanceMode == "Attack")
 
                         {
+
                             if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
                             {
-                                C.Attack();
+
+                                if (checked(SelectedTarget.Reachable))
+                                {
+
+                                   
+                                        C.IsReachable();
+                                        System.Console.WriteLine(C.Name);
+                                        C.Attack();
+
+
+                                }
+                                else
+                                {
+                                        C.Attack();
+                                }
+                                
+                                
+                                
                             }
+
+                            
+                         
+
                         }
                         else if (SelectedTarget.StanceMode == "Follow")
                         {
@@ -280,10 +308,21 @@ namespace Tibiafuskdotnet.ViewModel
                             }
                             else { System.Console.WriteLine(SelectedTarget.ActionMode); }
                         }
-                        // Dennis gjort
+                        //Dennis gjort
+                        /*
+                        if (checked(SelectedTarget.Reachable))
+                            {
 
 
-                        foreach (Item MyItems in MemoryReader.inventory.GetItems())
+                            if (result)
+                            {
+                                C.IsReachable();
+                                System.Console.WriteLine(C.Name);
+
+
+                            }
+                        }*/
+                            foreach (Item MyItems in MemoryReader.inventory.GetItems())
                         {
                             Item ringRingRingRingBananaPhone;
                             ItemLists.Ring.TryGetValue(MyItems.Id, out ringRingRingRingBananaPhone);
@@ -295,7 +334,7 @@ namespace Tibiafuskdotnet.ViewModel
                            
                             if (ringRingRingRingBananaPhone.Name.Equals(SelectedTarget.Ring, StringComparison.InvariantCultureIgnoreCase))
                             {
-                                System.Console.WriteLine("dsdfsdgsdhgshsh");
+                               
                                 
                                 
                                 MyItems.Move(ItemLocation.FromSlot(SlotNumber.Ring));

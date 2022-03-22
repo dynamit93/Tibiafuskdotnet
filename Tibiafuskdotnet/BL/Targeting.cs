@@ -106,6 +106,14 @@ namespace Tibiafuskdotnet.BL
             get { return _alarm; }
             set { _alarm = value; RaisePropertyChanged("Alarm"); }
         }
+
+        private bool _Reachable;
+        public bool Reachable
+        {
+            get { return _Reachable; }
+            set { _Reachable = value; RaisePropertyChanged("Reachable"); }
+        }
+
         private bool _loot;
 
         public bool Loot
