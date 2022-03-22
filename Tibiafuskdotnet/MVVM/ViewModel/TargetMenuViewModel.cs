@@ -144,7 +144,7 @@ namespace Tibiafuskdotnet.ViewModel
             set { _targets = value; RaisePropertyChanged("Targets"); }
         }
 
-        public RelayCommand<string> command { get; set; }
+        public RelayCommand<string> Command { get; set; }
         #endregion
         #region Methods
         private Targeting AddNewMonster()
@@ -173,18 +173,12 @@ namespace Tibiafuskdotnet.ViewModel
             SelectedAction = ListActions[0];
             SelectedStanceMode = ListStanceMode[0];
             SelectedStanceMode = Ring[0];
-            command = new RelayCommand<string>(PerformAction);
+            Command = new RelayCommand<string>(PerformAction);
         }
-        public TextBox txtTargetName { get; set; }
-        private SoundPlayer Player = new SoundPlayer();
+        public TextBox TxtTargetName { get; set; }
+        private readonly SoundPlayer Player = new SoundPlayer();
 
-        private void EquipRing()
-        {
-            //foreach Creature  if  monsterlist = Creature pickup ring
-            // Creature C in MemoryReader.battleList.GetCreatures()
 
-        }
-        
         private void PerformAction(string obj)
         {
            
@@ -234,7 +228,7 @@ namespace Tibiafuskdotnet.ViewModel
                             if (Targets[Targets.Count - 2].Name == "")
                             {
                                 SelectedTarget = Targets[Targets.Count - 2];
-                                txtTargetName.Focus();
+                                TxtTargetName.Focus();
                                 return;
                             }
                         }
@@ -248,8 +242,10 @@ namespace Tibiafuskdotnet.ViewModel
             }
         }
         int TargetHPBar;
+        
         private void StartTarget()
         {
+            
             foreach (var item in Targets)
             {
                 foreach (Creature C in MemoryReader.battleList.GetCreatures())
@@ -257,8 +253,8 @@ namespace Tibiafuskdotnet.ViewModel
                     TargetHPBar = C.HPBar;
                     if (item.Name == C.Name)
                     {
-                        bool result = false;
-
+                        //bool result = false;
+                         
 
                         System.Console.WriteLine(TargetHPBar);
                         if (SelectedTarget.StanceMode == "Attack")
@@ -276,7 +272,7 @@ namespace Tibiafuskdotnet.ViewModel
                                         System.Console.WriteLine(C.Name);
                                         C.Attack();
 
-
+                                    
                                 }
                                 else
                                 {
@@ -286,8 +282,7 @@ namespace Tibiafuskdotnet.ViewModel
                                 
                                 
                             }
-
-                            
+                                                        
                          
 
                         }
@@ -308,6 +303,15 @@ namespace Tibiafuskdotnet.ViewModel
                             }
                             else { System.Console.WriteLine(SelectedTarget.ActionMode); }
                         }
+
+                       // Dennis gjort fungerar inte.
+                        if (SelectedTarget.MonsterAttackMode == "Stand/Offensive") 
+                        {
+                           //Attack.FullAttack = 1;
+                            
+                        }
+
+
                         //Dennis gjort
                         /*
                         if (checked(SelectedTarget.Reachable))
@@ -322,10 +326,12 @@ namespace Tibiafuskdotnet.ViewModel
 
                             }
                         }*/
+
+                        //Equip Ring if monster is on screen.
                             foreach (Item MyItems in MemoryReader.inventory.GetItems())
                         {
-                            Item ringRingRingRingBananaPhone;
-                            ItemLists.Ring.TryGetValue(MyItems.Id, out ringRingRingRingBananaPhone);
+                            // Item ringRingRingRingBananaPhone;
+                            ItemLists.Ring.TryGetValue(MyItems.Id, out Item ringRingRingRingBananaPhone);
                             if (ringRingRingRingBananaPhone == null)
                             {
                                 continue;
