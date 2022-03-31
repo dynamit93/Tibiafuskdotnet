@@ -145,5 +145,10 @@ namespace Tibia.Util
             if (e.Key == Key.Enter)
                 ChooseClient();
         }
+
+        private void uxClients_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Version.SetVersion860();
+        }
     }
 }

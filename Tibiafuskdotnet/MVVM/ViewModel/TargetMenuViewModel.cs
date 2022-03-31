@@ -7,6 +7,7 @@ using System.Media;
 using System.Windows.Controls;
 using Tibia.Constants;
 using Tibia.Objects;
+using Tibia.Util;
 using Tibiafuskdotnet.BL;
 
 namespace Tibiafuskdotnet.ViewModel
@@ -72,6 +73,18 @@ namespace Tibiafuskdotnet.ViewModel
             get { return _listStanceMode; }
             set { _listStanceMode = value; }
         }
+
+        private ObservableCollection<string> _attackMode;
+
+        public ObservableCollection<string> AttackModes
+        {
+            get { return _attackMode; }
+            set { _attackMode = value; }
+        }
+
+
+        
+
         private string _selectedStanceMode;
 
         public string SelectedStanceMode
@@ -79,6 +92,26 @@ namespace Tibiafuskdotnet.ViewModel
             get { return _selectedStanceMode; }
             set { _selectedStanceMode = value; RaisePropertyChanged("SelectedStanceMode"); }
         }
+
+        private string _selectedattackmode;
+
+        public string SelectedAttackMode
+        {
+            get { return _selectedattackmode; }
+            set { _selectedattackmode = value; RaisePropertyChanged("SelectedAttackMode"); }
+        }
+
+        private string _selectedactionmode;
+
+        public string SelectedActionMode
+        {
+            get { return _selectedactionmode; }
+            set { _selectedactionmode = value; RaisePropertyChanged("SelectedActionMode"); }
+        }
+
+
+        
+
         private ObservableCollection<string> _setting;
 
         public ObservableCollection<string> Settings
@@ -93,6 +126,14 @@ namespace Tibiafuskdotnet.ViewModel
         {
             get { return _actionModes; }
             set { _actionModes = value; RaisePropertyChanged("ActionModes"); }
+        }
+
+        private ObservableCollection<string> _actionModesspells;
+
+        public ObservableCollection<string> ActionModesSpells
+        {
+            get { return _actionModesspells; }
+            set { _actionModesspells = value; RaisePropertyChanged("ActionModesSpells"); }
         }
 
 
@@ -161,7 +202,8 @@ namespace Tibiafuskdotnet.ViewModel
             Settings = new ObservableCollection<string>() { "1", "2", "3", "4" };
             MonsterAttacks = new ObservableCollection<string>() { "Don't avoid", "Avoid wave", "Avoid beam" };
             DangerLevels = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            ActionModes = new ObservableCollection<string>() { "No Change", "Stand/Offensive", "Stand/Balanced", "Stand/Defensive", "Chase/Offensive", "Chase/Balanced", "Chase/Defensive" };
+            AttackModes = new ObservableCollection<string>() { "No Change", "Stand/Offensive", "Stand/Balanced", "Stand/Defensive", "Chase/Offensive", "Chase/Balanced", "Chase/Defensive" };
+            ActionModesSpells = new ObservableCollection<string>() {""};
             Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
             // Ring = new ObservableCollection<string>(.Ring);
 
@@ -170,10 +212,16 @@ namespace Tibiafuskdotnet.ViewModel
             Player = new SoundPlayer();
 
 
-            SelectedAction = ListActions[0];
-            SelectedStanceMode = ListStanceMode[0];
+
+            SelectedActionMode = ListStanceMode[0];
+            
+                
+
+            SelectedStanceMode = ListActions[0];
+            SelectedActionMode = ActionModesSpells[0];
+            SelectedAttackMode = AttackModes[0];
             SelectedStanceMode = Ring[0];
-            Command = new RelayCommand<string>(PerformAction);
+            command = new RelayCommand<string>(PerformAction);
         }
         public TextBox txtTargetName { get; set; }
         private SoundPlayer Player = new SoundPlayer();
@@ -201,7 +249,7 @@ namespace Tibiafuskdotnet.ViewModel
                     break;
                 case "RunTarget":
 
-                case "RunTarget":
+                
                     StartTarget();
                     break;
 
@@ -258,37 +306,44 @@ namespace Tibiafuskdotnet.ViewModel
                          
 
                         System.Console.WriteLine(TargetHPBar);
-                        if (SelectedTarget.StanceMode == "Attack")
+                        if (SelectedTarget.ActionMode == "Attack")
 
                         {
-                            if (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax)
+                            if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
                             {
                                 C.Attack();
                             }
                         }
-                        else if (SelectedTarget.StanceMode == "Follow")
+                        else if (SelectedTarget.ActionMode == "Follow")
                         {
-                            if (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax)
+                            if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
 
                             {
                                 C.Follow();
                             }
                         }
-                        if (SelectedTarget.ActionMode == "Melee - Approach")
+                        if (SelectedTarget.StanceMode == "Melee - Approach")
 
                         {
-                            if (TargetHPBar <= Helper.TargetingHpMin && TargetHPBar >= Helper.TargetingHpMax)
+                            if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
                             {
                                 C.Approach();
                             }
                             else { System.Console.WriteLine(SelectedTarget.ActionMode); }
                         }
 
-                       // Dennis gjort fungerar inte.
-                        if (SelectedTarget.MonsterAttackMode == "Stand/Offensive") 
+                        if (SelectedTarget.AttackMode == "Stand/Offensive")
                         {
-                           //Attack.FullAttack = 1;
-                            
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                        }
+                        else if (SelectedTarget.AttackMode == "Stand/Balanced")
+                        {
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                            //MemoryReader.client.AttackMode = Attack.Balance;
+                        }
+                        else if (SelectedTarget.AttackMode == "Stand/Defensive")
+                        {
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
                         }
 
 
@@ -308,7 +363,7 @@ namespace Tibiafuskdotnet.ViewModel
                         }*/
 
                         //Equip Ring if monster is on screen.
-                            foreach (Item MyItems in MemoryReader.inventory.GetItems())
+                        foreach (Item MyItems in MemoryReader.inventory.GetItems())
                         {
                             // Item ringRingRingRingBananaPhone;
                             ItemLists.Ring.TryGetValue(MyItems.Id, out Item ringRingRingRingBananaPhone);

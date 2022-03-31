@@ -36,6 +36,7 @@ namespace Tibiafuskdotnet
         public static int currentMana;
         public static int maxMana;
         public static int xor;
+        public static int Attackmode;
         public static string chatt;
         public static int light;
 
@@ -157,7 +158,7 @@ namespace Tibiafuskdotnet
         }
 
         public static BattleList battleList = null;
-
+        public static Client client = null;
         public static Creature creature = null;
         /// <summary>
         /// Dennis gjort
@@ -166,6 +167,7 @@ namespace Tibiafuskdotnet
 
         public static bool AppRunning(string appName = "Tibia")
         {
+
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();
            
@@ -257,7 +259,17 @@ namespace Tibiafuskdotnet
             int bytesWritten = 0;
             WriteProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesWritten);
             System.Console.WriteLine(bytesWritten);
+
+            int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
+            WriteProcessMemory((int)processHandle, attackmodeuint, buffer, buffer.Length, ref bytesWritten);
+            Attackmode = BitConverter.ToInt32(buffer, 0);
+
+
         }
+
+
+
+
 
 
         public static void ReadValuesFromMemory()
@@ -274,7 +286,11 @@ namespace Tibiafuskdotnet
 
             int bytesRead = 0;
             byte[] buffer = new byte[30];
+                int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
             
+            ReadProcessMemory((int)handle, attackmodeuint, buffer, buffer.Length, ref bytesRead);
+            Attackmode = BitConverter.ToInt32(buffer, 0);
+
 
             ReadProcessMemory((int)handle, xorAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
             xor = BitConverter.ToInt32(buffer, 0);
@@ -656,7 +672,7 @@ namespace Tibiafuskdotnet
             }
             catch (Exception)
             {
-
+               // System.Windows.Application.Current.Shutdown();
                 //throw;
             }
         }
@@ -670,9 +686,10 @@ namespace Tibiafuskdotnet
         public static void TimerTick(object sender, EventArgs e)
         {
             ReadValuesFromMemory();
-            
+            //System.Console.WriteLine("attackmode " + Attackmode);
         }
        
+        
 
     }
 

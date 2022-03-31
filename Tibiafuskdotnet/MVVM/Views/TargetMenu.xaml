@@ -29,9 +29,9 @@
         <Frame
             x:Name="frame"
             Grid.ColumnSpan="2"
-            Width="365"
-            Height="301"
-            Margin="15,11,0,0"
+            Width="376"
+            Height="331"
+            Margin="10,14,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Panel.ZIndex="-1"
@@ -153,14 +153,14 @@
             Content="Target must be Reachable"
             IsChecked="{Binding SelectedTarget.Reachable, UpdateSourceTrigger=PropertyChanged}"
             Unchecked="Reachable_Unchecked">
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="Checked">
-                <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableChecked" />
-            </i:EventTrigger>
-            <i:EventTrigger EventName="Unchecked">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableChecked" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
                     <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableUnChecked" />
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </CheckBox>
         <CheckBox
             x:Name="ShootableCheckBox"
@@ -268,7 +268,7 @@
             x:Name="DelBtn"
             Width="28"
             Height="20"
-            Margin="135,292,0,0"
+            Margin="135,320,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Command="{Binding command}"
@@ -277,7 +277,7 @@
         <CheckBox
             x:Name="playAlram"
             Grid.ColumnSpan="2"
-            Margin="174,295,0,0"
+            Margin="174,323,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Checked="CheckBox_Checked_1"
@@ -296,7 +296,7 @@
         <CheckBox
             x:Name="LootMonster"
             Grid.Column="1"
-            Margin="34.072,295,0,0"
+            Margin="34,323,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Loot monster"
@@ -397,7 +397,7 @@
             RenderTransformOrigin="-0.079,-0.345" />
         <Label
             Grid.ColumnSpan="2"
-            Margin="168,251,0,0"
+            Margin="168,281,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Wear ring" />
@@ -406,7 +406,7 @@
             Grid.Column="1"
             Width="107"
             Height="23"
-            Margin="39.072,156,0,0"
+            Margin="40,156,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             ItemsSource="{Binding MonsterAttacks, UpdateSourceTrigger=PropertyChanged}"
@@ -418,7 +418,7 @@
             Grid.Column="1"
             Width="61"
             Height="23"
-            Margin="85.072,182,0,0"
+            Margin="86,183,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             ItemsSource="{Binding DangerLevels, UpdateSourceTrigger=PropertyChanged}"
@@ -430,45 +430,56 @@
             Grid.Column="1"
             Width="107"
             Height="23"
-            Margin="39.072,205,0,0"
+            Margin="40,206,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ItemsSource="{Binding ListStanceMode}"
+            ItemsSource="{Binding ListActions}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.StanceMode, UpdateSourceTrigger=PropertyChanged}"
             SelectionChanged="StanceMode_SelectionChanged" />
+        <Label Margin="167,252,358,164" Grid.ColumnSpan="2" Panel.ZIndex="2">Attack Mode</Label>
         <ComboBox
-            x:Name="ActionMode"
+            x:Name="AttackMode"
             Grid.Column="1"
-            Width="57"
-            Height="23"
-            Margin="39.072,229,0,0"
+            Width="107"
+            Height="28"
+            Margin="40,252,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ItemsSource="{Binding ListActions, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding AttackModes, UpdateSourceTrigger=PropertyChanged}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.ActionMode}"
+            SelectedItem="{Binding SelectedTarget.AttackMode}"
             SelectionChanged="ActionMode_SelectionChanged" />
         <ComboBox
             x:Name="ActionModeSpell"
             Grid.Column="1"
-            Width="48"
-            Height="22"
-            Margin="97.072,230,0,0"
+            Width="54"
+            Height="23"
+            Margin="93,229,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             ItemsSource="{Binding ActionModes}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox x:Name="ActionMode" 
+            Width="53"
+            Height="23"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding ListStanceMode}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.ActionMode, UpdateSourceTrigger=PropertyChanged}"
+            SelectionChanged="StanceMode_SelectionChanged" Grid.Column="1" Margin="40,229,0,0" />
         <ComboBox
             x:Name="Ring"
             Grid.Column="1"
             Width="107"
             Height="23"
-            Margin="40.072,252,0,0"
+            Margin="40,280,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             ItemsSource="{Binding Ring}"
