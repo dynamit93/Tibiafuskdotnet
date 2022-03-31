@@ -438,7 +438,9 @@
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.StanceMode, UpdateSourceTrigger=PropertyChanged}"
             SelectionChanged="StanceMode_SelectionChanged" />
-        <Label Margin="167,252,358,164" Grid.ColumnSpan="2" Panel.ZIndex="2">Attack Mode</Label>
+        <Label             
+
+            Content="Attack Mode" Margin="167,252,349,158" Grid.ColumnSpan="2" />
         <ComboBox
             x:Name="AttackMode"
             Grid.Column="1"
