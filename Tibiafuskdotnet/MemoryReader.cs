@@ -17,7 +17,7 @@ using WindowsInput.Native;
 using Tibia;
 using Tibia.Objects;
 using Tibia.Constants;
-using System.Collections.Generic;
+
 
 namespace Tibiafuskdotnet
 {
@@ -37,6 +37,7 @@ namespace Tibiafuskdotnet
         public static int maxMana;
         public static int xor;
         public static int Attackmode;
+        public static int Followmode;
         public static string chatt;
         public static int light;
 
@@ -263,6 +264,11 @@ namespace Tibiafuskdotnet
             int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
             WriteProcessMemory((int)processHandle, attackmodeuint, buffer, buffer.Length, ref bytesWritten);
             Attackmode = BitConverter.ToInt32(buffer, 0);
+
+            int Followmodeuint = Convert.ToInt32(Tibia.Addresses.Client.FollowMode);
+            WriteProcessMemory((int)processHandle, Followmodeuint, buffer, buffer.Length, ref bytesWritten);
+            Followmode = BitConverter.ToInt32(buffer, 0);
+            
 
 
         }

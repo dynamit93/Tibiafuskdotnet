@@ -42,12 +42,12 @@ namespace Tibiafuskdotnet.ViewModel
             set { _selectedAction = value; RaisePropertyChanged("SelectedAction"); }
         }
 
-        private ObservableCollection<string> _counts;
+        private ObservableCollection<int> _Counts;
 
-        public ObservableCollection<string> Counts
+        public ObservableCollection<int> Counts
         {
-            get { return _counts; }
-            set { _counts = value; RaisePropertyChanged("Counts"); }
+            get { return _Counts; }
+            set { _Counts = value; RaisePropertyChanged("Counts"); }
         }
         private ObservableCollection<string> _monsterAttacks;
 
@@ -92,6 +92,17 @@ namespace Tibiafuskdotnet.ViewModel
             get { return _selectedStanceMode; }
             set { _selectedStanceMode = value; RaisePropertyChanged("SelectedStanceMode"); }
         }
+
+        private int _selectedCounts;
+
+        public int SelectedCounts
+        {
+            get { return _selectedCounts; }
+            set { _selectedCounts = value; RaisePropertyChanged("SelectedCounts"); }
+        }
+
+
+        
 
         private string _selectedattackmode;
 
@@ -198,7 +209,7 @@ namespace Tibiafuskdotnet.ViewModel
             ListActions = new ObservableCollection<string>() { "No Movement", "Melee - Strike", "Melee - Parry", "Dist - Away", "Melee - Reach", "Melee - ParryReach", "Melee - Approach", "Melee - Circle", "Melee - ReachCircle", "Melee - ReachStrike", "Dist - Wait", "Lose Target", "Lure Target", "Dist - Straigt", "Dist - Lure", "Dist - WaitStraight", "Dist - WaitLure" };
             ListStanceMode = new ObservableCollection<string>() { "Do Nothing", "Attack", "Follow" };
             ListTargeting = new ObservableCollection<string>() { "<New Monseter>" };
-            Counts = new ObservableCollection<string>() { "Any", "1", "2+", "2", "3+", "3", "4+", "4", "5+", "5" };
+            Counts = new ObservableCollection<int>() { 1 ,2,3,4,5,6 };
             Settings = new ObservableCollection<string>() { "1", "2", "3", "4" };
             MonsterAttacks = new ObservableCollection<string>() { "Don't avoid", "Avoid wave", "Avoid beam" };
             DangerLevels = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -214,9 +225,9 @@ namespace Tibiafuskdotnet.ViewModel
 
 
             SelectedActionMode = ListStanceMode[0];
-            
-                
 
+
+            SelectedCounts = Counts[0];
             SelectedStanceMode = ListActions[0];
             SelectedActionMode = ActionModesSpells[0];
             SelectedAttackMode = AttackModes[0];
@@ -291,15 +302,24 @@ namespace Tibiafuskdotnet.ViewModel
             }
         }
         int TargetHPBar;
-        
         private void StartTarget()
         {
             
             foreach (var item in Targets)
             {
+                //targetting Monster Count
+                var count = MemoryReader.battleList.GetCreatures().Aggregate(0, (total, c) => {
+                    return c.Name == item.Name ? total + 1 : total;
+                });
+                //chceking if monster on screen is == then count monster in tragetting
+                System.Console.WriteLine(count);
+                if(count == SelectedTarget.Count) { }
+
                 foreach (Creature C in MemoryReader.battleList.GetCreatures())
                 {
                     TargetHPBar = C.HPBar;
+                    
+                    
                     if (item.Name == C.Name)
                     {
                         //bool result = false;
@@ -334,15 +354,35 @@ namespace Tibiafuskdotnet.ViewModel
 
                         if (SelectedTarget.AttackMode == "Stand/Offensive")
                         {
+                            System.Console.WriteLine("before add value " + MemoryReader.Followmode);
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
                             MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                            System.Console.WriteLine("after add value " + MemoryReader.Followmode);
                         }
                         else if (SelectedTarget.AttackMode == "Stand/Balanced")
                         {
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
                             MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
                             //MemoryReader.client.AttackMode = Attack.Balance;
                         }
                         else if (SelectedTarget.AttackMode == "Stand/Defensive")
                         {
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                        }
+                        else if (SelectedTarget.AttackMode == "Chase/Offensive")
+                        {
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                        }
+                        else if (SelectedTarget.AttackMode == "Chase/Balanced")
+                        {
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                        }
+                        else if (SelectedTarget.AttackMode == "Chase/Defensive")
+                        {
+                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
                             MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
                         }
 
