@@ -112,6 +112,15 @@ namespace Tibiafuskdotnet.ViewModel
             set { _selectedattackmode = value; RaisePropertyChanged("SelectedAttackMode"); }
         }
 
+
+        private int _SelecteddangerLevels;
+
+        public int SelectedDangerLevels
+        {
+            get { return _SelecteddangerLevels; }
+            set { _SelecteddangerLevels = value; RaisePropertyChanged("SelectedDangerLevels"); }
+        }
+
         private string _selectedactionmode;
 
         public string SelectedActionMode
@@ -216,7 +225,6 @@ namespace Tibiafuskdotnet.ViewModel
             AttackModes = new ObservableCollection<string>() { "No Change", "Stand/Offensive", "Stand/Balanced", "Stand/Defensive", "Chase/Offensive", "Chase/Balanced", "Chase/Defensive" };
             ActionModesSpells = new ObservableCollection<string>() {""};
             Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
-            // Ring = new ObservableCollection<string>(.Ring);
 
 
             Targets = new ObservableCollection<Targeting>() { AddNewMonster() };
@@ -226,7 +234,7 @@ namespace Tibiafuskdotnet.ViewModel
 
             SelectedActionMode = ListStanceMode[0];
 
-
+            SelectedDangerLevels = DangerLevels[0];
             SelectedCounts = Counts[0];
             SelectedStanceMode = ListActions[0];
             SelectedActionMode = ActionModesSpells[0];
@@ -311,9 +319,12 @@ namespace Tibiafuskdotnet.ViewModel
                 var count = MemoryReader.battleList.GetCreatures().Aggregate(0, (total, c) => {
                     return c.Name == item.Name ? total + 1 : total;
                 });
+
+               // if (SelectedTarget.DangerLevel <= ) { }
+
                 //chceking if monster on screen is == then count monster in tragetting
                 System.Console.WriteLine(count);
-                if(count == SelectedTarget.Count) { }
+                if(SelectedCounts <= count) { }
 
                 foreach (Creature C in MemoryReader.battleList.GetCreatures())
                 {

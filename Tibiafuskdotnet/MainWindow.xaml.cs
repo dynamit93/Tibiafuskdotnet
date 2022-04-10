@@ -22,6 +22,7 @@ using System.Runtime.InteropServices;
 using Tibia.Util;
 using Tibia.Objects;
 using Tibia;
+using System.Net;
 namespace Tibiafuskdotnet
 {
 
@@ -43,7 +44,33 @@ namespace Tibiafuskdotnet
 
             DataContext = this;
             InitializeComponent();
+/*
+            WebClient webClient = new WebClient();
 
+            try
+            { 
+                if (!webClient.DownloadString("https://pastebin.com/raw/gTZGA5rp").Contains("1.5.0"))
+                {
+                    if (System.Windows.Forms.MessageBox.Show("Looks like there is an update! Do you want to download it?", "Updater", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                        using (var client = new WebClient())
+                        {
+                           // Directory.CreateDirectory(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Updates"));
+                           // string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Updates\\";
+                            // Directory.CreateDirectory(filepath);
+                            //Environment.GetFolderPath(Environment.SpecialFolder.Personal + "sdfsdf");
+                            
+                            Process.Start("updatecore.exe");
+                            this.Close();
+                                                       
+                        }                    
+                }
+            }
+            catch
+            {
+                
+                MessageBox.Show("error");
+            }
+            */
             MemoryReader.Start(0, 0, 0);
 
             Helper.Initialize();

@@ -551,6 +551,8 @@
     <Content Include="sounds\playeronscreen.wav" />
     <Content Include="sounds\privatemessage.wav" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Updates\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
