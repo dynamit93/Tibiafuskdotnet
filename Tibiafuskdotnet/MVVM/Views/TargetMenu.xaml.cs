@@ -91,5 +91,12 @@ namespace Tibiafuskdotnet.MVVM.Views
         {
 
         }
+
+        private void targeteditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MVVM.Views.TargetEditSettings tG = new MVVM.Views.TargetEditSettings();
+            tG.ShowDialog();
+            
+        }
     }
 }

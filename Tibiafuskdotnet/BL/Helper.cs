@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Tibiafuskdotnet.ViewModel;
+using System.Collections.ObjectModel;
 
 namespace Tibiafuskdotnet.BL
 {
@@ -41,9 +43,14 @@ namespace Tibiafuskdotnet.BL
         public static Int32 TempSpellHiMana = 0;
         public static string SpellHitext = "";
         public static string TempSpellHitext = "";
-     
 
-       
+        /// <summary>
+        /// new targettings save things
+        /// </summary>
+
+        
+
+       // ListTargeting = Targeting.
 
         public static void Initialize()
         {
@@ -82,6 +89,13 @@ namespace Tibiafuskdotnet.BL
                 r.WriteLine(path);
                 r.Close();
             }
+        }
+        public static void WriteTargetingToFile()
+        {
+
+            StreamWriter sw = new StreamWriter("fil.txt");
+            sw.WriteLine(TargetMenuViewModel.publictarget);
+            sw.Close();
         }
 
         public static Cheat ReadFromFile()

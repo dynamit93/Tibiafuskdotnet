@@ -244,6 +244,10 @@
     <Compile Include="ExtrasMenu.xaml.cs">
       <DependentUpon>ExtrasMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\ViewModel\TargetEditSettingsViewModel.cs" />
+    <Compile Include="MVVM\Views\TargetEditSettings.xaml.cs">
+      <DependentUpon>TargetEditSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Views\TargetMenu.xaml.cs">
       <DependentUpon>TargetMenu.xaml</DependentUpon>
     </Compile>
@@ -487,6 +491,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\Views\TargetEditSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\Views\TargetMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

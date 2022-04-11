@@ -213,6 +213,7 @@ namespace Tibiafuskdotnet.ViewModel
             return new Targeting() { Name = "<New Monster>" };
         }
         #endregion
+         public static Object publictarget = "";
         public TargetMenuViewModel()
         {
             ListActions = new ObservableCollection<string>() { "No Movement", "Melee - Strike", "Melee - Parry", "Dist - Away", "Melee - Reach", "Melee - ParryReach", "Melee - Approach", "Melee - Circle", "Melee - ReachCircle", "Melee - ReachStrike", "Dist - Wait", "Lose Target", "Lure Target", "Dist - Straigt", "Dist - Lure", "Dist - WaitStraight", "Dist - WaitLure" };
@@ -227,10 +228,14 @@ namespace Tibiafuskdotnet.ViewModel
             Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
 
 
+
             Targets = new ObservableCollection<Targeting>() { AddNewMonster() };
             Player = new SoundPlayer();
-
-
+            
+            foreach (var target in Targets)
+            {
+                publictarget = target;
+    }
 
             SelectedActionMode = ListStanceMode[0];
 
@@ -272,8 +277,19 @@ namespace Tibiafuskdotnet.ViewModel
                     StartTarget();
                     break;
 
+                /* case "ReachableChecked":
+                     if (SelectedTarget.Name == Targets) 
+                     { 
 
+                     }
+                     break;
+                */
+                case "TargetEdit":
                     
+
+                break;
+
+
                 case "Delete":
                     if (SelectedTarget != null)
                     {
@@ -333,7 +349,7 @@ namespace Tibiafuskdotnet.ViewModel
                     
                     if (item.Name == C.Name)
                     {
-                        //bool result = false;
+                        
                          
 
                         System.Console.WriteLine(TargetHPBar);

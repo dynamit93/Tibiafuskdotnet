@@ -172,6 +172,7 @@ namespace Tibiafuskdotnet
         {
             MVVM.Views.TargetMenu tG = new MVVM.Views.TargetMenu();
             tG.ShowDialog();
+
             //TargetMenuViewModel Targetkey = new TargetMenuViewModel();
             //Targetkey.Show();
         }

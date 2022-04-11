@@ -15,6 +15,7 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibiafuskdotnet.ViewModel
 {
@@ -43,6 +44,7 @@ namespace Tibiafuskdotnet.ViewModel
             ////}
 
             SimpleIoc.Default.Register<TargetMenuViewModel>();
+            SimpleIoc.Default.Register<TargetEditSettingsViewModel>();
         }
 
         public TargetMenuViewModel Main
@@ -52,7 +54,16 @@ namespace Tibiafuskdotnet.ViewModel
                 return ServiceLocator.Current.GetInstance<TargetMenuViewModel>();
             }
         }
-        
+
+
+        public TargetEditSettingsViewModel editSettingsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TargetEditSettingsViewModel>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

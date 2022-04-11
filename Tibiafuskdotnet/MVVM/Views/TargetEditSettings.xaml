@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views" xmlns:viewmodel="clr-namespace:Tibiafuskdotnet.MVVM.ViewModel" xmlns:ViewModel="clr-namespace:Tibiafuskdotnet.ViewModel" x:Class="Tibiafuskdotnet.MVVM.Views.TargetEditSettings"
+        d:DataContext="{d:DesignInstance Type={x:Type viewmodel:TargetEditSettingsViewModel}}"
+        mc:Ignorable="d"
+        Title="TargetEditSettings" Height="450" Width="800">
+
+    <Grid>
+        <!--<TextBox.Text>
+            <MultiBinding Converter="{StaticResource myConverter}">
+                <Binding Source="{RelativeSource editSettingsViewModel}" Path="Firstargument"/>
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="NullText"/>
+            </MultiBinding>
+        </TextBox.Text>-->
+        <TextBox Margin="53,60,94,59" Text="{Binding editSettingsViewModel.Firstargument}">
+            <TextBox.DataContext>
+                <ViewModel:ViewModelLocator/>
+            </TextBox.DataContext>
+        </TextBox>
+    </Grid>
+</Window>
