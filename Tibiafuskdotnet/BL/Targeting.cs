@@ -22,9 +22,9 @@ namespace Tibiafuskdotnet.BL
             get { return _categories; }
             set { _categories = value;RaisePropertyChanged("Categories"); }
         }
-        private string _count;
+        private int _count;
                 
-        public string Count
+        public int Count
         {
             get { return _count; }
             set { _count = value;RaisePropertyChanged("Count"); }
@@ -92,9 +92,9 @@ namespace Tibiafuskdotnet.BL
             get { return _attackMode; }
             set { _attackMode = value;RaisePropertyChanged("AttackMode"); }
         }
-        private int _ring;
+        private string _ring;
 
-        public int Ring
+        public string Ring
         {
             get { return _ring; }
             set { _ring = value;RaisePropertyChanged("Ring"); }
@@ -106,6 +106,14 @@ namespace Tibiafuskdotnet.BL
             get { return _alarm; }
             set { _alarm = value; RaisePropertyChanged("Alarm"); }
         }
+
+        private bool _Reachable;
+        public bool Reachable
+        {
+            get { return _Reachable; }
+            set { _Reachable = value; RaisePropertyChanged("Reachable"); }
+        }
+
         private bool _loot;
 
         public bool Loot

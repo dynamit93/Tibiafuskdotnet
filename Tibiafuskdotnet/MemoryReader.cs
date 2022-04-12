@@ -16,6 +16,7 @@ using WindowsInput;
 using WindowsInput.Native;
 using Tibia;
 using Tibia.Objects;
+using Tibia.Constants;
 
 
 namespace Tibiafuskdotnet
@@ -35,6 +36,8 @@ namespace Tibiafuskdotnet
         public static int currentMana;
         public static int maxMana;
         public static int xor;
+        public static int Attackmode;
+        public static int Followmode;
         public static string chatt;
         public static int light;
 
@@ -156,9 +159,16 @@ namespace Tibiafuskdotnet
         }
 
         public static BattleList battleList = null;
+        public static Client client = null;
+        public static Creature creature = null;
+        /// <summary>
+        /// Dennis gjort
+        /// </summary>
+        public static Inventory inventory = null;
 
         public static bool AppRunning(string appName = "Tibia")
         {
+
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();
            
@@ -169,12 +179,51 @@ namespace Tibiafuskdotnet
                 {
                     Client c = new Client(p);
                     battleList = new BattleList(c);
+                    // dennis gjort
+                    inventory = new Inventory(c);
+
+
                     Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())
                     {
                         System.Console.WriteLine("Creature " + C.Name);
                         
                     }
+                    // Dennis gjort Skriver ut alla backpacks finns med id + namn + Vilket nummer backpackn finns
+                    foreach (Container MyC in inventory.GetContainers())
+                    {
+                        
+                       // System.Console.WriteLine( MyC.Id +" "+ MyC.Name + " " + MyC.Number );
+                    }
+                    Item RingItem; 
+
+                    var Ring = ItemLists.Ring.TryGetValue(Items.Ring.TimeRing.Id, out RingItem );
+                    // Dennis gjort kollar vilka items som finns på Hela Gubben
+
+                   /* //System.Console.WriteLine(RingItem.Name + " " + RingItem.Id);
+                    foreach (Item MyItems in inventory.GetItems())
+                    {
+                        Item ringRingRingRingBananaPhone;
+                        ItemLists.Ring.TryGetValue(MyItems.Id, out ringRingRingRingBananaPhone);
+                        if(ringRingRingRingBananaPhone == null)
+                        {
+                            continue;
+                        }
+
+                        // Dennis gjort om id är lika skriver den ut namnet på id.
+                        System.Console.WriteLine($"{MyItems.Id} -> {ringRingRingRingBananaPhone.Name}" /*+ MyItems.Move(9)*/ /*);*/
+                       /* if (ringRingRingRingBananaPhone.Name == "Time Ring")
+                       /* {
+                           
+
+                            /* // Funkar inte men behöver använda Items.Move för att flytta items
+                            MyItems.Move(SlotNumber.Ring ,1 );
+                            */
+                     /*   }
+                    }*/
+
+
+
 
                     //System.Console.WriteLine(bc.GetCreatures());
                     return true;
@@ -211,7 +260,22 @@ namespace Tibiafuskdotnet
             int bytesWritten = 0;
             WriteProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesWritten);
             System.Console.WriteLine(bytesWritten);
+
+            int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
+            WriteProcessMemory((int)processHandle, attackmodeuint, buffer, buffer.Length, ref bytesWritten);
+            Attackmode = BitConverter.ToInt32(buffer, 0);
+
+            int Followmodeuint = Convert.ToInt32(Tibia.Addresses.Client.FollowMode);
+            WriteProcessMemory((int)processHandle, Followmodeuint, buffer, buffer.Length, ref bytesWritten);
+            Followmode = BitConverter.ToInt32(buffer, 0);
+            
+
+
         }
+
+
+
+
 
 
         public static void ReadValuesFromMemory()
@@ -228,7 +292,11 @@ namespace Tibiafuskdotnet
 
             int bytesRead = 0;
             byte[] buffer = new byte[30];
+                int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
             
+            ReadProcessMemory((int)handle, attackmodeuint, buffer, buffer.Length, ref bytesRead);
+            Attackmode = BitConverter.ToInt32(buffer, 0);
+
 
             ReadProcessMemory((int)handle, xorAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
             xor = BitConverter.ToInt32(buffer, 0);
@@ -610,7 +678,7 @@ namespace Tibiafuskdotnet
             }
             catch (Exception)
             {
-
+               // System.Windows.Application.Current.Shutdown();
                 //throw;
             }
         }
@@ -624,9 +692,10 @@ namespace Tibiafuskdotnet
         public static void TimerTick(object sender, EventArgs e)
         {
             ReadValuesFromMemory();
-            
+            //System.Console.WriteLine("attackmode " + Attackmode);
         }
        
+        
 
     }
 

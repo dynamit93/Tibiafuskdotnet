@@ -31,6 +31,10 @@ namespace Tibiafuskdotnet.MVVM.Views
         {
 
         }
+        private void Reachable_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void TargetNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -39,18 +43,17 @@ namespace Tibiafuskdotnet.MVVM.Views
                 TargetNameTextBox.Text = "";
             }
         }
-        private SoundPlayer Player = new SoundPlayer();
 
 
         private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
         {
-            Player.SoundLocation = @"./sounds/monster.wav";
-            Player.PlayLooping();
+           
+          
         }
 
         private void playAlram_Unchecked(object sender, RoutedEventArgs e)
         {
-            Player.Stop();
+           // Player.Stop();
         }
 
         private void TargetingHpMin_TextChanged(object sender, TextChangedEventArgs e)
@@ -87,6 +90,13 @@ namespace Tibiafuskdotnet.MVVM.Views
         private void DelBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void targeteditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MVVM.Views.TargetEditSettings tG = new MVVM.Views.TargetEditSettings();
+            tG.ShowDialog();
+            
         }
     }
 }

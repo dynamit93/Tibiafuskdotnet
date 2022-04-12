@@ -6,7 +6,7 @@
     xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Tibiafuskdotnet"
     d1p1:Ignorable="d"
-    StartupUri="/MVVM/Views/TargetMenu.xaml">
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator
