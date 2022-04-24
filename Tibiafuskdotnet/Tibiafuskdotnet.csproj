@@ -248,6 +248,9 @@
       <DependentUpon>ExtrasMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\ViewModel\TargetEditSettingsViewModel.cs" />
+    <Compile Include="MVVM\Views\PvpMenu.xaml.cs">
+      <DependentUpon>PvpMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Views\TargetEditSettings.xaml.cs">
       <DependentUpon>TargetEditSettings.xaml</DependentUpon>
     </Compile>
@@ -494,6 +497,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\Views\PvpMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\Views\TargetEditSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

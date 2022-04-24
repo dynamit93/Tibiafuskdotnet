@@ -109,6 +109,8 @@ namespace Tibia.Objects
         {
             Player p = client.GetPlayer();
             p.GoTo = Location;
+            
+            
         }
 
         /// <summary>

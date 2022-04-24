@@ -32,6 +32,7 @@
         <Button x:Name="button3" Content="3" HorizontalAlignment="Left" Margin="345,36,0,0" VerticalAlignment="Top" Width="29" IsEnabled="False"/>
         <Button x:Name="button4" Content="4" HorizontalAlignment="Left" Margin="374,36,0,0" VerticalAlignment="Top" Width="21" Height="20" IsEnabled="False"/>
         <Button x:Name="button5" Content="5" HorizontalAlignment="Left" Margin="395,36,0,0" VerticalAlignment="Top" Width="18" IsEnabled="False"/>
+        <Button x:Name="button6" Content="PvP" HorizontalAlignment="Left" Margin="211,96,0,0" VerticalAlignment="Top" Width="66" IsEnabled="False"/>
 
 
 

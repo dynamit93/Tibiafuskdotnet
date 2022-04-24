@@ -367,6 +367,7 @@ namespace Tibiafuskdotnet.ViewModel
 
                             {
                                 C.Follow();
+                               // System.Console.WriteLine("Name " + C.Name + " Loaction " + C.Location);
                             }
                         }
                         if (SelectedTarget.StanceMode == "Melee - Approach")
