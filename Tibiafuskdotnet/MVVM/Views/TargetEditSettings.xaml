@@ -9,13 +9,8 @@
         Title="TargetEditSettings" Height="450" Width="800">
 
     <Grid>
-        <!--<TextBox.Text>
-            <MultiBinding Converter="{StaticResource myConverter}">
-                <Binding Source="{RelativeSource editSettingsViewModel}" Path="Firstargument"/>
-                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="NullText"/>
-            </MultiBinding>
-        </TextBox.Text>-->
-        <TextBox Margin="53,60,94,59" Text="{Binding editSettingsViewModel.Firstargument}">
+
+        <TextBox Margin="53,60,94,59" AcceptsReturn="True" Text="{Binding editSettingsViewModel.Firstargument}">
             <TextBox.DataContext>
                 <ViewModel:ViewModelLocator/>
             </TextBox.DataContext>

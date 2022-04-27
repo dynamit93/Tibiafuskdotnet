@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tibiafuskdotnet.BL;
 using Tibiafuskdotnet.ViewModel;
+using System.IO;
 
 namespace Tibiafuskdotnet.MVVM.Views
 {
@@ -25,6 +26,10 @@ namespace Tibiafuskdotnet.MVVM.Views
         public TargetMenu()
         {
             InitializeComponent();
+            // Find Files in Direcotry with fileformat .txt
+            string[] fileArray = Directory.GetFiles(@"D:\Test\", "*.txt");
+            // found Files Array moved into Listview (LoadTargetscript.ItemsSource)
+            LoadTargetscript.ItemsSource = fileArray;
         }
 
         private void ReachableCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -97,6 +102,20 @@ namespace Tibiafuskdotnet.MVVM.Views
             MVVM.Views.TargetEditSettings tG = new MVVM.Views.TargetEditSettings();
             tG.ShowDialog();
             
+        }
+
+        private void LoadTargetingBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //Load Selected Targeting Script from file Located fileArray
+            string ReadTargetscriptseltectedpath = LoadTargetscript.SelectedItem.ToString();
+            string path = ReadTargetscriptseltectedpath;
+            string ReadTargetscript = System.IO.File.ReadAllText(path);      
+                       
+        }
+
+        private void LoadTargetscript_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

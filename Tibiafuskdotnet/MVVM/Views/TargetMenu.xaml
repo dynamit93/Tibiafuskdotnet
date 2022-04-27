@@ -511,7 +511,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </CheckBox>
-        <ListView Margin="11,341,247,100" Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}" >
+        <ListView x:Name="LoadTargetscript" Margin="11,341,247,100" Grid.Column="2" ItemsSource="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="LoadTargetscript_SelectionChanged" >
         </ListView>
         <Label Content="Name" Margin="224,407,346,70" Grid.ColumnSpan="2"/>
         <Button x:Name="targeteditBtn"
@@ -524,7 +524,14 @@
             Command="{Binding command}"
             CommandParameter="TargetEdit" Click="targeteditBtn_Click"/>
         <Button x:Name="targetsaveBtn" Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="70,437,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="targetloadBtn" Grid.Column="1" Content="Load" HorizontalAlignment="Left" Margin="101,437,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="targetloadBtn"
+             Grid.Column="1"
+            Content="Load" 
+            HorizontalAlignment="Left"
+            Margin="101,437,0,0"
+            VerticalAlignment="Top"
+            Command="{Binding command}"
+            CommandParameter="LoadTargeting" Click="LoadTargetingBtn_Click"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Right" Margin="0,411,247,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="98"/>
     </Grid>
 </Window>

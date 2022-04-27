@@ -9,6 +9,7 @@ using Tibia.Constants;
 using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet.BL;
+using System.IO;
 
 namespace Tibiafuskdotnet.ViewModel
 {
@@ -83,7 +84,7 @@ namespace Tibiafuskdotnet.ViewModel
         }
 
 
-        
+
 
         private string _selectedStanceMode;
 
@@ -102,7 +103,7 @@ namespace Tibiafuskdotnet.ViewModel
         }
 
 
-        
+
 
         private string _selectedattackmode;
 
@@ -130,7 +131,7 @@ namespace Tibiafuskdotnet.ViewModel
         }
 
 
-        
+
 
         private ObservableCollection<string> _setting;
 
@@ -178,6 +179,14 @@ namespace Tibiafuskdotnet.ViewModel
         }
 
 
+
+        public string Selectedtargetscript { get; set; }
+
+ 
+    
+
+        
+
         private Targeting _selectedTarget;
 
         public Targeting SelectedTarget
@@ -205,6 +214,25 @@ namespace Tibiafuskdotnet.ViewModel
             set { _targets = value; RaisePropertyChanged("Targets"); }
         }
 
+
+
+        public void loadtargeting()
+        {
+
+            DirectoryInfo d = new DirectoryInfo(@"D:\Test"); //Assuming Test is your Folder
+            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
+            string str = "";
+
+            foreach (FileInfo file in Files)
+            {
+                str = str + ", " + file.Name;
+            }
+            
+
+
+        }
+
+
         public RelayCommand<string> command { get; set; }
         #endregion
         #region Methods
@@ -227,15 +255,14 @@ namespace Tibiafuskdotnet.ViewModel
             ActionModesSpells = new ObservableCollection<string>() {""};
             Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
 
-
-
+            
             Targets = new ObservableCollection<Targeting>() { AddNewMonster() };
             Player = new SoundPlayer();
             
             foreach (var target in Targets)
             {
                 publictarget = target;
-    }
+            }
 
             SelectedActionMode = ListStanceMode[0];
 
@@ -246,6 +273,7 @@ namespace Tibiafuskdotnet.ViewModel
             SelectedAttackMode = AttackModes[0];
             SelectedStanceMode = Ring[0];
             command = new RelayCommand<string>(PerformAction);
+
         }
         public TextBox txtTargetName { get; set; }
         private SoundPlayer Player = new SoundPlayer();
@@ -284,11 +312,9 @@ namespace Tibiafuskdotnet.ViewModel
                      }
                      break;
                 */
-                case "TargetEdit":
+                case "SelectedTargetscript":
                     
-
                 break;
-
 
                 case "Delete":
                     if (SelectedTarget != null)
