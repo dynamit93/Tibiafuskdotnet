@@ -511,7 +511,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </CheckBox>
-        <ListView x:Name="LoadTargetscript" Margin="11,341,247,100" Grid.Column="2" ItemsSource="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="LoadTargetscript_SelectionChanged" >
+        <ListView x:Name="LoadTargetscriptlistview" Margin="11,341,247,100" Grid.Column="2" ItemsSource="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="LoadTargetscript_SelectionChanged" >
         </ListView>
         <Label Content="Name" Margin="224,407,346,70" Grid.ColumnSpan="2"/>
         <Button x:Name="targeteditBtn"

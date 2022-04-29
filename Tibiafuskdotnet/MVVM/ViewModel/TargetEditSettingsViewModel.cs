@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,25 +22,55 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             set { _Targetsetting = value; RaisePropertyChanged("Targetsetting"); }
         }
 
-        static void Main(string[] args)
+
+
+        public static string Loadtaragetscript(string path, string TargetVaribales, int Targetint)
         {
-            string path = "D:/test/data.txt";
+           // string path = "D:/test/data.txt";
             string text = System.IO.File.ReadAllText(path);
 
             string[] rad = text.Split(
             new string[] { Environment.NewLine },
             StringSplitOptions.None);
 
-            
+            string _firstargument = text;
 
             int antal_monster = CountSubstring(text, "Name");
 
             string[] Name = new string[antal_monster];
-            string[] Count = new string[antal_monster];
-            bool[] LootMonster = new bool[antal_monster];
-            bool[] PlayAlarm = new bool[antal_monster];
+            if (TargetVaribales == "Name") {
+                return Name [Targetint];
+            }
 
+            string[] Count = new string[antal_monster];
+           // Dennis att göra
+            if (TargetVaribales == "Count")
+            {
+                // return Count[Targetint];
+                return "1";
+            }
+
+
+            bool[] LootMonster = new bool[antal_monster];
+            if (TargetVaribales == "lootMonster")
+            {
+                // return Count[Targetint];
+                return "true";
+            }
+
+            bool[] PlayAlarm = new bool[antal_monster];
+            if (TargetVaribales == "PlayAlarm")
+            {
+                 // return Count[Targetint];
+                return "true";
+            }
             int[] Setting = new int[antal_monster];
+            if (TargetVaribales == "Setting")
+            {
+                // return Count[Targetint];
+                return "1";
+            }
+
             int[] Hpmin = new int[antal_monster];
             int[] Hpmax = new int[antal_monster];
             string[] MonsterAttacks = new string[antal_monster];
@@ -85,7 +115,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             int IgnoreMonsters = Int32.Parse(getString(rad[14 + antal_monster * 16]));
             bool SyncSpell = getBool(rad[15 + antal_monster * 16]);
             bool AllowDiagonal = getBool(rad[16 + antal_monster * 16]);
-
+            return text;
         }
 
         static string getString(string str)
@@ -116,6 +146,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             return count;
         }
 
+        public static string temppath = "D:/test/data.txt";
+
         private string _firstargument;
         public string Firstargument
         {
@@ -123,7 +155,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             get { return _firstargument; }
             set
             {
-                this._firstargument = text;
+                this._firstargument = Loadtaragetscript(temppath, "text",0);
                 this.RaisePropertyChanged("Firstargument");
 
             }
@@ -132,7 +164,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         public TargetEditSettingsViewModel()
         {
             
-            _firstargument = text;
+            _firstargument = Loadtaragetscript(temppath, "text", 0);
             
         }
 

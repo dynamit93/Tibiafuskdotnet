@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Tibiafuskdotnet.BL;
 using Tibiafuskdotnet.ViewModel;
 using System.IO;
+using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibiafuskdotnet.MVVM.Views
 {
@@ -29,7 +30,10 @@ namespace Tibiafuskdotnet.MVVM.Views
             // Find Files in Direcotry with fileformat .txt
             string[] fileArray = Directory.GetFiles(@"D:\Test\", "*.txt");
             // found Files Array moved into Listview (LoadTargetscript.ItemsSource)
-            LoadTargetscript.ItemsSource = fileArray;
+            LoadTargetscriptlistview.ItemsSource = fileArray;
+
+            
+
         }
 
         private void ReachableCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -107,10 +111,11 @@ namespace Tibiafuskdotnet.MVVM.Views
         private void LoadTargetingBtn_Click(object sender, RoutedEventArgs e)
         {
             //Load Selected Targeting Script from file Located fileArray
-            string ReadTargetscriptseltectedpath = LoadTargetscript.SelectedItem.ToString();
+            string ReadTargetscriptseltectedpath = LoadTargetscriptlistview.SelectedItem.ToString();
             string path = ReadTargetscriptseltectedpath;
-            string ReadTargetscript = System.IO.File.ReadAllText(path);      
-                       
+            string ReadTargetscript = System.IO.File.ReadAllText(path);
+            MVVM.ViewModel.TargetEditSettingsViewModel.Loadtaragetscript(path, "text", 0);
+               
         }
 
         private void LoadTargetscript_SelectionChanged(object sender, SelectionChangedEventArgs e)

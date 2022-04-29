@@ -121,9 +121,9 @@ namespace Tibiafuskdotnet.BL
             get { return _loot; }
             set { _loot = value; RaisePropertyChanged("Loot"); }
         }
-        private string _setting;
+        private int _setting;
 
-        public string Setting
+        public int Setting
         {
             get { return _setting; }
             set { _setting = value; RaisePropertyChanged("Setting"); }

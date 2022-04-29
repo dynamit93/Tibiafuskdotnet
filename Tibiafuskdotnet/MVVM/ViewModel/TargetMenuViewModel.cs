@@ -222,7 +222,7 @@ namespace Tibiafuskdotnet.ViewModel
         public RelayCommand<string> command { get; set; }
         #endregion
         #region Methods
-        private Targeting AddNewMonster()
+        public static Targeting AddNewMonster()
         {
             return new Targeting() { Name = "<New Monster>" };
         }
