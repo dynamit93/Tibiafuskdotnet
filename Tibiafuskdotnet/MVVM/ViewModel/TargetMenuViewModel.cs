@@ -218,6 +218,7 @@ namespace Tibiafuskdotnet.ViewModel
 
 
 
+
         public RelayCommand<string> command { get; set; }
         #endregion
         #region Methods
