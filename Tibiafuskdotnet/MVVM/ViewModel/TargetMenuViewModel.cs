@@ -216,27 +216,12 @@ namespace Tibiafuskdotnet.ViewModel
 
 
 
-        public void loadtargeting()
-        {
-
-            DirectoryInfo d = new DirectoryInfo(@"D:\Test"); //Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
-            string str = "";
-
-            foreach (FileInfo file in Files)
-            {
-                str = str + ", " + file.Name;
-            }
-            
-
-
-        }
 
 
         public RelayCommand<string> command { get; set; }
         #endregion
         #region Methods
-        private Targeting AddNewMonster()
+        public static Targeting AddNewMonster()
         {
             return new Targeting() { Name = "<New Monster>" };
         }
