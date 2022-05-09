@@ -259,7 +259,7 @@ namespace Tibiafuskdotnet
 
             int bytesWritten = 0;
             WriteProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesWritten);
-            System.Console.WriteLine(bytesWritten);
+            //System.Console.WriteLine(bytesWritten);
 
             int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
             WriteProcessMemory((int)processHandle, attackmodeuint, buffer, buffer.Length, ref bytesWritten);

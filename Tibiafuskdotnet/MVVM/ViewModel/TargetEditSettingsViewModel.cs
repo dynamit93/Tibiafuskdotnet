@@ -24,52 +24,28 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
 
 
-        public static string Loadtaragetscript(string path, string TargetVaribales, int Targetint)
+        public static dynamic Loadtaragetscript<T>(string path, string TargetVaribales, int Targetint)
         {
            // string path = "D:/test/data.txt";
             string text = System.IO.File.ReadAllText(path);
 
+            
             string[] rad = text.Split(
             new string[] { Environment.NewLine },
             StringSplitOptions.None);
 
             string _firstargument = text;
 
-            int antal_monster = CountSubstring(text, "Name");
+            int antal_monster = CountSubstring(text, "Name: ");
+
+            
 
             string[] Name = new string[antal_monster];
-            if (TargetVaribales == "Name") {
-                return Name [Targetint];
-            }
-
             string[] Count = new string[antal_monster];
-           // Dennis att göra
-            if (TargetVaribales == "Count")
-            {
-                // return Count[Targetint];
-                return "1";
-            }
-
-
-            bool[] LootMonster = new bool[antal_monster];
-            if (TargetVaribales == "lootMonster")
-            {
-                // return Count[Targetint];
-                return "true";
-            }
-
-            bool[] PlayAlarm = new bool[antal_monster];
-            if (TargetVaribales == "PlayAlarm")
-            {
-                 // return Count[Targetint];
-                return "true";
-            }
+            string[] LootMonster = new string[antal_monster];
+            string[] PlayAlarm = new string[antal_monster];
             int[] Setting = new int[antal_monster];
-            if (TargetVaribales == "Setting")
-            {
-                // return Count[Targetint];
-                return "1";
-            }
+
 
             int[] Hpmin = new int[antal_monster];
             int[] Hpmax = new int[antal_monster];
@@ -85,8 +61,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             {
                 Name[i] = getString(rad[1 + 16 * i]);
                 Count[i] = getString(rad[2 + 16 * i]);
-                LootMonster[i] = getBool(rad[3 + 16 * i]);
-                PlayAlarm[i] = getBool(rad[4 + 16 * i]);
+                LootMonster[i] = getString(rad[3 + 16 * i]);
+                PlayAlarm[i] = getString(rad[4 + 16 * i]);
 
                 Setting[i] = Int32.Parse(getString(rad[6 + 16 * i]));
                 Hpmin[i] = Int32.Parse(getString(rad[7 + 16 * i]));
@@ -98,8 +74,10 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 ActionSpell[i] = getString(rad[13 + 16 * i]);
                 AttackMode[i] = getString(rad[14 + 16 * i]);
                 Ring[i] = getString(rad[15 + 16 * i]);
+                
             }
 
+           
 
             int ListOrder = Int32.Parse(getString(rad[2 + antal_monster * 16]));
             int Health = Int32.Parse(getString(rad[3 + antal_monster * 16]));
@@ -109,6 +87,80 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             int Stick = Int32.Parse(getString(rad[7 + antal_monster * 16]));
             bool TargetReachable = getBool(rad[8 + antal_monster * 16]);
             bool TargetShootable = getBool(rad[9 + antal_monster * 16]);
+            
+            if (TargetVaribales == "Name")
+            {
+                return Name[Targetint];
+            }
+            if (TargetVaribales == "Count")
+            {
+                 return Count[Targetint];
+                
+            }
+            if (TargetVaribales == "LootMonster")
+            {
+                // return Count[Targetint];
+                if (LootMonster[Targetint] == "yes") { return true; }
+                else if (LootMonster[Targetint] == "no") { return false; }
+               // return true;
+            }
+            if (TargetVaribales == "PlayAlarm")
+            {
+                if (PlayAlarm[Targetint] == "yes") { return true; }
+                else if (PlayAlarm[Targetint] == "no") { return false; }
+            }
+            if (TargetVaribales == "Setting")
+            {
+                 return Setting[Targetint];
+                
+            }
+            if (TargetVaribales == "Hpmin")
+            {
+                return Hpmin[Targetint];
+
+            }
+            if (TargetVaribales == "Hpmax")
+            {
+                return Hpmax[Targetint];
+
+            }
+            if (TargetVaribales == "MonsterAttacks")
+            {
+                return MonsterAttacks[Targetint];
+
+            }
+            if (TargetVaribales == "Danger")
+            {
+                return Danger[Targetint];
+
+            }
+            if (TargetVaribales == "Stance")
+            {
+                return Stance[Targetint];
+
+            }
+            if (TargetVaribales == "ActionAttack")
+            {
+                return AttackMode[Targetint];
+
+            }
+            if (TargetVaribales == "ActionSpell")
+            {
+                return ActionSpell[Targetint];
+
+            }
+            if (TargetVaribales == "AttackMode")
+            {
+                return AttackMode[Targetint];
+
+            }
+            if (TargetVaribales == "Ring")
+            {
+                return Ring[Targetint];
+
+            }
+
+
 
             int RangeDistance = Int32.Parse(getString(rad[12 + antal_monster * 16]));
             int AttackFrequency = Int32.Parse(getString(rad[13 + antal_monster * 16]));
@@ -116,8 +168,10 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             bool SyncSpell = getBool(rad[15 + antal_monster * 16]);
             bool AllowDiagonal = getBool(rad[16 + antal_monster * 16]);
             return text;
-        }
 
+
+        }
+        
         static string getString(string str)
         {
             return str.Substring(str.IndexOf(": ") + 2);
@@ -155,7 +209,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             get { return _firstargument; }
             set
             {
-                this._firstargument = Loadtaragetscript(temppath, "text",0);
+                this._firstargument = Loadtaragetscript<string>(temppath, "text",0);
                 this.RaisePropertyChanged("Firstargument");
 
             }
@@ -164,7 +218,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         public TargetEditSettingsViewModel()
         {
             
-            _firstargument = Loadtaragetscript(temppath, "text", 0);
+            _firstargument = Loadtaragetscript<string>(temppath, "text", 0);
             
         }
 

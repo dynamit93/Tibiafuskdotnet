@@ -22,9 +22,9 @@ namespace Tibiafuskdotnet.BL
             get { return _categories; }
             set { _categories = value;RaisePropertyChanged("Categories"); }
         }
-        private int _count;
+        private string _count;
                 
-        public int Count
+        public string Count
         {
             get { return _count; }
             set { _count = value;RaisePropertyChanged("Count"); }

@@ -531,7 +531,7 @@
             Margin="101,437,0,0"
             VerticalAlignment="Top"
             Command="{Binding command}"
-            CommandParameter="LoadTargeting" Click="LoadTargetingBtn_Click"/>
+            CommandParameter="LoadTargetscriptlistview" Click="LoadTargetingBtn_Click"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Right" Margin="0,411,247,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="98"/>
     </Grid>
 </Window>

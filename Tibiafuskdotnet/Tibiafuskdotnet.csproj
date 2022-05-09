@@ -419,7 +419,6 @@
     <Compile Include="Packets\RSA\GameServerRequestPacket.cs" />
     <Compile Include="Packets\RSA\LoginServerRequestPacket.cs" />
     <Compile Include="Packets\Xtea.cs" />
-    <Compile Include="Spells.cs" />
     <Compile Include="Adresses\Versions\Version860.cs" />
     <Compile Include="Util\AStarPathFinder.cs" />
     <Compile Include="Util\BigInteger.cs" />

@@ -351,7 +351,7 @@ namespace Tibiafuskdotnet.ViewModel
                // if (SelectedTarget.DangerLevel <= ) { }
 
                 //chceking if monster on screen is == then count monster in tragetting
-                System.Console.WriteLine(count);
+                //System.Console.WriteLine(count);
                 if(SelectedCounts <= count) { }
 
                 foreach (Creature C in MemoryReader.battleList.GetCreatures())
@@ -364,7 +364,7 @@ namespace Tibiafuskdotnet.ViewModel
                         
                          
 
-                        System.Console.WriteLine(TargetHPBar);
+                        //System.Console.WriteLine(TargetHPBar);
                         if (SelectedTarget.ActionMode == "Attack")
 
                         {
@@ -394,10 +394,10 @@ namespace Tibiafuskdotnet.ViewModel
 
                         if (SelectedTarget.AttackMode == "Stand/Offensive")
                         {
-                            System.Console.WriteLine("before add value " + MemoryReader.Followmode);
+                            //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
                             MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
                             MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
-                            System.Console.WriteLine("after add value " + MemoryReader.Followmode);
+                           // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
                         }
                         else if (SelectedTarget.AttackMode == "Stand/Balanced")
                         {

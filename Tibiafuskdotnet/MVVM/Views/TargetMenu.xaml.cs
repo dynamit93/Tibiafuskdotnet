@@ -114,7 +114,7 @@ namespace Tibiafuskdotnet.MVVM.Views
             string ReadTargetscriptseltectedpath = LoadTargetscriptlistview.SelectedItem.ToString();
             string path = ReadTargetscriptseltectedpath;
             string ReadTargetscript = System.IO.File.ReadAllText(path);
-            MVVM.ViewModel.TargetEditSettingsViewModel.Loadtaragetscript(path, "text", 0);
+            MVVM.ViewModel.TargetEditSettingsViewModel.Loadtaragetscript<string>(path, "text", 0);
                
         }
 

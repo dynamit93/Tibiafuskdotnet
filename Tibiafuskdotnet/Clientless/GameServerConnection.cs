@@ -84,7 +84,7 @@ namespace Tibia.Clientless
             }
             catch (Exception)
             {
-                //System.Console.WriteLine(ex.ToString());
+               
             }
         }
 
