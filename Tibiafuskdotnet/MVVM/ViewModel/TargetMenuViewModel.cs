@@ -206,7 +206,7 @@ namespace Tibiafuskdotnet.ViewModel
         }
 
 
-        private ObservableCollection<Targeting> _targets;
+        private static ObservableCollection<Targeting> _targets;
 
         public ObservableCollection<Targeting> Targets
         {
@@ -226,6 +226,12 @@ namespace Tibiafuskdotnet.ViewModel
         {
             return new Targeting() { Name = "<New Monster>" };
         }
+
+        public static void AddToList(Targeting targeting)
+        {
+            _targets.Add(targeting);
+        }
+
         #endregion
          public static Object publictarget = "";
         public TargetMenuViewModel()
