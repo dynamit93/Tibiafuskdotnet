@@ -1,4 +1,4 @@
-the prodject are useing visual studio 2022
+the project are useing visual studio 2022
 
 
 install mysql database.  
