@@ -1,10 +1,13 @@
-the project are useing visual studio 2022
 
+
+the project are useing visual studio 2022
+for now the project only suports tibia 8.6
+suppose to look like elfbot and work with elfbot scripts. For every Clients.
 
 install mysql database.  
 import database  
 configre mysql root password  
-install tibia.  
+install tibia. 
 run project  
 
 Login view
