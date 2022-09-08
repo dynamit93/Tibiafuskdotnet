@@ -27,13 +27,27 @@ namespace Tibiafuskdotnet.MVVM.Views
         public TargetMenu()
         {
             InitializeComponent();
+
+
+
+
+
+            // If folder TibiaCheat Under MyDocuments Dossen't exist it will create one.
+            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "TibiaCheat"))
+            {
+                Directory.CreateDirectory(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TibiaCheat"));
+            };
+
+         
             // Find Files in Direcotry with fileformat .txt
-            string[] fileArray = Directory.GetFiles(@"D:\Test\", "*.txt");
+            string[] fileArray = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TibiaCheat\\" + "*.txt.");
+            //string[] fileArray = Directory.GetFiles(@"D:\Test\", "*.txt");
             // found Files Array moved into Listview (LoadTargetscript.ItemsSource)
+
+
             LoadTargetscriptlistview.ItemsSource = fileArray;
 
             
-
         }
 
         private void ReachableCheckBox_Checked(object sender, RoutedEventArgs e)
