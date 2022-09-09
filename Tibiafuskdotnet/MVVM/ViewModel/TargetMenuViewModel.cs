@@ -360,6 +360,8 @@ namespace Tibiafuskdotnet.ViewModel
                 //System.Console.WriteLine(count);
                 if(SelectedCounts <= count) { }
 
+                while(MemoryReader.battleList.GetCreatures().count() > 0) {
+                
                 foreach (Creature C in MemoryReader.battleList.GetCreatures())
                 {
                     TargetHPBar = C.HPBar;
@@ -481,6 +483,7 @@ namespace Tibiafuskdotnet.ViewModel
                                  break;
                          }*/
                     }
+                }
                 }
             }
         }
