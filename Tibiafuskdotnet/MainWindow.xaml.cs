@@ -219,8 +219,9 @@ namespace Tibiafuskdotnet
 
         private void Testbutton_Click(object sender, RoutedEventArgs e)
         {
-            ClientChooser ClientChooser = new ClientChooser();
+            ClientChooserWPF ClientChooser = new ClientChooserWPF();
             ClientChooser.Show();
+
 
         }
     }

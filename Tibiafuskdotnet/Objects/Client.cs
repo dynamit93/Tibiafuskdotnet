@@ -13,8 +13,17 @@ namespace Tibia.Objects
     /// for memory, packet sending, battlelist, and slots. Also contains
     /// any "helper methods" that automate tasks, such as making a rune.
     /// </summary>
+    /// 
+
+ 
     public partial class Client
     {
+
+
+        public Client(Client client)
+                {
+            this.client = client;
+        }
         #region Variables
 
         private string cachedVersion = null;
@@ -44,6 +53,7 @@ namespace Tibia.Objects
         private PlayerHelper player;
         private Icon icon;
         private Skin skin;
+        private Client client;
 
         #endregion
 

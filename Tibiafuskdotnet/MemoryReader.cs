@@ -17,7 +17,7 @@ using WindowsInput.Native;
 using Tibia;
 using Tibia.Objects;
 using Tibia.Constants;
-
+using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibiafuskdotnet
 {
@@ -40,6 +40,9 @@ namespace Tibiafuskdotnet
         public static int Followmode;
         public static string chatt;
         public static int light;
+        public static int WaypointsTestZ;
+        public static int WaypointsTestX;
+        public static int WaypointsTestY; 
 
         public static int maxHpValue;
         public static int maxManaValue;
@@ -114,6 +117,12 @@ namespace Tibiafuskdotnet
         //Utilities
         public static Int32 LightAddr = 0x4EAFAC;
 
+        public static Int32 Waypointstestaddrx = 0x64F608;
+        public static Int32 Waypointstestaddry = 0x64F604;
+        public static Int32 Waypointstestaddrz = 0x64F600;
+
+        
+
 
 
            public static Int32 BattleListStart = 0x63FEF8;
@@ -159,12 +168,14 @@ namespace Tibiafuskdotnet
         }
 
         public static BattleList battleList = null;
+        
         public static Client client = null;
         public static Creature creature = null;
         /// <summary>
         /// Dennis gjort
         /// </summary>
         public static Inventory inventory = null;
+        public static Object Objects = null;
 
         public static bool AppRunning(string appName = "Tibia")
         {
@@ -181,6 +192,7 @@ namespace Tibiafuskdotnet
                     battleList = new BattleList(c);
                     // dennis gjort
                     inventory = new Inventory(c);
+                    Objects = new Object();
 
 
                     Tibia.Version.SetVersion860();
@@ -189,6 +201,7 @@ namespace Tibiafuskdotnet
                         System.Console.WriteLine("Creature " + C.Name);
                         
                     }
+                    
                     // Dennis gjort Skriver ut alla backpacks finns med id + namn + Vilket nummer backpackn finns
                     foreach (Container MyC in inventory.GetContainers())
                     {
@@ -326,13 +339,34 @@ namespace Tibiafuskdotnet
             ReadProcessMemory((int)handle, LightAddr, buffer, buffer.Length, ref bytesRead);
             light = BitConverter.ToInt32(buffer, 0);
 
-            // ReadProcessMemory((int)handle, BattleListStart, buffer, buffer.Length, ref bytesRead);
-           // BattleListconvert = BitConverter.ToInt32(buffer, 0);
+
+                /* ReadProcessMemory((int)handle, Tibia.Version, buffer, buffer.Length, ref bytesRead);
+                 WaypointsTestZ = BitConverter.ToInt32(buffer, 0);
+                */
 
 
-            
 
-            hpValue = currentHp ^ xor;
+
+
+                ReadProcessMemory((int)handle, Waypointstestaddrx, buffer, buffer.Length, ref bytesRead);
+                WaypointsTestX = BitConverter.ToInt32(buffer, 0);
+
+                ReadProcessMemory((int)handle, Waypointstestaddry, buffer, buffer.Length, ref bytesRead);
+                WaypointsTestY = BitConverter.ToInt32(buffer, 0);
+
+                ReadProcessMemory((int)handle, Waypointstestaddrz, buffer, buffer.Length, ref bytesRead);
+                WaypointsTestZ = BitConverter.ToInt32(buffer, 0);
+
+
+                
+
+                // ReadProcessMemory((int)handle, BattleListStart, buffer, buffer.Length, ref bytesRead);
+                // BattleListconvert = BitConverter.ToInt32(buffer, 0);
+
+
+
+
+                hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;

@@ -164,8 +164,14 @@ namespace Tibiafuskdotnet
 
         private void Cavebot_btn_Click(object sender, RoutedEventArgs e)
         {
+
+
+
             CavebotMenu Cavebotkey = new CavebotMenu();
-            Cavebotkey.Show();
+            Cavebotkey.ShowDialog();
+
+
+
         }
 
         private void targeting_btn_Click(object sender, RoutedEventArgs e)

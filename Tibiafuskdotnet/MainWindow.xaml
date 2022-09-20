@@ -14,6 +14,6 @@
         <Button x:Name="Forgotten_btn" Content="Forgotten Password" HorizontalAlignment="Left" Margin="141,174,0,0" VerticalAlignment="Top" Click="Forgotten_btn_Click" Height="20" Width="109"/>
         <Label Content="Username" HorizontalAlignment="Left" Margin="62,67,0,0" VerticalAlignment="Top" Height="26" Width="63"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="62,103,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
-        <Button x:Name="Testbutton" Content="TestButton" HorizontalAlignment="Left" Margin="62,174,0,0" VerticalAlignment="Top" Height="26" Width="60" Click="Testbutton_Click" IsEnabled="False"/>
+        <Button x:Name="Testbutton" Content="TestButton" HorizontalAlignment="Left" Margin="62,174,0,0" VerticalAlignment="Top" Height="26" Width="60" Click="Testbutton_Click" IsEnabled="True"/>
     </Grid>
 </Window>

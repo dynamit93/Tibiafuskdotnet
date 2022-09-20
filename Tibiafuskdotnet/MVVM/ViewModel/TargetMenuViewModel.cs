@@ -122,6 +122,63 @@ namespace Tibiafuskdotnet.ViewModel
             set { _SelecteddangerLevels = value; RaisePropertyChanged("SelectedDangerLevels"); }
         }
 
+
+
+        private int _DangerTarget;
+
+        public int DangerTarget
+        {
+            get { return _DangerTarget; }
+            set { _DangerTarget = value; RaisePropertyChanged("DangerTarget"); }
+        }
+
+
+
+        private int _ListOrder;
+
+        public int ListOrder
+        {
+            get { return _ListOrder; }
+            set { _ListOrder = value; RaisePropertyChanged("ListOrder"); }
+        }
+
+
+        private int _HealthTarget;
+
+        public int HealthTarget
+        {
+            get { return _HealthTarget; }
+            set { _HealthTarget = value; RaisePropertyChanged("HealthTarget"); }
+        }
+
+
+
+        private int _ProximityTarget;
+
+        public int ProximityTarget
+        {
+            get { return _ProximityTarget; }
+            set { _ProximityTarget = value; RaisePropertyChanged("ProximityTarget"); }
+        }
+
+        private int _RandomTarget;
+
+        public int RandomTarget
+        {
+            get { return _RandomTarget; }
+            set { _RandomTarget = value; RaisePropertyChanged("RandomTarget"); }
+        }
+
+        private int _StickTarget;
+        public int StickTarget
+        {
+            get { return _StickTarget; }
+            set { _StickTarget = value; RaisePropertyChanged("StickTarget"); }
+        }
+
+        
+
+
         private string _selectedactionmode;
 
         public string SelectedActionMode
@@ -180,12 +237,9 @@ namespace Tibiafuskdotnet.ViewModel
 
 
 
+
         public string Selectedtargetscript { get; set; }
-
- 
-    
-
-        
+                   
 
         private Targeting _selectedTarget;
 

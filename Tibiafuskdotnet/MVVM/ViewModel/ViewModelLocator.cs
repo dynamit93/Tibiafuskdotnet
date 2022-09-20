@@ -45,6 +45,7 @@ namespace Tibiafuskdotnet.ViewModel
 
             SimpleIoc.Default.Register<TargetMenuViewModel>();
             SimpleIoc.Default.Register<TargetEditSettingsViewModel>();
+            SimpleIoc.Default.Register<Waypoints>();
         }
 
         public TargetMenuViewModel Main
@@ -61,6 +62,16 @@ namespace Tibiafuskdotnet.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<TargetEditSettingsViewModel>();
+            }
+        }
+
+
+        public Waypoints CavebotMenuViewModel
+        {
+            get
+            {
+                
+                return ServiceLocator.Current.GetInstance<Waypoints>();
             }
         }
 

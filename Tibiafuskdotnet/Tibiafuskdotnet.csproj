@@ -247,7 +247,9 @@
     <Compile Include="ExtrasMenu.xaml.cs">
       <DependentUpon>ExtrasMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\ViewModel\CavebotMenuViewModel.cs" />
     <Compile Include="MVVM\ViewModel\TargetEditSettingsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\WaypointsHelpers.cs" />
     <Compile Include="MVVM\Views\PvpMenu.xaml.cs">
       <DependentUpon>PvpMenu.xaml</DependentUpon>
     </Compile>

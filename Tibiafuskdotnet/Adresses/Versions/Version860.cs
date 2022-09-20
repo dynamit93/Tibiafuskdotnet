@@ -254,7 +254,9 @@ namespace Tibia
             Player.TargetBattlelistId = Player.TargetId - 8;
             Player.TargetBattlelistType = Player.TargetId - 5;
             Player.TargetType = Player.TargetId + 3;
-            Player.Z = 0x64F600;
+            Player.X = Player.Z + 8;
+            Player.Y = Player.Z + 4;
+            Player.Z = 0x64F600;            
             Player.AttackCount = 0x63DA40;
             Player.FollowCount = Player.AttackCount + 0x20;
 
