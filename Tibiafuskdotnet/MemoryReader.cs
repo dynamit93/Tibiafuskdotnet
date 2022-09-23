@@ -18,6 +18,10 @@ using Tibia;
 using Tibia.Objects;
 using Tibia.Constants;
 using Tibiafuskdotnet.MVVM.ViewModel;
+<<<<<<< HEAD
+using System.Security.Cryptography.X509Certificates;
+=======
+>>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 
 namespace Tibiafuskdotnet
 {
@@ -81,7 +85,7 @@ namespace Tibiafuskdotnet
         public static Int32 ExpAddr = 0x63FE8C;
         public static Int32 CapAddr = 0x63FE68;
         public static Int32 SoulAddr = 0x63FE70;
-
+        
 
         /// hottkeys
         /// pub
@@ -176,6 +180,11 @@ namespace Tibiafuskdotnet
         /// </summary>
         public static Inventory inventory = null;
         public static Object Objects = null;
+<<<<<<< HEAD
+
+        public static Client c;
+=======
+>>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 
         public static bool AppRunning(string appName = "Tibia")
         {
@@ -188,14 +197,17 @@ namespace Tibiafuskdotnet
                 //System.Console.WriteLine(p.ProcessName);
                 if (p.ProcessName.Contains(appName))
                 {
-                    Client c = new Client(p);
+                    c = new Client(p);
                     battleList = new BattleList(c);
                     // dennis gjort
                     inventory = new Inventory(c);
                     Objects = new Object();
+<<<<<<< HEAD
+                    
+=======
+>>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 
-
-                    Tibia.Version.SetVersion860();
+                    //Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())
                     {
                         System.Console.WriteLine("Creature " + C.Name);
@@ -208,6 +220,13 @@ namespace Tibiafuskdotnet
                         
                        // System.Console.WriteLine( MyC.Id +" "+ MyC.Name + " " + MyC.Number );
                     }
+
+
+                    // PRINT OUT THE LOCATION OF THE PLAYER
+                System.Console.WriteLine(c.PlayerLocation);
+
+
+
                     Item RingItem; 
 
                     var Ring = ItemLists.Ring.TryGetValue(Items.Ring.TimeRing.Id, out RingItem );

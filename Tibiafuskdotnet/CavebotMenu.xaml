@@ -13,7 +13,11 @@
             <ColumnDefinition Width="23*"/>
             <ColumnDefinition Width="65*"/>
         </Grid.ColumnDefinitions>
+<<<<<<< HEAD
+        <ComboBox Name="CavebotEmplacement" Margin="351,0,34,399" Grid.ColumnSpan="2">
+=======
         <ComboBox Margin="351,0,34,399" Grid.ColumnSpan="2">
+>>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
             <ComboBoxItem Content="Centre"/>
             <ComboBoxItem Content="West"/>
             <ComboBoxItem Content="South"/>
@@ -22,9 +26,14 @@
             <ComboBoxItem Content="North-east"/>
             <ComboBoxItem Content="South-west"/>
             <ComboBoxItem Content="South-east"/>
+<<<<<<< HEAD
+        </ComboBox>
+        <ListView Name="CavebotWaypointsList" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged" ItemsSource="{Binding DataSource, UpdateSourceTrigger=PropertyChanged}">
+=======
 
         </ComboBox>
         <ListView Name="CavebotWaypointsList" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged" ItemsSource="{Binding waypointx, UpdateSourceTrigger=PropertyChanged}">
+>>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
         </ListView>
         <Button Name="CavebotWaypointGoUp" Content="&lt;" HorizontalAlignment="Left" Height="19" Margin="38,217,0,0" VerticalAlignment="Top" Width="25"/>
         <Button Name="CavebotWaypointGoDown" Content="&gt;&#xD;&#xA;" HorizontalAlignment="Left" Height="19" Margin="68,217,0,0" VerticalAlignment="Top" Width="25" Click="Button_Click"/>
@@ -34,7 +43,7 @@
         <Label Content="Emplacement" HorizontalAlignment="Left" Margin="265,8,0,0" VerticalAlignment="Top" Height="28" Width="82"/>
         <Button Name="CavebotWaypointStand" Content="Stand" HorizontalAlignment="Left" Height="21" Margin="279,41,0,0" VerticalAlignment="Top" Width="48" Click="Button_Click_1"/>
         <Button Name="CavebotWaypointRope" Content="Rope" HorizontalAlignment="Left" Height="21" Margin="279,62,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Name="CavebotWaypointWalk" Content="Walk" HorizontalAlignment="Left" Height="21" Margin="327,41,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button Name="CavebotWaypointWalk" Content="Walk" HorizontalAlignment="Left" Height="21" Margin="327,41,0,0" VerticalAlignment="Top" Width="48" Click="CavebotWaypointWalk_Click"/>
         <Button Name="CavebotWaypointNode" Content="Node" HorizontalAlignment="Left" Height="21" Margin="375,41,0,0" VerticalAlignment="Top" Width="48"/>
         <Button Name="CavebotWaypointLadder" Content="Ladder" HorizontalAlignment="Left" Height="21" Margin="327,62,0,0" VerticalAlignment="Top" Width="48"/>
         <Button Name="CavebotWaypointShovel" Content="Shovel" HorizontalAlignment="Left" Height="21" Margin="375,62,0,0" VerticalAlignment="Top" Width="48"/>

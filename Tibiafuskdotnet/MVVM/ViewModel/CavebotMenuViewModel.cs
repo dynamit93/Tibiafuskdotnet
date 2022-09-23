@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using Tibia.Addresses;
+<<<<<<< HEAD
+using Tibia.Objects;
+=======
+>>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
 
@@ -15,9 +19,25 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 {
 
 
+<<<<<<< HEAD
+    public  class Waypoints : ObservableCollection<Waypoints>
+    {
+
+        public Waypoints()
+        {
+
+        }/*
+        public Waypoints(Location location)
+        {
+            waypointx = location.X;
+            waypointy = location.Y;
+            waypointz = location.Z;
+        }*/
+=======
     public  class Waypoints : ViewModelBase
     {
 
+>>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 
         private static ObservableCollection<Waypoints> _DataSource;
         
