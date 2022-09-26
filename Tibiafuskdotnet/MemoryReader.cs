@@ -18,10 +18,6 @@ using Tibia;
 using Tibia.Objects;
 using Tibia.Constants;
 using Tibiafuskdotnet.MVVM.ViewModel;
-<<<<<<< HEAD
-using System.Security.Cryptography.X509Certificates;
-=======
->>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 
 namespace Tibiafuskdotnet
 {
@@ -180,11 +176,8 @@ namespace Tibiafuskdotnet
         /// </summary>
         public static Inventory inventory = null;
         public static Object Objects = null;
-<<<<<<< HEAD
 
         public static Client c;
-=======
->>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 
         public static bool AppRunning(string appName = "Tibia")
         {
@@ -202,10 +195,7 @@ namespace Tibiafuskdotnet
                     // dennis gjort
                     inventory = new Inventory(c);
                     Objects = new Object();
-<<<<<<< HEAD
                     
-=======
->>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 
                     //Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())

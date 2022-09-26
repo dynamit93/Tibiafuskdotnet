@@ -3,25 +3,30 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using Tibia.Addresses;
-<<<<<<< HEAD
 using Tibia.Objects;
-=======
->>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+
 
 namespace Tibiafuskdotnet.MVVM.ViewModel
 {
 
 
-<<<<<<< HEAD
     public  class Waypoints : ObservableCollection<Waypoints>
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public Waypoints()
         {
@@ -33,19 +38,21 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             waypointy = location.Y;
             waypointz = location.Z;
         }*/
-=======
-    public  class Waypoints : ViewModelBase
-    {
-
->>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
+        
 
         private static ObservableCollection<Waypoints> _DataSource;
         
-        public static ObservableCollection<Waypoints> DataSource
+        public ObservableCollection<Waypoints> DataSource
         {
             get { return _DataSource; }
-            set { _DataSource = value;}
+            set
+            {
+                _DataSource = value;
+                NotifyPropertyChanged(); 
+            }
         }
+
+
        // public static ObservableCollection<Waypoints> DataSource { get; set; }
 
 
@@ -55,9 +62,11 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         public int waypointz { get; set; }
         
 
+
     }
-        
-    }
+
+}
+
  
 
     

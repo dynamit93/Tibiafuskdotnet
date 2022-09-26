@@ -27,20 +27,19 @@ namespace Tibiafuskdotnet
     {
 
         //public ObservableCollection<Waypoints> DataSource { get; set; }
-
+        private ObservableCollection<Waypoints> DataSource;
         public CavebotMenu()
         {
             InitializeComponent();
 
 
-
-            Waypoints.DataSource = new ObservableCollection<Waypoints>();
+             
+        DataSource = new ObservableCollection<Waypoints>();
 
 
 
             //WaypointsHelpers
            // DataSource.Add(new Waypoints { waypointx = MemoryReader.WaypointsTestX, waypointy = MemoryReader.WaypointsTestY, waypointz = MemoryReader.WaypointsTestZ });
-<<<<<<< HEAD
 
 
 
@@ -49,9 +48,6 @@ namespace Tibiafuskdotnet
             
             
             
-=======
-            Waypoints.DataSource.Add(new Waypoints { waypointx = MemoryReader.WaypointsTestX, waypointy = MemoryReader.WaypointsTestY, waypointz = MemoryReader.WaypointsTestZ });
->>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
             /* List<Waypoints> Waypoints = new List<Waypoints>();
              var Waypointsa = new List<Waypoints>();
 
@@ -65,13 +61,9 @@ namespace Tibiafuskdotnet
               }*/
             // CavebotWaypointsList.ItemsSource = MVVM.ViewModel.Waypoints.DataSource;
 
-            foreach (Waypoints cl in Waypoints.DataSource)
+            foreach (Waypoints cl in DataSource)
             {
-<<<<<<< HEAD
                // Console.WriteLine(cl.waypointx);
-=======
-                Console.WriteLine(cl.waypointx);
->>>>>>> 0051ea06a971cfa5091227dc481de76e7315c407
 
                     int waypointx = cl.waypointx;
                     int waypointy = cl.waypointy;
@@ -114,48 +106,49 @@ namespace Tibiafuskdotnet
             if (CavebotEmplacement.SelectedValue == "West")
             {
 
-                Waypoints.DataSource.Add(new Waypoints { waypointx = -1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
             }
             else if (CavebotEmplacement.SelectedValue == "East")
             {
                 // MemoryReader.c.PlayerLocation.X = +1;
-                Waypoints.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X +1 , waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
 
             }
             else if (CavebotEmplacement.SelectedValue == "North")
             {
                 // MemoryReader.c.PlayerLocation.Y -1;
-                Waypoints.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacement.SelectedValue == "Centre")
+            {
+                // MemoryReader.c.PlayerLocation.Y -1;
+                DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacement.SelectedValue == "Centre")
+            {
+                // MemoryReader.c.PlayerLocation.Y -1;
+                DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
 
             }
             else if (CavebotEmplacement.SelectedValue == "Centre")
             {
 
-                Waypoints.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
-
-
-            }
-            else if (CavebotEmplacement.SelectedValue == "Centre")
-            {
-
-                Waypoints.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
-
-
-            }
-            else if (CavebotEmplacement.SelectedValue == "Centre")
-            {
-
-                Waypoints.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
                 Console.WriteLine(CavebotEmplacement.SelectedItem);
 
             }
             else if (CavebotEmplacement.SelectedItem == null)
             {
-                Waypoints.DataSource.Add(new Waypoints{waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z});
+                DataSource.Add(new Waypoints{waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z});
+                
 
 
             }
@@ -163,9 +156,11 @@ namespace Tibiafuskdotnet
             //System.Console.WriteLine(MemoryReader.c.PlayerLocation.X + MemoryReader.c.PlayerLocation.Y + MemoryReader.c.PlayerLocation.Y);
             Console.WriteLine(CavebotEmplacement.SelectedItem);
 
-            //System.Console.WriteLine(MemoryReader.c.PlayerLocation);
             System.Console.WriteLine("Print OUTPUT of CavebotWaypointsList " + CavebotWaypointsList);
-            Console.Write("PRINT OUT Waypoints.DataSource " + Waypoints.DataSource);
+            Console.Write("PRINT OUT Waypoints.DataSource " + DataSource/*[0]*/);
+            Console.WriteLine(MemoryReader.c.PlayerLocation);
         }
+
+
     }
 }
