@@ -31,15 +31,16 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         public Waypoints()
         {
 
-        }/*
+        }
+        /*
         public Waypoints(Location location)
         {
             waypointx = location.X;
             waypointy = location.Y;
             waypointz = location.Z;
         }*/
-        
 
+        
         private static ObservableCollection<Waypoints> _DataSource;
         
         public ObservableCollection<Waypoints> DataSource

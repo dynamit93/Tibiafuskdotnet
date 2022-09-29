@@ -15,19 +15,44 @@ using System.Windows.Shapes;
 using Tibia.Addresses;
 using Tibiafuskdotnet.MVVM.ViewModel;
 using Tibiafuskdotnet;
-
-
+using System.ComponentModel;
 
 namespace Tibiafuskdotnet
 {
     /// <summary>
     /// Interaction logic for CavebotMenu.xaml
     /// </summary>
-    public partial class CavebotMenu : Window
+    public partial class CavebotMenu : ObservableCollection<CavebotMenu>
     {
 
         //public ObservableCollection<Waypoints> DataSource { get; set; }
-        private ObservableCollection<Waypoints> DataSource;
+        // private ObservableCollection<Waypoints> DataSource;
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
+
+        private static ObservableCollection<Waypoints> _DataSource;
+
+        public ObservableCollection<Waypoints> DataSource
+        {
+            get { return _DataSource; }
+            set
+            {
+                _DataSource = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
+
         public CavebotMenu()
         {
             InitializeComponent();
@@ -147,12 +172,13 @@ namespace Tibiafuskdotnet
             }
             else if (CavebotEmplacement.SelectedItem == null)
             {
+                
                 DataSource.Add(new Waypoints{waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z});
                 
 
 
             }
-
+            
             //System.Console.WriteLine(MemoryReader.c.PlayerLocation.X + MemoryReader.c.PlayerLocation.Y + MemoryReader.c.PlayerLocation.Y);
             Console.WriteLine(CavebotEmplacement.SelectedItem);
 
