@@ -28,6 +28,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        //Waypoints aaa = new Waypoints();
+
         public Waypoints()
         {
 
@@ -39,6 +41,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             waypointy = location.Y;
             waypointz = location.Z;
         }*/
+
 
         
         private static ObservableCollection<Waypoints> _DataSource;

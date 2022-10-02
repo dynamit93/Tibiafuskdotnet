@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="PvpMenu" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Min hp %" Margin="143,62,584,347"></Label>
+        <TextBox x:Name="PvpHealMaxMin" Margin="143,87,595,327" Text="{Binding SelectedTarget.MinHp, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Content="Max hp %" Margin="244,61,488,341"></Label>
+        <TextBox x:Name="PvpHealMaxHp" Margin="237,87,498,327"></TextBox>
+        <Label Content="Player Name" Margin="330,61,400,349"></Label>
+        <TextBox x:Name="PvpHealPlayerTextbox" Margin="330,86,400,327"></TextBox>
+        <Label Content="Enable PVP HEAL" Margin="413,64,286,344"></Label>
+        <CheckBox x:Name="PvpCHeckBoxEnable" Margin="430,90,355,329"></CheckBox>
     </Grid>
 </Window>

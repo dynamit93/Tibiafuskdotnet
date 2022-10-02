@@ -22,19 +22,19 @@ namespace Tibiafuskdotnet
     /// <summary>
     /// Interaction logic for CavebotMenu.xaml
     /// </summary>
-    public partial class CavebotMenu : ObservableCollection<CavebotMenu>
+    public partial class CavebotMenu : Window
     {
 
         //public ObservableCollection<Waypoints> DataSource { get; set; }
         // private ObservableCollection<Waypoints> DataSource;
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+       /* public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        }*/
 
 
 
@@ -47,7 +47,7 @@ namespace Tibiafuskdotnet
             set
             {
                 _DataSource = value;
-                NotifyPropertyChanged();
+                //NotifyPropertyChanged();
             }
         }
 
@@ -59,34 +59,13 @@ namespace Tibiafuskdotnet
 
 
              
-        DataSource = new ObservableCollection<Waypoints>();
-
-
-
-            //WaypointsHelpers
-           // DataSource.Add(new Waypoints { waypointx = MemoryReader.WaypointsTestX, waypointy = MemoryReader.WaypointsTestY, waypointz = MemoryReader.WaypointsTestZ });
+        //DataSource = new ObservableCollection<Waypoints>();
 
 
 
 
-            //Waypoints.DataSource.Add(new Waypoints { waypointx = MemoryReader.WaypointsTestX, waypointy = MemoryReader.WaypointsTestY, waypointz = MemoryReader.WaypointsTestZ });
-            
-            
-            
-            /* List<Waypoints> Waypoints = new List<Waypoints>();
-             var Waypointsa = new List<Waypoints>();
 
-              for (int i = 0; i < 10; ++i)
-              {
-                  /// add this part bellow to "stand/walk in cavebot waypoint
-                  Waypointsa.Add(new Waypoints { waypointx = MemoryReader.WaypointsTestX , waypointy = MemoryReader.WaypointsTestY, waypointz = MemoryReader.WaypointsTestZ });
-
-                  //System.Console.WriteLine(" X " + MemoryReader.WaypointsTestX + " y " + MemoryReader.WaypointsTestY + " Z " + MemoryReader.WaypointsTestZ);
-
-              }*/
-            // CavebotWaypointsList.ItemsSource = MVVM.ViewModel.Waypoints.DataSource;
-
-            foreach (Waypoints cl in DataSource)
+            /*foreach (Waypoints cl in DataSource)
             {
                // Console.WriteLine(cl.waypointx);
 
@@ -96,7 +75,7 @@ namespace Tibiafuskdotnet
                 //or print the property of your class
 
                 
-            }
+            }*/
             
 
         }

@@ -205,5 +205,11 @@ namespace Tibiafuskdotnet
            // HudMenu Hudkey = new HudMenu();
            // Hudkey.Show();
         }
+
+        private void PvpButton_Click(object sender, RoutedEventArgs e)
+        {
+            MVVM.Views.PvpMenu tG = new MVVM.Views.PvpMenu();
+            tG.ShowDialog();
+        }
     }
 }

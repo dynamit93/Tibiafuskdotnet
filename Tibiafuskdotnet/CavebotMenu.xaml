@@ -24,7 +24,7 @@
             <ComboBoxItem Content="South-east"/>
         </ComboBox>
         <!--ItemsSource="{Binding DataSource, UpdateSourceTrigger=PropertyChanged}"-->
-        <ListView Name="CavebotWaypointsList" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged" DataContext="{Binding Path=DataSource , UpdateSourceTrigger=PropertyChanged}">
+        <ListView Name="CavebotWaypointsList" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged" ItemsSource="{Binding Path=DataSource , UpdateSourceTrigger=PropertyChanged}">
         </ListView>
         <Button Name="CavebotWaypointGoUp" Content="&lt;" HorizontalAlignment="Left" Height="19" Margin="38,217,0,0" VerticalAlignment="Top" Width="25"/>
         <Button Name="CavebotWaypointGoDown" Content="&gt;&#xD;&#xA;" HorizontalAlignment="Left" Height="19" Margin="68,217,0,0" VerticalAlignment="Top" Width="25" Click="Button_Click"/>
