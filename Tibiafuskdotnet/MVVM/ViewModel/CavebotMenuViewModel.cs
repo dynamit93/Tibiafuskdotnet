@@ -29,20 +29,18 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         }
 
         //Waypoints aaa = new Waypoints();
-
+        
         public Waypoints()
         {
 
         }
-        /*
-        public Waypoints(Location location)
-        {
-            waypointx = location.X;
-            waypointy = location.Y;
-            waypointz = location.Z;
-        }*/
 
-
+        /* public Waypoints(Location location)
+         {
+             waypointx = location.X;
+             waypointy = location.Y;
+             waypointz = location.Z;
+         }*/
         
         private static ObservableCollection<Waypoints> _DataSource;
         
@@ -51,7 +49,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             get { return _DataSource; }
             set
             {
-                _DataSource = value;
+                
+               _DataSource = value;
                 NotifyPropertyChanged(); 
             }
         }

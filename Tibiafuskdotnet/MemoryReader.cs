@@ -114,6 +114,7 @@ namespace Tibiafuskdotnet
         const UInt32 WM_KEYDOWN = 0x0100;
 
 
+
         //Utilities
         public static Int32 LightAddr = 0x4EAFAC;
 

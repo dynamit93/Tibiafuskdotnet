@@ -31,6 +31,7 @@ namespace Tibiafuskdotnet.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            
 
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
@@ -70,7 +71,7 @@ namespace Tibiafuskdotnet.ViewModel
         {
             get
             {
-                
+               
                 return ServiceLocator.Current.GetInstance<Waypoints>();
             }
         }
