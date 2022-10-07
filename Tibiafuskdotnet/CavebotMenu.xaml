@@ -32,9 +32,9 @@
             </ListView.Resources>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn  DisplayMemberBinding="{Binding waypointx}" />
-                    <GridViewColumn  DisplayMemberBinding="{Binding waypointy}" />
-                    <GridViewColumn  DisplayMemberBinding="{Binding waypointz}" />
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding waypointx}" />
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding waypointy}" />
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding waypointz}" />
                 </GridView>
             </ListView.View>
         </ListView>
