@@ -25,6 +25,18 @@
         </ComboBox>
         <!--ItemsSource="{Binding DataSource, UpdateSourceTrigger=PropertyChanged}"-->
         <ListView Name="CavebotWaypointsList" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged" ItemsSource="{Binding Path=DataSource , UpdateSourceTrigger=PropertyChanged}">
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Template" Value="{x:Null}" />
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  DisplayMemberBinding="{Binding waypointx}" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding waypointy}" />
+                    <GridViewColumn  DisplayMemberBinding="{Binding waypointz}" />
+                </GridView>
+            </ListView.View>
         </ListView>
         <Button Name="CavebotWaypointGoUp" Content="&lt;" HorizontalAlignment="Left" Height="19" Margin="38,217,0,0" VerticalAlignment="Top" Width="25"/>
         <Button Name="CavebotWaypointGoDown" Content="&gt;&#xD;&#xA;" HorizontalAlignment="Left" Height="19" Margin="68,217,0,0" VerticalAlignment="Top" Width="25" Click="Button_Click"/>

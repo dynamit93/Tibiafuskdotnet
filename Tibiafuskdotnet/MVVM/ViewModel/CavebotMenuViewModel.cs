@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,20 +30,20 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         }
 
         //Waypoints aaa = new Waypoints();
-        
+        [PreferredConstructorAttribute]
         public Waypoints()
         {
 
         }
 
-        /* public Waypoints(Location location)
+        public Waypoints(Location location)
          {
              waypointx = location.X;
              waypointy = location.Y;
              waypointz = location.Z;
-         }*/
+         }
         
-        private static ObservableCollection<Waypoints> _DataSource;
+        private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
         
         public ObservableCollection<Waypoints> DataSource
         {

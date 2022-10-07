@@ -76,7 +76,7 @@ namespace Tibiafuskdotnet
 
                 
             }*/
-            Console.WriteLine(" Benny & Dennis " + MemoryReader.c.PlayerLocation);
+            Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
 
         }
         
@@ -115,9 +115,10 @@ namespace Tibiafuskdotnet
             //if (CavebotEmplacement.SelectedItem == "West")
             if (s == "West")
             {
-                
 
-                    WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X -1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                //WaypointsViewmodel.DataSource.Add(new Waypoints (MemoryReader.c.PlayerLocation));
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X -1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
 
 
