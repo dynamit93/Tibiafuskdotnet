@@ -117,9 +117,9 @@ namespace Tibiafuskdotnet
             {
 
                 //WaypointsViewmodel.DataSource.Add(new Waypoints (MemoryReader.c.PlayerLocation));
-
+                
                 WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X -1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
-
+                Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
 
 
             }
@@ -172,7 +172,6 @@ namespace Tibiafuskdotnet
             //Console.WriteLine(CavebotEmplacement.SelectedItem);
 
            // System.Console.WriteLine("Print OUTPUT of CavebotWaypointsList " + CavebotWaypointsList);
-            Console.WriteLine("PRINT OUT Waypoints.DataSource " + WaypointsViewmodel.DataSource);
            // Console.WriteLine("asdsadasdasd " + MemoryReader.c.PlayerLocation);
         }
 

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Naviserver")]
+[assembly: AssemblyTitle("NaviServer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Naviserver")]
+[assembly: AssemblyProduct("NaviServer")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("89791491-25ff-4db6-b6cc-45e729f9a4bf")]
+[assembly: Guid("2849a21a-e8e9-4f77-b3a7-72f2eb7e87d9")]
 
 // Version information for an assembly consists of the following four values:
 //

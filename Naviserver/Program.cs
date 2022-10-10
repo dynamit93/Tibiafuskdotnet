@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Naviserver
+namespace NaviServer
 {
     internal class Program
     {

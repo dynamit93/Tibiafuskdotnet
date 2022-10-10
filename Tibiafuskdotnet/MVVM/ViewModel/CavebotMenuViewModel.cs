@@ -41,7 +41,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
              waypointx = location.X;
              waypointy = location.Y;
              waypointz = location.Z;
-         }
+            NotifyPropertyChanged();
+        }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
         

@@ -14,7 +14,7 @@
         <Button x:Name="Extras_btn" Content="Extras" HorizontalAlignment="Left" Margin="7,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Extras_btn_Click_1" IsEnabled="False"/>
         <Button x:Name="Aimbot_btn" Content="Aimbot" HorizontalAlignment="Left" Margin="75,36,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
         <Button x:Name="Hottkeys_btn" Content="Hottkeys" HorizontalAlignment="Left" Margin="75,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Navigation_btn" Content="Navigation" HorizontalAlignment="Left" Margin="75,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Navigation_btn" Content="Navigation" HorizontalAlignment="Left" Margin="75,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="True"/>
         <Button x:Name="Proxy_btn" Content="Proxy" HorizontalAlignment="Left" Margin="75,96,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
         <Button x:Name="Lists_btn" Content="Lists" HorizontalAlignment="Left" Margin="143,36,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
         <Button x:Name="Shortkeys_btn" Content="Shortkeys" HorizontalAlignment="Left" Margin="143,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>

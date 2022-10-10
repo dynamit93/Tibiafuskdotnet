@@ -26,7 +26,7 @@ namespace Tibiafuskdotnet
     {
         public static Timer timer;
         //private MainWindow lb;
-       
+
         private const int PROCESS_WM_READ = 0x0010;
 
         public static Int32 baseAddress;
@@ -42,7 +42,7 @@ namespace Tibiafuskdotnet
         public static int light;
         public static int WaypointsTestZ;
         public static int WaypointsTestX;
-        public static int WaypointsTestY; 
+        public static int WaypointsTestY;
 
         public static int maxHpValue;
         public static int maxManaValue;
@@ -56,16 +56,16 @@ namespace Tibiafuskdotnet
 
         public static Int32 xorAddr = 0x934658 - 0x400000;
         public static Int32 chattAddr = 0x27361B0;
-/*
-        public static void SetVersion860()
-        {
-        //battlelist
-            BattleList.Start = 0x63FEF8;
-            BattleList.StepCreatures = 0xA8;
-            BattleList.MaxCreatures = 250;
-            BattleList.End = BattleList.Start + (BattleList.StepCreatures* BattleList.MaxCreatures);
+        /*
+                public static void SetVersion860()
+                {
+                //battlelist
+                    BattleList.Start = 0x63FEF8;
+                    BattleList.StepCreatures = 0xA8;
+                    BattleList.MaxCreatures = 250;
+                    BattleList.End = BattleList.Start + (BattleList.StepCreatures* BattleList.MaxCreatures);
 
-            }*/
+                    }*/
 
         //character
         public static Int32 CharacterNameAddr = 0x63FEFC;
@@ -81,7 +81,7 @@ namespace Tibiafuskdotnet
         public static Int32 ExpAddr = 0x63FE8C;
         public static Int32 CapAddr = 0x63FE68;
         public static Int32 SoulAddr = 0x63FE70;
-        
+
 
         /// hottkeys
         /// pub
@@ -122,21 +122,21 @@ namespace Tibiafuskdotnet
         public static Int32 Waypointstestaddry = 0x64F604;
         public static Int32 Waypointstestaddrz = 0x64F600;
 
-        
 
 
 
-           public static Int32 BattleListStart = 0x63FEF8;
-           public static Int32 BattleListStepCreatures = 0xA8;
-           public static Int32 BattleListMaxCreatures = 250;
-           public static Int32 BatteListEnd = BattleListStart + (BattleListStepCreatures * BattleListMaxCreatures);
+
+        public static Int32 BattleListStart = 0x63FEF8;
+        public static Int32 BattleListStepCreatures = 0xA8;
+        public static Int32 BattleListMaxCreatures = 250;
+        public static Int32 BatteListEnd = BattleListStart + (BattleListStepCreatures * BattleListMaxCreatures);
 
 
 
         public static double manaPercentInput;
         public static double hpPercentLightHealInput;
         public static double hpPercentIntenseHealInput;
-        
+
 
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
@@ -148,8 +148,7 @@ namespace Tibiafuskdotnet
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern bool WriteProcessMemory(int hProcess, int lpBaseAddress,
         byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
-       
-        
+
 
         public static void Start(double _manaPercentInput, double _hpPercentLightHealInput, double _hpPercentIntenseHealInput)
         {
@@ -160,11 +159,11 @@ namespace Tibiafuskdotnet
             
 
             timer = new Timer();
-            timer.Interval = 300;
+            timer.Interval = 50;
             timer.Elapsed += new ElapsedEventHandler(TimerTick);
             timer.Start();
            
-
+            
             ReadValuesFromMemory();
         }
 
@@ -196,12 +195,12 @@ namespace Tibiafuskdotnet
                     // dennis gjort
                     inventory = new Inventory(c);
                     Objects = new Object();
-                    
 
+                    timer.Start();
                     //Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())
                     {
-                        System.Console.WriteLine("Creature " + C.Name);
+                        //System.Console.WriteLine("Creature " + C.Name);
                         
                     }
                     
@@ -213,8 +212,14 @@ namespace Tibiafuskdotnet
                     }
 
 
+
+
+
+
+
+
                     // PRINT OUT THE LOCATION OF THE PLAYER
-                System.Console.WriteLine(c.PlayerLocation);
+                   // System.Console.WriteLine(c.PlayerLocation);
 
 
 
@@ -368,7 +373,10 @@ namespace Tibiafuskdotnet
                 WaypointsTestZ = BitConverter.ToInt32(buffer, 0);
 
 
-                
+
+
+                AppRunning();
+
 
                 // ReadProcessMemory((int)handle, BattleListStart, buffer, buffer.Length, ref bytesRead);
                 // BattleListconvert = BitConverter.ToInt32(buffer, 0);
