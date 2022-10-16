@@ -441,7 +441,7 @@
             SelectionChanged="StanceMode_SelectionChanged" />
         <Label             
 
-            Content="Attack Mode" Margin="167,252,349,158" Grid.ColumnSpan="2" />
+            Content="Attack Mode" Margin="167,252,349,223" Grid.ColumnSpan="2" />
         <ComboBox
             x:Name="AttackMode"
             Grid.Column="1"

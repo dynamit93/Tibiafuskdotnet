@@ -63,7 +63,8 @@ namespace Tibiafuskdotnet.MVVM.Views
             }
             catch (Exception ea)
             {
-                System.Console.WriteLine("failed to connect...");
+                MessageBox.Show("failed to connect..." + ea.Message);
+                System.Console.WriteLine();
                 //goto connection;
             }
         }

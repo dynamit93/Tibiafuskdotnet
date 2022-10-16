@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         DataContext="{Binding CavebotMenuViewModel, Source={StaticResource Locator}}"
         Title="CavebotMenu" Height="453.857" Width="801.23">
+    
     <Grid RenderTransformOrigin="0.361,0.493" Margin="11,0,10,-3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="41*"/>
@@ -52,8 +54,23 @@
         <Button Name="CavebotWaypointShovel" Content="Shovel" HorizontalAlignment="Left" Height="21" Margin="375,62,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
         <Button Name="CavebotWaypointAction" Content="Action" HorizontalAlignment="Left" Height="21" Margin="419,41,0,0" VerticalAlignment="Top" Width="48"/>
         <Button Name="CavebotWaypointLure" Content="Lure" HorizontalAlignment="Left" Height="21" Margin="419,62,0,0" VerticalAlignment="Top" Width="48"/>
-        <CheckBox Name="CavebotWaypointShowLable" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="270,221,0,0" VerticalAlignment="Top" Width="20"/>
-        <CheckBox Name="CavebotWaypointFollowWaypoints" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="364,221,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-0.79,0.5"/>
+        <CheckBox Name="CavebotWaypointShowLable" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="270,221,0,0" VerticalAlignment="Top" Width="20" Checked="CavebotWaypointShowLable_Checked"/>
+        <CheckBox x:Name="CavebotWaypointFollowWaypoints" 
+                  HorizontalAlignment="Left" 
+                  Height="19" Margin="364,221,0,0"
+                  VerticalAlignment="Top" Width="20" 
+                  RenderTransformOrigin="-0.79,0.5" 
+                  IsChecked="{Binding Waypoints.FollowWaypoints, UpdateSourceTrigger=PropertyChanged}"
+                  Unchecked="CavebotWaypointFollowWaypoints_UnChecked" Checked="CavebotWaypointFollowWaypoints_Checked">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <i:InvokeCommandAction Command="{Binding Cavebotcommand}" CommandParameter="FollowWaypointsAlarmChecked" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
+                    <i:InvokeCommandAction Command="{Binding Cavebotcommand}" CommandParameter="FollowWaypointsUnChecked" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </CheckBox>
         <Label Content="Show Labels" HorizontalAlignment="Left" Margin="290,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.945,-0.037" Height="26" Width="75"/>
         <Label Content="Follow Waypoints" HorizontalAlignment="Left" Margin="384,215,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.518,0.603" Height="26" Width="103"/>
         <ListView Name="CavebotSettingsList" HorizontalAlignment="Left" Height="75" Margin="40,279,0,0" VerticalAlignment="Top" Width="210">

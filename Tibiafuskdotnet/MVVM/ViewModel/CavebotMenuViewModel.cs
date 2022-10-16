@@ -29,19 +29,25 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
+
+
+
         //Waypoints aaa = new Waypoints();
         [PreferredConstructorAttribute]
         public Waypoints()
         {
 
         }
-
+        public RelayCommand<string> Cavebotcommand { get; set; }
         public Waypoints(Location location)
          {
              waypointx = location.X;
              waypointy = location.Y;
              waypointz = location.Z;
             NotifyPropertyChanged();
+
+            Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
         }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
@@ -57,8 +63,18 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             }
         }
 
+        private bool _FollowWaypoints;
 
-       // public static ObservableCollection<Waypoints> DataSource { get; set; }
+        public bool FollowWaypoints
+        {
+            get { return _FollowWaypoints; }
+            set { _FollowWaypoints = value; NotifyPropertyChanged("FollowWaypoints"); }
+        }
+
+
+
+
+        // public static ObservableCollection<Waypoints> DataSource { get; set; }
 
 
         public int waypointx { get; set; }
@@ -66,11 +82,37 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         public int waypointz { get; set; }
         
+    
+        private void PerformFollowWaypoints(string obj)
+        {
+
+            switch (obj)
+            {
+                case "FollowWaypointsUnChecked":
+                    System.Console.WriteLine("FollowWaypointsUnChecked");
+                    System.Console.WriteLine("FollowWaypointsAlarmChecked");
+
+                    break;
+                case "FollowWaypointsAlarmChecked":
+                    try
+                    {
+                        System.Console.WriteLine("FollowWaypointsAlarmChecked");
+                        //Tibia.Addresses.Player.GoToX
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    break;
+
+            }
+        }
 
 
-    }
 
-}
+            }
+
+        }
 
  
 
