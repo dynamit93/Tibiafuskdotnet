@@ -178,7 +178,7 @@ namespace Tibiafuskdotnet
         public static Object Objects = null;
 
         public static Client c;
-
+        public static Creature C;
         public static bool AppRunning(string appName = "Tibia")
         {
 
@@ -197,7 +197,7 @@ namespace Tibiafuskdotnet
                     Objects = new Object();
 
                     timer.Start();
-                    //Tibia.Version.SetVersion860();
+                    Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())
                     {
                         //System.Console.WriteLine("Creature " + C.Name);
@@ -730,7 +730,9 @@ namespace Tibiafuskdotnet
             }
             catch (Exception)
             {
-               // System.Windows.Application.Current.Shutdown();
+               
+               
+                // System.Windows.Application.Current.Shutdown();
                 //throw;
             }
         }

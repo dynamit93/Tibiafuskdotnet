@@ -6,16 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Tibia.Objects;
 using Tibia.Addresses;
 using Tibiafuskdotnet.MVVM.ViewModel;
 using Tibiafuskdotnet;
 using System.ComponentModel;
+using Client = Tibia.Objects.Client;
 
 namespace Tibiafuskdotnet
 {
@@ -25,31 +21,35 @@ namespace Tibiafuskdotnet
     public partial class CavebotMenu : Window
     {
 
+
+
+        protected Client client;
+
         //public ObservableCollection<Waypoints> DataSource { get; set; }
         // private ObservableCollection<Waypoints> DataSource;
 
 
-       /* public event PropertyChangedEventHandler PropertyChanged;
+        /* public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }*/
+         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+         {
+             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+         }*/
 
 
 
-/*
-        private static ObservableCollection<Waypoints> _DataSource;
+        /*
+                private static ObservableCollection<Waypoints> _DataSource;
 
-        public ObservableCollection<Waypoints> DataSource
-        {
-            get { return _DataSource; }
-            set
-            {
-                _DataSource = value;
-                //NotifyPropertyChanged();
-            }
-        }*/
+                public ObservableCollection<Waypoints> DataSource
+                {
+                    get { return _DataSource; }
+                    set
+                    {
+                        _DataSource = value;
+                        //NotifyPropertyChanged();
+                    }
+                }*/
 
 
 
@@ -76,7 +76,8 @@ namespace Tibiafuskdotnet
 
                 
             }*/
-            Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
+            
+            System.Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
 
         }
         
@@ -119,7 +120,7 @@ namespace Tibiafuskdotnet
                 //WaypointsViewmodel.DataSource.Add(new Waypoints (MemoryReader.c.PlayerLocation));
                 
                 WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X -1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
-                Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
+                System.Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
 
 
             }
@@ -156,7 +157,7 @@ namespace Tibiafuskdotnet
 
                 WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
-                Console.WriteLine(CavebotEmplacement.SelectedItem);
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
 
             }
             else if (CavebotEmplacement.SelectedItem == null)
@@ -174,6 +175,16 @@ namespace Tibiafuskdotnet
            // System.Console.WriteLine("Print OUTPUT of CavebotWaypointsList " + CavebotWaypointsList);
            // Console.WriteLine("asdsadasdasd " + MemoryReader.c.PlayerLocation);
         }
+                
+        
+        private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e)
+        {
+
+           /* Waypoints aaa = new Waypoints();
+            Tibia.Objects.Player p = client.GetPlayer();
+            p.GoTo = Waypoints;*/
+        }
+
 
 
     }

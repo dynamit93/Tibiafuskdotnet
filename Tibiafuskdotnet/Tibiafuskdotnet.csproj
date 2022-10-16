@@ -248,9 +248,13 @@
       <DependentUpon>ExtrasMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\ViewModel\CavebotMenuViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\NavigationMenuViewModel.cs" />
     <Compile Include="MVVM\ViewModel\PvpMenuViewModel.cs" />
     <Compile Include="MVVM\ViewModel\TargetEditSettingsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\WaypointsHelpers.cs" />
+    <Compile Include="MVVM\Views\NavigationMenu.xaml.cs">
+      <DependentUpon>NavigationMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Views\PvpMenu.xaml.cs">
       <DependentUpon>PvpMenu.xaml</DependentUpon>
     </Compile>
@@ -499,6 +503,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\Views\NavigationMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\Views\PvpMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

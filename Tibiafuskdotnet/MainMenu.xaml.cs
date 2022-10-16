@@ -211,5 +211,11 @@ namespace Tibiafuskdotnet
             MVVM.Views.PvpMenu tG = new MVVM.Views.PvpMenu();
             tG.ShowDialog();
         }
+
+        private void Navigation_btn_Click(object sender, RoutedEventArgs e)
+        {
+            MVVM.Views.NavigationMenu NavigationKey = new MVVM.Views.NavigationMenu();
+            NavigationKey.ShowDialog();
+        }
     }
 }
