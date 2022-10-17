@@ -14,6 +14,7 @@ using Tibia.Addresses;
 using Tibia.Objects;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Tibiafuskdotnet.MVVM.ViewModel
@@ -37,6 +38,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         [PreferredConstructorAttribute]
         public Waypoints()
         {
+            Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
 
         }
         public RelayCommand<string> Cavebotcommand { get; set; }
@@ -47,7 +49,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
              waypointz = location.Z;
             NotifyPropertyChanged();
 
-            Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
+            
         }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
@@ -82,7 +84,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         public int waypointz { get; set; }
         
-    
+
         private void PerformFollowWaypoints(string obj)
         {
 
@@ -90,13 +92,25 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             {
                 case "FollowWaypointsUnChecked":
                     System.Console.WriteLine("FollowWaypointsUnChecked");
-                    System.Console.WriteLine("FollowWaypointsAlarmChecked");
+                   
 
                     break;
                 case "FollowWaypointsAlarmChecked":
                     try
                     {
-                        System.Console.WriteLine("FollowWaypointsAlarmChecked");
+                        
+                        foreach (var item in DataSource)
+                        {
+
+                          int x = item.waypointx;
+                          int y = item.waypointy;
+                          int z = item.waypointz;
+
+                            
+                            
+                            System.Console.WriteLine(x + " "+ y + " "+ z);
+                        }
+                        
                         //Tibia.Addresses.Player.GoToX
                     }
                     catch (Exception)
