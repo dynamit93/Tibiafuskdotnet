@@ -12,6 +12,7 @@ using Tibia.Objects;
 using Tibiafuskdotnet.MVVM.ViewModel;
 
 
+
 namespace Tibiafuskdotnet.MVVM.Views
 {
     /// <summary>
@@ -20,18 +21,25 @@ namespace Tibiafuskdotnet.MVVM.Views
     public partial class NavigationMenu : Window
     {
 
-        NavigationMenuViewModel.Host host = new NavigationMenuViewModel.Host { Clientip = "127.0.0.1", Clientport = 1302 };
         
+
+
+
         public NavigationMenu()
         {
             InitializeComponent();
 
+            string text = Cleintportfail.Text;
+            int naviPort = Convert.ToInt32(text);
+            string naviip = Clientip.Text;
+            
 
         }
         
+        NavigationMenuViewModel host = new NavigationMenuViewModel { Clientip = "127.0.0.1", Clientport = 1302 };
         Waypoints waypoints = new Waypoints();
 
-
+        //NavigationMenuViewModel host = new NavigationMenuViewModel();
         // NavigationMenuViewModel NavigationMenuViewModel = new NavigationMenuViewModel();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +50,7 @@ namespace Tibiafuskdotnet.MVVM.Views
             {
                 TcpClient client = new TcpClient(host.Clientip, host.Clientport);
                 //string messageToSend = Convert.ToString("waypoint x "+waypoints.waypointx + " waypoint y " + waypoints.waypointy + " waypoint z " +waypoints.waypointz);
-                string messageToSend = Convert.ToString(":x:" + MemoryReader.c.Player.X + ":y:" + MemoryReader.c.Player.Y + ":z:" + MemoryReader.c.Player.Z);
+                string messageToSend = Convert.ToString(":" + MemoryReader.c.Player.X + ":" + MemoryReader.c.Player.Y + ":" + MemoryReader.c.Player.Z);
                 //int byteCount2 = Encoding.ASCII.GetByteCount(messageToSend2 + 1);
                 //byte[] sendData2 = Encoding.ASCII.GetBytes(messageToSend2);
                 int byteCount = Encoding.ASCII.GetByteCount(messageToSend + 1);

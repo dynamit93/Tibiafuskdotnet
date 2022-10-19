@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using Tibia.Addresses;
 using Tibia.Objects;
@@ -31,13 +32,50 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         }
 
 
+        //SelectedTarget
+        private CaveBotLootList _selectedLoot;
+
+        public CaveBotLootList SelectedLoot
+        {
+            get
+            {
+                return _selectedLoot;
+            }
+            set { _selectedLoot = value; NotifyPropertyChanged("SelectedLoot"); }
+        }
+
+        //listTargeting
+        private ObservableCollection<string> _listLoot;
+
+        public ObservableCollection<string> ListLoot
+        {
+            get { return _listLoot; }
+            set { _listLoot = value; NotifyPropertyChanged("ListLoot"); }
+        }
+
+        //Targets
+        private static ObservableCollection<CaveBotLootList> _Loots;
+
+        public ObservableCollection<CaveBotLootList> Loots
+        {
+            get { return _Loots; }
+            set { _Loots = value; NotifyPropertyChanged("Loots"); }
+        }
+
+        //Targeting Method
+        // Targeting Class = CaveBotLootList Class
+        public static CaveBotLootList AddNewLoot()
+        {
+            return new CaveBotLootList() { Ids = 0,Lootbackpacks = "",Desciption ="<New Entry>" };
+        }
 
 
 
-        //Waypoints aaa = new Waypoints();
         [PreferredConstructorAttribute]
         public Waypoints()
         {
+            ListLoot = new ObservableCollection<string>() { "<New Entry>" };
+            Loots = new ObservableCollection<CaveBotLootList>() { AddNewLoot() };
             Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
 
         }
@@ -83,7 +121,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         public int waypointy { get; set; }
 
         public int waypointz { get; set; }
-        
+        public TextBox txtLootDescrption { get; set; }
 
         private void PerformFollowWaypoints(string obj)
         {
@@ -106,19 +144,55 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                           int y = item.waypointy;
                           int z = item.waypointz;
 
-                            
-                            
                             System.Console.WriteLine(x + " "+ y + " "+ z);
                         }
                         
                         //Tibia.Addresses.Player.GoToX
                     }
+
+
                     catch (Exception)
                     {
 
                     }
                     break;
+                case "SelectedTargetscript":
 
+                    break;
+
+                case "Delete":
+                    if (SelectedLoot != null)
+                    {
+                        if (SelectedLoot.Desciption != "<New Entry>")
+                            Loots.Remove(SelectedLoot);
+                    }
+                    break;
+
+                case "ListBoxSelectionChanged":
+                    break;
+                case "ListDescriptionTextBoxGotFocus":
+                    if (SelectedLoot == null)
+                        return;
+
+                    if (SelectedLoot.Desciption.Equals("<New Entry>"))
+                    {
+                        if (Loots.Count > 1)
+                        {
+
+                            if (Loots[Loots.Count - 2].Desciption == "")
+                            {
+                                SelectedLoot = Loots[Loots.Count - 2];
+                                txtLootDescrption.Focus();
+                                return;
+                            }
+                        }
+                        SelectedLoot.Desciption = "";
+                        NotifyPropertyChanged("SelectedLoot");
+                        Loots.Add(AddNewLoot());
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 

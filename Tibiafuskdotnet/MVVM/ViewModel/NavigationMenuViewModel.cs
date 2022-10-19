@@ -14,7 +14,23 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 {
     public class NavigationMenuViewModel : ViewModelBase
     {
-        
+
+        private string _Clientip;
+
+        public string Clientip
+        {
+            get { return _Clientip; }
+            set { _Clientip = value; }
+        }
+
+
+        public int _Clientport;
+
+        public int Clientport
+        {
+            get { return _Clientport; }
+            set { _Clientport = value; }
+        }
 
 
 
@@ -46,30 +62,32 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 goto connection;
             }*/
         }
-        public class Host
-        {
 
-
-
-            private string _Clientip;
-
-            public string Clientip
-            {
-                get { return _Clientip; }
-                set { _Clientip = value; }
-            }
-
-
-            public int _Clientport;
-
-            public int Clientport
-            {
-                get { return _Clientport; }
-                set { _Clientport = value;}
-            }
-
-
-        }
 
     }
+    /*
+    public class Host
+    {
+
+
+
+        private string _Clientip;
+
+        public string Clientip
+        {
+            get { return _Clientip; }
+            set { _Clientip = value; }
+        }
+
+
+        public int _Clientport;
+
+        public int Clientport
+        {
+            get { return _Clientport; }
+            set { _Clientport = value; }
+        }
+
+
+    }*/
 }

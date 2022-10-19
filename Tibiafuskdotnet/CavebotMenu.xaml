@@ -16,14 +16,15 @@
         </Grid.ColumnDefinitions>
         <ComboBox Name="CavebotEmplacement" Margin="351,0,0,399">
 
-            <ComboBoxItem Content="Centre"/>
+            <ComboBoxItem Content="Center"/>
             <ComboBoxItem Content="West"/>
             <ComboBoxItem Content="South"/>
             <ComboBoxItem Content="North"/>
-            <ComboBoxItem Content="North-west"/>
-            <ComboBoxItem Content="North-east"/>
-            <ComboBoxItem Content="South-west"/>
-            <ComboBoxItem Content="South-east"/>
+            <ComboBoxItem Content="East"/>
+            <ComboBoxItem Content="North-West"/>
+            <ComboBoxItem Content="North-East"/>
+            <ComboBoxItem Content="South-West"/>
+            <ComboBoxItem Content="South-East"/>
         </ComboBox>
         <!--ItemsSource="{Binding DataSource, UpdateSourceTrigger=PropertyChanged}"-->
         <ListView Name="CavebotWaypointsList" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged" ItemsSource="{Binding Path=DataSource , UpdateSourceTrigger=PropertyChanged}">
@@ -98,18 +99,49 @@
         <Label Content="Waypoints" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
         <Label Content="Cavebot Hotkeys" HorizontalAlignment="Left" Margin="51,9,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="100"/>
         <Button Name="CavebotHotkeyEdit" Content="Edit" HorizontalAlignment="Left" Height="20" Margin="41,30,0,0" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
-        <ListView Name="CavebotLootList" HorizontalAlignment="Left" Height="128" Margin="41,82,0,0" VerticalAlignment="Top" Width="192" Grid.Column="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+        <ListView Name="CavebotLootList" HorizontalAlignment="Left" Height="128" Margin="41,82,0,0" VerticalAlignment="Top" Width="192" Grid.Column="2"
+            ItemsSource="{Binding ListLoot, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding Loots, UpdateSourceTrigger=PropertyChanged}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding Cavebotcommand}" CommandParameter="ListBoxSelectionChanged" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </ListView>
         <Label Content="Looting" HorizontalAlignment="Left" Margin="41,55,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="51"/>
-        <TextBox Name="CavebotLootId" HorizontalAlignment="Left" Height="17" Margin="41,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="41" Grid.Column="2"/>
-        <TextBox Name="CavebotLootBp" HorizontalAlignment="Left" Height="17" Margin="87,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="26" Grid.Column="2"/>
-        <TextBox Name="CavebotLootDiscription" HorizontalAlignment="Left" Height="17" Margin="118,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="77" Grid.Column="2"/>
-        <Button Name="CavebotLootDel" Content="Del" HorizontalAlignment="Left" Height="18" Margin="200,216,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="0.49,0.316" Grid.Column="2"/>
+        <TextBox Name="CavebotLootId" HorizontalAlignment="Left" Height="17" Margin="41,217,0,0" TextWrapping="Wrap"
+                 Text="{Binding SelectedLoot.Ids, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="41" Grid.Column="2">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="GotFocus">
+                    <i:InvokeCommandAction Command="{Binding Cavebotcommand}" CommandParameter="ListDescriptionTextBoxGotFocus" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox Name="CavebotLootBp" HorizontalAlignment="Left" Height="17" Margin="87,217,0,0" TextWrapping="Wrap"
+                 Text="{Binding SelectedLoot.Lootbackpacks, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top" Width="26" Grid.Column="2">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="GotFocus">
+                    <i:InvokeCommandAction Command="{Binding Cavebotcommand}" CommandParameter="ListDescriptionTextBoxGotFocus" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox Name="LootDiscriptionTextBox" HorizontalAlignment="Left" Height="17" Margin="118,217,0,0" TextWrapping="Wrap" 
+                 Text="{Binding SelectedLoot.Desciption, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top" Width="77" Grid.Column="2" TextChanged="LootDiscriptionTextBox_TextChanged" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="GotFocus">
+                    <i:InvokeCommandAction Command="{Binding Cavebotcommand}" CommandParameter="ListDescriptionTextBoxGotFocus" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Button Name="CavebotLootDel" 
+                Content="Del" HorizontalAlignment="Left" 
+                Height="18" Margin="200,216,0,0" VerticalAlignment="Top" Width="33" 
+                RenderTransformOrigin="0.49,0.316" Grid.Column="2"
+                Command="{Binding Cavebotcommand}"
+                CommandParameter="DeleteLoot"
+                />
         <Label Content="Options" HorizontalAlignment="Left" Margin="41,251,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.245,0.624" Grid.Column="2" Height="26" Width="52"/>
         <Label Content="Use Rope" HorizontalAlignment="Left" Margin="41,276,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="60"/>
         <Label Content="Use Shovel" HorizontalAlignment="Left" Margin="41,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.404,-0.611" Grid.Column="2" Height="26" Width="68"/>

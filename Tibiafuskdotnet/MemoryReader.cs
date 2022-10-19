@@ -7,17 +7,16 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Timers;
 using System.Windows;
-
 using System.Windows.Threading;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
-
 using WindowsInput;
 using WindowsInput.Native;
 using Tibia;
 using Tibia.Objects;
 using Tibia.Constants;
 using Tibiafuskdotnet.MVVM.ViewModel;
+
 
 namespace Tibiafuskdotnet
 {
@@ -176,9 +175,12 @@ namespace Tibiafuskdotnet
         /// </summary>
         public static Inventory inventory = null;
         public static Object Objects = null;
-
+        public static Player pp = null;
         public static Client c;
         public static Creature C;
+
+
+        
         public static bool AppRunning(string appName = "Tibia")
         {
 
@@ -190,12 +192,14 @@ namespace Tibiafuskdotnet
                 //System.Console.WriteLine(p.ProcessName);
                 if (p.ProcessName.Contains(appName))
                 {
+
                     c = new Client(p);
                     battleList = new BattleList(c);
                     // dennis gjort
                     inventory = new Inventory(c);
                     Objects = new Object();
-
+                    
+                    
                     timer.Start();
                     Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())
@@ -269,7 +273,14 @@ namespace Tibiafuskdotnet
             
             return false;
         }
+       
+        public static void playerwalk() 
+        {
+            Waypoints gwt = new Waypoints();
+            Tibia.Objects.Player p = client.GetPlayer();
+            //p.GoTo = Location();
 
+        }
         private static Creature[] NewMethod()
         {
             return new Creature[30];

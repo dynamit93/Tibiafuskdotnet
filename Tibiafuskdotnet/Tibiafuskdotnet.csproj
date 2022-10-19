@@ -233,6 +233,7 @@
     <Compile Include="Adresses\TextDisplay.cs" />
     <Compile Include="Adresses\Versions\Version.cs" />
     <Compile Include="Adresses\Vip.cs" />
+    <Compile Include="BL\CaveBotLootList.cs" />
     <Compile Include="BL\Cheat.cs" />
     <Compile Include="Adresses\Creature.cs" />
     <Compile Include="BL\Helper.cs" />
