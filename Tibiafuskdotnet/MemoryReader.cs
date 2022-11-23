@@ -173,6 +173,7 @@ namespace Tibiafuskdotnet
         /// <summary>
         /// Dennis gjort
         /// </summary>
+        public static Client.PlayerHelper playerHelper = null;
         public static Inventory inventory = null;
         public static Object Objects = null;
         public static Player pp = null;
@@ -198,8 +199,10 @@ namespace Tibiafuskdotnet
                     // dennis gjort
                     inventory = new Inventory(c);
                     Objects = new Object();
+                    playerHelper = new Client.PlayerHelper(c);
+
                     
-                    
+
                     timer.Start();
                     Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())

@@ -50,7 +50,42 @@ namespace Tibiafuskdotnet.MVVM.Views
             {
                 TcpClient client = new TcpClient(host.Clientip, host.Clientport);
                 //string messageToSend = Convert.ToString("waypoint x "+waypoints.waypointx + " waypoint y " + waypoints.waypointy + " waypoint z " +waypoints.waypointz);
-                string messageToSend = Convert.ToString(":" + MemoryReader.c.Player.X + ":" + MemoryReader.c.Player.Y + ":" + MemoryReader.c.Player.Z);
+                string messageToSend = Convert.ToString(
+                      
+                      MemoryReader.c.Player.Id
+                    + "Playerid:"
+                    + MemoryReader.c.Player.TargetId
+                    + "TargetId:"
+                    + MemoryReader.c.Player.Health
+                    + "Health:"
+                    + MemoryReader.c.Player.Mana
+                    + "Mana:"
+                    + MemoryReader.c.Player.Capacity
+                    + "Capacity:"
+                    + MemoryReader.c.Player.Stamina
+                    + "Stamina:"
+                    + MemoryReader.c.Player.MagicLevel
+                    + "MagicLevel:"
+                    + MemoryReader.c.Player.Fist
+                    + "Fist:"
+                    + MemoryReader.c.Player.Club
+                    + "Club:"
+                    + MemoryReader.c.Player.Sword
+                    + "Sword:"
+                    + MemoryReader.c.Player.Axe
+                    + "Axe:"
+                    + MemoryReader.c.Player.Distance
+                    + "Distance:"
+                    + MemoryReader.c.Player.Shielding
+                    + "Shielding:"
+                    + MemoryReader.c.Player.X
+                    + "X:"
+                    + MemoryReader.c.Player.Y
+                    + "Y:"
+                    + MemoryReader.c.Player.Z
+                    + "Z:");
+
+
                 //int byteCount2 = Encoding.ASCII.GetByteCount(messageToSend2 + 1);
                 //byte[] sendData2 = Encoding.ASCII.GetBytes(messageToSend2);
                 int byteCount = Encoding.ASCII.GetByteCount(messageToSend + 1);
@@ -63,7 +98,7 @@ namespace Tibiafuskdotnet.MVVM.Views
 
                 StreamReader sr = new StreamReader(stream);
                 string response = sr.ReadLine();
-                System.Console.WriteLine(response);
+                System.Console.WriteLine(response +" Data Recive from server");
 
                 stream.Close();
                 client.Close();
