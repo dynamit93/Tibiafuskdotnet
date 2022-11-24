@@ -1,18 +1,10 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Timers;
 using System.Windows;
-using System.Windows.Threading;
-using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
-using WindowsInput;
-using WindowsInput.Native;
-using Tibia;
 using Tibia.Objects;
 using Tibia.Constants;
 using Tibiafuskdotnet.MVVM.ViewModel;

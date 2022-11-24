@@ -10,13 +10,10 @@ using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet.BL;
 using System.IO;
-using static Tibia.Objects.Client;
-using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
 using Squalr.Engine.Utils.Extensions;
 using System.Threading;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
+using Tibia;
 
 namespace Tibiafuskdotnet.ViewModel
 {
@@ -445,13 +442,14 @@ namespace Tibiafuskdotnet.ViewModel
                 //chceking if monster on screen is == then count monster in tragetting
                 //System.Console.WriteLine(count);
 
+                
 
                 // if (SelectedCounts <= count) { }
                 /* while (MemoryReader.battleList.GetCreatures().Count() > 0 && istargeting == false)
                   {*/
 
-               
-                    int lowest = 101;
+
+                int lowest = 101;
                     uint currentIdToAttack = 0;
                     Creature C = null;
                     

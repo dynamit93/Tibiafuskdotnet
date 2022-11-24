@@ -6,9 +6,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Xml.Linq;
-using Tibia.Constants;
-using Tibia.Objects;
 using Tibiafuskdotnet.MVVM.ViewModel;
 
 
@@ -31,13 +28,16 @@ namespace Tibiafuskdotnet.MVVM.Views
 
             string text = Cleintportfail.Text;
             int naviPort = Convert.ToInt32(text);
-            string naviip = Clientip.Text;
-            
-
+            string naviip = Clientip.Text; 
         }
         
+
         NavigationMenuViewModel host = new NavigationMenuViewModel { Clientip = "127.0.0.1", Clientport = 1302 };
         Waypoints waypoints = new Waypoints();
+        
+        
+        NavigationMenuViewModel NavigationMenuViewModel = new NavigationMenuViewModel();
+
 
         //NavigationMenuViewModel host = new NavigationMenuViewModel();
         // NavigationMenuViewModel NavigationMenuViewModel = new NavigationMenuViewModel();
@@ -49,7 +49,6 @@ namespace Tibiafuskdotnet.MVVM.Views
             try
             {
                 TcpClient client = new TcpClient(host.Clientip, host.Clientport);
-                //string messageToSend = Convert.ToString("waypoint x "+waypoints.waypointx + " waypoint y " + waypoints.waypointy + " waypoint z " +waypoints.waypointz);
                 string messageToSend = Convert.ToString(
                       
                       MemoryReader.c.Player.Id
@@ -97,12 +96,13 @@ namespace Tibiafuskdotnet.MVVM.Views
                 System.Console.WriteLine("sending data to server...");
 
                 StreamReader sr = new StreamReader(stream);
-                string response = sr.ReadLine();
-                System.Console.WriteLine(response +" Data Recive from server");
-
+                NavigationMenuViewModel.Response = sr.ReadLine();
+                System.Console.WriteLine(NavigationMenuViewModel.Response + " Data Recive from server");
+                NavigationMenuViewModel.NaviPlayer naviPlayer = new NavigationMenuViewModel.NaviPlayer();
                 stream.Close();
                 client.Close();
-                
+                NavigationMenuViewModel.Main();
+                System.Console.WriteLine(naviPlayer.Mana);
             }
             catch (Exception ea)
             {
