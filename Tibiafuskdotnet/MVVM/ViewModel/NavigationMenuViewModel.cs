@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight;
 
 
@@ -38,10 +41,89 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         }
 
         NaviPlayer naviPlayer = new NaviPlayer();
-
-
-        public void Main()
+         public NavigationMenuViewModel()
         {
+            Clientip = "127.0.0.1";
+            Clientport = 1302;
+
+        }
+
+
+
+        public void navilogin()
+        {
+
+            //connection:
+            try
+            {
+                TcpClient client = new TcpClient(Clientip, Clientport);
+                string messageToSend = Convert.ToString(
+
+                      MemoryReader.c.Player.Id
+                    + "Playerid:"
+                    + MemoryReader.c.Player.TargetId
+                    + "TargetId:"
+                    + MemoryReader.c.Player.Health
+                    + "Health:"
+                    + MemoryReader.c.Player.Mana
+                    + "Mana:"
+                    + MemoryReader.c.Player.Capacity
+                    + "Capacity:"
+                    + MemoryReader.c.Player.Stamina
+                    + "Stamina:"
+                    + MemoryReader.c.Player.MagicLevel
+                    + "MagicLevel:"
+                    + MemoryReader.c.Player.Fist
+                    + "Fist:"
+                    + MemoryReader.c.Player.Club
+                    + "Club:"
+                    + MemoryReader.c.Player.Sword
+                    + "Sword:"
+                    + MemoryReader.c.Player.Axe
+                    + "Axe:"
+                    + MemoryReader.c.Player.Distance
+                    + "Distance:"
+                    + MemoryReader.c.Player.Shielding
+                    + "Shielding:"
+                    + MemoryReader.c.Player.X
+                    + "X:"
+                    + MemoryReader.c.Player.Y
+                    + "Y:"
+                    + MemoryReader.c.Player.Z
+                    + "Z:");
+
+
+                //int byteCount2 = Encoding.ASCII.GetByteCount(messageToSend2 + 1);
+                //byte[] sendData2 = Encoding.ASCII.GetBytes(messageToSend2);
+                int byteCount = Encoding.ASCII.GetByteCount(messageToSend + 1);
+                byte[] sendData = Encoding.ASCII.GetBytes(messageToSend);
+                System.Console.WriteLine(messageToSend);
+                NetworkStream stream = client.GetStream();
+                stream.Write(sendData, 0, sendData.Length);
+                //stream.Write(sendData2, 0, sendData2.Length);
+                System.Console.WriteLine("sending data to server...");
+
+                StreamReader sr = new StreamReader(stream);
+                Response = sr.ReadLine();
+                System.Console.WriteLine(Response + " Data Recive from server");
+                NavigationMenuViewModel.NaviPlayer naviPlayer = new NavigationMenuViewModel.NaviPlayer();
+                stream.Close();
+                client.Close();
+                SendReciveata();
+                System.Console.WriteLine(naviPlayer.Mana + "Last row");
+            }
+            catch (Exception ea)
+            {
+                MessageBox.Show("failed to connect..." + ea.Message);
+                System.Console.WriteLine();
+                //goto connection;
+            }
+
+        }
+
+        public void SendReciveata()
+        {
+
             string request = Response;
             char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
             string text = request;
@@ -139,6 +221,10 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     }
                     if (Recivestring == "Shielding")
                     {
+                        if (Reciveint == 0)
+                        {
+                            navilogin();
+                        }
                         naviPlayer.Shielding = Reciveint;
 
                     }
@@ -186,6 +272,12 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     goto connection;
                 }*/
             }
+
+        }
+
+        public void Main()
+        {
+            
 
 
         }

@@ -442,18 +442,19 @@ namespace Tibiafuskdotnet.ViewModel
                 //chceking if monster on screen is == then count monster in tragetting
                 //System.Console.WriteLine(count);
 
-                
+                ;
 
                 // if (SelectedCounts <= count) { }
-                /* while (MemoryReader.battleList.GetCreatures().Count() > 0 && istargeting == false)
-                  {*/
+                //while (MemoryReader.battleList.GetCreatures().Count() > 1)
+                while (MemoryReader.battleList.GetCreatures().Where(x => !x.IsSelf()).ToList().Count > 0)
+                {
 
 
                 int lowest = 101;
                     uint currentIdToAttack = 0;
                     Creature C = null;
                     
-                    IEnumerable<Creature> lowestTest = MemoryReader.battleList.GetCreatures();
+                    IEnumerable<Creature> lowestTest = MemoryReader.battleList.GetCreatures().Where(x => !x.IsSelf());
                     lowestTest.ForEach(fest2 =>
                     {
                         if (fest2.HPBar < lowest)
@@ -465,16 +466,22 @@ namespace Tibiafuskdotnet.ViewModel
                     });
 
                 int counter = 0;
-                C.Attack();
+
+                              
 
 
                 while (C.HPBar > 0 && C.IsReachable())
                 {
                     System.Console.WriteLine("\nWe are still waiting");
                     System.Console.WriteLine(counter);
+                    
                     counter++;
+                    C.Attack();
+                    Thread.Sleep(1000);
+
                 } 
-                 return;
+                 
+               
                 
               
                 /*foreach (Creature C in MemoryReader.battleList.GetCreatures())
@@ -610,7 +617,7 @@ namespace Tibiafuskdotnet.ViewModel
                                  break;
                          }*/
                     //}  foreach (Creature C in MemoryReader.battleList.GetCreatures())
-               // }
+               }
             }
         }
     }

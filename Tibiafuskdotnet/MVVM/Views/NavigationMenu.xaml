@@ -13,8 +13,8 @@
         <Label Margin="0,37,346,180">IP/Port</Label>
         <Label Content="Login" Margin="-1,68,346,155"></Label>
         <Label Content="Pass" Margin="0,91,351,131"></Label>
-        <TextBox x:Name="Clientip"  Margin="48,43,136,178" Text="{Binding Clientip, Mode=OneWay}"></TextBox>
-        <TextBox x:Name="Cleintportfail" Margin="259,43,26,178" Text="{Binding Clientport, Mode=OneWay}"/>
+        <TextBox x:Name="Clientip"  Margin="48,43,136,178" Text="{Binding Clientip, Mode=TwoWay}"></TextBox>
+        <TextBox x:Name="Cleintportfail" Margin="259,43,26,178" Text="{Binding Clientport, Mode=TwoWay}"/>
         <TextBox Margin="48,71,27,155" ></TextBox>
         <TextBox Margin="48,96,27,126"></TextBox>
         <TextBox Margin="48,130,27,87"></TextBox>
