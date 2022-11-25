@@ -6,9 +6,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Xml.Linq;
-using Tibia.Constants;
-using Tibia.Objects;
 using Tibiafuskdotnet.MVVM.ViewModel;
 
 
@@ -31,13 +28,16 @@ namespace Tibiafuskdotnet.MVVM.Views
 
             string text = Cleintportfail.Text;
             int naviPort = Convert.ToInt32(text);
-            string naviip = Clientip.Text;
-            
-
+            string naviip = Clientip.Text; 
         }
         
+
         NavigationMenuViewModel host = new NavigationMenuViewModel { Clientip = "127.0.0.1", Clientport = 1302 };
         Waypoints waypoints = new Waypoints();
+        
+        
+        NavigationMenuViewModel NavigationMenuViewModel = new NavigationMenuViewModel();
+
 
         //NavigationMenuViewModel host = new NavigationMenuViewModel();
         // NavigationMenuViewModel NavigationMenuViewModel = new NavigationMenuViewModel();
@@ -49,8 +49,42 @@ namespace Tibiafuskdotnet.MVVM.Views
             try
             {
                 TcpClient client = new TcpClient(host.Clientip, host.Clientport);
-                //string messageToSend = Convert.ToString("waypoint x "+waypoints.waypointx + " waypoint y " + waypoints.waypointy + " waypoint z " +waypoints.waypointz);
-                string messageToSend = Convert.ToString(":" + MemoryReader.c.Player.X + ":" + MemoryReader.c.Player.Y + ":" + MemoryReader.c.Player.Z);
+                string messageToSend = Convert.ToString(
+                      
+                      MemoryReader.c.Player.Id
+                    + "Playerid:"
+                    + MemoryReader.c.Player.TargetId
+                    + "TargetId:"
+                    + MemoryReader.c.Player.Health
+                    + "Health:"
+                    + MemoryReader.c.Player.Mana
+                    + "Mana:"
+                    + MemoryReader.c.Player.Capacity
+                    + "Capacity:"
+                    + MemoryReader.c.Player.Stamina
+                    + "Stamina:"
+                    + MemoryReader.c.Player.MagicLevel
+                    + "MagicLevel:"
+                    + MemoryReader.c.Player.Fist
+                    + "Fist:"
+                    + MemoryReader.c.Player.Club
+                    + "Club:"
+                    + MemoryReader.c.Player.Sword
+                    + "Sword:"
+                    + MemoryReader.c.Player.Axe
+                    + "Axe:"
+                    + MemoryReader.c.Player.Distance
+                    + "Distance:"
+                    + MemoryReader.c.Player.Shielding
+                    + "Shielding:"
+                    + MemoryReader.c.Player.X
+                    + "X:"
+                    + MemoryReader.c.Player.Y
+                    + "Y:"
+                    + MemoryReader.c.Player.Z
+                    + "Z:");
+
+
                 //int byteCount2 = Encoding.ASCII.GetByteCount(messageToSend2 + 1);
                 //byte[] sendData2 = Encoding.ASCII.GetBytes(messageToSend2);
                 int byteCount = Encoding.ASCII.GetByteCount(messageToSend + 1);
@@ -62,12 +96,13 @@ namespace Tibiafuskdotnet.MVVM.Views
                 System.Console.WriteLine("sending data to server...");
 
                 StreamReader sr = new StreamReader(stream);
-                string response = sr.ReadLine();
-                System.Console.WriteLine(response);
-
+                NavigationMenuViewModel.Response = sr.ReadLine();
+                System.Console.WriteLine(NavigationMenuViewModel.Response + " Data Recive from server");
+                NavigationMenuViewModel.NaviPlayer naviPlayer = new NavigationMenuViewModel.NaviPlayer();
                 stream.Close();
                 client.Close();
-                
+                NavigationMenuViewModel.Main();
+                System.Console.WriteLine(naviPlayer.Mana);
             }
             catch (Exception ea)
             {

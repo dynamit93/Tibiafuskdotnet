@@ -114,7 +114,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             set { _FollowWaypoints = value; NotifyPropertyChanged("FollowWaypoints"); }
         }
 
-
+        
 
 
         // public static ObservableCollection<Waypoints> DataSource { get; set; }

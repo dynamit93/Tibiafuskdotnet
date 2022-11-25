@@ -10,6 +10,10 @@ using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet.BL;
 using System.IO;
+using System.Collections.Generic;
+using Squalr.Engine.Utils.Extensions;
+using System.Threading;
+using Tibia;
 
 namespace Tibiafuskdotnet.ViewModel
 {
@@ -271,7 +275,7 @@ namespace Tibiafuskdotnet.ViewModel
 
 
 
-
+        public static uint targetnow = MemoryReader.playerHelper.RedSquare;
 
         public RelayCommand<string> command { get; set; }
         #endregion
@@ -285,7 +289,7 @@ namespace Tibiafuskdotnet.ViewModel
         {
             _targets.Add(targeting);
         }
-
+        public bool istargeting;
         #endregion
          public static Object publictarget = "";
         public TargetMenuViewModel()
@@ -301,7 +305,16 @@ namespace Tibiafuskdotnet.ViewModel
             ActionModesSpells = new ObservableCollection<string>() {""};
             Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
 
-            
+            if (targetnow == 0)
+            {
+                istargeting = false;
+            }
+            else
+            {
+                istargeting = true;
+            }
+
+
             Targets = new ObservableCollection<Targeting>() { AddNewMonster() };
             Player = new SoundPlayer();
             
@@ -346,9 +359,9 @@ namespace Tibiafuskdotnet.ViewModel
                     }
                     break;
                 case "RunTarget":
-
-                
-                    StartTarget();
+                     // by tråad nedan
+                    StartTargetThred();
+                    //  StartTarget();
                     break;
 
                 /* case "ReachableChecked":
@@ -398,9 +411,25 @@ namespace Tibiafuskdotnet.ViewModel
             }
         }
         int TargetHPBar;
-        private void StartTarget()
+
+
+
+
+        //  Thread thr = new Thread(TargetMenuViewModel);
+        //Thread a = new Thread(TargetMenuViewModel.StartTarget);
+        //  thr.StartTarget();
+
+
+        private void StartTargetThred()
         {
-            
+            Thread thr = new Thread(StartTarget);
+            thr.Start();
+            System.Console.WriteLine("thread toString " + thr.ToString());
+        }
+
+
+        private void StartTarget()
+        {   
             foreach (var item in Targets)
             {
                 //targetting Monster Count
@@ -408,84 +437,130 @@ namespace Tibiafuskdotnet.ViewModel
                     return c.Name == item.Name ? total + 1 : total;
                 });
 
-               // if (SelectedTarget.DangerLevel <= ) { }
+                // if (SelectedTarget.DangerLevel <= ) { }
 
                 //chceking if monster on screen is == then count monster in tragetting
                 //System.Console.WriteLine(count);
-                if(SelectedCounts <= count) { }
 
-                foreach (Creature C in MemoryReader.battleList.GetCreatures())
-                {
-                    TargetHPBar = C.HPBar;
+                
+
+                // if (SelectedCounts <= count) { }
+                /* while (MemoryReader.battleList.GetCreatures().Count() > 0 && istargeting == false)
+                  {*/
+
+
+                int lowest = 101;
+                    uint currentIdToAttack = 0;
+                    Creature C = null;
                     
-                    
-                    if (item.Name == C.Name)
+                    IEnumerable<Creature> lowestTest = MemoryReader.battleList.GetCreatures();
+                    lowestTest.ForEach(fest2 =>
                     {
-                        
-                         
-
-                        //System.Console.WriteLine(TargetHPBar);
-                        if (SelectedTarget.ActionMode == "Attack")
-
+                        if (fest2.HPBar < lowest)
                         {
-                            if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
+                            lowest = fest2.HPBar;
+                            currentIdToAttack = fest2.Id;
+                            C = fest2;
+                        }
+                    });
+
+                int counter = 0;
+                C.Attack();
+
+
+                while (C.HPBar > 0 && C.IsReachable())
+                {
+                    System.Console.WriteLine("\nWe are still waiting");
+                    System.Console.WriteLine(counter);
+                    counter++;
+                } 
+                 return;
+                
+              
+                /*foreach (Creature C in MemoryReader.battleList.GetCreatures())
+                    {*/
+
+                        TargetHPBar = C.HPBar;
+                        System.Console.WriteLine(C.Id);
+
+                        if (item.Name == C.Name)
+                        {
+                            
+
+                            if (SelectedTarget.ActionMode == "Attack")
                             {
-                                C.Attack();
-                            }
-                        }
-                        else if (SelectedTarget.ActionMode == "Follow")
-                        {
-                            if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
+                                System.Console.WriteLine("IF ATTACK");
+                                int a = C.HPBar;
+                                Math.Sin(C.HPBar);
+                                int b = C.HPBar;
+                                if (a != b)
+                                {
+                                    System.Console.WriteLine("HPAR DIFFAR");
+                                }
 
+                                System.Console.WriteLine(TargetHPBar + "\n2: " + Helper.TargetingHpMin + "\n3: " + Helper.TargetingHpMax);
+                                if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax){
+                                    // var ksdfujfs = Math.Min(C.HPBar,C.HPBar);
+                                    //  System.Console.WriteLine(ksdfujfs);
+                                    System.Console.WriteLine("ATTACK");
+                                    C.Attack();
+                                    istargeting = true;
+                                }
+
+                            }
+
+                            /*else if (SelectedTarget.ActionMode == "Follow")
                             {
-                                C.Follow();
-                               // System.Console.WriteLine("Name " + C.Name + " Loaction " + C.Location);
-                            }
-                        }
-                        if (SelectedTarget.StanceMode == "Melee - Approach")
+                                if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
 
-                        {
-                            if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
+                                {
+                                    C.Follow();
+                                    // System.Console.WriteLine("Name " + C.Name + " Loaction " + C.Location);
+                                }
+                            }
+                            if (SelectedTarget.StanceMode == "Melee - Approach")
                             {
-                                C.Approach();
+                                if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
+                                {
+                                    C.Approach();
+                                }
+                                else { System.Console.WriteLine(SelectedTarget.ActionMode); }
                             }
-                            else { System.Console.WriteLine(SelectedTarget.ActionMode); }
-                        }
 
-                        if (SelectedTarget.AttackMode == "Stand/Offensive")
-                        {
-                            //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
-                           // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
-                        }
-                        else if (SelectedTarget.AttackMode == "Stand/Balanced")
-                        {
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
-                            //MemoryReader.client.AttackMode = Attack.Balance;
-                        }
-                        else if (SelectedTarget.AttackMode == "Stand/Defensive")
-                        {
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
-                        }
-                        else if (SelectedTarget.AttackMode == "Chase/Offensive")
-                        {
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
-                        }
-                        else if (SelectedTarget.AttackMode == "Chase/Balanced")
-                        {
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
-                        }
-                        else if (SelectedTarget.AttackMode == "Chase/Defensive")
-                        {
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                            MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
-                        }
-
+                            if (SelectedTarget.AttackMode == "Stand/Offensive")
+                            {
+                                //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
+                            }
+                            else if (SelectedTarget.AttackMode == "Stand/Balanced")
+                            {
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                //MemoryReader.client.AttackMode = Attack.Balance;
+                            }
+                            else if (SelectedTarget.AttackMode == "Stand/Defensive")
+                            {
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                            }
+                            else if (SelectedTarget.AttackMode == "Chase/Offensive")
+                            {
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                            }
+                            else if (SelectedTarget.AttackMode == "Chase/Balanced")
+                            {
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                            }
+                            else if (SelectedTarget.AttackMode == "Chase/Defensive")
+                            {
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                            }*/
+                       }
 
                         //Dennis gjort
                         /*
@@ -534,8 +609,8 @@ namespace Tibiafuskdotnet.ViewModel
                                  C.Follow();
                                  break;
                          }*/
-                    }
-                }
+                    //}  foreach (Creature C in MemoryReader.battleList.GetCreatures())
+               // }
             }
         }
     }

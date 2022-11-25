@@ -1,18 +1,10 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Timers;
 using System.Windows;
-using System.Windows.Threading;
-using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
-using WindowsInput;
-using WindowsInput.Native;
-using Tibia;
 using Tibia.Objects;
 using Tibia.Constants;
 using Tibiafuskdotnet.MVVM.ViewModel;
@@ -173,6 +165,7 @@ namespace Tibiafuskdotnet
         /// <summary>
         /// Dennis gjort
         /// </summary>
+        public static Client.PlayerHelper playerHelper = null;
         public static Inventory inventory = null;
         public static Object Objects = null;
         public static Player pp = null;
@@ -198,8 +191,10 @@ namespace Tibiafuskdotnet
                     // dennis gjort
                     inventory = new Inventory(c);
                     Objects = new Object();
+                    playerHelper = new Client.PlayerHelper(c);
+
                     
-                    
+
                     timer.Start();
                     Tibia.Version.SetVersion860();
                     foreach (Creature C in battleList.GetCreatures())
