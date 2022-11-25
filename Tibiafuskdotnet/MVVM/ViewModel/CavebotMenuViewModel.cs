@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using Tibia.Addresses;
 using Tibia.Objects;
+using Tibia.Util;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
 using static System.Net.Mime.MediaTypeNames;
@@ -30,7 +31,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        
 
         //SelectedTarget
         private CaveBotLootList _selectedLoot;
@@ -77,7 +78,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             ListLoot = new ObservableCollection<string>() { "<New Entry>" };
             Loots = new ObservableCollection<CaveBotLootList>() { AddNewLoot() };
             Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
-
+            
         }
         public RelayCommand<string> Cavebotcommand { get; set; }
         public Waypoints(Location location)
@@ -88,6 +89,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             NotifyPropertyChanged();
 
             
+
+
         }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
@@ -115,7 +118,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
 
         // public static ObservableCollection<Waypoints> DataSource { get; set; }
-
+        public int selectedwaypoints { get; set; }
 
         public int waypointx { get; set; }
         public int waypointy { get; set; }
@@ -136,10 +139,20 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 case "FollowWaypointsAlarmChecked":
                     try
                     {
-                        
+                        System.Console.WriteLine(selectedwaypoints);
+                        if(selectedwaypoints == MemoryReader.c.PlayerLocation.X + MemoryReader.c.PlayerLocation.Y + MemoryReader.c.PlayerLocation.Z)
+                        {
+                            System.Console.WriteLine("selectedwaypoints" + selectedwaypoints + "working?");
+                            Location location = new Location();
+                            location.X = waypointx;
+                            location.Y = waypointy;
+                            location.Z = waypointz;
+
+                        }
+
                         foreach (var item in DataSource)
                         {
-
+                            
                           int x = item.waypointx;
                           int y = item.waypointy;
                           int z = item.waypointz;
