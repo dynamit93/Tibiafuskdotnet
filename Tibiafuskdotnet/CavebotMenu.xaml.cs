@@ -63,7 +63,7 @@ namespace Tibiafuskdotnet
 
             //DataSource = new ObservableCollection<Waypoints>();
 
-
+            
 
 
 
@@ -78,7 +78,7 @@ namespace Tibiafuskdotnet
 
                 
             }*/
-            
+
             System.Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
 
         }
@@ -226,7 +226,7 @@ namespace Tibiafuskdotnet
                 LootDiscriptionTextBox.Text = "";
             }
         }
-
+        
 
         /* private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e, Location waypoints)
          {
