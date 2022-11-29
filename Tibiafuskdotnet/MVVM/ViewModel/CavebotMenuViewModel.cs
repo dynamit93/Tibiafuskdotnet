@@ -87,10 +87,6 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
              waypointy = location.Y;
              waypointz = location.Z;
             NotifyPropertyChanged();
-
-            
-
-
         }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
@@ -152,11 +148,12 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
                         foreach (var item in DataSource)
                         {
-                            
+                           
                           int x = item.waypointx;
                           int y = item.waypointy;
                           int z = item.waypointz;
-
+                            if (x == MemoryReader.c.PlayerLocation.X && y == MemoryReader.c.playerLocation.Y && z == MemoryReader.c.playerLocation.Z)                                
+                            return;
                             System.Console.WriteLine(x + " "+ y + " "+ z);
                         }
                         

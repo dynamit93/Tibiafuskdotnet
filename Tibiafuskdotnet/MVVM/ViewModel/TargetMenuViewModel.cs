@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Squalr.Engine.Utils.Extensions;
 using System.Threading;
 using Tibia;
+using Tibiafuskdotnet.MVVM.Views;
 
 namespace Tibiafuskdotnet.ViewModel
 {
@@ -272,8 +273,7 @@ namespace Tibiafuskdotnet.ViewModel
             set { _targets = value; RaisePropertyChanged("Targets"); }
         }
 
-
-
+       
 
         public static uint targetnow = MemoryReader.playerHelper.RedSquare;
 
@@ -302,7 +302,8 @@ namespace Tibiafuskdotnet.ViewModel
             MonsterAttacks = new ObservableCollection<string>() { "Don't avoid", "Avoid wave", "Avoid beam" };
             DangerLevels = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             AttackModes = new ObservableCollection<string>() { "No Change", "Stand/Offensive", "Stand/Balanced", "Stand/Defensive", "Chase/Offensive", "Chase/Balanced", "Chase/Defensive" };
-            ActionModesSpells = new ObservableCollection<string>() {""};
+            ActionModesSpells = new ObservableCollection<string>() {"dfsdfs"};
+
             Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
 
             if (targetnow == 0)
@@ -333,9 +334,17 @@ namespace Tibiafuskdotnet.ViewModel
             SelectedStanceMode = Ring[0];
             command = new RelayCommand<string>(PerformAction);
 
+
+            
+
         }
         public TextBox txtTargetName { get; set; }
         private SoundPlayer Player = new SoundPlayer();
+        readonly Tibia.Objects.SpellList spelllist = new Tibia.Objects.SpellList();
+
+
+  
+
 
 
         private void PerformAction(string obj)
@@ -359,8 +368,15 @@ namespace Tibiafuskdotnet.ViewModel
                     }
                     break;
                 case "RunTarget":
+
                      // by tråad nedan
                     StartTargetThred();
+                    //  StartTarget();
+                    break;
+
+                case "TargetOff":
+                    // by tråad nedan
+                    
                     //  StartTarget();
                     break;
 
@@ -412,21 +428,29 @@ namespace Tibiafuskdotnet.ViewModel
         }
         int TargetHPBar;
 
-
+        
 
 
         //  Thread thr = new Thread(TargetMenuViewModel);
         //Thread a = new Thread(TargetMenuViewModel.StartTarget);
         //  thr.StartTarget();
-
+        
 
         private void StartTargetThred()
         {
             Thread thr = new Thread(StartTarget);
             thr.Start();
             System.Console.WriteLine("thread toString " + thr.ToString());
+            
+            
+            
         }
 
+        public void StopTargetThred()
+        {
+            
+
+        }
 
         private void StartTarget()
         {   
@@ -448,9 +472,9 @@ namespace Tibiafuskdotnet.ViewModel
                 //while (MemoryReader.battleList.GetCreatures().Count() > 1)
                 while (MemoryReader.battleList.GetCreatures().Where(x => !x.IsSelf()).ToList().Count > 0)
                 {
+                    System.Console.WriteLine(SelectedTarget.MinHp + "SelectedTarget.MinHp"  + SelectedTarget.MaxHp + "SelectedTarget.MaxHP");
 
-
-                int lowest = 101;
+                    int lowest = 101;
                     uint currentIdToAttack = 0;
                     Creature C = null;
                     
@@ -467,23 +491,11 @@ namespace Tibiafuskdotnet.ViewModel
 
                 int counter = 0;
 
-                              
 
 
-                while (C.HPBar > 0 && C.IsReachable())
-                {
-                    System.Console.WriteLine("\nWe are still waiting");
-                    System.Console.WriteLine(counter);
+
                     
-                    counter++;
-                    C.Attack();
-                    Thread.Sleep(1000);
 
-                } 
-                 
-               
-                
-              
                 /*foreach (Creature C in MemoryReader.battleList.GetCreatures())
                     {*/
 
@@ -496,7 +508,7 @@ namespace Tibiafuskdotnet.ViewModel
 
                             if (SelectedTarget.ActionMode == "Attack")
                             {
-                                System.Console.WriteLine("IF ATTACK");
+                                /*System.Console.WriteLine("IF ATTACK");
                                 int a = C.HPBar;
                                 Math.Sin(C.HPBar);
                                 int b = C.HPBar;
@@ -504,19 +516,32 @@ namespace Tibiafuskdotnet.ViewModel
                                 {
                                     System.Console.WriteLine("HPAR DIFFAR");
                                 }
+                                */
 
-                                System.Console.WriteLine(TargetHPBar + "\n2: " + Helper.TargetingHpMin + "\n3: " + Helper.TargetingHpMax);
-                                if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax){
+
+                            /*while (C.HPBar > 0 && C.IsReachable())
+                            {
+                                System.Console.WriteLine("\nWe are still waiting");
+                                System.Console.WriteLine(counter);
+
+                                counter++;
+                                C.Attack();
+                                Thread.Sleep(1000);
+
+                            }*/
+
+                            //System.Console.WriteLine(TargetHPBar + "\n2: " + Helper.TargetingHpMin + "\n3: " + Helper.TargetingHpMax);
+                                while (TargetHPBar >= SelectedTarget.MaxHp && TargetHPBar <= SelectedTarget.MinHp ){
                                     // var ksdfujfs = Math.Min(C.HPBar,C.HPBar);
                                     //  System.Console.WriteLine(ksdfujfs);
                                     System.Console.WriteLine("ATTACK");
                                     C.Attack();
                                     istargeting = true;
-                                }
-
+                                    Thread.Sleep(1000);
                             }
 
-                            /*else if (SelectedTarget.ActionMode == "Follow")
+                            }
+                            else if (SelectedTarget.ActionMode == "Follow")
                             {
                                 if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
 
@@ -566,8 +591,12 @@ namespace Tibiafuskdotnet.ViewModel
                             {
                                 MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
                                 MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
-                            }*/
-                       }
+                            }
+                       
+                    
+                    
+                    
+                        }
 
                         //Dennis gjort
                         /*

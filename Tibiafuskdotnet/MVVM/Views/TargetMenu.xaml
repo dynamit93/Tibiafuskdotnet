@@ -463,7 +463,7 @@
             Margin="93,229,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ItemsSource="{Binding ActionModes}"
+            ItemsSource="{Binding ActionModesSpells}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}" />
@@ -509,6 +509,9 @@
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Checked">
                     <i:InvokeCommandAction Command="{Binding command}" CommandParameter="RunTarget" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="TargetOff" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </CheckBox>

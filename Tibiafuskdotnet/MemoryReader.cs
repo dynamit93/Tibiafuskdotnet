@@ -16,7 +16,7 @@ namespace Tibiafuskdotnet
     public static class MemoryReader
     {
         public static Timer timer;
-        //private MainWindow lb;
+      
 
         private const int PROCESS_WM_READ = 0x0010;
 

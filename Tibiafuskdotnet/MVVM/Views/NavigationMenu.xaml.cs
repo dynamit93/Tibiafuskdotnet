@@ -32,7 +32,7 @@ namespace Tibiafuskdotnet.MVVM.Views
         }
         
 
-        NavigationMenuViewModel host = new NavigationMenuViewModel { Clientip = "127.0.0.1", Clientport = 1302 };
+        //NavigationMenuViewModel host = new NavigationMenuViewModel { Clientip = "127.0.0.1", Clientport = 1302 };
         Waypoints waypoints = new Waypoints();
         
         
