@@ -216,7 +216,12 @@ namespace Tibiafuskdotnet
                 LootDiscriptionTextBox.Text = "";
             }
         }
-        
+
+        private void CavebotWaypointDel_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
 
         /* private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e, Location waypoints)
          {

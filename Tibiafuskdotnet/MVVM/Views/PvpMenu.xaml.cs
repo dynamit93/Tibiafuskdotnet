@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibiafuskdotnet.MVVM.Views
 {
@@ -22,6 +23,14 @@ namespace Tibiafuskdotnet.MVVM.Views
         public PvpMenu()
         {
             InitializeComponent();
+        }
+        PvpMenuViewModel PvpMenuViewModel = new PvpMenuViewModel();
+
+        private void HealParalyze_Checked(object sender, RoutedEventArgs e)
+        {
+
+            PvpMenuViewModel.HealParalyze();
+            
         }
     }
 }

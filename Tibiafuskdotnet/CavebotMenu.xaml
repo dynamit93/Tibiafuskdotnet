@@ -45,7 +45,7 @@
         <Button Name="CavebotWaypointGoDown" Content="&gt;&#xD;&#xA;" HorizontalAlignment="Left" Height="19" Margin="68,217,0,0" VerticalAlignment="Top" Width="25" Click="Button_Click"/>
         <Button Name="CavebotWaypointClear" Content="Clear" HorizontalAlignment="Left" Height="19" Margin="98,217,0,0" VerticalAlignment="Top" Width="47"/>
         <Button Name="CavebotWaypointLable" Content="Lable" HorizontalAlignment="Left" Height="19" Margin="150,217,0,0" VerticalAlignment="Top" Width="47"/>
-        <Button Name="CavebotWaypointDel" Content="Del" HorizontalAlignment="Center" Height="19" Margin="0,217,0,0" VerticalAlignment="Top" Width="47"/>
+        <Button Name="CavebotWaypointDel" Content="Del" HorizontalAlignment="Center" Height="19" Margin="0,217,0,0" VerticalAlignment="Top" Width="47" Click="CavebotWaypointDel_Click"/>
         <Label Content="Emplacement" HorizontalAlignment="Left" Margin="265,8,0,0" VerticalAlignment="Top" Height="28" Width="82"/>
         <Button Name="CavebotWaypointStand" Content="Stand" HorizontalAlignment="Left" Height="21" Margin="279,41,0,0" VerticalAlignment="Top" Width="48" Click="Button_Click_1"/>
         <Button Name="CavebotWaypointRope" Content="Rope" HorizontalAlignment="Left" Height="21" Margin="279,62,0,0" VerticalAlignment="Top" Width="48"/>

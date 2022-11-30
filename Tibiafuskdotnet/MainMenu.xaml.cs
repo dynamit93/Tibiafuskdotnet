@@ -208,8 +208,8 @@ namespace Tibiafuskdotnet
 
         private void PvpButton_Click(object sender, RoutedEventArgs e)
         {
-            MVVM.Views.PvpMenu tG = new MVVM.Views.PvpMenu();
-            tG.ShowDialog();
+            MVVM.Views.PvpMenu PvpMenukey = new MVVM.Views.PvpMenu();
+            PvpMenukey.ShowDialog();
         }
 
         private void Navigation_btn_Click(object sender, RoutedEventArgs e)

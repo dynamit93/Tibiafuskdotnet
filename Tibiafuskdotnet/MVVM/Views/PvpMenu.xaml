@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
         mc:Ignorable="d"
-        Title="PvpMenu" Height="450" Width="800">
-    <Grid>
-        <Label Content="Min hp %" Margin="143,62,584,347"></Label>
-        <TextBox x:Name="PvpHealMaxMin" Margin="143,87,595,327" Text="{Binding SelectedTarget.MinHp, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Label Content="Max hp %" Margin="244,61,488,341"></Label>
-        <TextBox x:Name="PvpHealMaxHp" Margin="237,87,498,327"></TextBox>
-        <Label Content="Player Name" Margin="330,61,400,349"></Label>
-        <TextBox x:Name="PvpHealPlayerTextbox" Margin="330,86,400,327"></TextBox>
-        <Label Content="Enable PVP HEAL" Margin="413,64,286,344"></Label>
-        <CheckBox x:Name="PvpCHeckBoxEnable" Margin="430,90,355,329"></CheckBox>
+        Title="PvpMenu" Height="300" Width="900">
+    <Grid Margin="0,3,0,-3" >
+
+        <Label Content="Min hp %" Margin="29,58,785,198"/>
+        <TextBox x:Name="PvpHealMaxMin" Margin="19,87,785,128" Text="{Binding SelectedTarget.MinHp, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Max hp %" Margin="120,59,696,202"/>
+        <TextBox x:Name="PvpHealMaxHp" Margin="120,87,679,128"/>
+        <Label Content="Player Name" Margin="239,59,580,198"/>
+        <TextBox x:Name="PvpHealPlayerTextbox" Margin="238,91,580,142"/>
+        <Label Content="Enable PVP HEAL" Margin="320,58,473,202"/>
+        <CheckBox x:Name="PvpCHeckBoxEnable" Margin="330,97,549,170"/>
+        <Label Content="Healparalyze" Margin="418,72,372,185"/>
+        <CheckBox x:Name="HealParalyze" Margin="450,104,427,160" Checked="HealParalyze_Checked" />
     </Grid>
 </Window>

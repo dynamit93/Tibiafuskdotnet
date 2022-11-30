@@ -89,6 +89,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             NotifyPropertyChanged();
 
             System.Console.WriteLine(waypointz + "waypointz 1");
+
         }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
@@ -117,6 +118,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         // public static ObservableCollection<Waypoints> DataSource { get; set; }
         public int selectedwaypoints { get; set; }
+
 
         public int waypointx { get; set; }
         public int waypointy { get; set; }
@@ -150,25 +152,6 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                             
                         }
 
-                        if(MemoryReader.c.PlayerLocation.X > waypointx)
-                        {
-                            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
-
-                        }
-                        else if(MemoryReader.c.PlayerLocation.X < waypointx)
-                        
-                        {
-                            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
-                        }
-                        else if (MemoryReader.c.PlayerLocation.Y > waypointy)
-                        {
-                            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
-
-                        }
-                        else if (MemoryReader.c.PlayerLocation.Y < waypointy)
-                        {
-                            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
-                        }
 
                         
 
@@ -178,8 +161,31 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                           int x = item.waypointx;
                           int y = item.waypointy;
                           int z = item.waypointz;
+                            waypointx = x;
+                            waypointy = y;
+                            waypointz = z;
+
+                            if (MemoryReader.c.PlayerLocation.X > waypointx)
+                            {
+                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
+                            }
+                            if (MemoryReader.c.PlayerLocation.X < x)
+
+                            {
+                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
+                            }
+
+                            if (MemoryReader.c.PlayerLocation.Y > y)
+                            {
+                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
+
+                            }
+                            if (MemoryReader.c.PlayerLocation.Y < y)
+                            {
+                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
+                            }
                             
-                           
+
 
                             if (x == MemoryReader.c.PlayerLocation.X && y == MemoryReader.c.playerLocation.Y && z == MemoryReader.c.playerLocation.Z)                                
                             break;

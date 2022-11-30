@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibia.Objects
 {
@@ -112,6 +113,8 @@ namespace Tibia.Objects
             
             
         }
+
+
 
         /// <summary>
         /// Check if the creature is attacking the player.
