@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
+using Squalr.Engine.Utils.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -126,7 +128,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         public int waypointz { get; set; }
         public TextBox txtLootDescrption { get; set; }
         Client client = new Client();
-        
+        bool followWaypoints = false;
         private void PerformFollowWaypoints(string obj)
         {
 
@@ -135,14 +137,25 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             {
                 case "FollowWaypointsUnChecked":
                     System.Console.WriteLine("FollowWaypointsUnChecked");
-                   
+                    
+                    try
+                    {
+                        if (followWaypoints == false)
+                        {
+                            System.Console.WriteLine("FollowWaypointsUnChecked");
+                        }
+                    }
+                    catch (Exception)
+                    {
 
+                    }
                     break;
                 case "FollowWaypointsAlarmChecked":
                     try
                     {
+                        followWaypoints = true;
                         System.Console.WriteLine(selectedwaypoints);
-                        if(selectedwaypoints == MemoryReader.c.PlayerLocation.X + MemoryReader.c.PlayerLocation.Y + MemoryReader.c.PlayerLocation.Z)
+                        /*if(selectedwaypoints == MemoryReader.c.PlayerLocation.X + MemoryReader.c.PlayerLocation.Y + MemoryReader.c.PlayerLocation.Z)
                         {
                            
                             Location location = new Location();
@@ -150,51 +163,14 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                             location.Y = waypointy;
                             location.Z = waypointz;
                             
-                        }
+                        }*/
 
+                        MemoryReader.c.Player.GoToX = waypointx.ToUInt32();
+                        MemoryReader.c.Player.GoToY = waypointy.ToUInt32();
+                        MemoryReader.c.Player.GoToZ = waypointz.ToUInt32();
 
-                        
+                        StartFollowwaypointsThred();
 
-                        foreach (var item in DataSource)
-                        {
-                           
-                          int x = item.waypointx;
-                          int y = item.waypointy;
-                          int z = item.waypointz;
-                            waypointx = x;
-                            waypointy = y;
-                            waypointz = z;
-
-                            if (MemoryReader.c.PlayerLocation.X > waypointx)
-                            {
-                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
-                            }
-                            if (MemoryReader.c.PlayerLocation.X < x)
-
-                            {
-                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
-                            }
-
-                            if (MemoryReader.c.PlayerLocation.Y > y)
-                            {
-                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
-
-                            }
-                            if (MemoryReader.c.PlayerLocation.Y < y)
-                            {
-                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
-                            }
-                            
-
-
-                            if (x == MemoryReader.c.PlayerLocation.X && y == MemoryReader.c.playerLocation.Y && z == MemoryReader.c.playerLocation.Z)                                
-                            break;
-                            System.Console.WriteLine(x + " "+ y + " "+ z);
-
-                            
-                        }
-                        
-                        //Tibia.Addresses.Player.GoToX
                     }
 
 
@@ -240,6 +216,79 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     break;
                 default:
                     break;
+            }
+        }
+
+
+
+        private void StartFollowwaypointsThred()
+        {
+            Thread thr = new Thread(Followwaypoints);
+            thr.Start();
+            System.Console.WriteLine("thread toString " + thr.ToString());
+
+            if (followWaypoints == false)
+            {
+                thr.Abort();
+            }
+
+        }
+
+
+        public void Followwaypoints()
+        {
+
+
+        foreach (var item in DataSource)
+        {
+
+            int x = item.waypointx;
+            int y = item.waypointy;
+            int z = item.waypointz;
+            waypointx = x;
+            waypointy = y;
+            waypointz = z;
+            int currentX = MemoryReader.c.PlayerLocation.X;
+
+           
+            while (currentX != waypointx)
+            {
+                    
+                System.Console.WriteLine("wanna walk to x-cordinate: " + waypointx);
+                System.Console.WriteLine("Im currently on x-cordinate: " + MemoryReader.c.PlayerLocation.X);
+                Thread.Sleep(500);
+
+                if (MemoryReader.c.PlayerLocation.X > waypointx)
+                {
+                    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
+                    System.Console.WriteLine("walk west");
+
+                }
+                if (MemoryReader.c.PlayerLocation.X < x)
+
+                {
+                    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
+                    System.Console.WriteLine("walk east");
+                }
+
+                if (MemoryReader.c.PlayerLocation.Y > y)
+                {
+                    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
+                    System.Console.WriteLine("walk north");
+
+                }
+                if (MemoryReader.c.PlayerLocation.Y < y)
+                {
+                    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
+                    System.Console.WriteLine("walk south");
+                }
+            }
+
+                if (item.waypointx == MemoryReader.c.PlayerLocation.X && item.waypointx == MemoryReader.c.PlayerLocation.X)
+                {
+                    System.Console.WriteLine("KLAR");
+                }
+
             }
         }
 
