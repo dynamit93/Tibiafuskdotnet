@@ -8,12 +8,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
-
 using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet;
@@ -83,6 +83,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             
         }
         public RelayCommand<string> Cavebotcommand { get; set; }
+        
+        public Thread _thread;
+        
         public Waypoints(Location location)
          {
              waypointx = location.X;
@@ -92,7 +95,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
             System.Console.WriteLine(waypointz + "waypointz 1");
 
-        }
+            _thread = new Thread(Followwaypoints);
+    }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
         
@@ -115,8 +119,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             set { _FollowWaypoints = value; NotifyPropertyChanged("FollowWaypoints"); }
         }
 
-        
 
+        
 
         // public static ObservableCollection<Waypoints> DataSource { get; set; }
         public int selectedwaypoints { get; set; }
@@ -135,7 +139,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
             switch (obj)
             {
-                case "FollowWaypointsUnChecked":
+               /* case "FollowWaypointsUnChecked":
                     System.Console.WriteLine("FollowWaypointsUnChecked");
                     
                     try
@@ -165,11 +169,11 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                             
                         }*/
 
-                        MemoryReader.c.Player.GoToX = waypointx.ToUInt32();
+                       /* MemoryReader.c.Player.GoToX = waypointx.ToUInt32();
                         MemoryReader.c.Player.GoToY = waypointy.ToUInt32();
                         MemoryReader.c.Player.GoToZ = waypointz.ToUInt32();
 
-                        StartFollowwaypointsThred();
+                       
 
                     }
 
@@ -178,7 +182,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     {
 
                     }
-                    break;
+                    break;*/
                 case "SelectedTargetscript":
 
                     break;
@@ -221,39 +225,54 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
 
 
-        private void StartFollowwaypointsThred()
-        {
-            Thread thr = new Thread(Followwaypoints);
-            thr.Start();
-            System.Console.WriteLine("thread toString " + thr.ToString());
-
-            if (followWaypoints == false)
-            {
-                thr.Abort();
-            }
-
-        }
-
 
         public void Followwaypoints()
         {
+            // Keep track of the current waypoint index
+            int currentIndex = 0;
 
-
-        foreach (var item in DataSource)
-        {
-
-            int x = item.waypointx;
-            int y = item.waypointy;
-            int z = item.waypointz;
-            waypointx = x;
-            waypointy = y;
-            waypointz = z;
-            int currentX = MemoryReader.c.PlayerLocation.X;
-
-           
-            while (currentX != waypointx)
+            while (true)
             {
-                    
+                // Get the current player location
+                int playerX = MemoryReader.c.PlayerLocation.X;
+                int playerY = MemoryReader.c.PlayerLocation.Y;
+                int playerZ = MemoryReader.c.PlayerLocation.Z;
+
+                // Get the current waypoint
+                Waypoints waypoint = DataSource[currentIndex];
+
+                // Check if the player is at the desired location
+                if (playerX == waypoint.waypointx && playerY == waypoint.waypointy && playerZ == waypoint.waypointz)
+                {
+                    // If the player is at the desired location, move to the next waypoint
+                    currentIndex++;
+
+                    // If the current index is the last element in the DataSource collection, start over from the beginning
+                    if (currentIndex == DataSource.Count)
+                    {
+                        currentIndex = 0;
+                    }
+                }
+                else
+                {
+                    // If the player is not at the desired location, walk to the current waypoint
+                    WalkToWaypoint(waypoint);
+                }
+            }
+        }
+
+
+        private void WalkToWaypoint(Waypoints waypoint)
+        {
+            int waypointx = waypoint.waypointx;
+            int waypointy = waypoint.waypointy;
+            int waypointz = waypoint.waypointz;
+            int currentX = MemoryReader.c.PlayerLocation.X;
+            int currentY = MemoryReader.c.PlayerLocation.Y;
+            int currentZ = MemoryReader.c.PlayerLocation.Z;
+
+            while (currentX != waypointx || currentY != waypointy || currentZ != waypointz)
+            {
                 System.Console.WriteLine("wanna walk to x-cordinate: " + waypointx);
                 System.Console.WriteLine("Im currently on x-cordinate: " + MemoryReader.c.PlayerLocation.X);
                 Thread.Sleep(500);
@@ -264,33 +283,88 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     System.Console.WriteLine("walk west");
 
                 }
-                if (MemoryReader.c.PlayerLocation.X < x)
-
+                if (MemoryReader.c.PlayerLocation.X < waypointx)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
                     System.Console.WriteLine("walk east");
                 }
 
-                if (MemoryReader.c.PlayerLocation.Y > y)
+                if (MemoryReader.c.PlayerLocation.Y > waypointy)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
                     System.Console.WriteLine("walk north");
-
                 }
-                if (MemoryReader.c.PlayerLocation.Y < y)
+                if (MemoryReader.c.PlayerLocation.Y < waypointy)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
                     System.Console.WriteLine("walk south");
                 }
-            }
 
-                if (item.waypointx == MemoryReader.c.PlayerLocation.X && item.waypointx == MemoryReader.c.PlayerLocation.X)
-                {
-                    System.Console.WriteLine("KLAR");
-                }
-
+                // Update the player's current coordinates
+                currentX = MemoryReader.c.PlayerLocation.X;
+                currentY = MemoryReader.c.PlayerLocation.Y;
+                currentZ = MemoryReader.c.PlayerLocation.Z;
             }
         }
+
+        /*  public void Followwaypoints()
+          {
+
+
+          foreach (var item in DataSource)
+          {
+
+              int x = item.waypointx;
+              int y = item.waypointy;
+              int z = item.waypointz;
+              waypointx = x;
+              waypointy = y;
+              waypointz = z;
+              int currentX = MemoryReader.c.PlayerLocation.X;
+              int currentY = MemoryReader.c.PlayerLocation.Y;
+              int currentZ = MemoryReader.c.PlayerLocation.Z;
+                  StartFollowwaypointsThred:
+                  while (currentX != waypointx && currentY != waypointy && currentZ == waypointz)
+              {
+
+                  System.Console.WriteLine("wanna walk to x-cordinate: " + waypointx);
+                  System.Console.WriteLine("Im currently on x-cordinate: " + MemoryReader.c.PlayerLocation.X);
+                  Thread.Sleep(500);
+
+                  if (MemoryReader.c.PlayerLocation.X > waypointx)
+                  {
+                      MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
+                      System.Console.WriteLine("walk west");
+
+                  }
+                  if (MemoryReader.c.PlayerLocation.X < x)
+
+                  {
+                      MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
+                      System.Console.WriteLine("walk east");
+                  }
+
+                  if (MemoryReader.c.PlayerLocation.Y > y)
+                  {
+                      MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
+                      System.Console.WriteLine("walk north");
+
+                  }
+                  if (MemoryReader.c.PlayerLocation.Y < y)
+                  {
+                      MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
+                      System.Console.WriteLine("walk south");
+                  }
+                      goto StartFollowwaypointsThred;
+              }
+
+                  if (item.waypointx == MemoryReader.c.PlayerLocation.X && item.waypointx == MemoryReader.c.PlayerLocation.X)
+                  {
+                      System.Console.WriteLine("KLAR");
+                  }
+
+              }
+          }*/
 
         private IEnumerable<int> GetCollection()
         {

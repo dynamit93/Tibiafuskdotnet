@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,7 +55,7 @@ namespace Tibiafuskdotnet
 
             //DataSource = new ObservableCollection<Waypoints>();
 
-            
+
 
 
 
@@ -68,8 +70,10 @@ namespace Tibiafuskdotnet
 
                 
             }*/
-
+            
             System.Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
+
+
 
         }
         
@@ -199,15 +203,6 @@ namespace Tibiafuskdotnet
 
         }
 
-        private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CavebotWaypointFollowWaypoints_UnChecked(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void LootDiscriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -221,6 +216,35 @@ namespace Tibiafuskdotnet
         {
             
         }
+
+        Waypoints waypoints = new Waypoints();
+
+
+
+
+        
+
+
+
+        private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e)
+        {
+            waypoints._thread = new Thread(new ThreadStart(waypoints.Followwaypoints));
+
+            if (CavebotWaypointFollowWaypoints.IsChecked == true)
+            {
+                waypoints._thread.Start();
+            }
+            else if (waypoints._thread != null)
+            {
+                waypoints._thread.Abort();
+            }
+        }
+
+        private void CavebotWaypointFollowWaypoints_UnChecked(object sender, RoutedEventArgs e)
+        {
+            waypoints._thread.Abort();
+        }
+
 
 
         /* private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e, Location waypoints)

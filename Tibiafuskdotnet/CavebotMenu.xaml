@@ -60,17 +60,8 @@
                   HorizontalAlignment="Left" 
                   Height="19" Margin="364,221,0,0"
                   VerticalAlignment="Top" Width="20" 
-                  RenderTransformOrigin="-0.79,0.5" 
-                  IsChecked="{Binding Waypoints.FollowWaypoints, UpdateSourceTrigger=PropertyChanged}"
-                  Unchecked="CavebotWaypointFollowWaypoints_UnChecked" Checked="CavebotWaypointFollowWaypoints_Checked">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Checked">
-                    <i:InvokeCommandAction Command="{Binding Cavebotcommand}" CommandParameter="FollowWaypointsAlarmChecked" />
-                </i:EventTrigger>
-                <i:EventTrigger EventName="Unchecked">
-                    <i:InvokeCommandAction Command="{Binding Cavebotcommand}" CommandParameter="FollowWaypointsUnChecked" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+                  RenderTransformOrigin="-0.79,0.5" Checked="CavebotWaypointFollowWaypoints_Checked"
+                  Unchecked="CavebotWaypointFollowWaypoints_UnChecked">
         </CheckBox>
         <Label Content="Show Labels" HorizontalAlignment="Left" Margin="290,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.945,-0.037" Height="26" Width="75"/>
         <Label Content="Follow Waypoints" HorizontalAlignment="Left" Margin="384,215,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" RenderTransformOrigin="0.518,0.603" Height="26" Width="103"/>
