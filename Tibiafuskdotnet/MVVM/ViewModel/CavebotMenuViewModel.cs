@@ -264,36 +264,48 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         private void WalkToWaypoint(Waypoints waypoint)
         {
+
+            // Get the coordinates of the waypoint
             int waypointx = waypoint.waypointx;
             int waypointy = waypoint.waypointy;
             int waypointz = waypoint.waypointz;
+
+            // Get the player's current coordinates
             int currentX = MemoryReader.c.PlayerLocation.X;
             int currentY = MemoryReader.c.PlayerLocation.Y;
             int currentZ = MemoryReader.c.PlayerLocation.Z;
 
+            // Keep looping until the player reaches the waypoint
             while (currentX != waypointx || currentY != waypointy || currentZ != waypointz)
             {
+                // Print the player's current location and the desired location
                 System.Console.WriteLine("wanna walk to x-cordinate: " + waypointx);
                 System.Console.WriteLine("Im currently on x-cordinate: " + MemoryReader.c.PlayerLocation.X);
+
+                // Wait for 500 milliseconds
                 Thread.Sleep(500);
 
+                // If the player's x coordinate is greater than the waypoint's x coordinate, walk west
                 if (MemoryReader.c.PlayerLocation.X > waypointx)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
+                    
                     System.Console.WriteLine("walk west");
 
                 }
+                // If the player's x coordinate is less than the waypoint's x coordinate, walk east
                 if (MemoryReader.c.PlayerLocation.X < waypointx)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
                     System.Console.WriteLine("walk east");
                 }
-
+                // If the player's y coordinate is greater than the waypoint's y coordinate, walk north
                 if (MemoryReader.c.PlayerLocation.Y > waypointy)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
                     System.Console.WriteLine("walk north");
                 }
+                // If the player's y coordinate is less than the waypoint's y coordinate, walk south
                 if (MemoryReader.c.PlayerLocation.Y < waypointy)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
@@ -307,64 +319,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             }
         }
 
-        /*  public void Followwaypoints()
-          {
-
-
-          foreach (var item in DataSource)
-          {
-
-              int x = item.waypointx;
-              int y = item.waypointy;
-              int z = item.waypointz;
-              waypointx = x;
-              waypointy = y;
-              waypointz = z;
-              int currentX = MemoryReader.c.PlayerLocation.X;
-              int currentY = MemoryReader.c.PlayerLocation.Y;
-              int currentZ = MemoryReader.c.PlayerLocation.Z;
-                  StartFollowwaypointsThred:
-                  while (currentX != waypointx && currentY != waypointy && currentZ == waypointz)
-              {
-
-                  System.Console.WriteLine("wanna walk to x-cordinate: " + waypointx);
-                  System.Console.WriteLine("Im currently on x-cordinate: " + MemoryReader.c.PlayerLocation.X);
-                  Thread.Sleep(500);
-
-                  if (MemoryReader.c.PlayerLocation.X > waypointx)
-                  {
-                      MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
-                      System.Console.WriteLine("walk west");
-
-                  }
-                  if (MemoryReader.c.PlayerLocation.X < x)
-
-                  {
-                      MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
-                      System.Console.WriteLine("walk east");
-                  }
-
-                  if (MemoryReader.c.PlayerLocation.Y > y)
-                  {
-                      MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
-                      System.Console.WriteLine("walk north");
-
-                  }
-                  if (MemoryReader.c.PlayerLocation.Y < y)
-                  {
-                      MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
-                      System.Console.WriteLine("walk south");
-                  }
-                      goto StartFollowwaypointsThred;
-              }
-
-                  if (item.waypointx == MemoryReader.c.PlayerLocation.X && item.waypointx == MemoryReader.c.PlayerLocation.X)
-                  {
-                      System.Console.WriteLine("KLAR");
-                  }
-
-              }
-          }*/
+        
 
         private IEnumerable<int> GetCollection()
         {
