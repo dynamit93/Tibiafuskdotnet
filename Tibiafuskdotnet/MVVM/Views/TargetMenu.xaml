@@ -463,10 +463,9 @@
             Margin="93,229,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ItemsSource="{Binding ActionModesSpells}"
+            ItemsSource="{Binding SpellList}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}" />
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
         <ComboBox x:Name="ActionMode" 
             Width="53"
             Height="23"

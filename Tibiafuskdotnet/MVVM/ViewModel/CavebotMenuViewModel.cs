@@ -126,6 +126,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         public int selectedwaypoints { get; set; }
 
 
+
         public int waypointx { get; set; }
         public int waypointy { get; set; }
 

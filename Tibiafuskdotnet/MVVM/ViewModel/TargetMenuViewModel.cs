@@ -14,7 +14,10 @@ using System.Collections.Generic;
 using Squalr.Engine.Utils.Extensions;
 using System.Threading;
 using Tibia;
+using Tibiafuskdotnet;
 using Tibiafuskdotnet.MVVM.Views;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Tibiafuskdotnet.ViewModel
 {
@@ -30,7 +33,41 @@ namespace Tibiafuskdotnet.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class TargetMenuViewModel : ViewModelBase
+    /// 
+
+    public class NewTargetMenuViewModel : INotifyPropertyChanged
+    {
+        private string _actionModeSpell;
+        public string ActionModeSpell
+        {
+            get { return _actionModeSpell; }
+            set
+            {
+                _actionModeSpell = value;
+                OnPropertyChanged("ActionModeSpell");
+            }
+        }
+
+        public ObservableCollection<Spell> SpellList { get; set; }
+
+        public NewTargetMenuViewModel()
+        {
+            SpellList = new ObservableCollection<Spell>();
+            SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
+            SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
+            SpellList.Add(new Spell("Exori Max", "attack", 20, SpellCategory.Attack, SpellType.Instant));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+    }
+
+
+public class TargetMenuViewModel : ViewModelBase
     {
         #region Properties
         private ObservableCollection<string> _listActions;
@@ -273,7 +310,9 @@ namespace Tibiafuskdotnet.ViewModel
             set { _targets = value; RaisePropertyChanged("Targets"); }
         }
 
-       
+
+
+
 
         public static uint targetnow = MemoryReader.playerHelper.RedSquare;
 
@@ -292,8 +331,14 @@ namespace Tibiafuskdotnet.ViewModel
         public bool istargeting;
         #endregion
          public static Object publictarget = "";
+
+
+
         public TargetMenuViewModel()
         {
+
+
+
             ListActions = new ObservableCollection<string>() { "No Movement", "Melee - Strike", "Melee - Parry", "Dist - Away", "Melee - Reach", "Melee - ParryReach", "Melee - Approach", "Melee - Circle", "Melee - ReachCircle", "Melee - ReachStrike", "Dist - Wait", "Lose Target", "Lure Target", "Dist - Straigt", "Dist - Lure", "Dist - WaitStraight", "Dist - WaitLure" };
             ListStanceMode = new ObservableCollection<string>() { "Do Nothing", "Attack", "Follow" };
             ListTargeting = new ObservableCollection<string>() { "<New Monseter>" };
