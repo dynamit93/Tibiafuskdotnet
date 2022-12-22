@@ -35,8 +35,13 @@ namespace Tibiafuskdotnet.ViewModel
     /// </summary>
     /// 
 
-    public class NewTargetMenuViewModel : INotifyPropertyChanged
+
+
+
+public class TargetMenuViewModel : ViewModelBase
     {
+
+
         private string _actionModeSpell;
         public string ActionModeSpell
         {
@@ -44,31 +49,13 @@ namespace Tibiafuskdotnet.ViewModel
             set
             {
                 _actionModeSpell = value;
-                OnPropertyChanged("ActionModeSpell");
+                RaisePropertyChanged("ActionModeSpell");
             }
         }
 
         public ObservableCollection<Spell> SpellList { get; set; }
 
-        public NewTargetMenuViewModel()
-        {
-            SpellList = new ObservableCollection<Spell>();
-            SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
-            SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
-            SpellList.Add(new Spell("Exori Max", "attack", 20, SpellCategory.Attack, SpellType.Instant));
-        }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-    }
-
-
-public class TargetMenuViewModel : ViewModelBase
-    {
         #region Properties
         private ObservableCollection<string> _listActions;
 
@@ -380,7 +367,12 @@ public class TargetMenuViewModel : ViewModelBase
             command = new RelayCommand<string>(PerformAction);
 
 
-            
+
+            SpellList = new ObservableCollection<Spell>();
+            SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
+            SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
+            SpellList.Add(new Spell("Exori Max", "attack", 20, SpellCategory.Attack, SpellType.Instant));
+
 
         }
         public TextBox txtTargetName { get; set; }
