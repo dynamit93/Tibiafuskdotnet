@@ -52,7 +52,7 @@ public class TargetMenuViewModel : ViewModelBase
                 RaisePropertyChanged("ActionModeSpell");
             }
         }
-
+        public ObservableCollection<Item> UsablesList { get; set; }
         public ObservableCollection<Spell> SpellList { get; set; }
 
 
@@ -324,8 +324,6 @@ public class TargetMenuViewModel : ViewModelBase
         public TargetMenuViewModel()
         {
 
-
-
             ListActions = new ObservableCollection<string>() { "No Movement", "Melee - Strike", "Melee - Parry", "Dist - Away", "Melee - Reach", "Melee - ParryReach", "Melee - Approach", "Melee - Circle", "Melee - ReachCircle", "Melee - ReachStrike", "Dist - Wait", "Lose Target", "Lure Target", "Dist - Straigt", "Dist - Lure", "Dist - WaitStraight", "Dist - WaitLure" };
             ListStanceMode = new ObservableCollection<string>() { "Do Nothing", "Attack", "Follow" };
             ListTargeting = new ObservableCollection<string>() { "<New Monseter>" };
@@ -367,12 +365,12 @@ public class TargetMenuViewModel : ViewModelBase
             command = new RelayCommand<string>(PerformAction);
 
 
-
+            UsablesList = new ObservableCollection<Item>();
             SpellList = new ObservableCollection<Spell>();
             SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
             SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
             SpellList.Add(new Spell("Exori vis", "attack", 20, SpellCategory.Attack, SpellType.Instant));
-
+            UsablesList.Add(new Item(3155, "Sudden Deeath Rune"));
 
         }
         public TextBox txtTargetName { get; set; }
@@ -498,8 +496,8 @@ public class TargetMenuViewModel : ViewModelBase
                 //chceking if monster on screen is == then count monster in tragetting
                 //System.Console.WriteLine(count);
 
-                ;
-
+                
+               
                 // if (SelectedCounts <= count) { }
                 //while (MemoryReader.battleList.GetCreatures().Count() > 1)
                 while (MemoryReader.battleList.GetCreatures().Where(x => !x.IsSelf()).ToList().Count > 0)
@@ -604,27 +602,19 @@ public class TargetMenuViewModel : ViewModelBase
                                 MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
                                 MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
                             }
-                       
-                    
-                    
-                    
+                        if (SelectedTarget.ActionModeSpell == "Sudden Death Rune")
+                        {
+                            MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(MemoryReader.C.Id));
+
+
                         }
 
-                        //Dennis gjort
-                        /*
-                        if (checked(SelectedTarget.Reachable))
-                            {
 
 
-                            if (result)
-                            {
-                                C.IsReachable();
-                                System.Console.WriteLine(C.Name);
+                    }
 
 
-                            }
-                        }*/
-
+                    
                         //Equip Ring if monster is on screen.
                         foreach (Item MyItems in MemoryReader.inventory.GetItems())
                         {

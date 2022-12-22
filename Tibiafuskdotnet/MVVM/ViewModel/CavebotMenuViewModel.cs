@@ -18,7 +18,7 @@ using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
-using static System.Net.Mime.MediaTypeNames;
+
 
 
 namespace Tibiafuskdotnet.MVVM.ViewModel
@@ -297,6 +297,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 // If the player's x coordinate is less than the waypoint's x coordinate, walk east
                 if (MemoryReader.c.PlayerLocation.X < waypointx)
                 {
+                    
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
                     System.Console.WriteLine("walk east");
                 }
