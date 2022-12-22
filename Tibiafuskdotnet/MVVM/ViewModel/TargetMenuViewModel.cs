@@ -371,7 +371,7 @@ public class TargetMenuViewModel : ViewModelBase
             SpellList = new ObservableCollection<Spell>();
             SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
             SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
-            SpellList.Add(new Spell("Exori Max", "attack", 20, SpellCategory.Attack, SpellType.Instant));
+            SpellList.Add(new Spell("Exori vis", "attack", 20, SpellCategory.Attack, SpellType.Instant));
 
 
         }
@@ -483,11 +483,6 @@ public class TargetMenuViewModel : ViewModelBase
             
         }
 
-        public void StopTargetThred()
-        {
-            
-
-        }
 
         private void StartTarget()
         {   
@@ -545,27 +540,7 @@ public class TargetMenuViewModel : ViewModelBase
 
                             if (SelectedTarget.ActionMode == "Attack")
                             {
-                                /*System.Console.WriteLine("IF ATTACK");
-                                int a = C.HPBar;
-                                Math.Sin(C.HPBar);
-                                int b = C.HPBar;
-                                if (a != b)
-                                {
-                                    System.Console.WriteLine("HPAR DIFFAR");
-                                }
-                                */
-
-
-                            /*while (C.HPBar > 0 && C.IsReachable())
-                            {
-                                System.Console.WriteLine("\nWe are still waiting");
-                                System.Console.WriteLine(counter);
-
-                                counter++;
-                                C.Attack();
-                                Thread.Sleep(1000);
-
-                            }*/
+                                
 
                             //System.Console.WriteLine(TargetHPBar + "\n2: " + Helper.TargetingHpMin + "\n3: " + Helper.TargetingHpMax);
                                 while (TargetHPBar >= SelectedTarget.MaxHp && TargetHPBar <= SelectedTarget.MinHp ){
