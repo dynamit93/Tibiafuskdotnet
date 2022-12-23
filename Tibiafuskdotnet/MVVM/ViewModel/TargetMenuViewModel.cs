@@ -377,6 +377,11 @@ public class TargetMenuViewModel : ViewModelBase
             SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
             SpellList.Add(new Spell("Exori vis", "attack", 20, SpellCategory.Attack, SpellType.Instant));
             UsablesList.Add(new Item(3155, "sudden death rune"));
+            UsablesList.Add(new Item(3161, "Avalanche Rune"));
+            UsablesList.Add(new Item(3191, "Great Fireball Rune"));
+            UsablesList.Add(new Item(3175, "Stone Shower Rune"));
+            UsablesList.Add(new Item(3202, "Thunderstorm Rune"));
+            UsablesList.Add(new Item(3158, "Icicle Rune"));
 
         }
         public TextBox txtTargetName { get; set; }
@@ -600,6 +605,36 @@ public class TargetMenuViewModel : ViewModelBase
                                 if (SelectedTarget.ActionModeSpell == "sudden death rune")
                                 {
                                     MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
+
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "Avalanche Rune")
+                                {
+                                    MemoryReader.inventory.UseItemOnCreature(3161, 4, Convert.ToInt32(C.Id));
+
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "Great Fireball Rune")
+                                {
+                                    MemoryReader.inventory.UseItemOnCreature(3191, 4, Convert.ToInt32(C.Id));
+
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "Stone Shower Rune")
+                                {
+                                    MemoryReader.inventory.UseItemOnCreature(3175, 4, Convert.ToInt32(C.Id));
+
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "Thunderstorm Rune")
+                                {
+                                    MemoryReader.inventory.UseItemOnCreature(3202, 4, Convert.ToInt32(C.Id));
+
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "Icicle Rune")
+                                {
+                                    MemoryReader.inventory.UseItemOnCreature(3158, 4, Convert.ToInt32(C.Id));
 
 
                                 }
