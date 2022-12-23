@@ -42,6 +42,7 @@ public class TargetMenuViewModel : ViewModelBase
     {
 
 
+
         private string _actionModeSpell;
         public string ActionModeSpell
         {
@@ -321,8 +322,13 @@ public class TargetMenuViewModel : ViewModelBase
 
 
 
+
         public TargetMenuViewModel()
         {
+
+
+
+
 
             ListActions = new ObservableCollection<string>() { "No Movement", "Melee - Strike", "Melee - Parry", "Dist - Away", "Melee - Reach", "Melee - ParryReach", "Melee - Approach", "Melee - Circle", "Melee - ReachCircle", "Melee - ReachStrike", "Dist - Wait", "Lose Target", "Lure Target", "Dist - Straigt", "Dist - Lure", "Dist - WaitStraight", "Dist - WaitLure" };
             ListStanceMode = new ObservableCollection<string>() { "Do Nothing", "Attack", "Follow" };
@@ -332,7 +338,7 @@ public class TargetMenuViewModel : ViewModelBase
             MonsterAttacks = new ObservableCollection<string>() { "Don't avoid", "Avoid wave", "Avoid beam" };
             DangerLevels = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             AttackModes = new ObservableCollection<string>() { "No Change", "Stand/Offensive", "Stand/Balanced", "Stand/Defensive", "Chase/Offensive", "Chase/Balanced", "Chase/Defensive" };
-            ActionModesSpells = new ObservableCollection<string>() {"dfsdfs"};
+           ActionModesSpells = new ObservableCollection<string>() {"dfsdfs"};
 
             Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
 
@@ -370,7 +376,7 @@ public class TargetMenuViewModel : ViewModelBase
             SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
             SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
             SpellList.Add(new Spell("Exori vis", "attack", 20, SpellCategory.Attack, SpellType.Instant));
-            UsablesList.Add(new Item(3155, "Sudden Deeath Rune"));
+            UsablesList.Add(new Item(3155, "sudden death rune"));
 
         }
         public TextBox txtTargetName { get; set; }
@@ -546,8 +552,57 @@ public class TargetMenuViewModel : ViewModelBase
                                     //  System.Console.WriteLine(ksdfujfs);
                                     System.Console.WriteLine("ATTACK");
                                     C.Attack();
-                                    istargeting = true;
+                                ///MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
+                                istargeting = true;
                                     Thread.Sleep(1000);
+                                if (SelectedTarget.StanceMode == "Melee - Approach")
+                                {
+                                    if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
+                                    {
+                                        C.Approach();
+                                    }
+                                    else { System.Console.WriteLine(SelectedTarget.ActionMode); }
+                                }
+
+                                if (SelectedTarget.AttackMode == "Stand/Offensive")
+                                {
+                                    //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                    // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
+                                }
+                                else if (SelectedTarget.AttackMode == "Stand/Balanced")
+                                {
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                    //MemoryReader.client.AttackMode = Attack.Balance;
+                                }
+                                else if (SelectedTarget.AttackMode == "Stand/Defensive")
+                                {
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                                }
+                                else if (SelectedTarget.AttackMode == "Chase/Offensive")
+                                {
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                }
+                                else if (SelectedTarget.AttackMode == "Chase/Balanced")
+                                {
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                }
+                                else if (SelectedTarget.AttackMode == "Chase/Defensive")
+                                {
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                                }
+                                if (SelectedTarget.ActionModeSpell == "sudden death rune")
+                                {
+                                    MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
+
+
+                                }
                             }
 
                             }
@@ -602,9 +657,9 @@ public class TargetMenuViewModel : ViewModelBase
                                 MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
                                 MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
                             }
-                        if (SelectedTarget.ActionModeSpell == "Sudden Death Rune")
+                        if (SelectedTarget.ActionModeSpell == "sudden death rune")
                         {
-                            MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(MemoryReader.C.Id));
+                            MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
 
 
                         }
