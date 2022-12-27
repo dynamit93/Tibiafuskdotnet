@@ -18,6 +18,7 @@ using Tibiafuskdotnet;
 using Tibiafuskdotnet.MVVM.Views;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibiafuskdotnet.ViewModel
 {
@@ -383,13 +384,15 @@ public class TargetMenuViewModel : ViewModelBase
             UsablesList.Add(new Item(3202, "Thunderstorm Rune"));
             UsablesList.Add(new Item(3158, "Icicle Rune"));
 
+            
+            
         }
         public TextBox txtTargetName { get; set; }
         private SoundPlayer Player = new SoundPlayer();
         readonly Tibia.Objects.SpellList spelllist = new Tibia.Objects.SpellList();
+        public Thread Targeting_Thread;
 
 
-  
 
 
 
@@ -415,15 +418,15 @@ public class TargetMenuViewModel : ViewModelBase
                     break;
                 case "RunTarget":
 
-                     // by tråad nedan
+                     // Runn the Thread thats starts Targets
                     StartTargetThred();
                     //  StartTarget();
                     break;
 
                 case "TargetOff":
-                    // by tråad nedan
-                    
-                    //  StartTarget();
+                    // Turn off Target Thread
+                    Targetoff();
+                   
                     break;
 
                 /* case "ReachableChecked":
@@ -484,9 +487,10 @@ public class TargetMenuViewModel : ViewModelBase
 
         private void StartTargetThred()
         {
-            Thread thr = new Thread(StartTarget);
-            thr.Start();
-            System.Console.WriteLine("thread toString " + thr.ToString());
+            Targeting_Thread = new Thread(new ThreadStart(StartTarget));
+           // Thread Targeting_Thread = new Thread(StartTarget);
+            Targeting_Thread.Start();
+            System.Console.WriteLine("thread toString " + Targeting_Thread.ToString());
             
             
             
@@ -552,93 +556,94 @@ public class TargetMenuViewModel : ViewModelBase
                                 
 
                             //System.Console.WriteLine(TargetHPBar + "\n2: " + Helper.TargetingHpMin + "\n3: " + Helper.TargetingHpMax);
-                                while (TargetHPBar >= SelectedTarget.MaxHp && TargetHPBar <= SelectedTarget.MinHp ){
+                                while (TargetHPBar >= SelectedTarget.MaxHp && TargetHPBar <= SelectedTarget.MinHp )
+                                {
                                     // var ksdfujfs = Math.Min(C.HPBar,C.HPBar);
                                     //  System.Console.WriteLine(ksdfujfs);
                                     System.Console.WriteLine("ATTACK");
                                     C.Attack();
-                                ///MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
-                                istargeting = true;
+                                    ///MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
+                                    istargeting = true;
                                     Thread.Sleep(1000);
-                                if (SelectedTarget.StanceMode == "Melee - Approach")
-                                {
-                                    if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
+                                    if (SelectedTarget.StanceMode == "Melee - Approach")
                                     {
-                                        C.Approach();
+                                        if (TargetHPBar >= Helper.TargetingHpMin && TargetHPBar <= Helper.TargetingHpMax)
+                                        {
+                                            C.Approach();
+                                        }
+                                        else { System.Console.WriteLine(SelectedTarget.ActionMode); }
                                     }
-                                    else { System.Console.WriteLine(SelectedTarget.ActionMode); }
-                                }
 
-                                if (SelectedTarget.AttackMode == "Stand/Offensive")
-                                {
-                                    //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
-                                    // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
-                                }
-                                else if (SelectedTarget.AttackMode == "Stand/Balanced")
-                                {
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
-                                    //MemoryReader.client.AttackMode = Attack.Balance;
-                                }
-                                else if (SelectedTarget.AttackMode == "Stand/Defensive")
-                                {
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
-                                }
-                                else if (SelectedTarget.AttackMode == "Chase/Offensive")
-                                {
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
-                                }
-                                else if (SelectedTarget.AttackMode == "Chase/Balanced")
-                                {
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
-                                }
-                                else if (SelectedTarget.AttackMode == "Chase/Defensive")
-                                {
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                    MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
-                                }
-                                if (SelectedTarget.ActionModeSpell == "sudden death rune")
-                                {
-                                    MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
+                                    if (SelectedTarget.AttackMode == "Stand/Offensive")
+                                    {
+                                        //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                        // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
+                                    }
+                                    else if (SelectedTarget.AttackMode == "Stand/Balanced")
+                                    {
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                        //MemoryReader.client.AttackMode = Attack.Balance;
+                                    }
+                                    else if (SelectedTarget.AttackMode == "Stand/Defensive")
+                                    {
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                                    }
+                                    else if (SelectedTarget.AttackMode == "Chase/Offensive")
+                                    {
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                    }
+                                    else if (SelectedTarget.AttackMode == "Chase/Balanced")
+                                    {
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                    }
+                                    else if (SelectedTarget.AttackMode == "Chase/Defensive")
+                                    {
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
+                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                                    }
+                                    if (SelectedTarget.ActionModeSpell == "sudden death rune")
+                                    {
+                                        MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
 
 
-                                }
-                                if (SelectedTarget.ActionModeSpell == "Avalanche Rune")
-                                {
-                                    MemoryReader.inventory.UseItemOnCreature(3161, 4, Convert.ToInt32(C.Id));
+                                    }
+                                    if (SelectedTarget.ActionModeSpell == "Avalanche Rune")
+                                    {
+                                        MemoryReader.inventory.UseItemOnCreature(3161, 4, Convert.ToInt32(C.Id));
 
 
-                                }
-                                if (SelectedTarget.ActionModeSpell == "Great Fireball Rune")
-                                {
-                                    MemoryReader.inventory.UseItemOnCreature(3191, 4, Convert.ToInt32(C.Id));
+                                    }
+                                    if (SelectedTarget.ActionModeSpell == "Great Fireball Rune")
+                                    {
+                                        MemoryReader.inventory.UseItemOnCreature(3191, 4, Convert.ToInt32(C.Id));
 
 
-                                }
-                                if (SelectedTarget.ActionModeSpell == "Stone Shower Rune")
-                                {
-                                    MemoryReader.inventory.UseItemOnCreature(3175, 4, Convert.ToInt32(C.Id));
+                                    }
+                                    if (SelectedTarget.ActionModeSpell == "Stone Shower Rune")
+                                    {
+                                        MemoryReader.inventory.UseItemOnCreature(3175, 4, Convert.ToInt32(C.Id));
 
 
-                                }
-                                if (SelectedTarget.ActionModeSpell == "Thunderstorm Rune")
-                                {
-                                    MemoryReader.inventory.UseItemOnCreature(3202, 4, Convert.ToInt32(C.Id));
+                                    }
+                                    if (SelectedTarget.ActionModeSpell == "Thunderstorm Rune")
+                                    {
+                                        MemoryReader.inventory.UseItemOnCreature(3202, 4, Convert.ToInt32(C.Id));
 
 
-                                }
-                                if (SelectedTarget.ActionModeSpell == "Icicle Rune")
-                                {
-                                    MemoryReader.inventory.UseItemOnCreature(3158, 4, Convert.ToInt32(C.Id));
+                                    }
+                                    if (SelectedTarget.ActionModeSpell == "Icicle Rune")
+                                    {
+                                        MemoryReader.inventory.UseItemOnCreature(3158, 4, Convert.ToInt32(C.Id));
 
 
-                                }
-                            }
+                                    }
+                                 }
 
                             }
                             else if (SelectedTarget.ActionMode == "Follow")
@@ -741,5 +746,12 @@ public class TargetMenuViewModel : ViewModelBase
                }
             }
         }
+
+
+        public void Targetoff()
+        {
+            Targeting_Thread.Abort();
+        }
+
     }
 }

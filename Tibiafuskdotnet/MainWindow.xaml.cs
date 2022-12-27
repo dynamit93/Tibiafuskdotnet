@@ -4,6 +4,9 @@ using System.Windows.Input;
 using MySql.Data.MySqlClient;
 using Tibiafuskdotnet.BL;
 using Tibia.Util;
+using System.Net;
+using System.Diagnostics;
+
 namespace Tibiafuskdotnet
 {
 
@@ -50,8 +53,8 @@ namespace Tibiafuskdotnet
             {
                 
                 MessageBox.Show("error");
-            }
-            */
+            }*/
+            
             MemoryReader.Start(0, 0, 0);
 
             Helper.Initialize();

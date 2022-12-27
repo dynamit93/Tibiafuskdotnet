@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using Tibia.Constants;
 using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet;
@@ -74,6 +75,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
 
 
+
         [PreferredConstructorAttribute]
         public Waypoints()
         {
@@ -81,11 +83,13 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             Loots = new ObservableCollection<CaveBotLootList>() { AddNewLoot() };
             Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
             
+            
         }
-        public RelayCommand<string> Cavebotcommand { get; set; }
-        
         public Thread _thread;
-        
+        public RelayCommand<string> Cavebotcommand { get; set; }
+
+
+
         public Waypoints(Location location)
          {
              waypointx = location.X;
@@ -96,7 +100,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             System.Console.WriteLine(waypointz + "waypointz 1");
 
             _thread = new Thread(Followwaypoints);
-    }
+
+
+        }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
         
@@ -120,11 +126,18 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         }
 
 
+
+
         
+        private int _Selectedwaypoints;
+        public int Selectedwaypoints 
+        { 
+            get { return _Selectedwaypoints;}
+            set { _Selectedwaypoints = value; NotifyPropertyChanged("Selectedwaypoints"); }  
+        }
 
-        // public static ObservableCollection<Waypoints> DataSource { get; set; }
-        public int selectedwaypoints { get; set; }
 
+        
 
 
         public int waypointx { get; set; }
@@ -265,6 +278,11 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         private void WalkToWaypoint(Waypoints waypoint)
         {
+            uint tempposx = Convert.ToUInt32(waypoint.waypointx);
+            uint tempposy = Convert.ToUInt32(waypoint.waypointy);
+            uint tempposz = Convert.ToUInt32(waypoint.waypointz);
+
+
 
             // Get the coordinates of the waypoint
             int waypointx = waypoint.waypointx;
@@ -283,8 +301,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 System.Console.WriteLine("wanna walk to x-cordinate: " + waypointx);
                 System.Console.WriteLine("Im currently on x-cordinate: " + MemoryReader.c.PlayerLocation.X);
 
-                // Wait for 500 milliseconds
-                Thread.Sleep(500);
+                // Wait for 200 milliseconds
+                Thread.Sleep(200);
 
                 // If the player's x coordinate is greater than the waypoint's x coordinate, walk west
                 if (MemoryReader.c.PlayerLocation.X > waypointx)
@@ -313,7 +331,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
                     System.Console.WriteLine("walk south");
                 }
-
+                
                 // Update the player's current coordinates
                 currentX = MemoryReader.c.PlayerLocation.X;
                 currentY = MemoryReader.c.PlayerLocation.Y;

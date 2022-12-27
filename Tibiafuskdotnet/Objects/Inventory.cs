@@ -196,6 +196,8 @@ namespace Tibia.Objects
             }
         }
 
+
+
         /// <summary>
         /// Gets the client associated with this object.
         /// </summary>

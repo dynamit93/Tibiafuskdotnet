@@ -211,13 +211,17 @@ namespace Tibiafuskdotnet
                 LootDiscriptionTextBox.Text = "";
             }
         }
-
+        Waypoints waypoints = new Waypoints();
         private void CavebotWaypointDel_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (CavebotWaypointsList.SelectedIndex >= 0)
+            {
+                waypoints.DataSource.RemoveAt(CavebotWaypointsList.SelectedIndex);
+                
+            }
         }
 
-        Waypoints waypoints = new Waypoints();
+
 
 
 
@@ -243,6 +247,11 @@ namespace Tibiafuskdotnet
         private void CavebotWaypointFollowWaypoints_UnChecked(object sender, RoutedEventArgs e)
         {
             waypoints._thread.Abort();
+        }
+
+        private void CavebotWaypointClear_Click(object sender, RoutedEventArgs e)
+        {
+            waypoints.DataSource.Clear();
         }
 
 

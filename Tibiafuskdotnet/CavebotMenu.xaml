@@ -27,7 +27,7 @@
             <ComboBoxItem Content="South-East"/>
         </ComboBox>
         <!--ItemsSource="{Binding DataSource, UpdateSourceTrigger=PropertyChanged}"-->
-        <ListView x:Name="CavebotWaypointsList" SelectedItem="{Binding selectedwaypoints}" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged" ItemsSource="{Binding Path=DataSource , UpdateSourceTrigger=PropertyChanged}">
+        <ListView x:Name="CavebotWaypointsList" SelectedItem="{Binding waypoint.selectedwaypoints}" HorizontalAlignment="Left" Height="175" Margin="40,37,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ListView_SelectionChanged" ItemsSource="{Binding Path=DataSource , UpdateSourceTrigger=PropertyChanged}">
             <ListView.Resources>
                 <Style TargetType="GridViewColumnHeader">
                     <Setter Property="Template" Value="{x:Null}" />
@@ -43,7 +43,7 @@
         </ListView>
         <Button Name="CavebotWaypointGoUp" Content="&lt;" HorizontalAlignment="Left" Height="19" Margin="38,217,0,0" VerticalAlignment="Top" Width="25"/>
         <Button Name="CavebotWaypointGoDown" Content="&gt;&#xD;&#xA;" HorizontalAlignment="Left" Height="19" Margin="68,217,0,0" VerticalAlignment="Top" Width="25" Click="Button_Click"/>
-        <Button Name="CavebotWaypointClear" Content="Clear" HorizontalAlignment="Left" Height="19" Margin="98,217,0,0" VerticalAlignment="Top" Width="47"/>
+        <Button Name="CavebotWaypointClear" Content="Clear" HorizontalAlignment="Left" Height="19" Margin="98,217,0,0" VerticalAlignment="Top" Width="47" Click="CavebotWaypointClear_Click"/>
         <Button Name="CavebotWaypointLable" Content="Lable" HorizontalAlignment="Left" Height="19" Margin="150,217,0,0" VerticalAlignment="Top" Width="47"/>
         <Button Name="CavebotWaypointDel" Content="Del" HorizontalAlignment="Center" Height="19" Margin="0,217,0,0" VerticalAlignment="Top" Width="47" Click="CavebotWaypointDel_Click"/>
         <Label Content="Emplacement" HorizontalAlignment="Left" Margin="265,8,0,0" VerticalAlignment="Top" Height="28" Width="82"/>
@@ -137,20 +137,11 @@
         <Label Content="Use Rope" HorizontalAlignment="Left" Margin="41,276,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="60"/>
         <Label Content="Use Shovel" HorizontalAlignment="Left" Margin="41,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.404,-0.611" Grid.Column="2" Height="26" Width="68"/>
         <Label Content="Skip Nearby Nodes" HorizontalAlignment="Left" Margin="41,321,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="112"/>
-        <ListView Name="CavebotOptionRope" HorizontalAlignment="Left" Height="20" Margin="161,277,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ListView Name="CavebotOptionShovel" HorizontalAlignment="Left" Height="20" Margin="161,300,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ComboBox Name="CavebotOptionRope" HorizontalAlignment="Left" Height="20" Margin="161,277,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
+        </ComboBox>
+        <ComboBox Name="CavebotOptionShovel" HorizontalAlignment="Left" Height="20" Margin="161,300,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
+
+        </ComboBox>
         <ListView Name="CavebotOptionSkipNode" HorizontalAlignment="Left" Height="20" Margin="161,324,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
             <ListView.View>
                 <GridView>
