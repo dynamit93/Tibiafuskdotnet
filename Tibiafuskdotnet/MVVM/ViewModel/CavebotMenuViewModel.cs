@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -13,17 +14,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
 using Tibia.Constants;
 using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
-
-
+using static Tibia.Constants.Items;
+using static Tibia.Constants.Tiles;
 
 namespace Tibiafuskdotnet.MVVM.ViewModel
 {
+
+
 
 
     public  class Waypoints : ObservableCollection<Waypoints>
@@ -47,6 +51,56 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             }
             set { _selectedLoot = value; NotifyPropertyChanged("SelectedLoot"); }
         }
+
+
+        private Item _selectedCavebotTools = Tool.Shovel;
+        public Item SelectedCavebotTools
+        {
+            get
+            {
+                return _selectedCavebotTools;
+            }
+            set
+            {
+                _selectedCavebotTools = value;
+                NotifyPropertyChanged("SelectedCavebotTools");
+            }
+        }
+
+        //SelectedTools
+       // public uint SelectedCavebotTools { get; set;}
+
+        public uint SelectedCavebotRopes { get; set;}
+
+        private ObservableCollection<Item> _availableTools;
+        public ObservableCollection<Item> AvailableTools
+        {
+            get
+            {
+                return _availableTools;
+            }
+            set
+            {
+                _availableTools = value;
+                NotifyPropertyChanged("AvailableTools");
+            }
+        }
+
+        private ObservableCollection<Item> _availableRioes;
+        public ObservableCollection<Item> AvailableRopes
+        {
+            get
+            {
+                return _availableRioes;
+            }
+            set
+            {
+                _availableRioes = value;
+                NotifyPropertyChanged("AvailableRopes");
+            }
+        }
+
+        
 
         //listTargeting
         private ObservableCollection<string> _listLoot;
@@ -82,8 +136,33 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             ListLoot = new ObservableCollection<string>() { "<New Entry>" };
             Loots = new ObservableCollection<CaveBotLootList>() { AddNewLoot() };
             Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
-            
-            
+
+
+            // Initialize AvailableTools with the list of tools
+            AvailableTools = new ObservableCollection<Item>
+        {
+             Tool.LightShovel,
+             Tool.Pick,
+             Tool.Shovel,
+             Tool.SneakyStabberofEliteness,
+             Tool.SqueezingGearOfGirlpower,
+             Tool.WhackingDrillerofFate
+             
+        };
+
+
+            // Initialize AvailableTools with the list of tools
+            AvailableRopes = new ObservableCollection<Item>
+        {
+             Tool.ElvenhairRope,
+             Tool.Rope,
+             Tool.SneakyStabberofEliteness,
+             Tool.SqueezingGearOfGirlpower,
+             Tool.WhackingDrillerofFate
+
+        };
+
+
         }
         public Thread _thread;
         public RelayCommand<string> Cavebotcommand { get; set; }
@@ -101,7 +180,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
             _thread = new Thread(Followwaypoints);
 
-
+            SelectedCavebotTools = AvailableTools[0];
         }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
@@ -139,13 +218,13 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         
 
-
+        public string actions { get; set; }
         public int waypointx { get; set; }
         public int waypointy { get; set; }
 
         public int waypointz { get; set; }
         public TextBox txtLootDescrption { get; set; }
-        Client client = new Client();
+        
         bool followWaypoints = false;
         private void PerformFollowWaypoints(string obj)
         {
@@ -153,50 +232,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
             switch (obj)
             {
-               /* case "FollowWaypointsUnChecked":
-                    System.Console.WriteLine("FollowWaypointsUnChecked");
-                    
-                    try
-                    {
-                        if (followWaypoints == false)
-                        {
-                            System.Console.WriteLine("FollowWaypointsUnChecked");
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                    break;
-                case "FollowWaypointsAlarmChecked":
-                    try
-                    {
-                        followWaypoints = true;
-                        System.Console.WriteLine(selectedwaypoints);
-                        /*if(selectedwaypoints == MemoryReader.c.PlayerLocation.X + MemoryReader.c.PlayerLocation.Y + MemoryReader.c.PlayerLocation.Z)
-                        {
-                           
-                            Location location = new Location();
-                            location.X = waypointx;
-                            location.Y = waypointy;
-                            location.Z = waypointz;
-                            
-                        }*/
-
-                       /* MemoryReader.c.Player.GoToX = waypointx.ToUInt32();
-                        MemoryReader.c.Player.GoToY = waypointy.ToUInt32();
-                        MemoryReader.c.Player.GoToZ = waypointz.ToUInt32();
-
-                       
-
-                    }
-
-
-                    catch (Exception)
-                    {
-
-                    }
-                    break;*/
+               
                 case "SelectedTargetscript":
 
                     break;
@@ -303,7 +339,53 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
                 // Wait for 200 milliseconds
                 Thread.Sleep(200);
+                /* if (waypoint.actions == "Shovel")
+                 {
+                     // testing if useing shovel will work on specific location. not done yet.
+                     System.Console.WriteLine("SHOVEL" + SelectedCavebotTools);
+                     System.Console.WriteLine((ushort)waypoint.waypointy);
 
+                     Location location = new Location(waypoint.waypointx, waypoint.waypointy, waypoint.waypointz);
+
+
+                     Tile tile = new Tile(MemoryReader.c, (ushort)waypointx, (ushort)waypointx, client.Player.Z);
+
+                     MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotTools, tile);
+
+
+
+                 }*/
+
+                if (waypoint.actions == "Shovel")
+                {
+                    System.Console.WriteLine("SHOVEL" + SelectedCavebotTools);
+                    System.Console.WriteLine((ushort)waypoint.waypointy);
+
+                    // Create a Location object using the waypoint coordinates
+                    Location location = new Location(waypoint.waypointx, waypoint.waypointy, waypoint.waypointz);
+                    // Create a Tile object using the Location object
+                    Tile tile = new Tile(MemoryReader.c, (ushort)waypoint.waypointx, (ushort)waypoint.waypointy, location);
+                    System.Console.WriteLine("PRINT OUT THE TILE " + tile);
+                    System.Console.WriteLine("PRINTOUT THE location " + location);
+                    //System.Console.WriteLine("PRINT OUT THE SelectedCavebotTools " + SelectedCavebotTools.Id);
+                    // Use the SelectedCavebotTools item on the Tile object
+                    MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotTools.Id, tile);
+
+                    // if i use the id 3457 insted of SelectedCavebotTools its will work. fix the binding so SelectedCavebotTools will return 3457
+                    //MemoryReader.c.Inventory.UseItemOnTile(3457, tile);
+
+                }
+
+                if (waypoint.actions == "Rope")
+                {
+                    // testing if useing shovel will work on specific location. not done yet.
+                    Location location = new Location((ushort)waypoint.waypointx, (ushort)waypoint.waypointy, (ushort)waypoint.waypointz);
+                    Tile tile = new Tile(MemoryReader.c, tempposx, tempposx, location);
+                    MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotRopes, tile);
+                    System.Console.WriteLine("Rope");
+
+                    
+                }
                 // If the player's x coordinate is greater than the waypoint's x coordinate, walk west
                 if (MemoryReader.c.PlayerLocation.X > waypointx)
                 {
@@ -331,7 +413,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
                     System.Console.WriteLine("walk south");
                 }
-                
+  
                 // Update the player's current coordinates
                 currentX = MemoryReader.c.PlayerLocation.X;
                 currentY = MemoryReader.c.PlayerLocation.Y;

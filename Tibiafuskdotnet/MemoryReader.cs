@@ -10,6 +10,7 @@ using Tibia.Constants;
 using Tibiafuskdotnet.MVVM.ViewModel;
 
 
+
 namespace Tibiafuskdotnet
 {
 
@@ -167,7 +168,7 @@ namespace Tibiafuskdotnet
         /// </summary>
         public static Client.PlayerHelper playerHelper = null;
         public static Inventory inventory = null;
-        public static Object Objects = null;
+
         public static Player pp = null;
         public static Client c;
         public static Creature C;
@@ -188,9 +189,9 @@ namespace Tibiafuskdotnet
 
                     c = new Client(p);
                     battleList = new BattleList(c);
-                    // dennis gjort
+                    
                     inventory = new Inventory(c);
-                    Objects = new Object();
+                    
                     playerHelper = new Client.PlayerHelper(c);
 
                     
@@ -218,7 +219,12 @@ namespace Tibiafuskdotnet
 
 
                     // PRINT OUT THE LOCATION OF THE PLAYER
-                   // System.Console.WriteLine(c.PlayerLocation);
+                    // System.Console.WriteLine(c.PlayerLocation);
+
+                    // do something with SpriteReader to find magicwall i guess.
+                    // System.Console.WriteLine("Magic wall info " + Tibia.Util.SpriteReader.GetSpriteImage(MemoryReader.c,2129));
+                    ///Tibia.Objects.ItemLocation.FromLocation();
+                    ///
 
 
 
@@ -741,12 +747,45 @@ namespace Tibiafuskdotnet
                 // System.Windows.Application.Current.Shutdown();
                 //throw;
             }
+
+            // DOssnt work yet its should find magic wall object on ground. 
+
+            foreach (Tile tile in MemoryReader.c.Map.GetTiles())
+            {
+                // Check if the tile has an item on the ground
+                if (tile.Ground != null)
+                {
+                    // Check if the item's id matches the item id you are searching for
+                    if (tile.Ground.Id == 2129)
+                    {
+                        // The item was found, do something with it
+                        System.Console.WriteLine("MAGICWALLLLLLLLLL");
+                        break;
+                    }
+                    else if (tile.Ground.Id == 2128)
+                    {
+                        // The item was found, do something with it
+                        System.Console.WriteLine("MAGICWALLLLLLLLLL");
+                        break;
+                    }
+                    else if (tile.Ground.Id == 3079)
+                    {
+                        System.Console.WriteLine("BOHHHHHHHHHHH");
+                    }
+                    else if (tile.Ground.Id == 2123)
+                    {
+                        System.Console.WriteLine("FIREBOMB");
+                    }
+
+                }
+            }
+
         }
 
 
 
 
-       
+
 
 
         public static void TimerTick(object sender, EventArgs e)
@@ -758,6 +797,7 @@ namespace Tibiafuskdotnet
         
 
     }
+
 
     }
 

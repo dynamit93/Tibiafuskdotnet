@@ -616,7 +616,10 @@ public static Item LightShovel = new Item(5710, "Light Shovel");
 public static Item FishingRod = new Item(3483, "Fishing Rod");
 public static Item Scythe = new Item(3453, "Scythe");
 public static Item Pick = new Item(3456, "Pick");
-}
+public static Item SqueezingGearOfGirlpower = new Item(9596, "Squeezing Gear Of Girlpower");
+public static Item WhackingDrillerofFate = new Item(9598, "Whacking Driller of Fate");
+public static Item SneakyStabberofEliteness = new Item(9594, "Sneaky Stabber of Eliteness");
+        }
 
 public static class Decoration {
 public static Item OracleFigurine = new Item(8146, "Oracle Figurine");

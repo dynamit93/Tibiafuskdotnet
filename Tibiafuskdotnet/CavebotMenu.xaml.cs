@@ -1,14 +1,35 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using Tibia.Addresses;
+using Tibia.Objects;
 using Tibiafuskdotnet.MVVM.ViewModel;
 
 
 namespace Tibiafuskdotnet
 {
+    public class ItemToUIntConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            // Convert the uint value to an Item object
+            return (Item)value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            // Cast the value to an Item object
+            Item item = (Item)value;
+
+            // Return the uint value of the Item object
+            return item.Id;
+        }
+    }
     /// <summary>
     /// Interaction logic for CavebotMenu.xaml
     /// </summary>
@@ -17,34 +38,7 @@ namespace Tibiafuskdotnet
 
 
 
-        //protected Client client;
-
-        //public ObservableCollection<Waypoints> DataSource { get; set; }
-        // private ObservableCollection<Waypoints> DataSource;
-
-
-        /* public event PropertyChangedEventHandler PropertyChanged;
-
-         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-         {
-             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-         }*/
-
-
-
-        /*
-                private static ObservableCollection<Waypoints> _DataSource;
-
-                public ObservableCollection<Waypoints> DataSource
-                {
-                    get { return _DataSource; }
-                    set
-                    {
-                        _DataSource = value;
-                        //NotifyPropertyChanged();
-                    }
-                }*/
-
+        
 
 
         public CavebotMenu()
@@ -76,6 +70,8 @@ namespace Tibiafuskdotnet
 
 
         }
+
+
         
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -252,6 +248,17 @@ namespace Tibiafuskdotnet
         private void CavebotWaypointClear_Click(object sender, RoutedEventArgs e)
         {
             waypoints.DataSource.Clear();
+        }
+
+        private void CavebotOptionShovel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                        
+        }
+
+        private void CavebotWaypointShovel_Click(object sender, RoutedEventArgs e)
+        {
+            WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z });
+
         }
 
 

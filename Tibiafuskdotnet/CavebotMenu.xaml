@@ -3,12 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
+        xmlns:local="clr-namespace:Tibiafuskdotnet"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         DataContext="{Binding CavebotMenuViewModel, Source={StaticResource Locator}}"
-        Title="CavebotMenu" Height="453.857" Width="801.23">
-    
+        Title="CavebotMenu" 
+        Height="453.857" 
+        Width="801.23">
+    <Window.Resources>
+        <local:ItemToUIntConverter x:Key="ItemToUIntConverter"/>
+    </Window.Resources>
     <Grid RenderTransformOrigin="0.361,0.493" Margin="11,0,10,-3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="41*"/>
@@ -52,7 +56,7 @@
         <Button Name="CavebotWaypointWalk" Content="Walk" HorizontalAlignment="Left" Height="21" Margin="327,41,0,0" VerticalAlignment="Top" Width="48" Click="CavebotWaypointWalk_Click"/>
         <Button Name="CavebotWaypointNode" Content="Node" HorizontalAlignment="Left" Height="21" Margin="375,41,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
         <Button Name="CavebotWaypointLadder" Content="Ladder" HorizontalAlignment="Left" Height="21" Margin="327,62,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Name="CavebotWaypointShovel" Content="Shovel" HorizontalAlignment="Left" Height="21" Margin="375,62,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2"/>
+        <Button Name="CavebotWaypointShovel" Content="Shovel" HorizontalAlignment="Left" Height="21" Margin="375,62,0,0" VerticalAlignment="Top" Width="48" Grid.ColumnSpan="2" Click="CavebotWaypointShovel_Click"/>
         <Button Name="CavebotWaypointAction" Content="Action" HorizontalAlignment="Left" Height="21" Margin="419,41,0,0" VerticalAlignment="Top" Width="48"/>
         <Button Name="CavebotWaypointLure" Content="Lure" HorizontalAlignment="Left" Height="21" Margin="419,62,0,0" VerticalAlignment="Top" Width="48"/>
         <CheckBox Name="CavebotWaypointShowLable" Content="CheckBox" HorizontalAlignment="Left" Height="19" Margin="270,221,0,0" VerticalAlignment="Top" Width="20" Checked="CavebotWaypointShowLable_Checked"/>
@@ -133,14 +137,24 @@
                 Command="{Binding Cavebotcommand}"
                 CommandParameter="DeleteLoot"
                 />
+        
         <Label Content="Options" HorizontalAlignment="Left" Margin="41,251,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.245,0.624" Grid.Column="2" Height="26" Width="52"/>
         <Label Content="Use Rope" HorizontalAlignment="Left" Margin="41,276,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="60"/>
         <Label Content="Use Shovel" HorizontalAlignment="Left" Margin="41,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.404,-0.611" Grid.Column="2" Height="26" Width="68"/>
         <Label Content="Skip Nearby Nodes" HorizontalAlignment="Left" Margin="41,321,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="112"/>
-        <ComboBox Name="CavebotOptionRope" HorizontalAlignment="Left" Height="20" Margin="161,277,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
+        <ComboBox Name="CavebotOptionRope" ItemsSource="{Binding AvailableRopes}" SelectedItem="{Binding SelectedCavebotRopes}" HorizontalAlignment="Left" Height="20" Margin="161,277,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
         </ComboBox>
-        <ComboBox Name="CavebotOptionShovel" HorizontalAlignment="Left" Height="20" Margin="161,300,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
-
+        <ComboBox x:Name="CavebotOptionShovel" 
+       ItemsSource="{Binding AvailableTools}"
+       SelectedValuePath="Id"           
+       SelectedItem="{Binding SelectedCavebotTools, Converter={StaticResource ItemToUIntConverter}}" 
+       HorizontalAlignment="Left" 
+       Height="20" 
+       Margin="161,300,0,0" 
+       VerticalAlignment="Top" 
+       Width="72" 
+       Grid.Column="2" 
+       SelectionChanged="CavebotOptionShovel_SelectionChanged">
         </ComboBox>
         <ListView Name="CavebotOptionSkipNode" HorizontalAlignment="Left" Height="20" Margin="161,324,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
             <ListView.View>
