@@ -10,9 +10,7 @@
         Title="CavebotMenu" 
         Height="453.857" 
         Width="801.23">
-    <Window.Resources>
-        <local:ItemToUIntConverter x:Key="ItemToUIntConverter"/>
-    </Window.Resources>
+
     <Grid RenderTransformOrigin="0.361,0.493" Margin="11,0,10,-3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="41*"/>
@@ -147,7 +145,7 @@
         <ComboBox x:Name="CavebotOptionShovel" 
        ItemsSource="{Binding AvailableTools}"
        SelectedValuePath="Id"           
-       SelectedItem="{Binding SelectedCavebotTools, Converter={StaticResource ItemToUIntConverter}}" 
+       SelectedValue="{Binding SelectedCavebotTools.Id}"
        HorizontalAlignment="Left" 
        Height="20" 
        Margin="161,300,0,0" 

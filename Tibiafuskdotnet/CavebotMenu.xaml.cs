@@ -13,23 +13,6 @@ using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibiafuskdotnet
 {
-    public class ItemToUIntConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            // Convert the uint value to an Item object
-            return (Item)value;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            // Cast the value to an Item object
-            Item item = (Item)value;
-
-            // Return the uint value of the Item object
-            return item.Id;
-        }
-    }
     /// <summary>
     /// Interaction logic for CavebotMenu.xaml
     /// </summary>
