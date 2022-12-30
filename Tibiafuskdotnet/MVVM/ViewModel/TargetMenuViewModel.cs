@@ -310,7 +310,7 @@ public class TargetMenuViewModel : ViewModelBase
         #region Methods
         public static Targeting AddNewMonster()
         {
-            return new Targeting() { Name = "<New Monster>" };
+            return new Targeting() { Name = "<New Monster>" , MinHp =100, MaxHp =0, ActionMode = "Attack", ActionModeSpell = "sudden death rune",StanceMode = "Melee - Approach", DangerLevel = 1,Ring = "No change",AttackMode = "No change" };
         }
 
         public static void AddToList(Targeting targeting)

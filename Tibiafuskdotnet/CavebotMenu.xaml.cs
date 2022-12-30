@@ -102,7 +102,7 @@ namespace Tibiafuskdotnet
             else if (CavebotEmplacements == "East")
             {
                 // MemoryReader.c.PlayerLocation.X = +1;
-                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X +1 , waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                WaypointsViewmodel.DataSource.Add(new Waypoints {actions = "w", waypointx = MemoryReader.c.PlayerLocation.X +1 , waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
 
             }
@@ -123,14 +123,14 @@ namespace Tibiafuskdotnet
             else if (CavebotEmplacements == "South")
             {
                 // MemoryReader.c.PlayerLocation.Y -1;
-                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y +1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                WaypointsViewmodel.DataSource.Add(new Waypoints {actions = "w", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y +1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
 
             }
             else if (CavebotEmplacements == "North-East")
             {
 
-                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X + 1, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                WaypointsViewmodel.DataSource.Add(new Waypoints {actions = "w", waypointx = MemoryReader.c.PlayerLocation.X + 1, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
                 System.Console.WriteLine(CavebotEmplacement.SelectedItem);
 
@@ -138,7 +138,7 @@ namespace Tibiafuskdotnet
             else if (CavebotEmplacements == "North-West")
             {
 
-                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X-1, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                WaypointsViewmodel.DataSource.Add(new Waypoints {actions = "w", waypointx = MemoryReader.c.PlayerLocation.X-1, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
                 System.Console.WriteLine(CavebotEmplacement.SelectedItem);
 
@@ -146,7 +146,7 @@ namespace Tibiafuskdotnet
             else if (CavebotEmplacements == "South-East")
             {
 
-                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X +1, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                WaypointsViewmodel.DataSource.Add(new Waypoints {actions = "w", waypointx = MemoryReader.c.PlayerLocation.X +1, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
                 System.Console.WriteLine(CavebotEmplacement.SelectedItem);
 
@@ -154,7 +154,7 @@ namespace Tibiafuskdotnet
             else if (CavebotEmplacements == "South-West")
             {
 
-                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "w", waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
                 System.Console.WriteLine(CavebotEmplacement.SelectedItem);
 
@@ -162,10 +162,8 @@ namespace Tibiafuskdotnet
             else if (CavebotEmplacements == null)
             {
 
-                WaypointsViewmodel.DataSource.Add(new Waypoints{waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z});
+                WaypointsViewmodel.DataSource.Add(new Waypoints{ actions = "w", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z});
                 
-
-
             }
             
             //System.Console.WriteLine(MemoryReader.c.PlayerLocation.X + MemoryReader.c.PlayerLocation.Y + MemoryReader.c.PlayerLocation.Y);
@@ -200,13 +198,7 @@ namespace Tibiafuskdotnet
             }
         }
 
-
-
-
-
-
-        
-
+             
 
 
         private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e)
@@ -240,8 +232,174 @@ namespace Tibiafuskdotnet
 
         private void CavebotWaypointShovel_Click(object sender, RoutedEventArgs e)
         {
-            WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z });
+           
 
+            String CavebotEmplacements = CavebotEmplacement.Text;
+
+            //if (CavebotEmplacement.SelectedItem == "West")
+            if (CavebotEmplacements == "West")
+            {
+
+                //WaypointsViewmodel.DataSource.Add(new Waypoints (MemoryReader.c.PlayerLocation));
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                System.Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
+
+
+            }
+            else if (CavebotEmplacements == "East")
+            {
+                // MemoryReader.c.PlayerLocation.X = +1;
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X + 1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacements == "North")
+            {
+                // MemoryReader.c.PlayerLocation.Y -1;
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacements == "Center")
+            {
+                // MemoryReader.c.PlayerLocation.Y -1;
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacements == "South")
+            {
+                // MemoryReader.c.PlayerLocation.Y -1;
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacements == "North-East")
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X + 1, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
+
+            }
+            else if (CavebotEmplacements == "North-West")
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
+
+            }
+            else if (CavebotEmplacements == "South-East")
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X + 1, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
+
+            }
+            else if (CavebotEmplacements == "South-West")
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
+
+            }
+            else if (CavebotEmplacements == null)
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Shovel", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z });
+
+            }
+
+
+
+
+        }
+
+        private void CavebotWaypointRope_Click(object sender, RoutedEventArgs e)
+        {
+            String CavebotEmplacements = CavebotEmplacement.Text;
+
+            //if (CavebotEmplacement.SelectedItem == "West")
+            if (CavebotEmplacements == "West")
+            {
+
+                //WaypointsViewmodel.DataSource.Add(new Waypoints (MemoryReader.c.PlayerLocation));
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                System.Console.WriteLine("  MemoryReader.c.PlayerLocation " + MemoryReader.c.PlayerLocation);
+
+
+            }
+            else if (CavebotEmplacements == "East")
+            {
+                // MemoryReader.c.PlayerLocation.X = +1;
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X + 1, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacements == "North")
+            {
+                // MemoryReader.c.PlayerLocation.Y -1;
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacements == "Center")
+            {
+                // MemoryReader.c.PlayerLocation.Y -1;
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacements == "South")
+            {
+                // MemoryReader.c.PlayerLocation.Y -1;
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+
+            }
+            else if (CavebotEmplacements == "North-East")
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X + 1, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
+
+            }
+            else if (CavebotEmplacements == "North-West")
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y - 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
+
+            }
+            else if (CavebotEmplacements == "South-East")
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X + 1, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
+
+            }
+            else if (CavebotEmplacements == "South-West")
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X - 1, waypointy = MemoryReader.c.PlayerLocation.Y + 1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+
+                System.Console.WriteLine(CavebotEmplacement.SelectedItem);
+
+            }
+            else if (CavebotEmplacements == null)
+            {
+
+                WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z });
+
+            }
         }
 
 

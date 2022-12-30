@@ -67,10 +67,24 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             }
         }
 
-        //SelectedTools
-       // public uint SelectedCavebotTools { get; set;}
 
-        public uint SelectedCavebotRopes { get; set;}
+        private Item _selectedCavebotRopes = Tool.Rope;
+        public Item SelectedCavebotRopes
+        {
+            get
+            {
+                return _selectedCavebotRopes;
+            }
+            set
+            {
+                _selectedCavebotRopes = value;
+                NotifyPropertyChanged("SelectedCavebotRopes");
+            }
+        }
+        //SelectedTools
+        // public uint SelectedCavebotTools { get; set;}
+
+        // public uint SelectedCavebotRopes { get; set;}
 
         private ObservableCollection<Item> _availableTools;
         public ObservableCollection<Item> AvailableTools
@@ -127,7 +141,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             return new CaveBotLootList() { Ids = 0,Lootbackpacks = "",Desciption ="<New Entry>" };
         }
 
-
+        
 
 
         [PreferredConstructorAttribute]
@@ -358,6 +372,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
                 if (waypoint.actions == "Shovel")
                 {
+                    
                     System.Console.WriteLine("SHOVEL" + SelectedCavebotTools);
                     System.Console.WriteLine((ushort)waypoint.waypointy);
 
@@ -369,8 +384,23 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     System.Console.WriteLine("PRINTOUT THE location " + location);
                     //System.Console.WriteLine("PRINT OUT THE SelectedCavebotTools " + SelectedCavebotTools.Id);
                     // Use the SelectedCavebotTools item on the Tile object
-                    MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotTools.Id, tile);
-
+                    if (SelectedCavebotTools.Name == "Shovel")
+                    {
+                        //MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotTools.Id, tile);
+                        MemoryReader.c.Inventory.UseItemOnTile(3457, tile);
+                    }
+                    else if(SelectedCavebotTools.Name == "Squeezing Gear Of Girlpower")
+                    {
+                        MemoryReader.c.Inventory.UseItemOnTile(9596, tile);
+                    }    
+                    else if(SelectedCavebotTools.Name == "Whacking Driller of Fate")
+                    {
+                        MemoryReader.c.Inventory.UseItemOnTile(9598, tile);
+                    }
+                    else if(SelectedCavebotTools.Name == "Sneaky Stabber of Eliteness")
+                    {
+                        MemoryReader.c.Inventory.UseItemOnTile(9594, tile);
+                    }
                     // if i use the id 3457 insted of SelectedCavebotTools its will work. fix the binding so SelectedCavebotTools will return 3457
                     //MemoryReader.c.Inventory.UseItemOnTile(3457, tile);
 
@@ -380,14 +410,29 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 {
                     // testing if useing shovel will work on specific location. not done yet.
                     Location location = new Location((ushort)waypoint.waypointx, (ushort)waypoint.waypointy, (ushort)waypoint.waypointz);
-                    Tile tile = new Tile(MemoryReader.c, tempposx, tempposx, location);
-                    MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotRopes, tile);
+                    Tile tile = new Tile(MemoryReader.c, (ushort)waypoint.waypointx, (ushort)waypoint.waypointy, location);
+                    //MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotRopes, tile);
                     System.Console.WriteLine("Rope");
 
-                    
+                    if (SelectedCavebotRopes.Name == "Rope")
+                    {
+                        //MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotRopes, tile);
+                        MemoryReader.c.Inventory.UseItemOnTile(3003, tile);
+                    }
+
+
                 }
-                // If the player's x coordinate is greater than the waypoint's x coordinate, walk west
-                if (MemoryReader.c.PlayerLocation.X > waypointx)
+                //if(waypoint.actions =="w")
+                //{
+
+                    // If the player's z coordinate is Equal to the waypoint's z coordinate, Walk
+                    if (MemoryReader.c.PlayerLocation.Z == waypointz)
+                    {
+                        
+
+                    
+                    // If the player's x coordinate is greater than the waypoint's x coordinate, walk west
+                    if (MemoryReader.c.PlayerLocation.X > waypointx)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
                     
@@ -413,11 +458,13 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
                     System.Console.WriteLine("walk south");
                 }
-  
+
+                }
                 // Update the player's current coordinates
                 currentX = MemoryReader.c.PlayerLocation.X;
                 currentY = MemoryReader.c.PlayerLocation.Y;
                 currentZ = MemoryReader.c.PlayerLocation.Z;
+                //} //end if(waypoint.actions =="w")
             }
         }
 
