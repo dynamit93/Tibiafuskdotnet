@@ -109,14 +109,14 @@ namespace Tibiafuskdotnet
             else if (CavebotEmplacements == "North")
             {
                 // MemoryReader.c.PlayerLocation.Y -1;
-                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y -1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                WaypointsViewmodel.DataSource.Add(new Waypoints {actions = "w", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y -1, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
 
             }
             else if (CavebotEmplacements == "Center")
             {
                 // MemoryReader.c.PlayerLocation.Y -1;
-                WaypointsViewmodel.DataSource.Add(new Waypoints { waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
+                WaypointsViewmodel.DataSource.Add(new Waypoints {actions = "w", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z /*c.PlayerLocation */});
 
 
             }
