@@ -36,11 +36,54 @@ namespace Tibiafuskdotnet.ViewModel
     /// </summary>
     /// 
 
-
-
-
-public class TargetMenuViewModel : ViewModelBase
+    public class ActionList
     {
+        public ObservableCollection<Item> UsablesList { get; set; }
+        public ObservableCollection<Spell> SpellList { get; set; }
+    }
+
+    public class actionspellclass
+    {
+        private static actionspellclass instance;
+
+        public actionspellclass()
+        {
+            UsablesList = new ObservableCollection<Item>();
+            SpellList = new ObservableCollection<Spell>();
+            SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
+            SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
+            SpellList.Add(new Spell("Exori vis", "attack", 20, SpellCategory.Attack, SpellType.Instant));
+            UsablesList.Add(new Item(3155, "sudden death rune"));
+            UsablesList.Add(new Item(3161, "Avalanche Rune"));
+            UsablesList.Add(new Item(3191, "Great Fireball Rune"));
+            UsablesList.Add(new Item(3175, "Stone Shower Rune"));
+            UsablesList.Add(new Item(3202, "Thunderstorm Rune"));
+            UsablesList.Add(new Item(3158, "Icicle Rune"));
+        }
+
+        public static actionspellclass Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new actionspellclass();
+                }
+                return instance;
+            }
+        }
+
+        public ObservableCollection<Item> UsablesList { get; set; }
+        public ObservableCollection<Spell> SpellList { get; set; }
+    }
+
+
+    public class TargetMenuViewModel : ViewModelBase
+    {
+        public ObservableCollection<object> ComboBoxItems { get; set; }
+        public actionspellclass ActionSpellClass { get; set; }
+        public  actionspellclass actionspellclass = new actionspellclass();
+
 
 
 
@@ -54,9 +97,16 @@ public class TargetMenuViewModel : ViewModelBase
                 RaisePropertyChanged("ActionModeSpell");
             }
         }
-        public ObservableCollection<Item> UsablesList { get; set; }
-        public ObservableCollection<Spell> SpellList { get; set; }
+        /*
+           public ObservableCollection<Item> UsablesList { get; set; }
+           public ObservableCollection<Spell> SpellList { get; set; }*/
 
+        private ActionList _actionList;
+        public ActionList ActionList
+        {
+            get { return _actionList; }
+            set { _actionList = value; RaisePropertyChanged("ActionList"); }
+        }
 
         #region Properties
         private ObservableCollection<string> _listActions;
@@ -371,22 +421,24 @@ public class TargetMenuViewModel : ViewModelBase
             SelectedStanceMode = Ring[0];
             command = new RelayCommand<string>(PerformAction);
 
+            ActionList = new ActionList();
+            ActionList.UsablesList = new ObservableCollection<Item>();
+            ActionList.SpellList = new ObservableCollection<Spell>();
+            ActionList.SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("Exori vis", "attack", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.UsablesList.Add(new Item(3155, "sudden death rune"));
+            ActionList.UsablesList.Add(new Item(3161, "Avalanche Rune"));
+            ActionList.UsablesList.Add(new Item(3191, "Great Fireball Rune"));
+            ActionList.UsablesList.Add(new Item(3175, "Stone Shower Rune"));
+            ActionList.UsablesList.Add(new Item(3202, "Thunderstorm Rune"));
+            ActionList.UsablesList.Add(new Item(3158, "Icicle Rune"));
 
-            UsablesList = new ObservableCollection<Item>();
-            SpellList = new ObservableCollection<Spell>();
-            SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
-            SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
-            SpellList.Add(new Spell("Exori vis", "attack", 20, SpellCategory.Attack, SpellType.Instant));
-            UsablesList.Add(new Item(3155, "sudden death rune"));
-            UsablesList.Add(new Item(3161, "Avalanche Rune"));
-            UsablesList.Add(new Item(3191, "Great Fireball Rune"));
-            UsablesList.Add(new Item(3175, "Stone Shower Rune"));
-            UsablesList.Add(new Item(3202, "Thunderstorm Rune"));
-            UsablesList.Add(new Item(3158, "Icicle Rune"));
+            ActionSpellClass = new actionspellclass();
+            
 
-            
-            
         }
+
         public TextBox txtTargetName { get; set; }
         private SoundPlayer Player = new SoundPlayer();
         readonly Tibia.Objects.SpellList spelllist = new Tibia.Objects.SpellList();
