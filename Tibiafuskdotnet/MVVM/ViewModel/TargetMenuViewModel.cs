@@ -36,10 +36,43 @@ namespace Tibiafuskdotnet.ViewModel
     /// </summary>
     /// 
 
-    public class ActionList
+
+    public class ActionOption
     {
-        public ObservableCollection<Item> UsablesList { get; set; }
-        public ObservableCollection<Spell> SpellList { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+    }
+
+    public class ActionList : INotifyPropertyChanged
+    {
+        private ObservableCollection<Item> _usablesList;
+        public ObservableCollection<Item> UsablesList
+        {
+            get { return _usablesList; }
+            set
+            {
+                _usablesList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Spell> _spellList;
+        public ObservableCollection<Spell> SpellList
+        {
+            get { return _spellList; }
+            set
+            {
+                _spellList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public class actionspellclass
@@ -107,6 +140,8 @@ namespace Tibiafuskdotnet.ViewModel
             get { return _actionList; }
             set { _actionList = value; RaisePropertyChanged("ActionList"); }
         }
+
+        
 
         #region Properties
         private ObservableCollection<string> _listActions;
@@ -421,21 +456,23 @@ namespace Tibiafuskdotnet.ViewModel
             SelectedStanceMode = Ring[0];
             command = new RelayCommand<string>(PerformAction);
 
-            ActionList = new ActionList();
-            ActionList.UsablesList = new ObservableCollection<Item>();
-            ActionList.SpellList = new ObservableCollection<Spell>();
-            ActionList.SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
-            ActionList.SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
-            ActionList.SpellList.Add(new Spell("Exori vis", "attack", 20, SpellCategory.Attack, SpellType.Instant));
-            ActionList.UsablesList.Add(new Item(3155, "sudden death rune"));
-            ActionList.UsablesList.Add(new Item(3161, "Avalanche Rune"));
-            ActionList.UsablesList.Add(new Item(3191, "Great Fireball Rune"));
-            ActionList.UsablesList.Add(new Item(3175, "Stone Shower Rune"));
-            ActionList.UsablesList.Add(new Item(3202, "Thunderstorm Rune"));
-            ActionList.UsablesList.Add(new Item(3158, "Icicle Rune"));
+            ActionList = new ActionList
+            {
+                UsablesList = new ObservableCollection<Item>
+            {
+                new Item(3155, "sudden death rune"),
+                new Item(3161, "Avalanche Rune"),
+                new Item(3191, "Great Fireball Rune")
+            },
+                SpellList = new ObservableCollection<Spell>
+            {
+                new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant),
+                new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant)
+            }
+            };
 
-            ActionSpellClass = new actionspellclass();
-            
+
+
 
         }
 
@@ -613,6 +650,7 @@ namespace Tibiafuskdotnet.ViewModel
                                     // var ksdfujfs = Math.Min(C.HPBar,C.HPBar);
                                     //  System.Console.WriteLine(ksdfujfs);
                                     System.Console.WriteLine("ATTACK");
+                                    C.Look();
                                     C.Attack();
                                     ///MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
                                     istargeting = true;

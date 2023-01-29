@@ -463,27 +463,27 @@
             SelectedItem="{Binding SelectedTarget.AttackMode}"
             SelectionChanged="ActionMode_SelectionChanged" />
         <ComboBox
-        x:Name="ActionModeSpell"
-        Grid.Column="1"
-        Width="54"
-        Height="23"
-        Margin="93,229,0,0"
-        HorizontalAlignment="Left"
-        VerticalAlignment="Top"
-        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-        ScrollViewer.VerticalScrollBarVisibility="Disabled"
-        ItemsSource="{Binding ActionList.UsablesList, UpdateSourceTrigger=PropertyChanged}"
-        SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}">
+    x:Name="ActionModeSpell"
+    Grid.Column="1"
+    Width="54"
+    Height="23"
+    Margin="93,229,0,0"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+    ItemsSource="{Binding ActionList, UpdateSourceTrigger=PropertyChanged}"
+    SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}" />
-                        <TextBlock Text="{Binding Type}" />
+                        <TextBlock Text="{Binding name}" />
+                        <TextBlock Text="{Binding SpellList.name}" />
+                                               
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-
 
         <ComboBox x:Name="ActionMode" 
             Width="53"

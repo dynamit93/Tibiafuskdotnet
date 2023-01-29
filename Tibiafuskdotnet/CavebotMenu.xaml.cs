@@ -402,6 +402,24 @@ namespace Tibiafuskdotnet
             }
         }
 
+        private void CavebotAlertPlayerOnScreenS_Checked(object sender, RoutedEventArgs e)
+        {
+
+            waypoints._Soundplayer = new Thread(new ThreadStart(waypoints.Playsound));
+
+            if (CavebotWaypointFollowWaypoints.IsChecked == true)
+            {
+               // if (MemoryReader.battleList)
+                waypoints._Soundplayer.Start();
+            }
+            else if (waypoints._Soundplayer != null)
+            {
+                waypoints._Soundplayer.Abort();
+            }
+
+
+        }
+
 
 
         /* private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e, Location waypoints)

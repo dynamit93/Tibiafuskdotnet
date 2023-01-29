@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -179,6 +180,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         }
         public Thread _thread;
+        public Thread _Soundplayer;
         public RelayCommand<string> Cavebotcommand { get; set; }
 
 
@@ -286,15 +288,27 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     break;
             }
         }
+        private SoundPlayer soundPlayer = new SoundPlayer();
 
+       
 
+        public void Playsound()
+        {
+            if (MemoryReader.C.Name != null)
+            { MemoryReader.C.Look(); }
+            
+            //soundPlayer.SoundLocation = @"./sounds/playeronscreen.wav";
+            //soundPlayer.PlayLooping();
 
+        }
 
         public void Followwaypoints()
         {
             // Keep track of the current waypoint index
             int currentIndex = 0;
 
+            
+              
             while (true)
             {
                 // Get the current player location

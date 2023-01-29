@@ -212,12 +212,6 @@ namespace Tibiafuskdotnet
                     }
 
 
-
-
-
-
-
-
                     // PRINT OUT THE LOCATION OF THE PLAYER
                     // System.Console.WriteLine(c.PlayerLocation);
 
@@ -396,7 +390,7 @@ namespace Tibiafuskdotnet
 
 
 
-                hpValue = currentHp ^ xor;
+            hpValue = currentHp ^ xor;
             manaValue = currentMana ^ xor;
             maxHpValue = maxHp ^ xor;
             maxManaValue = maxMana ^ xor;
@@ -749,7 +743,7 @@ namespace Tibiafuskdotnet
             }
 
             // DOssnt work yet its should find magic wall object on ground. 
-
+            
             foreach (Tile tile in MemoryReader.c.Map.GetTiles())
             {
                 // Check if the tile has an item on the ground
@@ -784,7 +778,7 @@ namespace Tibiafuskdotnet
 
 
 
-
+     
 
 
 

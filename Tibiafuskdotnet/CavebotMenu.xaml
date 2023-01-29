@@ -171,7 +171,7 @@
         <CheckBox Name="CavebotAlertDefaultPmS" Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="387,329,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.396,-1"/>
         <CheckBox Name="CavebotAlertPlayerAttackS" HorizontalAlignment="Left" Height="14" Margin="387,316,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
         <CheckBox Name="CavebotAlertGMS" HorizontalAlignment="Left" Height="14" Margin="387,302,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
-        <CheckBox Name="CavebotAlertPlayerOnScreenS" HorizontalAlignment="Left" Height="14" Margin="387,289,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
+        <CheckBox Name="CavebotAlertPlayerOnScreenS" HorizontalAlignment="Left" Height="14" Margin="387,289,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952" Checked="CavebotAlertPlayerOnScreenS_Checked"/>
         <CheckBox Name="CavebotAlertDcS" HorizontalAlignment="Left" Height="14" Margin="387,356,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952"/>
         <CheckBox Name="CavebotAlertPmP" HorizontalAlignment="Left" Height="14" Margin="406,342,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.521,-1.952" Grid.ColumnSpan="2"/>
         <CheckBox Name="CavebotAlertDefaultPmP" Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="406,329,0,0" VerticalAlignment="Top" Width="16" RenderTransformOrigin="0.396,-1" Grid.ColumnSpan="2"/>
