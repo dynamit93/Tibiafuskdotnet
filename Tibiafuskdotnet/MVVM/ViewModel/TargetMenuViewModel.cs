@@ -426,7 +426,7 @@ namespace Tibiafuskdotnet.ViewModel
         #endregion
          public static Object publictarget = "";
 
-
+        
 
 
         public TargetMenuViewModel()
@@ -444,7 +444,7 @@ namespace Tibiafuskdotnet.ViewModel
             MonsterAttacks = new ObservableCollection<string>() { "Don't avoid", "Avoid wave", "Avoid beam" };
             DangerLevels = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             AttackModes = new ObservableCollection<string>() { "No Change", "Stand/Offensive", "Stand/Balanced", "Stand/Defensive", "Chase/Offensive", "Chase/Balanced", "Chase/Defensive" };
-           ActionModesSpells = new ObservableCollection<string>() {"dfsdfs"};
+            ActionModesSpells = new ObservableCollection<string>() {"dfsdfs"};
 
             Ring = new ObservableCollection<string>() { "No change", "Axe ring", "Club ring", "Power ring", "Sword ring", "Energy ring", "Time ring", "Life ring", "Healing ring", "Stealth ring", "Dwarf ring", "Might ring" };
 
@@ -481,9 +481,32 @@ namespace Tibiafuskdotnet.ViewModel
             ActionList.UsablesList.Add(new Item(3161, "Avalanche Rune"));
             ActionList.UsablesList.Add(new Item(3191, "Great Fireball Rune"));
 
-            ActionList.SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
+
             ActionList.SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
             ActionList.SpellList.Add(new Spell("Energy Strike", "exori vis", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("BrutalStrike", "exori ico", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("DeathStrike", "exori mort", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("DivineMissile", "exori san", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("EnergyBeam", "exevo vis lux", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("EnergyWave", "exevo vis hur", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("Energy Strike", "exori vis", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("EternalWinter", "exevo gran mas frigo", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("EtherealSpear", "exori con", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("FierceBerserk", "exori gran", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("FlameStrike", "exori flam", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("FrontSweep", "exori min", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("GreatEnergyBeam", "exevo gran vis lux", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("Groundshaker", "exori mas", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("HellsCore", "Exevo gran mas flam", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("IceStrike", "exori frigo", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("IceWave", "exevo frigo hur", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("PhysicalStrike", "exori moe ico", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("RageOfTheSkies", "exevo gran mas vis", 20, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("StrongEnergyStrike", "exori gran vis", 20, SpellCategory.Attack, SpellType.Instant));
+
+
+
         }
 
         public TextBox txtTargetName { get; set; }
@@ -576,7 +599,7 @@ namespace Tibiafuskdotnet.ViewModel
         }
         int TargetHPBar;
 
-        
+       
 
 
         //  Thread thr = new Thread(TargetMenuViewModel);
@@ -750,12 +773,183 @@ namespace Tibiafuskdotnet.ViewModel
 
                                     }
                                 
-                                if (SelectedTarget.ActionModeSpell == "Energy Strike" && MemoryReader.c.Player.Mana >= Spells.EnergyStrike.ManaPoints)
+                                    if (SelectedTarget.ActionModeSpell == "Energy Strike" && MemoryReader.c.Player.Mana >= Spells.EnergyStrike.ManaPoints)
                                     {
 
                                         MemoryReader.c.Console.Say("exori vis");
 
                                     }
+
+
+                                    if (SelectedTarget.ActionModeSpell == "Ice Strike" && MemoryReader.c.Player.Mana >= Spells.IceStrike.ManaPoints)
+                                    {
+
+                                        MemoryReader.c.Console.Say("exori frigo");
+
+                                    }
+
+                                if (SelectedTarget.ActionModeSpell == "BrutalStrike" && MemoryReader.c.Player.Mana >= Spells.BrutalStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori ico");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "DeathStrike" && MemoryReader.c.Player.Mana >= Spells.DeathStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori mort");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "EnergyBeam" && MemoryReader.c.Player.Mana >= Spells.EnergyBeam.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo vis lux");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "EnergyWave" && MemoryReader.c.Player.Mana >= Spells.EnergyWave.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo vis hur");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "EternalWinter" && MemoryReader.c.Player.Mana >= Spells.EternalWinter.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo gran mas frigo");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "FireWave" && MemoryReader.c.Player.Mana >= Spells.FireWave.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo flam hur");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "FlameStrike" && MemoryReader.c.Player.Mana >= Spells.FlameStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori flam");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "FrontSweep" && MemoryReader.c.Player.Mana >= Spells.FrontSweep.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori min");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "GreatEnergyBeam" && MemoryReader.c.Player.Mana >= Spells.GreatEnergyBeam.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo gran vis lux");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "Groundshaker" && MemoryReader.c.Player.Mana >= Spells.Groundshaker.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori mas");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "HellsCore" && MemoryReader.c.Player.Mana >= Spells.HellsCore.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("Exevo gran mas flam");
+
+                                }
+
+                                if (SelectedTarget.ActionModeSpell == "IceWave" && MemoryReader.c.Player.Mana >= Spells.IceWave.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo frigo hur");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "PhysicalStrike" && MemoryReader.c.Player.Mana >= Spells.PhysicalStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori moe ico");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "RageOfTheSkies" && MemoryReader.c.Player.Mana >= Spells.RageOfTheSkies.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo gran mas vis");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "StrongEnergyStrike" && MemoryReader.c.Player.Mana >= Spells.StrongEnergyStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori gran vis");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "StrongFlameStrike" && MemoryReader.c.Player.Mana >= Spells.StrongFlameStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori gran flam");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "StrongIceStrike" && MemoryReader.c.Player.Mana >= Spells.StrongIceStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori gran frigo");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "StrongIceWave" && MemoryReader.c.Player.Mana >= Spells.StrongIceWave.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo gran frigo hur");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "StrongTerraStrike" && MemoryReader.c.Player.Mana >= Spells.StrongTerraStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori gran tera");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "TerraStrike" && MemoryReader.c.Player.Mana >= Spells.TerraStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori tera");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "TerraWave" && MemoryReader.c.Player.Mana >= Spells.TerraWave.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exevo tera hur");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "UltimateEnergyStrike" && MemoryReader.c.Player.Mana >= Spells.UltimateEnergyStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori max vis");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "UltimateIceStrike" && MemoryReader.c.Player.Mana >= Spells.UltimateIceStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori max frigo");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "UltimateFlameStrike" && MemoryReader.c.Player.Mana >= Spells.UltimateFlameStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori max flam");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "UltimateTerraStrike" && MemoryReader.c.Player.Mana >= Spells.UltimateTerraStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.c.Console.Say("exori max tera");
+
+                                }
+
+
 
                             }
 
