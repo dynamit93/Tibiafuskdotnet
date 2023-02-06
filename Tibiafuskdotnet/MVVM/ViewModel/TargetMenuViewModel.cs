@@ -45,22 +45,42 @@ namespace Tibiafuskdotnet.ViewModel
 
     public class ActionList : INotifyPropertyChanged
     {
+        public ActionList()
+        {
+            UsablesList = new ObservableCollection<Item>();
+            SpellList = new ObservableCollection<Spell>();
+            UsablesList.CollectionChanged+= (sender, e) => OnCollectionChanged();
+            SpellList.CollectionChanged += (sender, e) => OnCollectionChanged();
+            ComboBoxItems = new ObservableCollection<string>();
+        }
+        public ObservableCollection<string> ComboBoxItems
+        {
+            get;
+        }
         private ObservableCollection<Item> _usablesList;
         public ObservableCollection<Item> UsablesList
         {
             get { return _usablesList; }
-            set
+           private set
             {
                 _usablesList = value;
                 OnPropertyChanged();
             }
         }
 
+        private void OnCollectionChanged()
+        {
+            ComboBoxItems.Clear();
+            UsablesList.ForEach(item => ComboBoxItems.Add(item.Name));
+            SpellList.ForEach(item => ComboBoxItems.Add(item.Name));
+            OnPropertyChanged(nameof(ComboBoxItems));
+        }
+
         private ObservableCollection<Spell> _spellList;
         public ObservableCollection<Spell> SpellList
         {
             get { return _spellList; }
-            set
+            private set
             {
                 _spellList = value;
                 OnPropertyChanged();
@@ -388,7 +408,7 @@ namespace Tibiafuskdotnet.ViewModel
 
 
 
-        public static uint targetnow = MemoryReader.playerHelper.RedSquare;
+        public static uint? targetnow = MemoryReader.playerHelper?.RedSquare;
 
         public RelayCommand<string> command { get; set; }
         #endregion
@@ -456,24 +476,13 @@ namespace Tibiafuskdotnet.ViewModel
             SelectedStanceMode = Ring[0];
             command = new RelayCommand<string>(PerformAction);
 
-            ActionList = new ActionList
-            {
-                UsablesList = new ObservableCollection<Item>
-            {
-                new Item(3155, "sudden death rune"),
-                new Item(3161, "Avalanche Rune"),
-                new Item(3191, "Great Fireball Rune")
-            },
-                SpellList = new ObservableCollection<Spell>
-            {
-                new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant),
-                new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant)
-            }
-            };
+            ActionList = new ActionList();
+            ActionList.UsablesList.Add(new Item(3155, "sudden death rune"));
+            ActionList.UsablesList.Add(new Item(3161, "Avalanche Rune"));
+            ActionList.UsablesList.Add(new Item(3191, "Great Fireball Rune"));
 
-
-
-
+            ActionList.SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
         }
 
         public TextBox txtTargetName { get; set; }

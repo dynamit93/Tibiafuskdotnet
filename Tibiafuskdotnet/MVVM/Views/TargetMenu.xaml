@@ -12,7 +12,7 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     Loaded="Window_Loaded"
     mc:Ignorable="d">
-    <Grid Margin="3,0,-3,0">
+    <Grid Margin="3 0 -3 0">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="229*" />
@@ -31,213 +31,44 @@
             Grid.ColumnSpan="2"
             Width="376"
             Height="331"
-            Margin="10,14,0,0"
+            Margin="10 14 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Panel.ZIndex="-1"
             Content="Monster definition and Behaviours" />
         <Frame
-            x:Name="frame1"
-            Grid.Column="1"
-            Width="167"
-            Height="277"
-            Margin="167.072,14,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Panel.ZIndex="-1"
-            Content="Target Selection" />
-        <Label
-            x:Name="label"
-            Grid.Column="1"
-            Margin="167.072,43,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="List order"
-            RenderTransformOrigin="0.118,0" />
-        
-        <Label
-            x:Name="label1"
-            Grid.Column="1"
-            Margin="167.072,87,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Health" />
-        <Label
-            x:Name="label2"
-            Grid.Column="1"
-            Margin="167.072,117,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Proximity" />
-        <Label
-            x:Name="label3"
-            Grid.Column="1"
-            Margin="167.072,148,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Danger" />
-        <Label
-            x:Name="label4"
-            Grid.Column="1"
-            Margin="167.072,180,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Random" />
-        <Label
-            x:Name="label5"
-            Grid.Column="1"
-            Margin="167.072,211,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Stick" />
-        <Slider
-            x:Name="ListOrderSlider"
-            Grid.Column="1"
-            Width="111"
-            Height="26"
-            Margin="223.072,43,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Value="{Binding Path=ListOrder, Mode=OneWayToSource}" />
-        <Slider
-            x:Name="HealthSlider"
-            Grid.Column="1"
-            Width="111"
-            Height="29"
-            Margin="223.072,84,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Value="{Binding Path=HealthTarget, Mode=OneWayToSource}" />
-        <Slider
-            x:Name="ProximitySlider"
-            Grid.Column="1"
-            Width="111"
-            Height="30"
-            Margin="223.072,118,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Value="{Binding Path=ProximityTarget, Mode=OneWayToSource}" />
-        <Slider
-            x:Name="DangerSlider"
-            Grid.Column="1"
-            Width="111"
-            Height="31"
-            Margin="223.072,148,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Value="{Binding Path=DangerTarget, Mode=OneWayToSource}" />
-        <Slider
-            x:Name="RandomSlider"
-            Grid.Column="1"
-            Width="111"
-            Height="22"
-            Margin="223.072,184,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Value="{Binding Path=RandomTarget, Mode=OneWayToSource}" />
-        <Slider
-            x:Name="StickSlider"
-            Grid.Column="1"
-            Width="111"
-            Height="19"
-            Margin="223.072,218,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Value="{Binding Path=StickTarget, Mode=OneWayToSource}" />
-        <CheckBox
-            x:Name="ReachableCheckBox"
-            Grid.Column="1"
-            Margin="167.072,242,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Checked="ReachableCheckBox_Checked"
-            Content="Target must be Reachable"
-            IsChecked="{Binding SelectedTarget.Reachable, UpdateSourceTrigger=PropertyChanged}"
-            Unchecked="Reachable_Unchecked">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Checked">
-                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableChecked" />
-                </i:EventTrigger>
-                <i:EventTrigger EventName="Unchecked">
-                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableUnChecked" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </CheckBox>
-        <CheckBox
-            x:Name="ShootableCheckBox"
-            Grid.Column="1"
-            Margin="167.072,262,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Target Must be shootable"
-            IsChecked="{Binding Path=ShootableTarget, Mode=OneWayToSource}" />
-        <Frame
             x:Name="frame2"
             Grid.ColumnSpan="2"
             Width="216"
             Height="95"
-            Margin="164,30,0,0"
+            Margin="164 30 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="" />
-        <TextBox
-            x:Name="TargetNameTextBox"
-            Grid.Column="1"
-            Width="139"
-            Height="23"
-            Margin="5.072,43,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding SelectedTarget.Name, UpdateSourceTrigger=PropertyChanged}"
-            TextChanged="TargetNameTextBox_TextChanged"
-            TextWrapping="Wrap">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="GotFocus">
-                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="TargetNameTextBoxGotFocus" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </TextBox>
         <Label
             x:Name="label6"
-            Margin="165,43,0,0"
+            Margin="165 43 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Name" />
         <Label
             x:Name="label7"
-            Margin="165,69,0,0"
+            Margin="165 69 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Count" />
         <Label
             x:Name="label8"
             Grid.ColumnSpan="2"
-            Margin="165,95,0,0"
+            Margin="165 95 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Categories" />
-        <TextBox
-            x:Name="textBox1"
-            Grid.Column="1"
-            Width="140"
-            Height="23"
-            Margin="7.072,100,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding SelectedTarget.Categories, UpdateSourceTrigger=PropertyChanged}"
-            TextWrapping="Wrap" />
-        <Label
-            x:Name="label9"
-            Grid.Column="1"
-            Margin="42.072,69,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Setting #" />
         <ListBox
             x:Name="listBoxTargettingName"
             Width="149"
             Height="247"
-            Margin="10,30,0,0"
+            Margin="10 30 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             DisplayMemberPath="Name"
@@ -269,7 +100,7 @@
             x:Name="DelBtn"
             Width="28"
             Height="20"
-            Margin="128,312,0,0"
+            Margin="128 312 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Command="{Binding command}"
@@ -278,7 +109,7 @@
         <CheckBox
             x:Name="playAlram"
             Grid.ColumnSpan="2"
-            Margin="175,315,0,0"
+            Margin="175 315 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Checked="CheckBox_Checked_1"
@@ -294,221 +125,72 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </CheckBox>
-        <CheckBox
-            x:Name="LootMonster"
-            Grid.Column="1"
-            Margin="50,316,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Loot monster"
-            IsChecked="{Binding SelectedTarget.Loot, UpdateSourceTrigger=PropertyChanged}" />
         <ComboBox
             Grid.ColumnSpan="2"
             Width="54"
             Height="25"
-            Margin="210,74,0,0"
+            Margin="210 74 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            SelectedIndex="0"
             ItemsSource="{Binding Counts, UpdateSourceTrigger=PropertyChanged}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.Count, UpdateSourceTrigger=PropertyChanged}" />
-        <ComboBox
-            Grid.Column="1"
-            Width="38"
-            Height="25"
-            Margin="105.072,74,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             SelectedIndex="0"
-            ItemsSource="{Binding Settings, UpdateSourceTrigger=PropertyChanged}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.Setting, UpdateSourceTrigger=PropertyChanged}" />
+            SelectedItem="{Binding SelectedTarget.Count, UpdateSourceTrigger=PropertyChanged}" />
         <Frame
             Grid.ColumnSpan="2"
             Width="187"
             Height="101"
-            Margin="171,30,0,0"
+            Margin="171 30 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Panel.ZIndex="-1"
             Content="" />
-        <TextBox
-            x:Name="TargetingHpMin"
-            Grid.Column="1"
-            Width="35"
-            Height="17"
-            Margin="39.072,134,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            
-            Text="{Binding SelectedTarget.MinHp, UpdateSourceTrigger=PropertyChanged}"
-            TextChanged="TargetingHpMin_TextChanged"
-            TextWrapping="Wrap" />
-        <TextBox
-            x:Name="TargetingHpMax"
-            Grid.Column="1"
-            Width="33"
-            Height="17"
-            Margin="112.072,134,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding SelectedTarget.MaxHp, UpdateSourceTrigger=PropertyChanged}"
-            TextChanged="TargetingHpMax_TextChanged"
-            TextWrapping="Wrap" />
         <Label
             Grid.ColumnSpan="2"
             Width="71"
-            Margin="167,130,0,0"
+            Margin="167 130 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="HP% range" />
         <Label
-            Grid.Column="1"
-            Margin="85.072,130,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="to" />
-        <Label
             Grid.ColumnSpan="2"
             Height="24"
-            Margin="167,155,0,0"
+            Margin="167 155 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Monster Attacks" />
         <Label
             Grid.ColumnSpan="2"
             Height="28"
-            Margin="167,178,0,0"
+            Margin="167 178 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Danger level" />
         <Label
             Grid.ColumnSpan="2"
             Height="23"
-            Margin="167,201,0,0"
+            Margin="167 201 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Desired stance" />
         <Label
             Grid.ColumnSpan="2"
-            Margin="167,226,0,0"
+            Margin="167 226 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Desired action"
             RenderTransformOrigin="-0.079,-0.345" />
         <Label
             Grid.ColumnSpan="2"
-            Margin="168,281,0,0"
+            Margin="168 281 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Wear ring" />
-        <ComboBox
-            x:Name="MonsterAttackMode"
-            Grid.Column="1"
-            Width="107"
-            Height="23"
-            Margin="40,156,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            SelectedIndex="0"
-            ItemsSource="{Binding MonsterAttacks, UpdateSourceTrigger=PropertyChanged}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.MonsterAttackMode, UpdateSourceTrigger=PropertyChanged}" />
-        <ComboBox
-            x:Name="DangerLevel"
-            Grid.Column="1"
-            Width="61"
-            Height="23"
-            Margin="86,183,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            SelectedIndex="0"
-            ItemsSource="{Binding DangerLevels, UpdateSourceTrigger=PropertyChanged}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.DangerLevel, UpdateSourceTrigger=PropertyChanged}" />
-        <ComboBox
-            x:Name="StanceMode"
-            Grid.Column="1"
-            Width="107"
-            Height="23"
-            Margin="40,206,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            SelectedIndex="0"
-            ItemsSource="{Binding ListActions}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.StanceMode, UpdateSourceTrigger=PropertyChanged}"
-            SelectionChanged="StanceMode_SelectionChanged" />
-        <Label             
-
-            Content="Attack Mode" Margin="167,252,349,223" Grid.ColumnSpan="2" />
-        <ComboBox
-            x:Name="AttackMode"
-            Grid.Column="1"
-            Width="107"
-            Height="28"
-            Margin="40,252,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            SelectedIndex="0"
-            ItemsSource="{Binding AttackModes, UpdateSourceTrigger=PropertyChanged}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.AttackMode}"
-            SelectionChanged="ActionMode_SelectionChanged" />
-        <ComboBox
-    x:Name="ActionModeSpell"
-    Grid.Column="1"
-    Width="54"
-    Height="23"
-    Margin="93,229,0,0"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-    ScrollViewer.VerticalScrollBarVisibility="Disabled"
-    ItemsSource="{Binding ActionList, UpdateSourceTrigger=PropertyChanged}"
-    SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding name}" />
-                        <TextBlock Text="{Binding SpellList.name}" />
-                                               
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <ComboBox x:Name="ActionMode" 
-            Width="53"
-            Height="23"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            SelectedIndex="1"
-            ItemsSource="{Binding ListStanceMode}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.ActionMode, UpdateSourceTrigger=PropertyChanged}"
-            SelectionChanged="StanceMode_SelectionChanged" Grid.Column="1" Margin="40,229,0,0" />
-        <ComboBox
-            x:Name="Ring"
-            Grid.Column="1"
-            Width="107"
-            Height="23"
-            Margin="40,280,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            SelectedIndex="0"
-            ItemsSource="{Binding Ring}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            SelectedItem="{Binding SelectedTarget.Ring, UpdateSourceTrigger=PropertyChanged}" />
+        <Label
+            Grid.ColumnSpan="2"
+            Margin="167 252 349 223"
+            Content="Attack Mode" />
         <!--<Button
             x:Name="Addbtn"
             Width="32"
@@ -521,7 +203,7 @@
         <CheckBox
             Width="102"
             Height="20"
-            Margin="21,423,0,0"
+            Margin="21 423 0 0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Checked="CheckBox_Checked"
@@ -535,27 +217,373 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </CheckBox>
-        <ListView x:Name="LoadTargetscriptlistview" Margin="11,341,247,100" Grid.Column="2" ItemsSource="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="LoadTargetscript_SelectionChanged" >
-        </ListView>
-        <Label Content="Name" Margin="224,407,346,70" Grid.ColumnSpan="2"/>
-        <Button x:Name="targeteditBtn"
-            Content="Edit" 
-            HorizontalAlignment="Left"
-            Margin="42,437,0,0" 
-            VerticalAlignment="Top"
-            RenderTransformOrigin="-0.002,0.354"
+        <Label
+            Grid.ColumnSpan="2"
+            Margin="224 407 346 70"
+            Content="Name" />
+        <Frame
+            x:Name="frame1"
             Grid.Column="1"
-            Command="{Binding command}"
-            CommandParameter="TargetEdit" Click="targeteditBtn_Click"/>
-        <Button x:Name="targetsaveBtn" Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="70,437,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="targetloadBtn"
-             Grid.Column="1"
-            Content="Load" 
+            Width="167"
+            Height="277"
+            Margin="167.072 14 0 0"
             HorizontalAlignment="Left"
-            Margin="101,437,0,0"
             VerticalAlignment="Top"
+            Panel.ZIndex="-1"
+            Content="Target Selection" />
+        <Label
+            x:Name="label"
+            Grid.Column="1"
+            Margin="167.072 43 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="List order"
+            RenderTransformOrigin="0.118,0" />
+
+        <Label
+            x:Name="label1"
+            Grid.Column="1"
+            Margin="167.072 87 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Health" />
+        <Label
+            x:Name="label2"
+            Grid.Column="1"
+            Margin="167.072 117 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Proximity" />
+        <Label
+            x:Name="label3"
+            Grid.Column="1"
+            Margin="167.072 148 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Danger" />
+        <Label
+            x:Name="label4"
+            Grid.Column="1"
+            Margin="167.072 180 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Random" />
+        <Label
+            x:Name="label5"
+            Grid.Column="1"
+            Margin="167.072 211 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Stick" />
+        <Slider
+            x:Name="ListOrderSlider"
+            Grid.Column="1"
+            Width="111"
+            Height="26"
+            Margin="223.072 43 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Value="{Binding Path=ListOrder, Mode=OneWayToSource}" />
+        <Slider
+            x:Name="HealthSlider"
+            Grid.Column="1"
+            Width="111"
+            Height="29"
+            Margin="223.072 84 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Value="{Binding Path=HealthTarget, Mode=OneWayToSource}" />
+        <Slider
+            x:Name="ProximitySlider"
+            Grid.Column="1"
+            Width="111"
+            Height="30"
+            Margin="223.072 118 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Value="{Binding Path=ProximityTarget, Mode=OneWayToSource}" />
+        <Slider
+            x:Name="DangerSlider"
+            Grid.Column="1"
+            Width="111"
+            Height="31"
+            Margin="223.072 148 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Value="{Binding Path=DangerTarget, Mode=OneWayToSource}" />
+        <Slider
+            x:Name="RandomSlider"
+            Grid.Column="1"
+            Width="111"
+            Height="22"
+            Margin="223.072 184 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Value="{Binding Path=RandomTarget, Mode=OneWayToSource}" />
+        <Slider
+            x:Name="StickSlider"
+            Grid.Column="1"
+            Width="111"
+            Height="19"
+            Margin="223.072 218 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Value="{Binding Path=StickTarget, Mode=OneWayToSource}" />
+        <CheckBox
+            x:Name="ReachableCheckBox"
+            Grid.Column="1"
+            Margin="167.072 242 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Checked="ReachableCheckBox_Checked"
+            Content="Target must be Reachable"
+            IsChecked="{Binding SelectedTarget.Reachable, UpdateSourceTrigger=PropertyChanged}"
+            Unchecked="Reachable_Unchecked">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableChecked" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="ReachableUnChecked" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </CheckBox>
+        <CheckBox
+            x:Name="ShootableCheckBox"
+            Grid.Column="1"
+            Margin="167.072 262 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Target Must be shootable"
+            IsChecked="{Binding Path=ShootableTarget, Mode=OneWayToSource}" />
+        <TextBox
+            x:Name="TargetNameTextBox"
+            Grid.Column="1"
+            Width="139"
+            Height="23"
+            Margin="5.072 43 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="{Binding SelectedTarget.Name, UpdateSourceTrigger=PropertyChanged}"
+            TextChanged="TargetNameTextBox_TextChanged"
+            TextWrapping="Wrap">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="GotFocus">
+                    <i:InvokeCommandAction Command="{Binding command}" CommandParameter="TargetNameTextBoxGotFocus" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox
+            x:Name="textBox1"
+            Grid.Column="1"
+            Width="140"
+            Height="23"
+            Margin="7.072 100 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="{Binding SelectedTarget.Categories, UpdateSourceTrigger=PropertyChanged}"
+            TextWrapping="Wrap" />
+        <Label
+            x:Name="label9"
+            Grid.Column="1"
+            Margin="42.072 69 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Setting #" />
+        <CheckBox
+            x:Name="LootMonster"
+            Grid.Column="1"
+            Margin="50 316 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Loot monster"
+            IsChecked="{Binding SelectedTarget.Loot, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox
+            Grid.Column="1"
+            Width="38"
+            Height="25"
+            Margin="105.072 74 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding Settings, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedIndex="0"
+            SelectedItem="{Binding SelectedTarget.Setting, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox
+            x:Name="TargetingHpMin"
+            Grid.Column="1"
+            Width="35"
+            Height="17"
+            Margin="39.072 134 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="{Binding SelectedTarget.MinHp, UpdateSourceTrigger=PropertyChanged}"
+            TextChanged="TargetingHpMin_TextChanged"
+            TextWrapping="Wrap" />
+        <TextBox
+            x:Name="TargetingHpMax"
+            Grid.Column="1"
+            Width="33"
+            Height="17"
+            Margin="112.072 134 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="{Binding SelectedTarget.MaxHp, UpdateSourceTrigger=PropertyChanged}"
+            TextChanged="TargetingHpMax_TextChanged"
+            TextWrapping="Wrap" />
+        <Label
+            Grid.Column="1"
+            Margin="85.072 130 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="to" />
+        <ComboBox
+            x:Name="MonsterAttackMode"
+            Grid.Column="1"
+            Width="107"
+            Height="23"
+            Margin="40 156 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding MonsterAttacks, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedIndex="0"
+            SelectedItem="{Binding SelectedTarget.MonsterAttackMode, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox
+            x:Name="DangerLevel"
+            Grid.Column="1"
+            Width="61"
+            Height="23"
+            Margin="86 183 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding DangerLevels, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedIndex="0"
+            SelectedItem="{Binding SelectedTarget.DangerLevel, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox
+            x:Name="StanceMode"
+            Grid.Column="1"
+            Width="107"
+            Height="23"
+            Margin="40 206 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding ListActions}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedIndex="0"
+            SelectedItem="{Binding SelectedTarget.StanceMode, UpdateSourceTrigger=PropertyChanged}"
+            SelectionChanged="StanceMode_SelectionChanged" />
+        <ComboBox
+            x:Name="AttackMode"
+            Grid.Column="1"
+            Width="107"
+            Height="28"
+            Margin="40 252 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding AttackModes, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedIndex="0"
+            SelectedItem="{Binding SelectedTarget.AttackMode}"
+            SelectionChanged="ActionMode_SelectionChanged" />
+        <ComboBox
+            x:Name="ActionModeSpell"
+            Grid.Column="1"
+            Width="54"
+            Height="23"
+            Margin="93 229 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding ActionList.ComboBoxItems, UpdateSourceTrigger=PropertyChanged}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedItem="{Binding SelectedTarget.ActionModeSpell, UpdateSourceTrigger=PropertyChanged}">
+            <!--<ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding name}" />
+                        <TextBlock Text="{Binding SpellList.name}" />
+
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>-->
+        </ComboBox>
+
+        <ComboBox
+            x:Name="ActionMode"
+            Grid.Column="1"
+            Width="53"
+            Height="23"
+            Margin="40 229 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding ListStanceMode}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedIndex="1"
+            SelectedItem="{Binding SelectedTarget.ActionMode, UpdateSourceTrigger=PropertyChanged}"
+            SelectionChanged="StanceMode_SelectionChanged" />
+        <ComboBox
+            x:Name="Ring"
+            Grid.Column="1"
+            Width="107"
+            Height="23"
+            Margin="40 280 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding Ring}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            SelectedIndex="0"
+            SelectedItem="{Binding SelectedTarget.Ring, UpdateSourceTrigger=PropertyChanged}" />
+        <Button
+            x:Name="targeteditBtn"
+            Grid.Column="1"
+            Margin="42 437 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="targeteditBtn_Click"
             Command="{Binding command}"
-            CommandParameter="LoadTargetscriptlistview" Click="LoadTargetingBtn_Click"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Right" Margin="0,411,247,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="98"/>
+            CommandParameter="TargetEdit"
+            Content="Edit"
+            RenderTransformOrigin="-0.002,0.354" />
+        <Button
+            x:Name="targetsaveBtn"
+            Grid.Column="1"
+            Margin="70 437 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Save" />
+        <Button
+            x:Name="targetloadBtn"
+            Grid.Column="1"
+            Margin="101 437 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="LoadTargetingBtn_Click"
+            Command="{Binding command}"
+            CommandParameter="LoadTargetscriptlistview"
+            Content="Load" />
+        <ListView
+            x:Name="LoadTargetscriptlistview"
+            Grid.Column="2"
+            Margin="11 341 247 100"
+            ItemsSource="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding Selectedtargetscript, UpdateSourceTrigger=PropertyChanged}"
+            SelectionChanged="LoadTargetscript_SelectionChanged" />
+        <TextBox
+            Grid.Column="2"
+            Width="98"
+            Margin="0 411 247 0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Text="TextBox"
+            TextWrapping="Wrap" />
     </Grid>
 </Window>
