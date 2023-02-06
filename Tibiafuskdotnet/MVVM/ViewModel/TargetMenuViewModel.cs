@@ -483,6 +483,7 @@ namespace Tibiafuskdotnet.ViewModel
 
             ActionList.SpellList.Add(new Spell("Exori Gran", "attack", 15, SpellCategory.Attack, SpellType.Instant));
             ActionList.SpellList.Add(new Spell("Exori", "attack", 10, SpellCategory.Attack, SpellType.Instant));
+            ActionList.SpellList.Add(new Spell("Energy Strike", "exori vis", 20, SpellCategory.Attack, SpellType.Instant));
         }
 
         public TextBox txtTargetName { get; set; }
@@ -742,7 +743,21 @@ namespace Tibiafuskdotnet.ViewModel
 
 
                                     }
-                                 }
+                                    if (SelectedTarget.ActionModeSpell == "exori"  &&  MemoryReader.c.Player.Mana >= Spells.Berserk.ManaPoints)
+                                    {
+                                    
+                                    MemoryReader.c.Console.Say("exori");
+
+                                    }
+                                
+                                if (SelectedTarget.ActionModeSpell == "Energy Strike" && MemoryReader.c.Player.Mana >= Spells.EnergyStrike.ManaPoints)
+                                    {
+
+                                        MemoryReader.c.Console.Say("exori vis");
+
+                                    }
+
+                            }
 
                             }
                             else if (SelectedTarget.ActionMode == "Follow")
