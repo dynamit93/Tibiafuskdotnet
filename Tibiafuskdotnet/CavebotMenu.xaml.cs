@@ -400,6 +400,7 @@ namespace Tibiafuskdotnet
                 WaypointsViewmodel.DataSource.Add(new Waypoints { actions = "Rope", waypointx = MemoryReader.c.PlayerLocation.X, waypointy = MemoryReader.c.PlayerLocation.Y, waypointz = MemoryReader.c.PlayerLocation.Z });
 
             }
+            
         }
 
         private void CavebotAlertPlayerOnScreenS_Checked(object sender, RoutedEventArgs e)

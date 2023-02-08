@@ -347,9 +347,11 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             uint tempposz = Convert.ToUInt32(waypoint.waypointz);
 
 
+            
 
-            // Get the coordinates of the waypoint
-            int waypointx = waypoint.waypointx;
+
+                // Get the coordinates of the waypoint
+                int waypointx = waypoint.waypointx;
             int waypointy = waypoint.waypointy;
             int waypointz = waypoint.waypointz;
 
@@ -463,11 +465,34 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 // If the player's y coordinate is greater than the waypoint's y coordinate, walk north
                 if (MemoryReader.c.PlayerLocation.Y > waypointy)
                 {
-                    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
-                    System.Console.WriteLine("walk north");
+
+                        foreach (Tile tile in MemoryReader.c.Map.GetTiles())
+                        {
+
+                            // print Ground id + GROUND ID LOACTION
+                            System.Console.WriteLine(" TILE GROUND  ID : " + tile.Ground.Id + " TILE LOCATION: " + tile.Location);
+                            
+                            if (TileLists.Down.Contains(tile.Ground.Id) && tile.Location.X +1 == waypointx && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
+                            {
+
+                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
+                                System.Console.WriteLine("walk north");
+
+
+
+                            }
+                        }
+
+
                 }
-                // If the player's y coordinate is less than the waypoint's y coordinate, walk south
-                if (MemoryReader.c.PlayerLocation.Y < waypointy)
+
+
+                    
+
+
+
+                    // If the player's y coordinate is less than the waypoint's y coordinate, walk south
+                    if (MemoryReader.c.PlayerLocation.Y < waypointy)
                 {
                     MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
                     System.Console.WriteLine("walk south");

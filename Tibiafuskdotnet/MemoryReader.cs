@@ -743,22 +743,27 @@ namespace Tibiafuskdotnet
             }
 
             // DOssnt work yet its should find magic wall object on ground. 
-            
+
+
+
+
             foreach (Tile tile in MemoryReader.c.Map.GetTiles())
             {
-                // Check if the tile has an item on the ground
+                
+                //Check if the tile has an item on the ground
                 if (tile.Ground != null)
                 {
-                    // Check if the item's id matches the item id you are searching for
+
+                    //Check if the item's id matches the item id you are searching for
                     if (tile.Ground.Id == 2129)
                     {
-                        // The item was found, do something with it
+                        //The item was found, do something with it
                         System.Console.WriteLine("MAGICWALLLLLLLLLL");
                         break;
                     }
                     else if (tile.Ground.Id == 2128)
                     {
-                        // The item was found, do something with it
+                        //The item was found, do something with it
                         System.Console.WriteLine("MAGICWALLLLLLLLLL");
                         break;
                     }
