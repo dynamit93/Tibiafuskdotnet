@@ -9,54 +9,21 @@ using System.Diagnostics;
 
 namespace Tibiafuskdotnet
 {
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader dr;
 
-
-
         public MainWindow()
         {
-
             DataContext = this;
             InitializeComponent();
-/*
-            WebClient webClient = new WebClient();
-
-            try
-            { 
-                if (!webClient.DownloadString("https://pastebin.com/raw/gTZGA5rp").Contains("1.5.0"))
-                {
-                    if (System.Windows.Forms.MessageBox.Show("Looks like there is an update! Do you want to download it?", "Updater", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-                        using (var client = new WebClient())
-                        {
-                           // Directory.CreateDirectory(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Updates"));
-                           // string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Updates\\";
-                            // Directory.CreateDirectory(filepath);
-                            //Environment.GetFolderPath(Environment.SpecialFolder.Personal + "sdfsdf");
-                            
-                            Process.Start("updatecore.exe");
-                            this.Close();
-                                                       
-                        }                    
-                }
-            }
-            catch
-            {
-                
-                MessageBox.Show("error");
-            }*/
             
             MemoryReader.Start(0, 0, 0);
-
             Helper.Initialize();
             var data = Helper.ReadFromFile();
             data = data ?? new Cheat();
@@ -76,36 +43,30 @@ namespace Tibiafuskdotnet
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
             //Process[] ProcessList = Process.GetProcesses();
             /*
-                        foreach (System.Diagnostics.Process p in localByName)
-                        {
-                            System.Console.WriteLine(p.ProcessName);
-                            if (p.ProcessName.Contains("Tibia"))
-                            {
-                                Client c = new Client(p);
-                                BattleList bc = new BattleList(c);
-                                // Version.Set(client.Version, client.Process);
-                                Tibia.Version.SetVersion860();
+            foreach (System.Diagnostics.Process p in localByName)
+            {
+                System.Console.WriteLine(p.ProcessName);
+                if (p.ProcessName.Contains("Tibia"))
+                {
+                    Client c = new Client(p);
+                    BattleList bc = new BattleList(c);
+                    // Version.Set(client.Version, client.Process);
+                    Tibia.Version.SetVersion860();
 
-                                foreach (Creature C in bc.GetCreatures())
-                                {
-                                    System.Console.WriteLine("Creature " + C.Name);
-                                }
-                                System.Console.WriteLine(bc.GetCreatures()); 
-                            }
-                        }
-                        */
-
+                    foreach (Creature C in bc.GetCreatures())
+                    {
+                        System.Console.WriteLine("Creature " + C.Name);
+                    }
+                    System.Console.WriteLine(bc.GetCreatures()); 
+                }
+            }
+            */
         }
-
-
 
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
-
             string username = UsernameText.Text;
             string password = PasswordText.Text;
-
-
 
             cmd = new MySqlCommand();
             /*   
@@ -130,31 +91,38 @@ namespace Tibiafuskdotnet
                    Console.WriteLine("The file could not be read:");
                    Console.WriteLine(ex.Message);
                }*/
-
-
-
-
-
+   
             try
             {
-                con.Open();
+                /**
+                 * bypass #1 of 2 to avoid databas checkered logins
+                 * only run con.Open() here to activate it again
+                 */
+                MainMenu Menu = new MainMenu();
+                Menu.Show();
+                this.Close();
+
+                //  con.Open();
             }
             catch (Exception)
             {
-
                 MessageBox.Show("can't reach Database");
                 //exit Appliaction
                 Environment.Exit(0);
-
             }
             cmd.Connection = con;
             cmd.CommandText = "SELECT premium FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
 
-            //cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+
             //SELECT premium FROM account WHERE username ='123' and password='123'
             // cmd.CommandText = "SELECT '" + premium + "' FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
             //var prem = (int)cmd.ExecuteScalar();
-            dr = cmd.ExecuteReader();
+
+            /**
+             * bypass #2 of 2 to avoid databas checkered logins
+             * uncomment section below to activate database-checked logins
+             */
+            /*dr = cmd.ExecuteReader();
             if (dr.Read())
             {
                 // checking Prmeium days
@@ -184,8 +152,7 @@ namespace Tibiafuskdotnet
             {
                 MessageBox.Show("Invalid Login please check username and password");
             }
-            con.Close();
-
+            con.Close();*/
             //new MemoryReader(0, 0, 0);
         }
 
@@ -197,16 +164,48 @@ namespace Tibiafuskdotnet
         }
 
         private void d(object sender, KeyEventArgs e)
-        {
-
-        }
+        {}
 
         private void Testbutton_Click(object sender, RoutedEventArgs e)
         {
             ClientChooserWPF ClientChooser = new ClientChooserWPF();
             ClientChooser.Show();
-
-
         }
     }
 }
+
+
+/**
+ * okända funktionaliter nedan, som ej vågas kastas
+ * */
+
+/* 
+  detta låg i MainWindow funktionen efter
+       DataContext = this;
+        InitializeComponent();
+    --->
+
+
+    WebClient webClient = new WebClient();
+    try
+    { 
+        if (!webClient.DownloadString("https://pastebin.com/raw/gTZGA5rp").Contains("1.5.0"))
+        {
+            if (System.Windows.Forms.MessageBox.Show("Looks like there is an update! Do you want to download it?", "Updater", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                using (var client = new WebClient())
+                {
+                    // Directory.CreateDirectory(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Updates"));
+                    // string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Updates\\";
+                    // Directory.CreateDirectory(filepath);
+                    //Environment.GetFolderPath(Environment.SpecialFolder.Personal + "sdfsdf");
+                            
+                    Process.Start("updatecore.exe");
+                    this.Close();                      
+                }                    
+        }
+    }
+    catch
+    {   
+        MessageBox.Show("error");
+    }
+*/
