@@ -447,21 +447,28 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                         
 
                     
-                    // If the player's x coordinate is greater than the waypoint's x coordinate, walk west
-                    if (MemoryReader.c.PlayerLocation.X > waypointx)
-                {
-                    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
-                    
-                    System.Console.WriteLine("walk west");
 
-                }
-                // If the player's x coordinate is less than the waypoint's x coordinate, walk east
-                if (MemoryReader.c.PlayerLocation.X < waypointx)
-                {
+                //    // If the player's x coordinate is greater than the waypoint's x coordinate, walk west
+                //    if (MemoryReader.c.PlayerLocation.X > waypointx)
+                //{
+                //    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
                     
-                    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
-                    System.Console.WriteLine("walk east");
-                }
+                //    System.Console.WriteLine("walk west");
+
+                //}
+                //// If the player's x coordinate is less than the waypoint's x coordinate, walk east
+                //if (MemoryReader.c.PlayerLocation.X < waypointx)
+                //{
+                    
+                //    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
+                //    System.Console.WriteLine("walk east");
+                //}
+
+
+
+
+
+
                 // If the player's y coordinate is greater than the waypoint's y coordinate, walk north
                 if (MemoryReader.c.PlayerLocation.Y > waypointy)
                 {
@@ -470,17 +477,28 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                         {
 
                             // print Ground id + GROUND ID LOACTION
-                            System.Console.WriteLine(" TILE GROUND  ID : " + tile.Ground.Id + " TILE LOCATION: " + tile.Location);
                             
-                            if (TileLists.Down.Contains(tile.Ground.Id) && tile.Location.X +1 == waypointx && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
+                            
+                            if (TileLists.Down.Contains(tile.Ground.Id) && tile.Location.Y +1 == waypointy && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
                             {
+                                System.Console.WriteLine(" TILE GROUND  ID : " + tile.Ground.Id + " TILE LOCATION: " + tile.Location);
+                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
+                                if (TileLists.Down.Contains(tile.Ground.Id) && tile.Location.X == MemoryReader.c.PlayerLocation.X && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
+                                {
+                                    System.Console.WriteLine(" TILE GROUND  ID : " + tile.Ground.Id + " TILE LOCATION: " + tile.Location);
 
-                                MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
-                                System.Console.WriteLine("walk north");
-
-
+                                    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
+                                    System.Console.WriteLine("walk East");
+                                }
 
                             }
+                            else if(TileLists.Down.Contains(tile.Ground.Id) &&  tile.Location.X == waypointx && tile.Location.X != MemoryReader.c.PlayerLocation.X && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
+                            {
+                               // MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
+                                System.Console.WriteLine("walk north");
+
+                            }
+
                         }
 
 
