@@ -388,7 +388,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             //List<Waypoints> path = pathFinder.FindPath(MemoryReader.c.playerLocation, waypointLocation);
 
 
-            List<Waypoints> path = AStarPathFinder.FindPath(MemoryReader.c.playerLocation, waypointLocation);
+            List<Waypoints> path = pathFindera.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
             // Get the direction from the player's current location to the waypoint
             var direction = pathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
 
