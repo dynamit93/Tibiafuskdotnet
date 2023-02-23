@@ -24,9 +24,7 @@ using Tibia.Util;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
 using static Tibia.Constants.Items;
-using static Tibia.Constants.Tiles;
-using Tibia.Constants;
-using Tibia;
+using System.Collections.Specialized;
 
 
 
@@ -120,8 +118,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 NotifyPropertyChanged("AvailableRopes");
             }
         }
-
-        
+ 
 
         //listTargeting
         private ObservableCollection<string> _listLoot;
@@ -154,37 +151,49 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         [PreferredConstructorAttribute]
         public Waypoints()
         {
-            ListLoot = new ObservableCollection<string>() { "<New Entry>" };
-            Loots = new ObservableCollection<CaveBotLootList>() { AddNewLoot() };
-            Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
+                ListLoot = new ObservableCollection<string>() { "<New Entry>" };
+                Loots = new ObservableCollection<CaveBotLootList>() { AddNewLoot() };
+                Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
 
 
-            // Initialize AvailableTools with the list of tools
-            AvailableTools = new ObservableCollection<Item>
-        {
-             Tool.LightShovel,
-             Tool.Pick,
-             Tool.Shovel,
-             Tool.SneakyStabberofEliteness,
-             Tool.SqueezingGearOfGirlpower,
-             Tool.WhackingDrillerofFate
+                // Initialize AvailableTools with the list of tools
+                AvailableTools = new ObservableCollection<Item>
+            {
+                 Tool.LightShovel,
+                 Tool.Pick,
+                 Tool.Shovel,
+                 Tool.SneakyStabberofEliteness,
+                 Tool.SqueezingGearOfGirlpower,
+                 Tool.WhackingDrillerofFate
              
-        };
+            };
 
 
-            // Initialize AvailableTools with the list of tools
-            AvailableRopes = new ObservableCollection<Item>
-        {
-             Tool.ElvenhairRope,
-             Tool.Rope,
-             Tool.SneakyStabberofEliteness,
-             Tool.SqueezingGearOfGirlpower,
-             Tool.WhackingDrillerofFate
+                // Initialize AvailableTools with the list of tools
+                AvailableRopes = new ObservableCollection<Item>
+            {
+                 Tool.ElvenhairRope,
+                 Tool.Rope,
+                 Tool.SneakyStabberofEliteness,
+                 Tool.SqueezingGearOfGirlpower,
+                 Tool.WhackingDrillerofFate
 
-        };
+            };
+
+            this.CollectionChanged += Waypoints_CollectionChanged;
+            // Initialize the map
+            Map map = new Map(MemoryReader.c);
+            
+
 
 
         }
+
+        private void Waypoints_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public Thread _thread;
         public Thread _Soundplayer;
         public RelayCommand<string> Cavebotcommand { get; set; }
@@ -193,7 +202,10 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         public Waypoints(Location location)
          {
-             waypointx = location.X;
+
+
+
+            waypointx = location.X;
              waypointy = location.Y;
              waypointz = location.Z;
             NotifyPropertyChanged();
@@ -203,6 +215,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             _thread = new Thread(Followwaypoints);
 
             SelectedCavebotTools = AvailableTools[0];
+
+
         }
         
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
@@ -307,247 +321,70 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             //soundPlayer.PlayLooping();
 
         }
-        AStarPathFinder pathFinder = new AStarPathFinder(map);
-        List<Waypoints> path = pathFinder.FindPath(start, end);
-        public void Followwaypoints()
+        public Location GetLocation()
         {
-            // Keep track of the current waypoint index
-            int currentIndex = 0;
-
-            
-              
-            while (true)
-            {
-                // Get the current player location
-                int playerX = MemoryReader.c.PlayerLocation.X;
-                int playerY = MemoryReader.c.PlayerLocation.Y;
-                int playerZ = MemoryReader.c.PlayerLocation.Z;
-
-                // Get the current waypoint
-                Waypoints waypoint = DataSource[currentIndex];
-
-                // Check if the player is at the desired location
-                if (playerX == waypoint.waypointx && playerY == waypoint.waypointy && playerZ == waypoint.waypointz)
-                {
-                    // If the player is at the desired location, move to the next waypoint
-                    currentIndex++;
-
-                    // If the current index is the last element in the DataSource collection, start over from the beginning
-                    if (currentIndex == DataSource.Count)
-                    {
-                        currentIndex = 0;
-                    }
-                }
-                else
-                {
-                    // If the player is not at the desired location, walk to the current waypoint
-                    WalkToWaypoint(waypoint);
-                }
-            }
+            return new Location(this.waypointx, this.waypointy, this.waypointz);
         }
 
 
-        //private void WalkToWaypoint(Waypoints waypoint)
-        //{
-        //    uint tempposx = Convert.ToUInt32(waypoint.waypointx);
-        //    uint tempposy = Convert.ToUInt32(waypoint.waypointy);
-        //    uint tempposz = Convert.ToUInt32(waypoint.waypointz);
+        public void Followwaypoints()
+{
+    // Keep track of the current waypoint index
+    int currentIndex = 0;
+
+            Waypoints waypoint = DataSource[currentIndex];
+            Location waypointLocation = waypoint.GetLocation();
+
+
+            while (true)
+    {
+        // Get the current player location
+        Location playerLocation = MemoryReader.c.PlayerLocation;
+
+        // Get the current waypoint
+       // Waypoints waypoint = DataSource[currentIndex];
+
+        // Check if the player is at the desired location
+        if (playerLocation == waypointLocation)
+        {
+            // If the player is at the desired location, move to the next waypoint
+            currentIndex++;
+
+            // If the current index is the last element in the DataSource collection, start over from the beginning
+            if (currentIndex == DataSource.Count)
+            {
+                currentIndex = 0;
+            }
+        }
+        else
+        {
+            // If the player is not at the desired location, walk to the current waypoint
+            WalkToWaypoint(waypoint);
+        }
+        System.Console.WriteLine(waypointLocation);
+    }
+}
 
 
 
+        AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
+       // List<Waypoints> path = AStarPathFinder.FindPath(MemoryReader.c.playerLocation,end);
 
-
-        //        // Get the coordinates of the waypoint
-        //        int waypointx = waypoint.waypointx;
-        //    int waypointy = waypoint.waypointy;
-        //    int waypointz = waypoint.waypointz;
-
-        //    // Get the player's current coordinates
-        //    int currentX = MemoryReader.c.PlayerLocation.X;
-        //    int currentY = MemoryReader.c.PlayerLocation.Y;
-        //    int currentZ = MemoryReader.c.PlayerLocation.Z;
-
-        //    // Keep looping until the player reaches the waypoint
-        //    while (currentX != waypointx || currentY != waypointy || currentZ != waypointz)
-        //    {
-        //        // Print the player's current location and the desired location
-        //        System.Console.WriteLine("wanna walk to x-cordinate: " + waypointx);
-        //        System.Console.WriteLine("Im currently on x-cordinate: " + MemoryReader.c.PlayerLocation.X);
-
-        //        // Wait for 200 milliseconds
-        //        Thread.Sleep(200);
-        //        /* if (waypoint.actions == "Shovel")
-        //         {
-        //             // testing if useing shovel will work on specific location. not done yet.
-        //             System.Console.WriteLine("SHOVEL" + SelectedCavebotTools);
-        //             System.Console.WriteLine((ushort)waypoint.waypointy);
-
-        //             Location location = new Location(waypoint.waypointx, waypoint.waypointy, waypoint.waypointz);
-
-
-        //             Tile tile = new Tile(MemoryReader.c, (ushort)waypointx, (ushort)waypointx, client.Player.Z);
-
-        //             MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotTools, tile);
-
-
-
-        //         }*/
-
-        //        if (waypoint.actions == "Shovel")
-        //        {
-
-        //            System.Console.WriteLine("SHOVEL" + SelectedCavebotTools);
-        //            System.Console.WriteLine((ushort)waypoint.waypointy);
-
-        //            // Create a Location object using the waypoint coordinates
-        //            Location location = new Location(waypoint.waypointx, waypoint.waypointy, waypoint.waypointz);
-        //            // Create a Tile object using the Location object
-        //            Tile tile = new Tile(MemoryReader.c, (ushort)waypoint.waypointx, (ushort)waypoint.waypointy, location);
-        //            System.Console.WriteLine("PRINT OUT THE TILE " + tile);
-        //            System.Console.WriteLine("PRINTOUT THE location " + location);
-        //            //System.Console.WriteLine("PRINT OUT THE SelectedCavebotTools " + SelectedCavebotTools.Id);
-        //            // Use the SelectedCavebotTools item on the Tile object
-        //            if (SelectedCavebotTools.Name == "Shovel")
-        //            {
-        //                //MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotTools.Id, tile);
-        //                MemoryReader.c.Inventory.UseItemOnTile(3457, tile);
-        //            }
-        //            else if(SelectedCavebotTools.Name == "Squeezing Gear Of Girlpower")
-        //            {
-        //                MemoryReader.c.Inventory.UseItemOnTile(9596, tile);
-        //            }    
-        //            else if(SelectedCavebotTools.Name == "Whacking Driller of Fate")
-        //            {
-        //                MemoryReader.c.Inventory.UseItemOnTile(9598, tile);
-        //            }
-        //            else if(SelectedCavebotTools.Name == "Sneaky Stabber of Eliteness")
-        //            {
-        //                MemoryReader.c.Inventory.UseItemOnTile(9594, tile);
-        //            }
-        //            // if i use the id 3457 insted of SelectedCavebotTools its will work. fix the binding so SelectedCavebotTools will return 3457
-        //            //MemoryReader.c.Inventory.UseItemOnTile(3457, tile);
-
-        //        }
-
-        //        if (waypoint.actions == "Rope")
-        //        {
-        //            // testing if useing shovel will work on specific location. not done yet.
-        //            Location location = new Location((ushort)waypoint.waypointx, (ushort)waypoint.waypointy, (ushort)waypoint.waypointz);
-        //            Tile tile = new Tile(MemoryReader.c, (ushort)waypoint.waypointx, (ushort)waypoint.waypointy, location);
-        //            //MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotRopes, tile);
-        //            System.Console.WriteLine("Rope");
-
-        //            if (SelectedCavebotRopes.Name == "Rope")
-        //            {
-        //                //MemoryReader.c.Inventory.UseItemOnTile(SelectedCavebotRopes, tile);
-        //                MemoryReader.c.Inventory.UseItemOnTile(3003, tile);
-        //            }
-
-
-        //        }
-        //        //if(waypoint.actions =="w")
-        //        //{
-
-        //            // If the player's z coordinate is Equal to the waypoint's z coordinate, Walk
-        //            if (MemoryReader.c.PlayerLocation.Z == waypointz)
-        //            {
-
-
-
-
-        //        //    // If the player's x coordinate is greater than the waypoint's x coordinate, walk west
-        //        //    if (MemoryReader.c.PlayerLocation.X > waypointx)
-        //        //{
-        //        //    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
-
-        //        //    System.Console.WriteLine("walk west");
-
-        //        //}
-        //        //// If the player's x coordinate is less than the waypoint's x coordinate, walk east
-        //        //if (MemoryReader.c.PlayerLocation.X < waypointx)
-        //        //{
-
-        //        //    MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
-        //        //    System.Console.WriteLine("walk east");
-        //        //}
-
-
-        //        // If the player's y coordinate is greater than the waypoint's y coordinate, walk north
-        //        if (MemoryReader.c.PlayerLocation.Y > waypointy)
-        //        {
-
-        //                foreach (Tile tile in MemoryReader.c.Map.GetTiles())
-        //                {
-        //                    if (TileLists.Down.Contains(tile.Ground.Id) && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
-        //                    { 
-        //                        // print Ground id + GROUND ID LOACTION
-        //                        if (TileLists.Down.Contains(tile.Ground.Id) && tile.Location.Y +1 == MemoryReader.c.PlayerLocation.Y && tile.Location.X == MemoryReader.c.PlayerLocation.X && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
-        //                        {
-        //                            System.Console.WriteLine("SIMON " + tile.Location.Y);
-        //                            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Right);
-        //                        }
-        //                        else if(TileLists.Down.Contains(tile.Ground.Id) && tile.Location.Y + 1 == MemoryReader.c.PlayerLocation.Y && tile.Location.X == MemoryReader.c.PlayerLocation.X -1 && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
-        //                        {
-
-        //                            System.Console.WriteLine("WALK NORTH" + tile.Location.Y);
-        //                            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
-        //                        }
-        //                        else if(TileLists.Down.Contains(tile.Ground.Id) && tile.Location.Y == MemoryReader.c.PlayerLocation.Y && tile.Location.X == MemoryReader.c.PlayerLocation.X - 1 && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
-        //                        {
-        //                            System.Console.WriteLine("WALK NORTH 2" + tile.Location.Y);
-        //                            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
-        //                        }
-        //                        if (TileLists.Down.Contains(tile.Ground.Id) && tile.Location.Y -1 == MemoryReader.c.PlayerLocation.Y && tile.Location.X +1 == MemoryReader.c.PlayerLocation.X)
-        //                        {
-        //                            System.Console.WriteLine("WALK LEFT" + tile.Location.Y);
-        //                            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Left);
-        //                        }
-        //                    }
-
-        //                    /*else if(TileLists.Down.Contains(tile.Ground.Id) &&  tile.Location.Y +1 == MemoryReader.c.PlayerLocation.Y && tile.Location.X == MemoryReader.c.PlayerLocation.X && tile.Location.Z == MemoryReader.c.PlayerLocation.Z)
-        //                    {
-        //                       // MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Up);
-        //                        System.Console.WriteLine("walk north");
-
-        //                    }*/
-
-        //                }
-
-
-        //            }
-
-
-
-
-
-
-        //            // If the player's y coordinate is less than the waypoint's y coordinate, walk south
-        //            if (MemoryReader.c.PlayerLocation.Y < waypointy)
-        //        {
-        //            MemoryReader.c.Player.Walk(Tibia.Constants.Direction.Down);
-        //            System.Console.WriteLine("walk south");
-        //        }
-
-        //        }
-        //        // Update the player's current coordinates
-        //        currentX = MemoryReader.c.PlayerLocation.X;
-        //        currentY = MemoryReader.c.PlayerLocation.Y;
-        //        currentZ = MemoryReader.c.PlayerLocation.Z;
-        //        //} //end if(waypoint.actions =="w")
-        //    }
-        //}
 
         private void WalkToWaypoint(Waypoints waypoint)
         {
+            Location waypointLocation = waypoint.GetLocation();
+
+            Vector3 end = new Vector3(waypointx, waypointy, waypointz);
             // Get the player's current location
             int currentX = MemoryReader.c.PlayerLocation.X;
             int currentY = MemoryReader.c.PlayerLocation.Y;
             int currentZ = MemoryReader.c.PlayerLocation.Z;
-
+            
+            
             // Get the direction from the player's current location to the waypoint
-            var direction = Pathfinding.AStar.GetDirection(
-                new Vector3(currentX, currentY, currentZ),
-                new Vector3(waypointx, waypointy, waypointz));
+            var direction = pathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
+
 
             // Walk the player in the direction
             MemoryReader.c.Player.Walk(direction);
@@ -559,7 +396,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             foreach (var w in waypoints)
             {
                 WalkToWaypoint(w);
-                await Task.Delay(w.Delay);
+                //await Task.Delay(w.Delay);
             }
         }
 
