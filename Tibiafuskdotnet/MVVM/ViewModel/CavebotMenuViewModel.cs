@@ -367,8 +367,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
 
 
-        AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
-       // List<Waypoints> path = AStarPathFinder.FindPath(MemoryReader.c.playerLocation,end);
+       // AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
+        
 
 
         private void WalkToWaypoint(Waypoints waypoint)
@@ -380,15 +380,24 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             int currentX = MemoryReader.c.PlayerLocation.X;
             int currentY = MemoryReader.c.PlayerLocation.Y;
             int currentZ = MemoryReader.c.PlayerLocation.Z;
-            
-            
+
+            AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
+
+            // Find the path to the waypoint
+            //List<Waypoints> path = pathFinder.FindPath(MemoryReader.c.playerLocation, waypointLocation);
+
+
+
+            List<Waypoints> path = AStarPathFinder.FindPath(MemoryReader.c.playerLocation, waypointLocation);
             // Get the direction from the player's current location to the waypoint
             var direction = pathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
 
-
+            System.Console.WriteLine(direction);
             // Walk the player in the direction
-            MemoryReader.c.Player.Walk(direction);
+            MemoryReader.c.Player.Walk(Direction.Left);
         }
+
+     
 
 
         private async Task MoveToWaypoints(List<Waypoints> waypoints)
