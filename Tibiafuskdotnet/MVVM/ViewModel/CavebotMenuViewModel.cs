@@ -367,8 +367,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
 
 
-       // AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
-        
+        // AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
+
+        AStarPathFinder pathFindera = new AStarPathFinder(MemoryReader.c);
 
 
         private void WalkToWaypoint(Waypoints waypoint)
@@ -385,7 +386,6 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
             // Find the path to the waypoint
             //List<Waypoints> path = pathFinder.FindPath(MemoryReader.c.playerLocation, waypointLocation);
-
 
 
             List<Waypoints> path = AStarPathFinder.FindPath(MemoryReader.c.playerLocation, waypointLocation);
