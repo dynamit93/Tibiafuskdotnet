@@ -376,28 +376,22 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         {
             Location waypointLocation = waypoint.GetLocation();
 
-            Vector3 end = new Vector3(waypointx, waypointy, waypointz);
-            // Get the player's current location
-            int currentX = MemoryReader.c.PlayerLocation.X;
-            int currentY = MemoryReader.c.PlayerLocation.Y;
-            int currentZ = MemoryReader.c.PlayerLocation.Z;
-
             AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
+            List<Waypoints> path = pathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
 
-            // Find the path to the waypoint
-            //List<Waypoints> path = pathFinder.FindPath(MemoryReader.c.playerLocation, waypointLocation);
-
-
-            List<Waypoints> path = pathFindera.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
-            // Get the direction from the player's current location to the waypoint
-            var direction = pathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
-
-            System.Console.WriteLine(direction);
-            // Walk the player in the direction
-            MemoryReader.c.Player.Walk(Direction.Left);
+            if (path.Count > 0)
+            {
+                foreach (Waypoints wp in path)
+                {
+                    Vector3 direction = new Vector3(wp.Location.X - MemoryReader.c.PlayerLocation.X, wp.Location.Y - MemoryReader.c.PlayerLocation.Y, wp.Location.Z - MemoryReader.c.PlayerLocation.Z);
+                    MemoryReader.c.Player.Walk(direction);
+                    MemoryReader.c.Wait(500);
+                }
+            }
         }
 
-     
+
+
 
 
         private async Task MoveToWaypoints(List<Waypoints> waypoints)
