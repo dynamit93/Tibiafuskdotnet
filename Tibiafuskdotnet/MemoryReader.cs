@@ -8,8 +8,7 @@ using Tibiafuskdotnet.BL;
 using Tibia.Objects;
 using Tibia.Constants;
 using Tibiafuskdotnet.MVVM.ViewModel;
-
-
+using System.Runtime.CompilerServices;
 
 namespace Tibiafuskdotnet
 {
@@ -194,16 +193,17 @@ namespace Tibiafuskdotnet
                     
                     playerHelper = new Client.PlayerHelper(c);
 
-                    
+                   
 
                     timer.Start();
                     Tibia.Version.SetVersion860();
+                   
                     foreach (Creature C in battleList.GetCreatures())
                     {
-                        //System.Console.WriteLine("Creature " + C.Name);
+                        //System.Console.WriteLine("Creature: " + C.Name + "ID: " + C.Id);
                         
                     }
-                    
+
                     // Dennis gjort Skriver ut alla backpacks finns med id + namn + Vilket nummer backpackn finns
                     foreach (Container MyC in inventory.GetContainers())
                     {

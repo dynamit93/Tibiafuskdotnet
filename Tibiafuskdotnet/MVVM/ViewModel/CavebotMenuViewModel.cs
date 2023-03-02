@@ -25,8 +25,7 @@ using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
 using static Tibia.Constants.Items;
 using System.Collections.Specialized;
-
-
+using Tibia;
 
 
 namespace Tibiafuskdotnet.MVVM.ViewModel
@@ -216,9 +215,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
             SelectedCavebotTools = AvailableTools[0];
 
-
+            
         }
-        
+        Location waypointLocation;
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
         
         public ObservableCollection<Waypoints> DataSource
@@ -310,6 +309,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         }
         private SoundPlayer soundPlayer = new SoundPlayer();
 
+      
        
 
         public void Playsound()
@@ -361,47 +361,92 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             // If the player is not at the desired location, walk to the current waypoint
             WalkToWaypoint(waypoint);
         }
-        System.Console.WriteLine(waypointLocation);
+        System.Console.WriteLine("I WANT TO PRINT THIS BUT HOW" + waypointLocation);
     }
 }
 
-
+        
 
         // AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
 
         AStarPathFinder pathFindera = new AStarPathFinder(MemoryReader.c);
+        private Client client;
+        private Creature Creature;
 
 
-        private void WalkToWaypoint(Waypoints waypoint)
+        private static Location AdjustLocation(Location loc, int xDiff, int yDiff)
         {
-            Location waypointLocation = waypoint.GetLocation();
+            int xNew = loc.X - xDiff;
+            int yNew = loc.Y - yDiff;
 
-            AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
-            List<Waypoints> path = pathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
+            if (xNew > 17)
+                xNew -= 18;
+            else if (xNew < 0)
+                xNew += 18;
 
-            if (path.Count > 0)
+            if (yNew > 13)
+                yNew -= 14;
+            else if (yNew < 0)
+                yNew += 14;
+
+            return new Location(xNew, yNew, loc.Z);
+        }
+
+        public bool WalkToWaypoint(Waypoints waypoint)
             {
-                foreach (Waypoints wp in path)
+            Creature = MemoryReader.C;
+            client = MemoryReader.c;
+
+       
+
+                   var tileList = client.Map.GetTilesOnSameFloor();
+                var playerTile = tileList.GetTileWithPlayer(client);
+            /* if (playerTile == null || Creature == null)
+                 return false;
+
+             var creatureTile = tileList.GetTileWithCreature(MemoryReader.C.Id);
+
+                 if (playerTile == null || creatureTile == null)
+                     return false;*/
+
+            int xDiff, yDiff;
+                uint playerZ = client.Player.Z;
+         
+            var creatures = client.BattleList.GetCreatures().Where(c => c.Z == playerZ);
+                uint playerId = client.Player.Id;
+
+                xDiff = (int)playerTile.MemoryLocation.X - 8;
+                yDiff = (int)playerTile.MemoryLocation.Y - 6;
+
+                playerTile.MemoryLocation = AdjustLocation(playerTile.MemoryLocation, xDiff, yDiff);
+            // creatureTile.MemoryLocation = AdjustLocation(creatureTile.MemoryLocation, xDiff, yDiff);
+            waypointLocation = AdjustLocation(waypointLocation, xDiff, yDiff);
+            foreach (Tile tile in tileList)
                 {
-                    Vector3 direction = new Vector3(wp.Location.X - MemoryReader.c.PlayerLocation.X, wp.Location.Y - MemoryReader.c.PlayerLocation.Y, wp.Location.Z - MemoryReader.c.PlayerLocation.Z);
-                    MemoryReader.c.Player.Walk(direction);
-                    MemoryReader.c.Wait(500);
+                    tile.MemoryLocation = AdjustLocation(tile.MemoryLocation, xDiff, yDiff);
+
+                    if (tile.Ground.GetFlag(Tibia.Addresses.DatItem.Flag.Blocking) || tile.Ground.GetFlag(Tibia.Addresses.DatItem.Flag.BlocksPath) ||
+                        tile.Items.Any(i => i.GetFlag(Tibia.Addresses.DatItem.Flag.Blocking) || i.GetFlag(Tibia.Addresses.DatItem.Flag.BlocksPath) || client.PathFinder.ModifiedItems.ContainsKey(i.Id)) 
+                        //||// creatures.Any(c => tile.Objects.Any(o => o.Data == c.Id && o.Data != playerId && o.Data != Creature.Id))
+                        )
+                    {
+                        client.PathFinder.Grid[tile.MemoryLocation.X, tile.MemoryLocation.Y] = 0;
+                    }
+                    else
+                    {
+                        client.PathFinder.Grid[tile.MemoryLocation.X, tile.MemoryLocation.Y] = 1;
+                    }
                 }
+
+            System.Console.WriteLine("MemoryReader.c.playerLocation:" + MemoryReader.c.PlayerLocation);
+            System.Console.WriteLine("waypointLocation:" + waypointLocation);
+                return client.PathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
             }
-        }
 
 
 
 
 
-        private async Task MoveToWaypoints(List<Waypoints> waypoints)
-        {
-            foreach (var w in waypoints)
-            {
-                WalkToWaypoint(w);
-                //await Task.Delay(w.Delay);
-            }
-        }
 
 
         private IEnumerable<int> GetCollection()
