@@ -44,6 +44,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         }
         
 
+
+
         //SelectedTarget
         private CaveBotLootList _selectedLoot;
 
@@ -154,9 +156,11 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 Loots = new ObservableCollection<CaveBotLootList>() { AddNewLoot() };
                 Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
 
+            client = MemoryReader.c;
+            Tibia.Version.SetVersion860();
 
-                // Initialize AvailableTools with the list of tools
-                AvailableTools = new ObservableCollection<Item>
+            // Initialize AvailableTools with the list of tools
+            AvailableTools = new ObservableCollection<Item>
             {
                  Tool.LightShovel,
                  Tool.Pick,
@@ -194,7 +198,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         }
 
         public Thread _thread;
+         
         public Thread _Soundplayer;
+        public Thread _WalkToWaypoint;
         public RelayCommand<string> Cavebotcommand { get; set; }
 
 
@@ -211,25 +217,53 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
             System.Console.WriteLine(waypointz + "waypointz 1");
 
-            _thread = new Thread(Followwaypoints);
+            //_thread = new Thread(Followwaypoints);
+            Thread t = new Thread(() =>
+            {
+                Followwaypoints(DataSource);
+            });
+
+
+
 
             SelectedCavebotTools = AvailableTools[0];
 
             
         }
-        Location waypointLocation;
+
         private static ObservableCollection<Waypoints> _DataSource = new ObservableCollection<Waypoints>();
-        
+
         public ObservableCollection<Waypoints> DataSource
         {
             get { return _DataSource; }
             set
             {
-                
-               _DataSource = value;
-                NotifyPropertyChanged(); 
+                if (_DataSource != value)
+                {
+                    // remove old items
+                    foreach (var item in _DataSource)
+                    {
+                        if (!value.Contains(item))
+                        {
+                            _DataSource.Remove(item);
+                        }
+                    }
+
+                    // add new items
+                    foreach (var item in value)
+                    {
+                        if (!_DataSource.Contains(item))
+                        {
+                            _DataSource.Add(item);
+                        }
+                    }
+
+                    NotifyPropertyChanged();
+                }
             }
         }
+
+
 
         private bool _FollowWaypoints;
 
@@ -259,8 +293,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         public int waypointz { get; set; }
         public TextBox txtLootDescrption { get; set; }
+
         
-        bool followWaypoints = false;
+       
         private void PerformFollowWaypoints(string obj)
         {
 
@@ -321,51 +356,63 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             //soundPlayer.PlayLooping();
 
         }
+
+        public int currentIndex = 0;
+        public Location location1;
         public Location GetLocation()
         {
-            return new Location(this.waypointx, this.waypointy, this.waypointz);
+
+            // RÄTT VÄRDEN KOMMER IN
+            //int currentIndex = 0;
+            Waypoints waypoint = DataSource[currentIndex];
+            return new Location(waypoint.waypointx, waypoint.waypointy, waypoint.waypointz);
         }
 
 
-        public void Followwaypoints()
-{
-    // Keep track of the current waypoint index
-    int currentIndex = 0;
-
-            Waypoints waypoint = DataSource[currentIndex];
-            Location waypointLocation = waypoint.GetLocation();
-
+        public void Followwaypoints(ObservableCollection<Waypoints> DataSource)
+        {
+            // Keep track of the current waypoint index
+           // int currentIndex = 0;
 
             while (true)
-    {
-        // Get the current player location
-        Location playerLocation = MemoryReader.c.PlayerLocation;
-
-        // Get the current waypoint
-       // Waypoints waypoint = DataSource[currentIndex];
-
-        // Check if the player is at the desired location
-        if (playerLocation == waypointLocation)
-        {
-            // If the player is at the desired location, move to the next waypoint
-            currentIndex++;
-
-            // If the current index is the last element in the DataSource collection, start over from the beginning
-            if (currentIndex == DataSource.Count)
             {
-                currentIndex = 0;
+                if (DataSource != null && DataSource.Any())
+                {
+                    foreach (Waypoints waypoint in DataSource)
+                    {
+                        // Get the current player location
+                        Location playerLocation = MemoryReader.c.PlayerLocation;
+
+                      //  System.Console.WriteLine(waypoint.waypointx + " "+ waypoint.waypointy);
+                        // Get the location of the current waypoint
+
+                        // RÄTT VÄRD¤EN KOMMER INTE IN
+                        Location waypointLocation = GetLocation();
+                        System.Console.WriteLine(waypointLocation);
+                        // Check if the player is at the desired location
+                        if (playerLocation == waypointLocation)
+                        {
+                            // If the player is at the desired location, move to the next waypoint
+                            currentIndex++;
+
+                            // If the current index is the last element in the DataSource collection, start over from the beginning
+                            if (currentIndex >= DataSource.Count)
+                            {
+                                currentIndex = 0;
+                            }
+                        }
+                        else
+                        {
+                            // If the player is not at the desired location, walk to the current waypoint
+                            WalkToWaypoint(waypointLocation);
+                        }
+                    }
+                }
             }
         }
-        else
-        {
-            // If the player is not at the desired location, walk to the current waypoint
-            WalkToWaypoint(waypoint);
-        }
-        System.Console.WriteLine("I WANT TO PRINT THIS BUT HOW" + waypointLocation);
-    }
-}
 
-        
+
+
 
         // AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
 
@@ -392,22 +439,31 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             return new Location(xNew, yNew, loc.Z);
         }
 
-        public bool WalkToWaypoint(Waypoints waypoint)
+        public void WalkToWaypoint(Location waypointLocation)
+        {
+           
+            Player p = client.GetPlayer();
+            p.GoTo = waypointLocation;
+
+
+        }
+        /*
+        public bool WalkToWaypoint(Location waypointLocation)
             {
             Creature = MemoryReader.C;
             client = MemoryReader.c;
 
-       
 
-                   var tileList = client.Map.GetTilesOnSameFloor();
+
+            var tileList = client.Map.GetTilesOnSameFloor();
                 var playerTile = tileList.GetTileWithPlayer(client);
-            /* if (playerTile == null || Creature == null)
-                 return false;
+            /// if (playerTile == null || Creature == null)
+            //     return false;
+            //
+              var creatureTile = tileList.GetTileWithCreature(MemoryReader.C.Id);
 
-             var creatureTile = tileList.GetTileWithCreature(MemoryReader.C.Id);
-
-                 if (playerTile == null || creatureTile == null)
-                     return false;*/
+                 //if (playerTile == null || creatureTile == null)
+                 //    return false;
 
             int xDiff, yDiff;
                 uint playerZ = client.Player.Z;
@@ -420,10 +476,12 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
                 playerTile.MemoryLocation = AdjustLocation(playerTile.MemoryLocation, xDiff, yDiff);
             // creatureTile.MemoryLocation = AdjustLocation(creatureTile.MemoryLocation, xDiff, yDiff);
-            waypointLocation = AdjustLocation(waypointLocation, xDiff, yDiff);
+            waypointLocation_new = AdjustLocation(waypointLocation, xDiff, yDiff);
             foreach (Tile tile in tileList)
                 {
                     tile.MemoryLocation = AdjustLocation(tile.MemoryLocation, xDiff, yDiff);
+                
+
 
                     if (tile.Ground.GetFlag(Tibia.Addresses.DatItem.Flag.Blocking) || tile.Ground.GetFlag(Tibia.Addresses.DatItem.Flag.BlocksPath) ||
                         tile.Items.Any(i => i.GetFlag(Tibia.Addresses.DatItem.Flag.Blocking) || i.GetFlag(Tibia.Addresses.DatItem.Flag.BlocksPath) || client.PathFinder.ModifiedItems.ContainsKey(i.Id)) 
@@ -437,16 +495,18 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                         client.PathFinder.Grid[tile.MemoryLocation.X, tile.MemoryLocation.Y] = 1;
                     }
                 }
-
             System.Console.WriteLine("MemoryReader.c.playerLocation:" + MemoryReader.c.PlayerLocation);
             System.Console.WriteLine("waypointLocation:" + waypointLocation);
-                return client.PathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation);
+
+
+            return client.PathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation_new);
+
             }
 
 
+        
 
-
-
+ */
 
 
         private IEnumerable<int> GetCollection()

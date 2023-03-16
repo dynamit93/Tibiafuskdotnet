@@ -656,7 +656,7 @@ namespace Tibiafuskdotnet.ViewModel
                         }
                     });
 
-                int counter = 0;
+            
 
 
 

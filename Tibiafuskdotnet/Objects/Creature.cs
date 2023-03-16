@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Tibiafuskdotnet;
 using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibia.Objects
@@ -210,7 +211,7 @@ namespace Tibia.Objects
         public uint Id
         {
             get { return client.Memory.ReadUInt32(address + Addresses.Creature.DistanceId); }
-            set { client.Memory.WriteUInt32(address + Addresses.Creature.DistanceId, value); }
+            set { client.Memory.WriteUInt32(address + Addresses.Creature.DistanceId, value);  }
         }
 
         public CreatureData Data

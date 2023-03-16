@@ -73,7 +73,7 @@ namespace Tibia.Util
                     }
                 }
 
-                if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Tibia\tibia.exe")))
+                if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Tibia\tibia.exe")))
                 {
                     newClientChooser.uxClients.Items.Add(ClientChooserBase.NewClientDefaultText);
                 }

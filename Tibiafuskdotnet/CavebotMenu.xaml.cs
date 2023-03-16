@@ -203,21 +203,28 @@ namespace Tibiafuskdotnet
 
         private void CavebotWaypointFollowWaypoints_Checked(object sender, RoutedEventArgs e)
         {
-            waypoints._thread = new Thread(new ThreadStart(waypoints.Followwaypoints));
+
+
+
+             waypoints._thread = new Thread(() => waypoints.Followwaypoints(waypoints.DataSource));
+
+           // waypoints._thread = new Thread(new ThreadStart(waypoints.Followwaypoints));
 
             if (CavebotWaypointFollowWaypoints.IsChecked == true)
             {
                 waypoints._thread.Start();
+                
             }
             else if (waypoints._thread != null)
             {
-                waypoints._thread.Abort();
+               
+               waypoints._thread.Abort();
             }
         }
 
         private void CavebotWaypointFollowWaypoints_UnChecked(object sender, RoutedEventArgs e)
         {
-            waypoints._thread.Abort();
+           waypoints._thread.Abort();
         }
 
         private void CavebotWaypointClear_Click(object sender, RoutedEventArgs e)
