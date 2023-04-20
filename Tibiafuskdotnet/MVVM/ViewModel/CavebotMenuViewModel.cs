@@ -157,7 +157,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
 
             client = MemoryReader.c;
-            Tibia.Version.SetVersion860();
+            Tibia.Version.SetVersion772();
 
             // Initialize AvailableTools with the list of tools
             AvailableTools = new ObservableCollection<Item>

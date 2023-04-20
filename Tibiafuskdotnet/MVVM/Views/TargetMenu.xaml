@@ -6,7 +6,7 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="TargetMenu"
+    Title="Target"
     Width="611.287"
     Height="518"
     DataContext="{Binding Main, Source={StaticResource Locator}}"

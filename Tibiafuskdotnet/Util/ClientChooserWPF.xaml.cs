@@ -148,7 +148,7 @@ namespace Tibia.Util
 
         private void uxClients_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            Version.SetVersion860();
+            Version.SetVersion772();
         }
     }
 }

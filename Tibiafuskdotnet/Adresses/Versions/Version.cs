@@ -4,8 +4,8 @@ namespace Tibia
 {
     public partial class Version
     {
-        public static ushort CurrentVersion = 860;
-        public static string CurrentVersionString = "8.60";
+        public static ushort CurrentVersion = 772;
+        public static string CurrentVersionString = "7.72";
 
         public static string VersionToString(ushort version)
         {
@@ -102,6 +102,9 @@ namespace Tibia
                 //case "8.00":
                 //    SetVersion800();
                 //    break;
+                case "7.72":
+                    SetVersion772();
+                    break;
                 default:
                     throw new Exceptions.VersionNotSupportedException("Tibia version " + CurrentVersionString + " is not supported by TibiaAPI.");
             }

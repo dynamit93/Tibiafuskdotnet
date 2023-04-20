@@ -217,5 +217,11 @@ namespace Tibiafuskdotnet
             MVVM.Views.NavigationMenu NavigationKey = new MVVM.Views.NavigationMenu();
             NavigationKey.ShowDialog();
         }
+
+        private void RuneMaker_Click(object sender, RoutedEventArgs e)
+        {
+            MVVM.Views.RuneMakerView runeMaker = new MVVM.Views.RuneMakerView();
+            runeMaker.ShowDialog();
+        }
     }
 }

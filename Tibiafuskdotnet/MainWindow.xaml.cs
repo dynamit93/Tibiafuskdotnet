@@ -28,13 +28,14 @@ namespace Tibiafuskdotnet
 
             DataContext = this;
             InitializeComponent();
-/*
+
             WebClient webClient = new WebClient();
 
             try
             { 
-                if (!webClient.DownloadString("https://pastebin.com/raw/gTZGA5rp").Contains("1.5.0"))
+                if (!webClient.DownloadString("https://pastebin.com/raw/cBTkPMsi").Contains("0.0.0"))
                 {
+
                     if (System.Windows.Forms.MessageBox.Show("Looks like there is an update! Do you want to download it?", "Updater", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                         using (var client = new WebClient())
                         {
@@ -43,17 +44,17 @@ namespace Tibiafuskdotnet
                             // Directory.CreateDirectory(filepath);
                             //Environment.GetFolderPath(Environment.SpecialFolder.Personal + "sdfsdf");
                             
-                            Process.Start("updatecore.exe");
+                            Process.Start("update\\updatecore.exe");
                             this.Close();
                                                        
                         }                    
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 
-                MessageBox.Show("error");
-            }*/
+                MessageBox.Show(Convert.ToString(ex));
+            }
             
             MemoryReader.Start(0, 0, 0);
 
@@ -73,7 +74,7 @@ namespace Tibiafuskdotnet
             con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
-            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Tibia");
+            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Odenia Online");
             //Process[] ProcessList = Process.GetProcesses();
             /*
                         foreach (System.Diagnostics.Process p in localByName)
@@ -207,6 +208,12 @@ namespace Tibiafuskdotnet
             ClientChooser.Show();
 
 
+        }
+
+        private void TestButtonClientChooser_Click(object sender, RoutedEventArgs e)
+        {
+            ClientChooser ClientChooser = new ClientChooser();
+            ClientChooser.Show();
         }
     }
 }

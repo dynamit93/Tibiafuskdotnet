@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Tibiafuskdotnet"
         KeyDown="d"
         mc:Ignorable="d"
-        Title="MainWindow" Height="304.448" Width="383.962">
+        Title="DLBot" Height="304.448" Width="383.962">
     <Grid Margin="0,0,2,0">
         <Button x:Name="Login_btn" Content="Login" HorizontalAlignment="Left" Margin="141,135,0,0" VerticalAlignment="Top" Click="Login_btn_Click" Width="109" Height="20"/>
         <TextBox x:Name="UsernameText" HorizontalAlignment="Left" Margin="137,67,0,0" Text="123" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
@@ -14,6 +14,9 @@
         <Button x:Name="Forgotten_btn" Content="Forgotten Password" HorizontalAlignment="Left" Margin="141,174,0,0" VerticalAlignment="Top" Click="Forgotten_btn_Click" Height="20" Width="109"/>
         <Label Content="Username" HorizontalAlignment="Left" Margin="62,67,0,0" VerticalAlignment="Top" Height="26" Width="63"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="62,103,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
-        <Button x:Name="Testbutton" Content="TestButton" HorizontalAlignment="Left" Margin="62,174,0,0" VerticalAlignment="Top" Height="26" Width="60" Click="Testbutton_Click" IsEnabled="True"/>
+        <Button x:Name="Testbutton" Content="TestButtonXamel" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="Testbutton_Click" IsEnabled="False"/>
+        <Button x:Name="TestButtonClientChooser" Content="TestButtonClientChooser" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Height="26" Width="141" IsEnabled="False" Click="TestButtonClientChooser_Click"/>
+
+
     </Grid>
 </Window>

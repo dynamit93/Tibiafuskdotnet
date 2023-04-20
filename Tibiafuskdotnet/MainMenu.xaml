@@ -5,34 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet"
         mc:Ignorable="d"
-        Title="MainMenu" Height="146.884" Width="436.118">
-    <Grid Margin="0,-12,2,0">
+        Title="DLBot" Height="156" Width="450" ResizeMode="NoResize">
+    <Grid>
 
-        <Button x:Name="Cavebot_btn" Content="Cavebot" HorizontalAlignment="Left" Margin="7,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Cavebot_btn_Click" IsEnabled="True"/>
-        <Button x:Name="targeting_btn" Content="Targeting" HorizontalAlignment="Left" Margin="7,96,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="targeting_btn_Click"/>
-        <Button x:Name="Healing_btn" Content="Healing" HorizontalAlignment="Left" Margin="7,36,0,0" VerticalAlignment="Top" Height="20" Width="66"  FontSize="10" Click="Healing_btn_Click"/>
-        <Button x:Name="Extras_btn" Content="Extras" HorizontalAlignment="Left" Margin="7,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Extras_btn_Click_1" IsEnabled="False"/>
-        <Button x:Name="Aimbot_btn" Content="Aimbot" HorizontalAlignment="Left" Margin="75,36,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Hottkeys_btn" Content="Hottkeys" HorizontalAlignment="Left" Margin="75,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Navigation_btn" Content="Navigation" HorizontalAlignment="Left" Margin="75,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="True" Click="Navigation_btn_Click"/>
-        <Button x:Name="Proxy_btn" Content="Proxy" HorizontalAlignment="Left" Margin="75,96,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Lists_btn" Content="Lists" HorizontalAlignment="Left" Margin="143,36,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Shortkeys_btn" Content="Shortkeys" HorizontalAlignment="Left" Margin="143,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Links_btn" Content="Links" HorizontalAlignment="Left" Margin="143,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Icons_btn" Content="Icons" HorizontalAlignment="Left" Margin="143,96,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Icons_btn_Click" IsEnabled="False"/>
-        <Button x:Name="HUD_btn" Content="HUD" HorizontalAlignment="Left" Margin="211,36,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="HUD_btn_Click"/>
-        <Button x:Name="Reconnect_btn" Content="Reconnect" HorizontalAlignment="Left" Margin="211,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Creature_Spy_btn" Content="Creature Spy" HorizontalAlignment="Left" Margin="211,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button Click="btnSaveClicked" x:Name="Save_btn" Content="Save" HorizontalAlignment="Left" Margin="279,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
-        <Button x:Name="Load_btn" Content="Load" HorizontalAlignment="Left" Margin="279,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Load_btn_Click"/>
-        <Button x:Name="Custom_btn" Content="Custom" HorizontalAlignment="Left" Margin="347,56,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
-        <Button x:Name="Help_btn" Content="Help" HorizontalAlignment="Left" Margin="347,76,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Help_btn_Click"/>
-        <Button x:Name="button1" Content="1" HorizontalAlignment="Left" Margin="279,36,0,0" VerticalAlignment="Top" Width="31" Height="20" IsEnabled="False"/>
-        <Button x:Name="button2" Content="2" HorizontalAlignment="Left" Margin="310,36,0,0" VerticalAlignment="Top" Width="35" Height="20" IsEnabled="False"/>
-        <Button x:Name="button3" Content="3" HorizontalAlignment="Left" Margin="345,36,0,0" VerticalAlignment="Top" Width="29" IsEnabled="False"/>
-        <Button x:Name="button4" Content="4" HorizontalAlignment="Left" Margin="374,36,0,0" VerticalAlignment="Top" Width="21" Height="20" IsEnabled="False"/>
-        <Button x:Name="button5" Content="5" HorizontalAlignment="Left" Margin="395,36,0,0" VerticalAlignment="Top" Width="18" IsEnabled="False"/>
-        <Button x:Name="PvpButton" Content="PvP" HorizontalAlignment="Left" Margin="211,96,0,0" VerticalAlignment="Top" Width="66" IsEnabled="True" Click="PvpButton_Click"/>
+        <Button x:Name="Cavebot_btn" Content="Cavebot" HorizontalAlignment="Left" Margin="7,49,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Cavebot_btn_Click" IsEnabled="True"/>
+        <Button x:Name="targeting_btn" Content="Targeting" HorizontalAlignment="Left" Margin="7,70,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="targeting_btn_Click"/>
+        <Button x:Name="Healing_btn" Content="Healing" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Height="20" Width="66"  FontSize="10" Click="Healing_btn_Click"/>
+        <Button x:Name="Extras_btn" Content="Extras" HorizontalAlignment="Left" Margin="7,30,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Extras_btn_Click_1" IsEnabled="False"/>
+        <Button x:Name="Aimbot_btn" Content="Aimbot" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Hottkeys_btn" Content="Hottkeys" HorizontalAlignment="Left" Margin="75,30,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Navigation_btn" Content="Navigation" HorizontalAlignment="Left" Margin="75,49,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="True" Click="Navigation_btn_Click"/>
+        <Button x:Name="Proxy_btn" Content="Proxy" HorizontalAlignment="Left" Margin="75,70,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Lists_btn" Content="Lists" HorizontalAlignment="Left" Margin="143,10,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Shortkeys_btn" Content="Shortkeys" HorizontalAlignment="Left" Margin="143,30,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Links_btn" Content="Links" HorizontalAlignment="Left" Margin="143,49,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Icons_btn" Content="Icons" HorizontalAlignment="Left" Margin="143,70,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Icons_btn_Click" IsEnabled="False"/>
+        <Button x:Name="HUD_btn" Content="HUD" HorizontalAlignment="Left" Margin="211,10,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="HUD_btn_Click"/>
+        <Button x:Name="Reconnect_btn" Content="Reconnect" HorizontalAlignment="Left" Margin="211,30,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Creature_Spy_btn" Content="Creature Spy" HorizontalAlignment="Left" Margin="211,49,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button Click="btnSaveClicked" x:Name="Save_btn" Content="Save" HorizontalAlignment="Left" Margin="279,30,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10"/>
+        <Button x:Name="Load_btn" Content="Load" HorizontalAlignment="Left" Margin="279,49,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Load_btn_Click"/>
+        <Button x:Name="Custom_btn" Content="Custom" HorizontalAlignment="Left" Margin="347,30,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" IsEnabled="False"/>
+        <Button x:Name="Help_btn" Content="Help" HorizontalAlignment="Left" Margin="347,49,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Help_btn_Click"/>
+        <Button x:Name="button1" Content="1" HorizontalAlignment="Left" Margin="279,10,0,0" VerticalAlignment="Top" Width="31" Height="20" IsEnabled="False"/>
+        <Button x:Name="button2" Content="2" HorizontalAlignment="Left" Margin="310,10,0,0" VerticalAlignment="Top" Width="35" Height="20" IsEnabled="False"/>
+        <Button x:Name="button3" Content="3" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top" Width="29" IsEnabled="False"/>
+        <Button x:Name="button4" Content="4" HorizontalAlignment="Left" Margin="374,10,0,0" VerticalAlignment="Top" Width="21" Height="20" IsEnabled="False"/>
+        <Button x:Name="button5" Content="5" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" Width="18" IsEnabled="False"/>
+        <Button x:Name="PvpButton" Content="PvP" HorizontalAlignment="Left" Margin="211,70,0,0" VerticalAlignment="Top" Width="66" IsEnabled="True" Click="PvpButton_Click"/>
+        <Button x:Name="RuneMaker" Content="Rune Maker" Margin="279,70,0,0" Click="RuneMaker_Click" Width="134" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Label Margin="339,95,37,24" FontSize="8">Version: Alfta 0.0.0</Label>
 
 
 

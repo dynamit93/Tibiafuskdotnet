@@ -227,11 +227,13 @@
     <Compile Include="Adresses\Player.cs" />
     <Compile Include="Adresses\TextDisplay.cs" />
     <Compile Include="Adresses\Versions\Version.cs" />
+    <Compile Include="Adresses\Versions\Version772.cs" />
     <Compile Include="Adresses\Vip.cs" />
     <Compile Include="BL\CaveBotLootList.cs" />
     <Compile Include="BL\Cheat.cs" />
     <Compile Include="Adresses\Creature.cs" />
     <Compile Include="BL\Helper.cs" />
+    <Compile Include="BL\OdeniaOnline.cs" />
     <Compile Include="BL\Targeting.cs" />
     <Compile Include="CavebotMenu.xaml.cs">
       <DependentUpon>CavebotMenu.xaml</DependentUpon>
@@ -257,6 +259,7 @@
     <Compile Include="MVVM\ViewModel\CavebotMenuViewModel.cs" />
     <Compile Include="MVVM\ViewModel\NavigationMenuViewModel.cs" />
     <Compile Include="MVVM\ViewModel\PvpMenuViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\RuneMakerViewModel.cs" />
     <Compile Include="MVVM\ViewModel\TargetEditSettingsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\WaypointsHelpers.cs" />
     <Compile Include="MVVM\Views\NavigationMenu.xaml.cs">
@@ -264,6 +267,9 @@
     </Compile>
     <Compile Include="MVVM\Views\PvpMenu.xaml.cs">
       <DependentUpon>PvpMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Views\RuneMakerView.xaml.cs">
+      <DependentUpon>RuneMakerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Views\TargetEditSettings.xaml.cs">
       <DependentUpon>TargetEditSettings.xaml</DependentUpon>
@@ -515,6 +521,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\Views\PvpMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\Views\RuneMakerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="Tibiafuskdotnet.MVVM.Views.RuneMakerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Tibiafuskdotnet.MVVM.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
+        mc:Ignorable="d"
+        Title="RuneMakerView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="198"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Mana" Margin="4,70,152,52" />
+        <TextBox x:Name="RuneMakerMana" Margin="51,74,2,56" Text="{Binding RuneMakerManaverb, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Spell" Margin="6,96,152,25" />
+        <TextBox x:Name="RuneMakerSpell" Margin="51,99,3,31" Text="{Binding RuneMakerSpell, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Activate" Margin="3,119,120,-3" Grid.RowSpan="3" />
+        <CheckBox Margin="163,126,9,-3" Command="{Binding RuneMakerCommand}" Grid.RowSpan="3" Checked="CheckBox_Checked" />
+
+    </Grid>
+</Window>
