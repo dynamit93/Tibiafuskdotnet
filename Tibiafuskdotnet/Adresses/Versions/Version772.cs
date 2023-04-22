@@ -11,7 +11,7 @@ namespace Tibia
         public static void SetVersion772()
         {
             BattleList.Start = 0X5C68B4;
-            BattleList.StepCreatures = 0xA8;
+            BattleList.StepCreatures = 0x4A;
             BattleList.MaxCreatures = 147;
             BattleList.End = BattleList.Start + (BattleList.StepCreatures * BattleList.MaxCreatures);
 
@@ -76,15 +76,15 @@ namespace Tibia
             Client.GetNextPacketCall = 0x45C3A5;
             Client.RecvStream = 0x7998AC;
 
-            Container.Start = 0x5CEE14;
-            Container.StepContainer = 492;
-            Container.StepSlot = 12;
-            Container.MaxContainers = 16;
-            Container.MaxStack = 100;
+            Container.Start = 0x05CEDD8;//klar
+            Container.StepContainer = 436;//klar
+            Container.StepSlot = 6;//klar
+            Container.MaxContainers = 16;//klar
+            Container.MaxStack = 100;//klar
             Container.DistanceIsOpen = 0;
             Container.DistanceId = 4;
             Container.DistanceName = 16;
-            Container.DistanceVolume = 48;
+            Container.DistanceVolume = 20;//changed from 48 to 20
             Container.DistanceAmount = 56;
             Container.DistanceItemId = 60;
             Container.DistanceItemCount = 64;

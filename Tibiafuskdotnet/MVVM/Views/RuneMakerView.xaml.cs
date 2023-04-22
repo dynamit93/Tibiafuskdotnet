@@ -40,9 +40,11 @@ namespace Tibiafuskdotnet.MVVM.Views
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             ViewModel.RuneMakerViewModel runeaaa = new ViewModel.RuneMakerViewModel();
-            runeaaa.RuneMaker();
+            while (MemoryReader.c.Player.Mana <= runeaaa.RuneMakerManaverb)
+            { runeaaa.RuneMaker(); }
             
+
         }
-       
+
     }
 }

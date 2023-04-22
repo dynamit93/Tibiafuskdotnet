@@ -138,7 +138,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     //SendRuneMakerSpell(RuneMakerSpell);
                     if (MyItems.Id == Items.Rune.Blank.Id)
                     {
-                        MyItems.Move(ItemLocation.FromSlot(SlotNumber.Right));
+                        //MyItems.Move(ItemLocation.FromSlot(SlotNumber.Right));
                         Thread.Sleep(800);
                         Program.writetoOdenia(Program.inttemphex, RuneMakerSpell);
 
