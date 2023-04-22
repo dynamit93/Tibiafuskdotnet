@@ -37,14 +37,34 @@ namespace Tibiafuskdotnet.MVVM.Views
             DataContext = new RuneMakerViewModel();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private async void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            ViewModel.RuneMakerViewModel runeaaa = new ViewModel.RuneMakerViewModel();
-            while (MemoryReader.c.Player.Mana <= runeaaa.RuneMakerManaverb)
-            { runeaaa.RuneMaker(); }
-            
+            ViewModel.RuneMakerViewModel runeaaa = DataContext as ViewModel.RuneMakerViewModel;
+            CheckBox checkBox = sender as CheckBox;
 
+            if (checkBox.IsChecked == true)
+            {
+                runeaaa.RuneMakerCancellationTokenSource = new CancellationTokenSource();
+
+                await Task.Run(() =>
+                {
+                    while (!runeaaa.RuneMakerCancellationTokenSource.Token.IsCancellationRequested)
+                    {
+                        if (MemoryReader.c.Player.Mana <= runeaaa.RuneMakerManaverb)
+                        {
+                            runeaaa.RuneMaker();
+                        }
+
+                        Thread.Sleep(1000);
+                    }
+                });
+            }
+            else
+            {
+                runeaaa.RuneMakerCancellationTokenSource.Cancel();
+            }
         }
+
 
     }
 }

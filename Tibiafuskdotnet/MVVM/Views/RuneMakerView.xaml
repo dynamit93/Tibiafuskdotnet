@@ -22,7 +22,7 @@
         <Label Content="Spell" Margin="6,96,152,25" />
         <TextBox x:Name="RuneMakerSpell" Margin="51,99,3,31" Text="{Binding RuneMakerSpell, UpdateSourceTrigger=PropertyChanged}" />
         <Label Content="Activate" Margin="3,119,120,-3" Grid.RowSpan="3" />
-        <CheckBox Margin="163,126,9,-3" Command="{Binding RuneMakerCommand}" Grid.RowSpan="3" Checked="CheckBox_Checked" />
+        <CheckBox Margin="163,126,9,-3"  Grid.RowSpan="3" Checked="CheckBox_Checked" />
 
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 {
     public class RuneMakerViewModel
     {
+        public CancellationTokenSource RuneMakerCancellationTokenSource { get; set; }
 
         public int RuneMakerManaverb { get; set; }
         public string RuneMakerSpell { get; set; }
@@ -31,6 +32,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         {
             client = MemoryReader.c;
             Tibia.Version.SetVersion772();
+            RuneMakerCancellationTokenSource = new CancellationTokenSource();
             RuneMakerManaverb = 0;
             RuneMakerSpell = "";
             RuneMakerCommand = new RelayCommand(_ => RuneMaker());
