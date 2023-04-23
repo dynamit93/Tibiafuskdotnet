@@ -1,25 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Tibia.Constants;
-using Tibia.Objects;
-using Tibiafuskdotnet;
-using Tibiafuskdotnet.BL;
 using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibiafuskdotnet.MVVM.Views
@@ -50,7 +33,7 @@ namespace Tibiafuskdotnet.MVVM.Views
                 {
                     while (!runeaaa.RuneMakerCancellationTokenSource.Token.IsCancellationRequested)
                     {
-                        if (MemoryReader.c.Player.Mana <= runeaaa.RuneMakerManaverb)
+                        if (MemoryReader.c.Player.Mana >= runeaaa.RuneMakerManaverb)
                         {
                             runeaaa.RuneMaker();
                         }
@@ -65,6 +48,10 @@ namespace Tibiafuskdotnet.MVVM.Views
             }
         }
 
-
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var runeaaa = DataContext as ViewModel.RuneMakerViewModel;
+            runeaaa.RuneMakerSpell = "";
+        }
     }
 }
