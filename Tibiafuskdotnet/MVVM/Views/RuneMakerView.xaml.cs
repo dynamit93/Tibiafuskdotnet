@@ -1,5 +1,4 @@
-﻿
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,13 +6,8 @@ using Tibiafuskdotnet.MVVM.ViewModel;
 
 namespace Tibiafuskdotnet.MVVM.Views
 {
-    /// <summary>
-    /// Interaction logic for RuneMakerView.xaml
-    /// </summary>
     public partial class RuneMakerView : Window
     {
-        //public int RuneMakerManaverb { get; set; }
-        //public int RuneMakerManaverb = 0;
         public RuneMakerView()
         {
             InitializeComponent();
@@ -28,6 +22,7 @@ namespace Tibiafuskdotnet.MVVM.Views
             if (checkBox.IsChecked == true)
             {
                 runeaaa.RuneMakerCancellationTokenSource = new CancellationTokenSource();
+                runeaaa.TargetWindow = MainMenu.CharacterWindows[MemoryReader.c.Player.Id];
 
                 await Task.Run(() =>
                 {
@@ -35,23 +30,24 @@ namespace Tibiafuskdotnet.MVVM.Views
                     {
                         if (MemoryReader.c.Player.Mana >= runeaaa.RuneMakerManaverb)
                         {
-                            runeaaa.RuneMaker();
+                            runeaaa.RuneMaker(runeaaa.TargetWindow);
                         }
 
                         Thread.Sleep(1000);
                     }
                 });
             }
-            else
-            {
-                runeaaa.RuneMakerCancellationTokenSource.Cancel();
-            }
         }
+
+
+
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            var runeaaa = DataContext as ViewModel.RuneMakerViewModel;
-            runeaaa.RuneMakerSpell = "";
+            ViewModel.RuneMakerViewModel runeaaa = DataContext as ViewModel.RuneMakerViewModel;
+            runeaaa.RuneMakerCancellationTokenSource.Cancel();
         }
+
+
     }
 }

@@ -9,12 +9,34 @@ using Tibia.Objects;
 using Tibia.Constants;
 using Tibiafuskdotnet.MVVM.ViewModel;
 using System.Runtime.CompilerServices;
+using Tibia;
+using System.Diagnostics;
 
 namespace Tibiafuskdotnet
 {
 
     public static class MemoryReader
     {
+
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        public static IntPtr GetWindowHandle(string windowTitle)
+        {
+            IntPtr hWnd = IntPtr.Zero;
+            foreach (Process p in Process.GetProcesses())
+            {
+                if (p.MainWindowTitle.Contains(windowTitle))
+                {
+                    hWnd = p.MainWindowHandle;
+                    break;
+                }
+            }
+            return hWnd;
+        }
+
+
         public static Timer timer;
       
 
@@ -227,7 +249,7 @@ namespace Tibiafuskdotnet
                     ///Tibia.Objects.ItemLocation.FromLocation();
                     ///
 
-                   
+                  
 
                     Item RingItem; 
 
@@ -322,7 +344,7 @@ namespace Tibiafuskdotnet
             }
 
         }
-
+        public static RuneMakerViewModel runeMakerViewModel = new RuneMakerViewModel();
 
         public static void OdeniaWriteToMemory(int address, byte[] buffer)
 
@@ -352,7 +374,11 @@ namespace Tibiafuskdotnet
             Followmode = BitConverter.ToInt32(buffer, 0);
 
 
+
             }
+
+
+
         }
 
 
@@ -368,7 +394,7 @@ namespace Tibiafuskdotnet
 
 
                 //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
-                var tibia = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                var tibia = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
                 if (tibia == null)
                 {
                     MessageBox.Show("Could Not Find Tibia");
@@ -536,7 +562,7 @@ namespace Tibiafuskdotnet
                     else if (spelhitext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
                     //healbot working
 
@@ -601,7 +627,7 @@ namespace Tibiafuskdotnet
                     else if (spellotext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
                     //healbot working
 
@@ -663,7 +689,7 @@ namespace Tibiafuskdotnet
                     else if (UhRunetext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
 
                 }
@@ -723,7 +749,7 @@ namespace Tibiafuskdotnet
                     else if (HpPotiontext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
 
                 }
@@ -783,7 +809,7 @@ namespace Tibiafuskdotnet
                     else if (ManaPotiontext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Tibia").FirstOrDefault();
+                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
 
 
@@ -877,16 +903,27 @@ namespace Tibiafuskdotnet
                 MemoryReader.OdeniaWriteToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(0));
 
             }*/
-
             
 
+
+        }
+
+        public static void changeOdeniaTitle()
+        {
+            if (Tibia.Version.CurrentVersionString == "7.72")
+            {
+                
+               // runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
+            }
         }
 
         public static void TimerTick(object sender, EventArgs e)
         {
+            
             //ReadValuesFromMemory();
             //System.Console.WriteLine("attackmode " + Attackmode);
             OdeniaOnlineLight();
+            changeOdeniaTitle();
 
 
         }

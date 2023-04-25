@@ -18,6 +18,9 @@ using Tibiafuskdotnet.BL;
 using Tibia;
 using Tibia.Objects;
 using Tibiafuskdotnet.ViewModel;
+using Tibiafuskdotnet.MVVM.ViewModel;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Tibiafuskdotnet
 {
@@ -29,6 +32,21 @@ namespace Tibiafuskdotnet
 
         private readonly RoutedCommand command = new RoutedCommand();
         private readonly RoutedCommand commandf11 = new RoutedCommand();
+        public RuneMakerViewModel runeMakerViewModel = new RuneMakerViewModel();
+
+        public static Dictionary<uint, IntPtr> CharacterWindows = new Dictionary<uint, IntPtr>();
+
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern bool SetWindowText(IntPtr hwnd, string lpString);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+
+
+
+
         public MainMenu()
         {
 
@@ -42,21 +60,25 @@ namespace Tibiafuskdotnet
             KeyBinding kb = new KeyBinding(command, Key.F12, ModifierKeys.Alt);
             this.InputBindings.Add(kb);
 
-
-
-
-
             CommandBinding cb11 = new CommandBinding(commandf11, OnCommandf11);
             this.CommandBindings.Add(cb11);
 
             KeyBinding kb11 = new KeyBinding(commandf11, Key.F11, ModifierKeys.Alt);
             this.InputBindings.Add(kb11);
-
-
+            changeOdeniaTitle();
+            //runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
         }
 
 
-
+        public void changeOdeniaTitle()
+        {
+            if (Tibia.Version.CurrentVersionString == "7.72")
+            {
+                IntPtr windowHandle = MemoryReader.GetWindowHandle("Odenia Online");
+                runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
+                CharacterWindows[MemoryReader.c.Player.Id] = windowHandle;
+            }
+        }
 
         /// TODO make so its opening the window again when pressing ALT F12
         private void OnCommand(object sender, EventArgs e)

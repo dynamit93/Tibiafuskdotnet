@@ -100,41 +100,103 @@ namespace Tibiafuskdotnet
 
 
 
+        //private void Login_btn_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //    string username = UsernameText.Text;
+        //    string password = PasswordText.Text;
+
+
+
+        //    cmd = new MySqlCommand();
+        //    /*   
+        //       var dbversion = Convert.ToInt32(cmd.ExecuteScalar());
+        //       try
+        //       {
+        //           // Open the text file using a stream reader.
+        //           using (var sr = new StreamReader("version.txt"))
+        //              // sr = Convert.ToInt32(sr);
+        //           {
+        //               // Read the stream as a string, and write the string to the console.
+        //               // check if dbversion is bigger then sr.ReadToEnd
+        //               if ((dbversion) > (sr.ReadToEnd()))
+        //               //((dbversion) > (sr.ReadToEnd))
+        //               {
+        //                   MessageBox.Show("Update needed!" + "Download from: http://appbot.com/Downloads");
+        //               }
+        //           }
+        //       }
+        //       catch (IOException ex)
+        //       {
+        //           Console.WriteLine("The file could not be read:");
+        //           Console.WriteLine(ex.Message);
+        //       }*/
+
+
+
+
+
+        //    try
+        //    {
+        //        con.Open();
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        MessageBox.Show("can't reach Database");
+        //        //exit Appliaction
+        //        Environment.Exit(0);
+
+        //    }
+        //    cmd.Connection = con;
+        //    cmd.CommandText = "SELECT premium FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+
+        //    //cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+        //    //SELECT premium FROM account WHERE username ='123' and password='123'
+        //    // cmd.CommandText = "SELECT '" + premium + "' FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
+        //    //var prem = (int)cmd.ExecuteScalar();
+        //    dr = cmd.ExecuteReader();
+        //    if (dr.Read())
+        //    {
+        //        // checking Prmeium days
+        //        /// but its checking the number NOT DATE!
+        //        int premiumdays = dr.GetInt32(0);
+        //        if ((premiumdays) >= 1)
+        //        {
+
+        //            if (MemoryReader.AppRunning())
+        //            {
+        //                MainMenu Menu = new MainMenu();
+        //                Menu.Show();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Start tibia first");
+        //                System.Windows.Application.Current.Shutdown();
+        //            }
+        //            this.Close();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("No Premium Days");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Invalid Login please check username and password");
+        //    }
+        //    con.Close();
+
+        //    //new MemoryReader(0, 0, 0);
+        //}
+
+
         private void Login_btn_Click(object sender, RoutedEventArgs e)
         {
-
             string username = UsernameText.Text;
             string password = PasswordText.Text;
 
-
-
-            cmd = new MySqlCommand();
-            /*   
-               var dbversion = Convert.ToInt32(cmd.ExecuteScalar());
-               try
-               {
-                   // Open the text file using a stream reader.
-                   using (var sr = new StreamReader("version.txt"))
-                      // sr = Convert.ToInt32(sr);
-                   {
-                       // Read the stream as a string, and write the string to the console.
-                       // check if dbversion is bigger then sr.ReadToEnd
-                       if ((dbversion) > (sr.ReadToEnd()))
-                       //((dbversion) > (sr.ReadToEnd))
-                       {
-                           MessageBox.Show("Update needed!" + "Download from: http://appbot.com/Downloads");
-                       }
-                   }
-               }
-               catch (IOException ex)
-               {
-                   Console.WriteLine("The file could not be read:");
-                   Console.WriteLine(ex.Message);
-               }*/
-
-
-
-
+            // ...
 
             try
             {
@@ -142,53 +204,54 @@ namespace Tibiafuskdotnet
             }
             catch (Exception)
             {
-
                 MessageBox.Show("can't reach Database");
                 //exit Appliaction
                 Environment.Exit(0);
-
             }
-            cmd.Connection = con;
-            cmd.CommandText = "SELECT premium FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
 
-            //cmd.CommandText = "SELECT * FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
-            //SELECT premium FROM account WHERE username ='123' and password='123'
-            // cmd.CommandText = "SELECT '" + premium + "' FROM account where username='" + UsernameText.Text + "' AND password='" + PasswordText.Text + "'";
-            //var prem = (int)cmd.ExecuteScalar();
-            dr = cmd.ExecuteReader();
-            if (dr.Read())
+            using (MySqlCommand cmd = new MySqlCommand())
             {
-                // checking Prmeium days
-                /// but its checking the number NOT DATE!
-                int premiumdays = dr.GetInt32(0);
-                if ((premiumdays) >= 1)
-                {
+                cmd.Connection = con;
+                cmd.CommandText = "SELECT premium FROM account WHERE username=@username AND password=@password";
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
 
-                    if (MemoryReader.AppRunning())
+                using (MySqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
                     {
-                        MainMenu Menu = new MainMenu();
-                        Menu.Show();
+                        int premiumdays = dr.GetInt32(0);
+                        if (premiumdays >= 1)
+                        {
+                            if (MemoryReader.AppRunning())
+                            {
+                                MainMenu Menu = new MainMenu();
+                                Menu.Show();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Start tibia first");
+                                System.Windows.Application.Current.Shutdown();
+                            }
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Premium Days");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Start tibia first");
-                        System.Windows.Application.Current.Shutdown();
+                        MessageBox.Show("Invalid Login please check username and password");
                     }
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("No Premium Days");
                 }
             }
-            else
-            {
-                MessageBox.Show("Invalid Login please check username and password");
-            }
+
             con.Close();
 
-            //new MemoryReader(0, 0, 0);
+            // ...
         }
+
 
         private void Forgotten_btn_Click(object sender, RoutedEventArgs e)
         {

@@ -8,19 +8,51 @@ using Tibia.Constants;
 using Tibia.Objects;
 using Tibiafuskdotnet.BL;
 using Tibiafuskdotnet;
+using GalaSoft.MvvmLight;
+using System.Runtime.InteropServices;
+using System.Windows.Documents;
 
 namespace Tibiafuskdotnet.MVVM.ViewModel
 {
-    public class RuneMakerViewModel
+    public class RuneMakerViewModel : ViewModelBase
     {
         public CancellationTokenSource RuneMakerCancellationTokenSource { get; set; }
+        public IntPtr TargetWindow { get; set; }
 
         public int RuneMakerManaverb { get; set; }
         public string RuneMakerSpell { get; set; }
         public ICommand RuneMakerCommand { get; set; }
-        //API
+
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct KEYBDINPUT
+        {
+            public ushort wVk;
+            public ushort wScan;
+            public uint dwFlags;
+            public uint time;
+            public IntPtr dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        public struct INPUT
+        {
+            [FieldOffset(0)]
+            public int type;
+            [FieldOffset(4)]
+            public KEYBDINPUT ki;
+        }
+
+        public IntPtr FindClientWindow(string uniqueTitle)
+        {
+            IntPtr hWnd = FindWindow(null, uniqueTitle);
+            return hWnd;
+        }
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern bool SetWindowText(IntPtr hwnd, string lpString);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
@@ -38,7 +70,12 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             RuneMakerCommand = new RelayCommand(_ => RuneMaker());
         }
 
-        // RelayCommand implementation
+        // Add this new overload of the RuneMaker method
+        public void RuneMaker()
+        {
+            RuneMaker(TargetWindow);
+        }
+
         public class RelayCommand : ICommand
         {
             private readonly Action<object> _execute;
@@ -67,6 +104,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             }
         }
 
+        
+
+
         public static string temptemp = "0x";
         public string TempHex = temptemp + BL.Program.TempHex;
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -84,6 +124,14 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         const uint PROCESS_VM_WRITE = 0x0020;
         const uint PROCESS_VM_OPERATION = 0x0008;
         const string processName = "Odenia Online";
+
+        public void SetUniqueTitleToWindow(string originalTitle, string uniqueTitle)
+        {
+            IntPtr hWnd = FindWindow(null, originalTitle); if (hWnd != IntPtr.Zero)
+            {
+                SetWindowText(hWnd, uniqueTitle);
+            }
+        }
 
         public void sayTextOdenia(string valueToWrite)
         {
@@ -108,14 +156,12 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         {
             byte[] array_ascci = Encoding.ASCII.GetBytes(stext);
 
-            // Find the target window
-            IntPtr hWnd = FindWindow(null, "Odenia Online - Loka v1.3");
+            IntPtr hWnd = FindClientWindow($"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
             if (hWnd == IntPtr.Zero)
             {
                 return;
             }
 
-            // Send each char in the string
             foreach (byte b in array_ascci)
             {
                 SendMessage(hWnd, WM_KEYDOWN, b - 0x20, 0);
@@ -123,35 +169,65 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 SendMessage(hWnd, WM_KEYUP, b - 0x20, 0);
             }
 
-            // The following code sends an [ENTER]
             SendMessage(hWnd, WM_KEYDOWN, 0xD, 0);
             SendMessage(hWnd, WM_CHAR, 0xD, 0);
             SendMessage(hWnd, WM_KEYUP, 0xD, 0);
         }
 
-        // runeMakerMana verb är inte connected till Textbox.
-        public void RuneMaker()
-        {
-            if (MemoryReader.c.Player.Mana >= RuneMakerManaverb && !string.IsNullOrEmpty(RuneMakerSpell))
-            {
-                foreach (Item MyItems in MemoryReader.inventory.GetItems())
-                {
-                    //ItemLists.Runes.TryGetValue(MyItems.Id, out Rune rune);
-                    //SendRuneMakerSpell(RuneMakerSpell);
-                    if (MyItems.Id == Items.Rune.Blank.Id)
-                    {
-                        //MyItems.Move(ItemLocation.FromSlot(SlotNumber.Right));
-                        Thread.Sleep(800);
-                        Program.writetoOdenia(Program.inttemphex, RuneMakerSpell);
+       
 
-                        SendRuneMakerSpell(RuneMakerSpell);
-                        //sayTextOdenia(RuneMakerSpell);
-                        Thread.Sleep(1000);
-                        break;
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern ushort VkKeyScan(char ch);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+        public const int VK_ENTER = 0x0D;
+
+
+
+        public void RuneMaker(IntPtr targetWindow)
+        {
+            if (!string.IsNullOrEmpty(RuneMakerSpell))
+            {
+                if (targetWindow != IntPtr.Zero)
+                {
+                    IntPtr foregroundWindow = GetForegroundWindow();
+
+                    if (foregroundWindow != targetWindow)
+                    {
+                        SetForegroundWindow(targetWindow);
+                    }
+
+                    foreach (char c in RuneMakerSpell)
+                    {
+                        char lowerChar = char.ToLower(c);
+                        ushort scanCode = VkKeyScan(lowerChar);
+                        PostMessage(targetWindow, WM_CHAR, (IntPtr)scanCode, IntPtr.Zero);
+                    }
+
+                    PostMessage(targetWindow, WM_CHAR, (IntPtr)VK_ENTER, IntPtr.Zero);
+
+                    if (foregroundWindow != targetWindow)
+                    {
+                        SetForegroundWindow(foregroundWindow);
                     }
                 }
             }
         }
+
+
+
+
+
+
+
 
     }
 }

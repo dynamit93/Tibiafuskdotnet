@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
         mc:Ignorable="d"
-        Title="RuneMakerView" Height="450" Width="800">
+        Title="RuneMakerView" Height="180" Width="220">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,12 +17,12 @@
             <ColumnDefinition Width="Auto" MinWidth="198"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="Mana" Margin="4,70,152,52" />
-        <TextBox x:Name="RuneMakerMana" Margin="51,74,2,56" Text="{Binding RuneMakerManaverb, UpdateSourceTrigger=PropertyChanged}" />
-        <Label Content="Spell" Margin="6,96,152,25" />
-        <TextBox x:Name="RuneMakerSpell" Margin="51,99,3,31" Text="{Binding RuneMakerSpell, UpdateSourceTrigger=PropertyChanged}" />
-        <Label Content="Activate" Margin="3,119,120,-3" Grid.RowSpan="3" />
-        <CheckBox Margin="163,126,9,-3"  Grid.RowSpan="3" Checked="CheckBox_Checked" />
+        <Label Content="Mana" Margin="4,36,152,86" />
+        <TextBox x:Name="RuneMakerMana" Margin="51,40,2,90" Text="{Binding RuneMakerManaverb, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Spell" Margin="6,62,152,59" />
+        <TextBox x:Name="RuneMakerSpell" Margin="51,65,3,65" Text="{Binding RuneMakerSpell, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Activate" Margin="3,85,120,31" />
+        <CheckBox Margin="163,92,9,31" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
 
     </Grid>
 </Window>
