@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
         mc:Ignorable="d"
-        Title="PvpMenu" Height="300" Width="900">
+        Title="PvpMenu" Height="300" Width="900" Icon="../../Mwall.ico">
     <Grid Margin="0,3,0,-3" >
 
         <Label Content="Min hp %" Margin="29,58,785,198"/>

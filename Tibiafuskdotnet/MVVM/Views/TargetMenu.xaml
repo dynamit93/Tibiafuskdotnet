@@ -11,7 +11,7 @@
     Height="518"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     Loaded="Window_Loaded"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Icon="../../Mwall.ico">
     <Grid Margin="3 0 -3 0">
 
         <Grid.ColumnDefinitions>

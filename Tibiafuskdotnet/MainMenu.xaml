@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet"
         mc:Ignorable="d"
-        Title="DLBot" Height="156" Width="450" ResizeMode="NoResize">
+        Title="DLBot" Height="156" Width="450" ResizeMode="NoResize" Icon="Mwall.ico" >
     <Grid>
 
         <Button x:Name="Cavebot_btn" Content="Cavebot" HorizontalAlignment="Left" Margin="7,49,0,0" VerticalAlignment="Top" Height="20" Width="66" FontSize="10" Click="Cavebot_btn_Click" IsEnabled="True"/>

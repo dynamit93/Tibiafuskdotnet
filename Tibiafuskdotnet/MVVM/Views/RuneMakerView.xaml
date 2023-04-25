@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet.MVVM.Views"
         mc:Ignorable="d"
-        Title="RuneMakerView" Height="180" Width="220">
+        Title="RuneMakerView" Height="180" Width="220" Icon="../../Mwall.ico" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

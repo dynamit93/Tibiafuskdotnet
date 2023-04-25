@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Tibiafuskdotnet"
         KeyDown="d"
         mc:Ignorable="d"
-        Title="DLBot" Height="304.448" Width="383.962">
+        Title="DLBot" Height="304.448" Width="383.962" Icon="Mwall.ico" >
     <Grid Margin="0,0,2,0">
         <Button x:Name="Login_btn" Content="Login" HorizontalAlignment="Left" Margin="141,135,0,0" VerticalAlignment="Top" Click="Login_btn_Click" Width="109" Height="20"/>
         <TextBox x:Name="UsernameText" HorizontalAlignment="Left" Margin="137,67,0,0" Text="123" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>

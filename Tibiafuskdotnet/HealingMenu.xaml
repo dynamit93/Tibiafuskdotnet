@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tibiafuskdotnet"
         mc:Ignorable="d"
-        Title="Healing" Height="269.552" Width="415.522">
+        Title="Healing" Height="269.552" Width="415.522" Icon="Mwall.ico" >
     <Grid Margin="0,0,2,2">
         <ComboBox ToolTip="Chose your hottkey to asigan to Spell Hi healing" Name="cmbHotkey" SelectedIndex="0"  HorizontalAlignment="Left" Height="23" Margin="81,13,0,0"  VerticalAlignment="Top" Width="81" SelectionChanged="Healingkey_TextChanged">
         </ComboBox>

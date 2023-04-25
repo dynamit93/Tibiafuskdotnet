@@ -586,6 +586,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Mwall.ico" />
     <Content Include="Mysql databse schema\test1-db_2021-11-05.sql" />
     <Content Include="sounds\defaultmessage.wav" />
     <Content Include="sounds\disconnected.wav" />

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
         DataContext="{Binding NavigationMenuViewModel, Source={StaticResource Locator}}"
-        Title="NavigationMenu" Height="262" Width="394">
+        Title="NavigationMenu" Height="262" Width="394" Icon="../../Mwall.ico">
     <Grid>
         <Label Content="port default 1302" Margin="20,10,266,209"></Label>
         <Label Margin="0,37,346,180">IP/Port</Label>

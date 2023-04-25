@@ -9,7 +9,8 @@
         DataContext="{Binding CavebotMenuViewModel, Source={StaticResource Locator}}"
         Title="CavebotMenu" 
         Height="453.857" 
-        Width="801.23">
+        Width="801.23"
+        Icon="Mwall.ico">
 
     <Grid RenderTransformOrigin="0.361,0.493" Margin="11,0,10,-3">
         <Grid.ColumnDefinitions>
