@@ -18,11 +18,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Mana" Margin="4,36,152,86" />
-        <TextBox x:Name="RuneMakerMana" Margin="51,40,2,90" Text="{Binding RuneMakerManaverb, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox x:Name="RuneMakerMana" Margin="51,40,2,137" Text="{Binding RuneMakerManaverb, UpdateSourceTrigger=PropertyChanged}" />
         <Label Content="Spell" Margin="6,62,152,59" />
-        <TextBox x:Name="RuneMakerSpell" Margin="51,65,3,65" Text="{Binding RuneMakerSpell, UpdateSourceTrigger=PropertyChanged}" />
-        <Label Content="Activate" Margin="3,85,120,31" />
-        <CheckBox Margin="163,92,9,31" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-
+        <TextBox x:Name="RuneMakerSpell" Margin="51,65,3,111" Text="{Binding RuneMakerSpell, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Activate" Margin="109,92,59,77" />
+        <CheckBox Margin="163,95,36,86" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+        <Label Content="Alert if moved" Margin="4,92,137,77" FontSize="10"/>
+        <CheckBox x:Name="Alert" Checked="Alert_Checked" Unchecked="Alert_Unchecked" Margin="84,96,116,86"/>
     </Grid>
 </Window>

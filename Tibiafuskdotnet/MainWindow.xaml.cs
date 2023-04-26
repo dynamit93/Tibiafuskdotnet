@@ -33,7 +33,7 @@ namespace Tibiafuskdotnet
 
             try
             { 
-                if (!webClient.DownloadString("https://pastebin.com/raw/cBTkPMsi").Contains("0.0.0"))
+                if (!webClient.DownloadString("https://pastebin.com/raw/cBTkPMsi").Contains("0.0.1"))
                 {
 
                     if (System.Windows.Forms.MessageBox.Show("Looks like there is an update! Do you want to download it?", "Updater", System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
@@ -71,7 +71,7 @@ namespace Tibiafuskdotnet
             Helper.HpPotionHealth = data.HpPotionHealth;
             Helper.SpellLoMana = data.SpellLoMana;
             Helper.SpellLotext = data.SpellLotext;
-            con = new MySqlConnection("Server=localhost;Database=test1;user=root;Pwd=benny123;SslMode=none");
+            con = new MySqlConnection("Server=localhost;Database=test1;user=bot;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
             System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Odenia Online");

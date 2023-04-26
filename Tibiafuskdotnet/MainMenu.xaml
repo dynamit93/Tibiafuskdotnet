@@ -34,7 +34,7 @@
         <Button x:Name="button5" Content="5" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" Width="18" IsEnabled="False"/>
         <Button x:Name="PvpButton" Content="PvP" HorizontalAlignment="Left" Margin="211,70,0,0" VerticalAlignment="Top" Width="66" IsEnabled="True" Click="PvpButton_Click"/>
         <Button x:Name="RuneMaker" Content="Rune Maker" Margin="279,70,0,0" Click="RuneMaker_Click" Width="134" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <Label Margin="339,95,37,24" FontSize="8">Version: Alfta 0.0.0</Label>
+        <Label Margin="339,95,37,24" FontSize="8">Version: Alfta 0.0.1</Label>
 
 
 

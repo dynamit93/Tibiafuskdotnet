@@ -255,7 +255,7 @@ namespace Tibia
             Player.TargetType = Player.TargetId + 3;
             Player.X = Player.Z + 8;
             Player.Y = Player.Z + 4;
-            Player.Z = 0x5776E0;
+            Player.Z = 0x5D16E8;
             Player.AttackCount = 0X5C67DC; //ökar med 5.5
             Player.FollowCount = Player.AttackCount + 0x20;
 
