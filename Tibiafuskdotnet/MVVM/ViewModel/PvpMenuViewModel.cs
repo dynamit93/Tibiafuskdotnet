@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +37,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         public void HealParalyze()
         {
             
-            if (Tibiafuskdotnet.MemoryReader.c.Player.HasFlag(Tibia.Constants.Flag.Paralyzed))
+            if (Tibiafuskdotnet.MemoryReader.Instance.c.Player.HasFlag(Tibia.Constants.Flag.Paralyzed))
             {
-                MemoryReader.c.Console.Say("utani gran hur");
+                MemoryReader.Instance.c.Console.Say("utani gran hur");
             }
 
 

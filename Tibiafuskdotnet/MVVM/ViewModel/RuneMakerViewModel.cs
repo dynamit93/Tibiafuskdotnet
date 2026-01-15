@@ -63,7 +63,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         private Client client;
         public RuneMakerViewModel()
         {
-            client = MemoryReader.c;
+            client = MemoryReader.Instance.c;
             TibiaConfig.ApplyVersion();
             RuneMakerCancellationTokenSource = new CancellationTokenSource();
             RuneMakerManaverb = 0;
@@ -155,7 +155,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         {
             byte[] array_ascci = Encoding.ASCII.GetBytes(stext);
 
-            IntPtr hWnd = FindClientWindow($"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
+            IntPtr hWnd = FindClientWindow($"Odenia Online - Loka v1.3 - {MemoryReader.Instance.c.Player.Id}");
             if (hWnd == IntPtr.Zero)
             {
                 return;

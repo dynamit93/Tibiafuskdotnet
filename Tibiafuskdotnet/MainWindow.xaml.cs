@@ -59,7 +59,7 @@ namespace Tibiafuskdotnet
                 MessageBox.Show(Convert.ToString(ex));
             }
             
-            MemoryReader.Start(0, 0, 0);
+            MemoryReader.Instance.Start(0, 0, 0);
 
             Helper.Initialize();
             var data = Helper.ReadFromFile();
@@ -167,7 +167,7 @@ namespace Tibiafuskdotnet
         //        if ((premiumdays) >= 1)
         //        {
 
-        //            if (MemoryReader.AppRunning())
+        //            if (MemoryReader.Instance.AppRunning())
         //            {
         //                MainMenu Menu = new MainMenu();
         //                Menu.Show();
@@ -226,7 +226,7 @@ namespace Tibiafuskdotnet
                         int premiumdays = dr.GetInt32(0);
                         if (premiumdays >= 1)
                         {
-                            if (MemoryReader.AppRunning())
+                            if (MemoryReader.Instance.AppRunning())
                             {
                                 MainMenu Menu = new MainMenu();
                                 Menu.Show();

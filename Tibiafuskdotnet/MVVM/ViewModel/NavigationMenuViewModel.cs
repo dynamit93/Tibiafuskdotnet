@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -59,37 +59,37 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 TcpClient client = new TcpClient(Clientip, Clientport);
                 string messageToSend = Convert.ToString(
 
-                      MemoryReader.c.Player.Id
+                      MemoryReader.Instance.c.Player.Id
                     + "Playerid:"
-                    + MemoryReader.c.Player.TargetId
+                    + MemoryReader.Instance.c.Player.TargetId
                     + "TargetId:"
-                    + MemoryReader.c.Player.Health
+                    + MemoryReader.Instance.c.Player.Health
                     + "Health:"
-                    + MemoryReader.c.Player.Mana
+                    + MemoryReader.Instance.c.Player.Mana
                     + "Mana:"
-                    + MemoryReader.c.Player.Capacity
+                    + MemoryReader.Instance.c.Player.Capacity
                     + "Capacity:"
-                    + MemoryReader.c.Player.Stamina
+                    + MemoryReader.Instance.c.Player.Stamina
                     + "Stamina:"
-                    + MemoryReader.c.Player.MagicLevel
+                    + MemoryReader.Instance.c.Player.MagicLevel
                     + "MagicLevel:"
-                    + MemoryReader.c.Player.Fist
+                    + MemoryReader.Instance.c.Player.Fist
                     + "Fist:"
-                    + MemoryReader.c.Player.Club
+                    + MemoryReader.Instance.c.Player.Club
                     + "Club:"
-                    + MemoryReader.c.Player.Sword
+                    + MemoryReader.Instance.c.Player.Sword
                     + "Sword:"
-                    + MemoryReader.c.Player.Axe
+                    + MemoryReader.Instance.c.Player.Axe
                     + "Axe:"
-                    + MemoryReader.c.Player.Distance
+                    + MemoryReader.Instance.c.Player.Distance
                     + "Distance:"
-                    + MemoryReader.c.Player.Shielding
+                    + MemoryReader.Instance.c.Player.Shielding
                     + "Shielding:"
-                    + MemoryReader.c.Player.X
+                    + MemoryReader.Instance.c.Player.X
                     + "X:"
-                    + MemoryReader.c.Player.Y
+                    + MemoryReader.Instance.c.Player.Y
                     + "Y:"
-                    + MemoryReader.c.Player.Z
+                    + MemoryReader.Instance.c.Player.Z
                     + "Z:");
 
 

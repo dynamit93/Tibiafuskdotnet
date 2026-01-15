@@ -408,7 +408,7 @@ namespace Tibiafuskdotnet.ViewModel
 
 
 
-        public static uint? targetnow = MemoryReader.playerHelper?.RedSquare;
+        public static uint? targetnow = MemoryReader.Instance.playerHelper?.RedSquare;
 
         public RelayCommand<string> command { get; set; }
         #endregion
@@ -624,7 +624,7 @@ namespace Tibiafuskdotnet.ViewModel
             foreach (var item in Targets)
             {
                 //targetting Monster Count
-                var count = MemoryReader.battleList.GetCreatures().Aggregate(0, (total, c) => {
+                var count = MemoryReader.Instance.battleList.GetCreatures().Aggregate(0, (total, c) => {
                     return c.Name == item.Name ? total + 1 : total;
                 });
 
@@ -636,8 +636,8 @@ namespace Tibiafuskdotnet.ViewModel
                 
                
                 // if (SelectedCounts <= count) { }
-                //while (MemoryReader.battleList.GetCreatures().Count() > 1)
-                while (MemoryReader.battleList.GetCreatures().Where(x => !x.IsSelf()).ToList().Count > 0)
+                //while (MemoryReader.Instance.battleList.GetCreatures().Count() > 1)
+                while (MemoryReader.Instance.battleList.GetCreatures().Where(x => !x.IsSelf()).ToList().Count > 0)
                 {
                     System.Console.WriteLine(SelectedTarget.MinHp + "SelectedTarget.MinHp"  + SelectedTarget.MaxHp + "SelectedTarget.MaxHP");
 
@@ -645,7 +645,7 @@ namespace Tibiafuskdotnet.ViewModel
                     uint currentIdToAttack = 0;
                     Creature C = null;
                     
-                    IEnumerable<Creature> lowestTest = MemoryReader.battleList.GetCreatures().Where(x => !x.IsSelf());
+                    IEnumerable<Creature> lowestTest = MemoryReader.Instance.battleList.GetCreatures().Where(x => !x.IsSelf());
                     lowestTest.ForEach(fest2 =>
                     {
                         if (fest2.HPBar < lowest)
@@ -663,7 +663,7 @@ namespace Tibiafuskdotnet.ViewModel
 
                     
 
-                /*foreach (Creature C in MemoryReader.battleList.GetCreatures())
+                /*foreach (Creature C in MemoryReader.Instance.battleList.GetCreatures())
                     {*/
 
                         TargetHPBar = C.HPBar;
@@ -685,7 +685,7 @@ namespace Tibiafuskdotnet.ViewModel
                                     System.Console.WriteLine("ATTACK");
                                     C.Look();
                                     C.Attack();
-                                    ///MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
+                                    ///MemoryReader.Instance.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
                                     istargeting = true;
                                     Thread.Sleep(1000);
                                     if (SelectedTarget.StanceMode == "Melee - Approach")
@@ -699,253 +699,253 @@ namespace Tibiafuskdotnet.ViewModel
 
                                     if (SelectedTarget.AttackMode == "Stand/Offensive")
                                     {
-                                        //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
-                                        // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
+                                        //System.Console.WriteLine("before add value " + MemoryReader.Instance.Followmode);
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
+                                        // System.Console.WriteLine("after add value " + MemoryReader.Instance.Followmode);
                                     }
                                     else if (SelectedTarget.AttackMode == "Stand/Balanced")
                                     {
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
-                                        //MemoryReader.client.AttackMode = Attack.Balance;
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
+                                        //MemoryReader.Instance.client.AttackMode = Attack.Balance;
                                     }
                                     else if (SelectedTarget.AttackMode == "Stand/Defensive")
                                     {
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
                                     }
                                     else if (SelectedTarget.AttackMode == "Chase/Offensive")
                                     {
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
                                     }
                                     else if (SelectedTarget.AttackMode == "Chase/Balanced")
                                     {
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
                                     }
                                     else if (SelectedTarget.AttackMode == "Chase/Defensive")
                                     {
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
-                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                        MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
                                     }
                                     if (SelectedTarget.ActionModeSpell == "sudden death rune")
                                     {
-                                        MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
+                                        MemoryReader.Instance.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
 
 
                                     }
                                     if (SelectedTarget.ActionModeSpell == "Avalanche Rune")
                                     {
-                                        MemoryReader.inventory.UseItemOnCreature(3161, 4, Convert.ToInt32(C.Id));
+                                        MemoryReader.Instance.inventory.UseItemOnCreature(3161, 4, Convert.ToInt32(C.Id));
 
 
                                     }
                                     if (SelectedTarget.ActionModeSpell == "Great Fireball Rune")
                                     {
-                                        MemoryReader.inventory.UseItemOnCreature(3191, 4, Convert.ToInt32(C.Id));
+                                        MemoryReader.Instance.inventory.UseItemOnCreature(3191, 4, Convert.ToInt32(C.Id));
 
 
                                     }
                                     if (SelectedTarget.ActionModeSpell == "Stone Shower Rune")
                                     {
-                                        MemoryReader.inventory.UseItemOnCreature(3175, 4, Convert.ToInt32(C.Id));
+                                        MemoryReader.Instance.inventory.UseItemOnCreature(3175, 4, Convert.ToInt32(C.Id));
 
 
                                     }
                                     if (SelectedTarget.ActionModeSpell == "Thunderstorm Rune")
                                     {
-                                        MemoryReader.inventory.UseItemOnCreature(3202, 4, Convert.ToInt32(C.Id));
+                                        MemoryReader.Instance.inventory.UseItemOnCreature(3202, 4, Convert.ToInt32(C.Id));
 
 
                                     }
                                     if (SelectedTarget.ActionModeSpell == "Icicle Rune")
                                     {
-                                        MemoryReader.inventory.UseItemOnCreature(3158, 4, Convert.ToInt32(C.Id));
+                                        MemoryReader.Instance.inventory.UseItemOnCreature(3158, 4, Convert.ToInt32(C.Id));
 
 
                                     }
-                                    if (SelectedTarget.ActionModeSpell == "exori"  &&  MemoryReader.c.Player.Mana >= Spells.Berserk.ManaPoints)
+                                    if (SelectedTarget.ActionModeSpell == "exori"  &&  MemoryReader.Instance.c.Player.Mana >= Spells.Berserk.ManaPoints)
                                     {
                                     
-                                    MemoryReader.c.Console.Say("exori");
+                                    MemoryReader.Instance.c.Console.Say("exori");
 
                                     }
                                 
-                                    if (SelectedTarget.ActionModeSpell == "Energy Strike" && MemoryReader.c.Player.Mana >= Spells.EnergyStrike.ManaPoints)
+                                    if (SelectedTarget.ActionModeSpell == "Energy Strike" && MemoryReader.Instance.c.Player.Mana >= Spells.EnergyStrike.ManaPoints)
                                     {
 
-                                        MemoryReader.c.Console.Say("exori vis");
+                                        MemoryReader.Instance.c.Console.Say("exori vis");
 
                                     }
 
 
-                                    if (SelectedTarget.ActionModeSpell == "Ice Strike" && MemoryReader.c.Player.Mana >= Spells.IceStrike.ManaPoints)
+                                    if (SelectedTarget.ActionModeSpell == "Ice Strike" && MemoryReader.Instance.c.Player.Mana >= Spells.IceStrike.ManaPoints)
                                     {
 
-                                        MemoryReader.c.Console.Say("exori frigo");
+                                        MemoryReader.Instance.c.Console.Say("exori frigo");
 
                                     }
 
-                                if (SelectedTarget.ActionModeSpell == "BrutalStrike" && MemoryReader.c.Player.Mana >= Spells.BrutalStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "BrutalStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.BrutalStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori ico");
+                                    MemoryReader.Instance.c.Console.Say("exori ico");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "DeathStrike" && MemoryReader.c.Player.Mana >= Spells.DeathStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "DeathStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.DeathStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori mort");
+                                    MemoryReader.Instance.c.Console.Say("exori mort");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "EnergyBeam" && MemoryReader.c.Player.Mana >= Spells.EnergyBeam.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "EnergyBeam" && MemoryReader.Instance.c.Player.Mana >= Spells.EnergyBeam.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exevo vis lux");
-
-                                }
-
-                                if (SelectedTarget.ActionModeSpell == "EnergyWave" && MemoryReader.c.Player.Mana >= Spells.EnergyWave.ManaPoints)
-                                {
-
-                                    MemoryReader.c.Console.Say("exevo vis hur");
+                                    MemoryReader.Instance.c.Console.Say("exevo vis lux");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "EternalWinter" && MemoryReader.c.Player.Mana >= Spells.EternalWinter.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "EnergyWave" && MemoryReader.Instance.c.Player.Mana >= Spells.EnergyWave.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exevo gran mas frigo");
+                                    MemoryReader.Instance.c.Console.Say("exevo vis hur");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "FireWave" && MemoryReader.c.Player.Mana >= Spells.FireWave.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "EternalWinter" && MemoryReader.Instance.c.Player.Mana >= Spells.EternalWinter.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exevo flam hur");
+                                    MemoryReader.Instance.c.Console.Say("exevo gran mas frigo");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "FlameStrike" && MemoryReader.c.Player.Mana >= Spells.FlameStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "FireWave" && MemoryReader.Instance.c.Player.Mana >= Spells.FireWave.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori flam");
+                                    MemoryReader.Instance.c.Console.Say("exevo flam hur");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "FrontSweep" && MemoryReader.c.Player.Mana >= Spells.FrontSweep.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "FlameStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.FlameStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori min");
+                                    MemoryReader.Instance.c.Console.Say("exori flam");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "GreatEnergyBeam" && MemoryReader.c.Player.Mana >= Spells.GreatEnergyBeam.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "FrontSweep" && MemoryReader.Instance.c.Player.Mana >= Spells.FrontSweep.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exevo gran vis lux");
+                                    MemoryReader.Instance.c.Console.Say("exori min");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "Groundshaker" && MemoryReader.c.Player.Mana >= Spells.Groundshaker.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "GreatEnergyBeam" && MemoryReader.Instance.c.Player.Mana >= Spells.GreatEnergyBeam.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori mas");
+                                    MemoryReader.Instance.c.Console.Say("exevo gran vis lux");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "HellsCore" && MemoryReader.c.Player.Mana >= Spells.HellsCore.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "Groundshaker" && MemoryReader.Instance.c.Player.Mana >= Spells.Groundshaker.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("Exevo gran mas flam");
+                                    MemoryReader.Instance.c.Console.Say("exori mas");
 
                                 }
 
-                                if (SelectedTarget.ActionModeSpell == "IceWave" && MemoryReader.c.Player.Mana >= Spells.IceWave.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "HellsCore" && MemoryReader.Instance.c.Player.Mana >= Spells.HellsCore.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exevo frigo hur");
+                                    MemoryReader.Instance.c.Console.Say("Exevo gran mas flam");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "PhysicalStrike" && MemoryReader.c.Player.Mana >= Spells.PhysicalStrike.ManaPoints)
+
+                                if (SelectedTarget.ActionModeSpell == "IceWave" && MemoryReader.Instance.c.Player.Mana >= Spells.IceWave.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori moe ico");
+                                    MemoryReader.Instance.c.Console.Say("exevo frigo hur");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "RageOfTheSkies" && MemoryReader.c.Player.Mana >= Spells.RageOfTheSkies.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "PhysicalStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.PhysicalStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exevo gran mas vis");
+                                    MemoryReader.Instance.c.Console.Say("exori moe ico");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "StrongEnergyStrike" && MemoryReader.c.Player.Mana >= Spells.StrongEnergyStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "RageOfTheSkies" && MemoryReader.Instance.c.Player.Mana >= Spells.RageOfTheSkies.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori gran vis");
+                                    MemoryReader.Instance.c.Console.Say("exevo gran mas vis");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "StrongFlameStrike" && MemoryReader.c.Player.Mana >= Spells.StrongFlameStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "StrongEnergyStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.StrongEnergyStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori gran flam");
+                                    MemoryReader.Instance.c.Console.Say("exori gran vis");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "StrongIceStrike" && MemoryReader.c.Player.Mana >= Spells.StrongIceStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "StrongFlameStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.StrongFlameStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori gran frigo");
+                                    MemoryReader.Instance.c.Console.Say("exori gran flam");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "StrongIceWave" && MemoryReader.c.Player.Mana >= Spells.StrongIceWave.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "StrongIceStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.StrongIceStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exevo gran frigo hur");
+                                    MemoryReader.Instance.c.Console.Say("exori gran frigo");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "StrongTerraStrike" && MemoryReader.c.Player.Mana >= Spells.StrongTerraStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "StrongIceWave" && MemoryReader.Instance.c.Player.Mana >= Spells.StrongIceWave.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori gran tera");
+                                    MemoryReader.Instance.c.Console.Say("exevo gran frigo hur");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "TerraStrike" && MemoryReader.c.Player.Mana >= Spells.TerraStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "StrongTerraStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.StrongTerraStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori tera");
+                                    MemoryReader.Instance.c.Console.Say("exori gran tera");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "TerraWave" && MemoryReader.c.Player.Mana >= Spells.TerraWave.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "TerraStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.TerraStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exevo tera hur");
+                                    MemoryReader.Instance.c.Console.Say("exori tera");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "UltimateEnergyStrike" && MemoryReader.c.Player.Mana >= Spells.UltimateEnergyStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "TerraWave" && MemoryReader.Instance.c.Player.Mana >= Spells.TerraWave.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori max vis");
+                                    MemoryReader.Instance.c.Console.Say("exevo tera hur");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "UltimateIceStrike" && MemoryReader.c.Player.Mana >= Spells.UltimateIceStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "UltimateEnergyStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.UltimateEnergyStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori max frigo");
+                                    MemoryReader.Instance.c.Console.Say("exori max vis");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "UltimateFlameStrike" && MemoryReader.c.Player.Mana >= Spells.UltimateFlameStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "UltimateIceStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.UltimateIceStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori max flam");
+                                    MemoryReader.Instance.c.Console.Say("exori max frigo");
 
                                 }
-                                if (SelectedTarget.ActionModeSpell == "UltimateTerraStrike" && MemoryReader.c.Player.Mana >= Spells.UltimateTerraStrike.ManaPoints)
+                                if (SelectedTarget.ActionModeSpell == "UltimateFlameStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.UltimateFlameStrike.ManaPoints)
                                 {
 
-                                    MemoryReader.c.Console.Say("exori max tera");
+                                    MemoryReader.Instance.c.Console.Say("exori max flam");
+
+                                }
+                                if (SelectedTarget.ActionModeSpell == "UltimateTerraStrike" && MemoryReader.Instance.c.Player.Mana >= Spells.UltimateTerraStrike.ManaPoints)
+                                {
+
+                                    MemoryReader.Instance.c.Console.Say("exori max tera");
 
                                 }
 
@@ -974,40 +974,40 @@ namespace Tibiafuskdotnet.ViewModel
 
                             if (SelectedTarget.AttackMode == "Stand/Offensive")
                             {
-                                //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
-                                // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
+                                //System.Console.WriteLine("before add value " + MemoryReader.Instance.Followmode);
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
+                                // System.Console.WriteLine("after add value " + MemoryReader.Instance.Followmode);
                             }
                             else if (SelectedTarget.AttackMode == "Stand/Balanced")
                             {
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
-                                //MemoryReader.client.AttackMode = Attack.Balance;
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
+                                //MemoryReader.Instance.client.AttackMode = Attack.Balance;
                             }
                             else if (SelectedTarget.AttackMode == "Stand/Defensive")
                             {
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
                             }
                             else if (SelectedTarget.AttackMode == "Chase/Offensive")
                             {
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
                             }
                             else if (SelectedTarget.AttackMode == "Chase/Balanced")
                             {
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
                             }
                             else if (SelectedTarget.AttackMode == "Chase/Defensive")
                             {
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
-                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
                             }
                         if (SelectedTarget.ActionModeSpell == "sudden death rune")
                         {
-                            MemoryReader.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
+                            MemoryReader.Instance.inventory.UseItemOnCreature(3155, 4, Convert.ToInt32(C.Id));
 
 
                         }
@@ -1019,7 +1019,7 @@ namespace Tibiafuskdotnet.ViewModel
 
                     
                         //Equip Ring if monster is on screen.
-                        foreach (Item MyItems in MemoryReader.inventory.GetItems())
+                        foreach (Item MyItems in MemoryReader.Instance.inventory.GetItems())
                         {
                             // Item ringRingRingRingBananaPhone;
                             ItemLists.Ring.TryGetValue(MyItems.Id, out Item ringRingRingRingBananaPhone);
@@ -1050,7 +1050,7 @@ namespace Tibiafuskdotnet.ViewModel
                                  C.Follow();
                                  break;
                          }*/
-                    //}  foreach (Creature C in MemoryReader.battleList.GetCreatures())
+                    //}  foreach (Creature C in MemoryReader.Instance.battleList.GetCreatures())
                }
             }
         }
