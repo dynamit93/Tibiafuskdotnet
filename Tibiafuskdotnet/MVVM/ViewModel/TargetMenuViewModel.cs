@@ -700,35 +700,35 @@ namespace Tibiafuskdotnet.ViewModel
                                     if (SelectedTarget.AttackMode == "Stand/Offensive")
                                     {
                                         //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
                                         // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
                                     }
                                     else if (SelectedTarget.AttackMode == "Stand/Balanced")
                                     {
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
                                         //MemoryReader.client.AttackMode = Attack.Balance;
                                     }
                                     else if (SelectedTarget.AttackMode == "Stand/Defensive")
                                     {
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
                                     }
                                     else if (SelectedTarget.AttackMode == "Chase/Offensive")
                                     {
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
                                     }
                                     else if (SelectedTarget.AttackMode == "Chase/Balanced")
                                     {
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
                                     }
                                     else if (SelectedTarget.AttackMode == "Chase/Defensive")
                                     {
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                        MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                        MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
                                     }
                                     if (SelectedTarget.ActionModeSpell == "sudden death rune")
                                     {
@@ -975,35 +975,35 @@ namespace Tibiafuskdotnet.ViewModel
                             if (SelectedTarget.AttackMode == "Stand/Offensive")
                             {
                                 //System.Console.WriteLine("before add value " + MemoryReader.Followmode);
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
                                 // System.Console.WriteLine("after add value " + MemoryReader.Followmode);
                             }
                             else if (SelectedTarget.AttackMode == "Stand/Balanced")
                             {
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
                                 //MemoryReader.client.AttackMode = Attack.Balance;
                             }
                             else if (SelectedTarget.AttackMode == "Stand/Defensive")
                             {
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(0));
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(0));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
                             }
                             else if (SelectedTarget.AttackMode == "Chase/Offensive")
                             {
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(1));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(1));
                             }
                             else if (SelectedTarget.AttackMode == "Chase/Balanced")
                             {
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(2));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(2));
                             }
                             else if (SelectedTarget.AttackMode == "Chase/Defensive")
                             {
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Followmode, BitConverter.GetBytes(1));
-                                MemoryReader.WriteValuesToMemory(MemoryReader.Attackmode, BitConverter.GetBytes(3));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.FollowMode, BitConverter.GetBytes(1));
+                                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Client.AttackMode, BitConverter.GetBytes(3));
                             }
                         if (SelectedTarget.ActionModeSpell == "sudden death rune")
                         {

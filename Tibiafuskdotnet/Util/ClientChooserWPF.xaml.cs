@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Tibia.Objects;
+using Tibiafuskdotnet.Config;
 
 namespace Tibia.Util
 {
@@ -148,7 +149,7 @@ namespace Tibia.Util
 
         private void uxClients_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            Version.SetVersion772();
+            TibiaConfig.ApplyVersion();
         }
     }
 }

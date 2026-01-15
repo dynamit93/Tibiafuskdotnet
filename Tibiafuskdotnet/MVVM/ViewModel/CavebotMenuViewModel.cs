@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using Squalr.Engine.Utils.Extensions;
@@ -23,6 +23,7 @@ using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+using Tibiafuskdotnet.Config;
 using static Tibia.Constants.Items;
 using System.Collections.Specialized;
 using Tibia;
@@ -157,7 +158,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
 
             client = MemoryReader.c;
-            Tibia.Version.SetVersion772();
+            TibiaConfig.ApplyVersion();
 
             // Initialize AvailableTools with the list of tools
             AvailableTools = new ObservableCollection<Item>

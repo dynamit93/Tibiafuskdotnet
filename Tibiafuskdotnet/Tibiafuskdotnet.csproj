@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -222,6 +222,7 @@
     <Compile Include="Adresses\Client.cs" />
     <Compile Include="Adresses\Container.cs" />
     <Compile Include="Adresses\ContextMenus.cs" />
+    <Compile Include="Adresses\Custom.cs" />
     <Compile Include="Adresses\DatItem.cs" />
     <Compile Include="Adresses\DrawItem.cs" />
     <Compile Include="Adresses\DrawSkin.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="BL\Helper.cs" />
     <Compile Include="BL\OdeniaOnline.cs" />
     <Compile Include="BL\Targeting.cs" />
+    <Compile Include="Config\TibiaConfig.cs" />
     <Compile Include="CavebotMenu.xaml.cs">
       <DependentUpon>CavebotMenu.xaml</DependentUpon>
     </Compile>

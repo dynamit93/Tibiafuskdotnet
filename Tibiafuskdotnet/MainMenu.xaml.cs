@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+using Tibiafuskdotnet.Config;
 using Tibia;
 using Tibia.Objects;
 using Tibiafuskdotnet.ViewModel;
@@ -74,7 +75,7 @@ namespace Tibiafuskdotnet
         {
             if (Tibia.Version.CurrentVersionString == "7.72")
             {
-                IntPtr windowHandle = MemoryReader.GetWindowHandle("Odenia Online");
+                IntPtr windowHandle = MemoryReader.GetWindowHandle(TibiaConfig.ProcessName);
                 runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
                 CharacterWindows[MemoryReader.c.Player.Id] = windowHandle;
             }
@@ -103,12 +104,12 @@ namespace Tibiafuskdotnet
            
             if (MemoryReader.light != 255)
             {
-                MemoryReader.WriteValuesToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(255));
+                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Map.FullLightAdr, BitConverter.GetBytes(255));
 
             }
             else
             {
-                MemoryReader.WriteValuesToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(0));
+                MemoryReader.WriteValuesToMemory(Tibia.Addresses.Map.FullLightAdr, BitConverter.GetBytes(0));
 
             }
         }
