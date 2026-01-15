@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,18 +11,24 @@ using Tibiafuskdotnet.MVVM.ViewModel;
 using System.Runtime.CompilerServices;
 using Tibia;
 using System.Diagnostics;
+using Tibiafuskdotnet.Config;
 
 namespace Tibiafuskdotnet
 {
 
-    public static class MemoryReader
+    public sealed class MemoryReader
     {
+        public static MemoryReader Instance { get; } = new MemoryReader();
 
+        private MemoryReader()
+        {
+        }
 
+        // Window helpers
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
-        public static IntPtr GetWindowHandle(string windowTitle)
+        public IntPtr GetWindowHandle(string windowTitle)
         {
             IntPtr hWnd = IntPtr.Zero;
             foreach (Process p in Process.GetProcesses())
@@ -37,82 +43,53 @@ namespace Tibiafuskdotnet
         }
 
 
-        public static Timer timer;
+        // Runtime state
+        private Timer timer;
       
 
         private const int PROCESS_WM_READ = 0x0010;
 
-        public static Int32 baseAddress;
-        public static string Bc1;
-        public static int currentHp;
-        public static int maxHp;
-        public static int currentMana;
-        public static int maxMana;
-        public static int xor;
-        public static int Attackmode;
-        public static int Followmode;
-        public static string chatt;
-        public static int light;
-        public static int Odenialight;
-        public static int maxlight;
+        private int baseAddress;
+        public string Bc1;
+        public int currentHp;
+        public int maxHp;
+        public int currentMana;
+        public int maxMana;
+        public int xor;
+        public int Attackmode;
+        public int Followmode;
+        public string chatt;
+        public int light;
+        public int Odenialight;
+        public int maxlight;
         
-        public static int WaypointsTestZ;
-        public static int WaypointsTestX;
-        public static int WaypointsTestY;
+        public int WaypointsTestZ;
+        public int WaypointsTestX;
+        public int WaypointsTestY;
 
-        public static int maxHpValue;
-        public static int maxManaValue;
-        public static int Odeniamaxlight;
-        public static int BattleListconvert;
-        public static int manaValue;
-        public static int hpValue;
-        public static string bc;
+        public int maxHpValue;
+        public int maxManaValue;
+        public int Odeniamaxlight;
+        public int BattleListconvert;
+        public int manaValue;
+        public int hpValue;
+        public string bc;
         //character 
-        public static string Charactername;
+        public string Charactername;
 
-        public static Int32 xorAddr = 0x934658 - 0x400000;
-        public static Int32 chattAddr = 0x27361B0;
-        /*
-                public static void SetVersion860()
-                {
-                //battlelist
-                    BattleList.Start = 0x63FEF8;
-                    BattleList.StepCreatures = 0xA8;
-                    BattleList.MaxCreatures = 250;
-                    BattleList.End = BattleList.Start + (BattleList.StepCreatures* BattleList.MaxCreatures);
+        // Address resolution helpers
+        private const int DefaultModuleBase = 0x400000;
 
-                    }*/
+        private int ResolveAddress(uint absoluteAddress)
+        {
+            return unchecked((int)(absoluteAddress - DefaultModuleBase + baseAddress));
+        }
 
-        //character
-        public static Int32 CharacterNameAddr = 0x63FEFC;
-
-        //Skills
-        public static Int32 currentHpAddr = 0x63FE94 - 0x400000;
-        public static Int32 maxHpAddr = 0x63FE90 - 0x400000;
-        public static Int32 currentManaAddr = 0x63FE78 - 0x400000;
-        public static Int32 maxManaAddr = 0x63FE74 - 0x400000;
-        public static Int32 StaminaAddr = 0x63FE6C;
-        public static Int32 MagicLevelAddr = 0x63FE84;
-        public static Int32 LevelAddr = 0x63fe88;
-        public static Int32 ExpAddr = 0x63FE8C;
-        public static Int32 CapAddr = 0x63FE68;
-        public static Int32 SoulAddr = 0x63FE70;
-
-
-        /// hottkeys
-        /// pub
-        public static Int32 hottkeyf1 = 0x799F08;
-        public static Int32 hottkeyf2 = 0x79A008;
-        public static Int32 hottkeyf3 = 0x79A108;
-        public static Int32 hottkeyf4 = 0x79A208;
-        public static Int32 hottkeyf5 = 0x79A308;
-        public static Int32 hottkeyf6 = 0x79A408;
-        public static Int32 hottkeyf7 = 0x79A508;
-        public static Int32 hottkeyf8 = 0x79A608;
-        public static Int32 hottkeyf9 = 0x79A708;
-        public static Int32 hottkeyf10 = 0x79A808;
-        public static Int32 hottkeyf11 = 0x79A908;
-        public static Int32 hottkeyf12 = 0x79AA08;
+        private int ResolveAddressOrZero(uint absoluteAddress)
+        {
+            return absoluteAddress == 0 ? 0 : ResolveAddress(absoluteAddress);
+        }
+        // Input helpers
         [DllImport("user32.dll")]
         static extern bool PostMessage(IntPtr hWnd, UInt32 Msg, int wParam, int lParam);
         const int VK_F1 = 0x70;
@@ -131,31 +108,13 @@ namespace Tibiafuskdotnet
 
 
 
-        //Utilities
-        public static Int32 LightAddr = 0x4EAFAC;
-        public static Int32 OdeniaLightLowAddr = 0x05C6924;
-        public static Int32 OdeniaLightHighAddr = 0x05C6928;
-
-        public static Int32 Waypointstestaddrx = 0x64F608;
-        public static Int32 Waypointstestaddry = 0x64F604;
-        public static Int32 Waypointstestaddrz = 0x64F600;
+        // Runtime tuning
+        private double manaPercentInput;
+        private double hpPercentLightHealInput;
+        private double hpPercentIntenseHealInput;
 
 
-
-
-
-        public static Int32 BattleListStart = 0x63FEF8;
-        public static Int32 BattleListStepCreatures = 0xA8;
-        public static Int32 BattleListMaxCreatures = 250;
-        public static Int32 BatteListEnd = BattleListStart + (BattleListStepCreatures * BattleListMaxCreatures);
-
-
-
-        public static double manaPercentInput;
-        public static double hpPercentLightHealInput;
-        public static double hpPercentIntenseHealInput;
-
-
+        // Process memory imports
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
@@ -168,7 +127,7 @@ namespace Tibiafuskdotnet
         byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
 
 
-        public static void Start(double _manaPercentInput, double _hpPercentLightHealInput, double _hpPercentIntenseHealInput)
+        public void Start(double _manaPercentInput, double _hpPercentLightHealInput, double _hpPercentIntenseHealInput)
         {
             //this.lb = lb;
             manaPercentInput = _manaPercentInput;
@@ -185,32 +144,34 @@ namespace Tibiafuskdotnet
             //ReadValuesFromMemory();
         }
 
-        public static BattleList battleList = null;
+        // Session objects
+        public BattleList battleList = null;
         
-        public static Client client = null;
-        public static Creature creature = null;
+        public Client client = null;
+        public Creature creature = null;
         /// <summary>
         /// Dennis gjort
         /// </summary>
-        public static Client.PlayerHelper playerHelper = null;
-        public static Inventory inventory = null;
+        public Client.PlayerHelper playerHelper = null;
+        public Inventory inventory = null;
 
-        public static Player pp = null;
-        public static Client c;
-        public static Creature C;
+        public Player pp = null;
+        public Client c;
+        public Creature C;
 
 
         
-        public static bool AppRunning(string appName = "Odenia Online")
+        public bool AppRunning(string appName = null)
         {
 
-            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Odenia Online");
+            string targetName = string.IsNullOrWhiteSpace(appName) ? TibiaConfig.ProcessName : appName;
+            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName(targetName);
             //Process[] ProcessList = Process.GetProcesses();
            
             foreach (System.Diagnostics.Process p in localByName)
             {
                 //System.Console.WriteLine(p.ProcessName);
-                if (p.ProcessName.Contains(appName))
+                if (p.ProcessName.Contains(targetName))
                 {
 
                     c = new Client(p);
@@ -223,7 +184,7 @@ namespace Tibiafuskdotnet
                    
 
                     timer.Start();
-                    Tibia.Version.SetVersion772();
+                    TibiaConfig.ApplyVersion(p);
                     Tibia.Objects.Client.GetClients();
                     System.Console.WriteLine(Tibia.Objects.Client.GetClients()); 
 
@@ -245,7 +206,7 @@ namespace Tibiafuskdotnet
                     // System.Console.WriteLine(c.PlayerLocation);
 
                     // do something with SpriteReader to find magicwall i guess.
-                    // System.Console.WriteLine("Magic wall info " + Tibia.Util.SpriteReader.GetSpriteImage(MemoryReader.c,2129));
+                    // System.Console.WriteLine("Magic wall info " + Tibia.Util.SpriteReader.GetSpriteImage(c,2129));
                     ///Tibia.Objects.ItemLocation.FromLocation();
                     ///
 
@@ -288,7 +249,7 @@ namespace Tibiafuskdotnet
                 else
                 {
                     
-                    MessageBox.Show("start tibia");
+                    MessageBox.Show($"start {targetName}");
                     
                     return false;
                 }
@@ -298,7 +259,7 @@ namespace Tibiafuskdotnet
             return false;
         }
        
-        public static void playerwalk() 
+        public void playerwalk() 
         {
             Waypoints gwt = new Waypoints();
             Tibia.Objects.Player p = client.GetPlayer();
@@ -313,13 +274,13 @@ namespace Tibiafuskdotnet
         const int PROCESS_VM_WRITE = 0x0020;
         const int PROCESS_VM_OPERATION = 0x0008;
 
-        public static void WriteValuesToMemory(int address, byte[] buffer)
+        public void WriteValuesToMemory(uint address, byte[] buffer)
 
         {
-            var tibia = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+            var tibia = TibiaConfig.GetProcess();
             if (tibia == null)
             {
-                MessageBox.Show("Could Not Find Tibia");
+                MessageBox.Show($"Could Not Find {TibiaConfig.ProcessName}");
                 return;
             }else
             { 
@@ -327,49 +288,50 @@ namespace Tibiafuskdotnet
 
            
             baseAddress = tibia.MainModule.BaseAddress.ToInt32();
+            TibiaConfig.ApplyVersion(tibia);
             IntPtr processHandle = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, tibia.Id);
 
             int bytesWritten = 0;
-            WriteProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesWritten);
+            int resolvedAddress = ResolveAddress(address);
+            WriteProcessMemory((int)processHandle, resolvedAddress, buffer, buffer.Length, ref bytesWritten);
             //System.Console.WriteLine(bytesWritten);
 
-            int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
+            int attackmodeuint = ResolveAddress(Tibia.Addresses.Client.AttackMode);
             WriteProcessMemory((int)processHandle, attackmodeuint, buffer, buffer.Length, ref bytesWritten);
             Attackmode = BitConverter.ToInt32(buffer, 0);
 
-            int Followmodeuint = Convert.ToInt32(Tibia.Addresses.Client.FollowMode);
+            int Followmodeuint = ResolveAddress(Tibia.Addresses.Client.FollowMode);
             WriteProcessMemory((int)processHandle, Followmodeuint, buffer, buffer.Length, ref bytesWritten);
             Followmode = BitConverter.ToInt32(buffer, 0);
 
             }
 
         }
-        public static RuneMakerViewModel runeMakerViewModel = new RuneMakerViewModel();
-
-        public static void OdeniaWriteToMemory(int address, byte[] buffer)
+        public void OdeniaWriteToMemory(int address, byte[] buffer)
 
         {
 
-            var tibia = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+            var tibia = TibiaConfig.GetProcess();
 
             if (tibia == null)
             {
-                MessageBox.Show("Could Not Find Tibia");
+                MessageBox.Show($"Could Not Find {TibiaConfig.ProcessName}");
                 return;
             }
             else { 
             baseAddress = tibia.MainModule.BaseAddress.ToInt32();
+            TibiaConfig.ApplyVersion(tibia);
             IntPtr processHandle = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, tibia.Id);
 
             int bytesWritten = 0;
             WriteProcessMemory((int)processHandle, address, buffer, buffer.Length, ref bytesWritten);
             //System.Console.WriteLine(bytesWritten);
 
-            int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
+            int attackmodeuint = ResolveAddress(Tibia.Addresses.Client.AttackMode);
             WriteProcessMemory((int)processHandle, attackmodeuint, buffer, buffer.Length, ref bytesWritten);
             Attackmode = BitConverter.ToInt32(buffer, 0);
 
-            int Followmodeuint = Convert.ToInt32(Tibia.Addresses.Client.FollowMode);
+            int Followmodeuint = ResolveAddress(Tibia.Addresses.Client.FollowMode);
             WriteProcessMemory((int)processHandle, Followmodeuint, buffer, buffer.Length, ref bytesWritten);
             Followmode = BitConverter.ToInt32(buffer, 0);
 
@@ -386,7 +348,7 @@ namespace Tibiafuskdotnet
 
 
 
-        public static void ReadValuesFromMemory()
+        public void ReadValuesFromMemory()
         {
 
             try
@@ -394,52 +356,65 @@ namespace Tibiafuskdotnet
 
 
                 //var tibia = Process.GetProcesses().ToList().Where(x=>x.ProcessName.ToLower().Contains("ti")).ToList();
-                var tibia = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+                var tibia = TibiaConfig.GetProcess();
                 if (tibia == null)
                 {
-                    MessageBox.Show("Could Not Find Tibia");
+                    MessageBox.Show($"Could Not Find {TibiaConfig.ProcessName}");
                     return;
                 }else
                 {
 
                 
                 baseAddress = tibia.MainModule.BaseAddress.ToInt32();
+                TibiaConfig.ApplyVersion(tibia);
                 IntPtr handle = OpenProcess(PROCESS_WM_READ, false, tibia.Id);
 
                 int bytesRead = 0;
                 byte[] buffer = new byte[30];
-                int attackmodeuint = Convert.ToInt32(Tibia.Addresses.Client.AttackMode);
+                int attackmodeuint = ResolveAddress(Tibia.Addresses.Client.AttackMode);
 
                 ReadProcessMemory((int)handle, attackmodeuint, buffer, buffer.Length, ref bytesRead);
                 Attackmode = BitConverter.ToInt32(buffer, 0);
 
 
-                ReadProcessMemory((int)handle, xorAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
-                xor = BitConverter.ToInt32(buffer, 0);
+                int xorAddress = ResolveAddressOrZero(Tibia.Addresses.Custom.XorKey);
+                if (xorAddress != 0)
+                {
+                    ReadProcessMemory((int)handle, xorAddress, buffer, buffer.Length, ref bytesRead);
+                    xor = BitConverter.ToInt32(buffer, 0);
+                }
+                else
+                {
+                    xor = 0;
+                }
 
-                ReadProcessMemory((int)handle, currentHpAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
+                ReadProcessMemory((int)handle, ResolveAddress(Tibia.Addresses.Player.Health), buffer, buffer.Length, ref bytesRead);
                 currentHp = BitConverter.ToInt32(buffer, 0);
 
-                //  ReadProcessMemory((int)handle, CharacterNameAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
+                //  ReadProcessMemory((int)handle, ResolveAddressOrZero(Tibia.Addresses.Custom.CharacterName), buffer, buffer.Length, ref bytesRead);
                 //  Charactername = BitConverter.ToString(buffer, 0);
 
-                ReadProcessMemory((int)handle, currentManaAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
+                ReadProcessMemory((int)handle, ResolveAddress(Tibia.Addresses.Player.Mana), buffer, buffer.Length, ref bytesRead);
                 currentMana = BitConverter.ToInt32(buffer, 0);
 
-                ReadProcessMemory((int)handle, maxHpAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
+                ReadProcessMemory((int)handle, ResolveAddress(Tibia.Addresses.Player.HealthMax), buffer, buffer.Length, ref bytesRead);
                 maxHp = BitConverter.ToInt32(buffer, 0);
 
-                ReadProcessMemory((int)handle, maxManaAddr + baseAddress, buffer, buffer.Length, ref bytesRead);
+                ReadProcessMemory((int)handle, ResolveAddress(Tibia.Addresses.Player.ManaMax), buffer, buffer.Length, ref bytesRead);
                 maxMana = BitConverter.ToInt32(buffer, 0);
 
 
-                ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
-                chatt = BitConverter.ToString(buffer, 0);
-                ReadProcessMemory((int)handle, chattAddr, buffer, buffer.Length, ref bytesRead);
+                int chatAddress = ResolveAddressOrZero(Tibia.Addresses.Custom.ChatText);
+                if (chatAddress != 0)
+                {
+                    ReadProcessMemory((int)handle, chatAddress, buffer, buffer.Length, ref bytesRead);
+                    chatt = BitConverter.ToString(buffer, 0);
+                    ReadProcessMemory((int)handle, chatAddress, buffer, buffer.Length, ref bytesRead);
+                }
                 //  int * data =(int32*)BitConverter.ToInt32(buffer, 0);
 
 
-                ReadProcessMemory((int)handle, LightAddr, buffer, buffer.Length, ref bytesRead);
+                ReadProcessMemory((int)handle, ResolveAddress(Tibia.Addresses.Map.FullLightAdr), buffer, buffer.Length, ref bytesRead);
                 light = BitConverter.ToInt32(buffer, 0);
 
 
@@ -451,13 +426,13 @@ namespace Tibiafuskdotnet
 
 
 
-                ReadProcessMemory((int)handle, Waypointstestaddrx, buffer, buffer.Length, ref bytesRead);
+                ReadProcessMemory((int)handle, ResolveAddress(Tibia.Addresses.Player.X), buffer, buffer.Length, ref bytesRead);
                 WaypointsTestX = BitConverter.ToInt32(buffer, 0);
 
-                ReadProcessMemory((int)handle, Waypointstestaddry, buffer, buffer.Length, ref bytesRead);
+                ReadProcessMemory((int)handle, ResolveAddress(Tibia.Addresses.Player.Y), buffer, buffer.Length, ref bytesRead);
                 WaypointsTestY = BitConverter.ToInt32(buffer, 0);
 
-                ReadProcessMemory((int)handle, Waypointstestaddrz, buffer, buffer.Length, ref bytesRead);
+                ReadProcessMemory((int)handle, ResolveAddress(Tibia.Addresses.Player.Z), buffer, buffer.Length, ref bytesRead);
                 WaypointsTestZ = BitConverter.ToInt32(buffer, 0);
 
 
@@ -562,7 +537,7 @@ namespace Tibiafuskdotnet
                     else if (spelhitext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+                    System.Diagnostics.Process process = TibiaConfig.GetProcess();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
                     //healbot working
 
@@ -627,7 +602,7 @@ namespace Tibiafuskdotnet
                     else if (spellotext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+                    System.Diagnostics.Process process = TibiaConfig.GetProcess();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
                     //healbot working
 
@@ -689,7 +664,7 @@ namespace Tibiafuskdotnet
                     else if (UhRunetext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+                    System.Diagnostics.Process process = TibiaConfig.GetProcess();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
 
                 }
@@ -749,7 +724,7 @@ namespace Tibiafuskdotnet
                     else if (HpPotiontext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+                    System.Diagnostics.Process process = TibiaConfig.GetProcess();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
 
                 }
@@ -809,7 +784,7 @@ namespace Tibiafuskdotnet
                     else if (ManaPotiontext == "F12")
                         key = VK_F12;
 
-                    System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+                    System.Diagnostics.Process process = TibiaConfig.GetProcess();
                     var r = PostMessage(process.MainWindowHandle, WM_KEYDOWN, key, 0);
 
 
@@ -833,7 +808,7 @@ namespace Tibiafuskdotnet
 
 
 
-            foreach (Tile tile in MemoryReader.c.Map.GetTiles())
+            foreach (Tile tile in c.Map.GetTiles())
             {
 
                 //Check if the tile has an item on the ground
@@ -867,40 +842,48 @@ namespace Tibiafuskdotnet
 
         }
 
-        public static void OdeniaOnlineLight() 
+        public void OdeniaOnlineLight() 
         {
-            var tibia = System.Diagnostics.Process.GetProcessesByName("Odenia Online").FirstOrDefault();
+            var tibia = TibiaConfig.GetProcess();
             if (tibia == null)
             {
             
 
 
-                MessageBox.Show("Could Not Find Tibia");
+                MessageBox.Show($"Could Not Find {TibiaConfig.ProcessName}");
                 return;
             }
             else
             {
                 baseAddress = tibia.MainModule.BaseAddress.ToInt32();
+                TibiaConfig.ApplyVersion(tibia);
                 IntPtr handle = OpenProcess(PROCESS_WM_READ, false, tibia.Id);
 
                 int bytesRead = 0;
                 byte[] buffer = new byte[30];
 
-                ReadProcessMemory((int)handle, OdeniaLightLowAddr, buffer, buffer.Length, ref bytesRead);
+                int lightLowAddress = ResolveAddressOrZero(Tibia.Addresses.Custom.OdeniaLightLow);
+                int lightHighAddress = ResolveAddressOrZero(Tibia.Addresses.Custom.OdeniaLightHigh);
+                if (lightLowAddress == 0 || lightHighAddress == 0)
+                {
+                    return;
+                }
+
+                ReadProcessMemory((int)handle, lightLowAddress, buffer, buffer.Length, ref bytesRead);
                 light = BitConverter.ToInt32(buffer, 0);
            
 
 
-            if (MemoryReader.OdeniaLightHighAddr != 43 && MemoryReader.OdeniaLightLowAddr != 100)
+            if (lightHighAddress != 0 && lightLowAddress != 0)
             {
-                MemoryReader.OdeniaWriteToMemory(MemoryReader.OdeniaLightHighAddr, BitConverter.GetBytes(43));
-                MemoryReader.OdeniaWriteToMemory(MemoryReader.OdeniaLightLowAddr, BitConverter.GetBytes(100));
+                OdeniaWriteToMemory(lightHighAddress, BitConverter.GetBytes(43));
+                OdeniaWriteToMemory(lightLowAddress, BitConverter.GetBytes(100));
 
             }
             }
             /*else
             {
-                MemoryReader.OdeniaWriteToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(0));
+                OdeniaWriteToMemory(ResolveAddress(Tibia.Addresses.Map.FullLightAdr), BitConverter.GetBytes(0));
 
             }*/
             
@@ -908,16 +891,16 @@ namespace Tibiafuskdotnet
 
         }
 
-        public static void changeOdeniaTitle()
+        public void changeOdeniaTitle()
         {
             if (Tibia.Version.CurrentVersionString == "7.72")
             {
                 
-               // runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
+               // runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {c.Player.Id}");
             }
         }
 
-        public static void TimerTick(object sender, EventArgs e)
+        public void TimerTick(object sender, EventArgs e)
         {
             
             //ReadValuesFromMemory();

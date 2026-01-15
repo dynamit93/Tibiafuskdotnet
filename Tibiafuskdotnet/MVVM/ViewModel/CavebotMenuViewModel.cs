@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using Squalr.Engine.Utils.Extensions;
@@ -23,6 +23,7 @@ using Tibia.Objects;
 using Tibia.Util;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+using Tibiafuskdotnet.Config;
 using static Tibia.Constants.Items;
 using System.Collections.Specialized;
 using Tibia;
@@ -156,8 +157,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                 Loots = new ObservableCollection<CaveBotLootList>() { AddNewLoot() };
                 Cavebotcommand = new RelayCommand<string>(PerformFollowWaypoints);
 
-            client = MemoryReader.c;
-            Tibia.Version.SetVersion772();
+            client = MemoryReader.Instance.c;
+            TibiaConfig.ApplyVersion();
 
             // Initialize AvailableTools with the list of tools
             AvailableTools = new ObservableCollection<Item>
@@ -185,7 +186,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
             this.CollectionChanged += Waypoints_CollectionChanged;
             // Initialize the map
-            Map map = new Map(MemoryReader.c);
+            Map map = new Map(MemoryReader.Instance.c);
             
 
 
@@ -349,8 +350,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         public void Playsound()
         {
-            if (MemoryReader.C.Name != null)
-            { MemoryReader.C.Look(); }
+            if (MemoryReader.Instance.C.Name != null)
+            { MemoryReader.Instance.C.Look(); }
             
             //soundPlayer.SoundLocation = @"./sounds/playeronscreen.wav";
             //soundPlayer.PlayLooping();
@@ -381,7 +382,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                     foreach (Waypoints waypoint in DataSource)
                     {
                         // Get the current player location
-                        Location playerLocation = MemoryReader.c.PlayerLocation;
+                        Location playerLocation = MemoryReader.Instance.c.PlayerLocation;
 
                       //  System.Console.WriteLine(waypoint.waypointx + " "+ waypoint.waypointy);
                         // Get the location of the current waypoint
@@ -414,9 +415,9 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
 
 
-        // AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.c);
+        // AStarPathFinder pathFinder = new AStarPathFinder(MemoryReader.Instance.c);
 
-        AStarPathFinder pathFindera = new AStarPathFinder(MemoryReader.c);
+        AStarPathFinder pathFindera = new AStarPathFinder(MemoryReader.Instance.c);
         private Client client;
         private Creature Creature;
 
@@ -450,8 +451,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         /*
         public bool WalkToWaypoint(Location waypointLocation)
             {
-            Creature = MemoryReader.C;
-            client = MemoryReader.c;
+            Creature = MemoryReader.Instance.C;
+            client = MemoryReader.Instance.c;
 
 
 
@@ -460,7 +461,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
             /// if (playerTile == null || Creature == null)
             //     return false;
             //
-              var creatureTile = tileList.GetTileWithCreature(MemoryReader.C.Id);
+              var creatureTile = tileList.GetTileWithCreature(MemoryReader.Instance.C.Id);
 
                  //if (playerTile == null || creatureTile == null)
                  //    return false;
@@ -495,11 +496,11 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
                         client.PathFinder.Grid[tile.MemoryLocation.X, tile.MemoryLocation.Y] = 1;
                     }
                 }
-            System.Console.WriteLine("MemoryReader.c.playerLocation:" + MemoryReader.c.PlayerLocation);
+            System.Console.WriteLine("MemoryReader.c.playerLocation:" + MemoryReader.Instance.c.PlayerLocation);
             System.Console.WriteLine("waypointLocation:" + waypointLocation);
 
 
-            return client.PathFinder.FindPath(MemoryReader.c.PlayerLocation, waypointLocation_new);
+            return client.PathFinder.FindPath(MemoryReader.Instance.c.PlayerLocation, waypointLocation_new);
 
             }
 

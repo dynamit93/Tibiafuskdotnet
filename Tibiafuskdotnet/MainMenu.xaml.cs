@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
+using Tibiafuskdotnet.Config;
 using Tibia;
 using Tibia.Objects;
 using Tibiafuskdotnet.ViewModel;
@@ -66,7 +67,7 @@ namespace Tibiafuskdotnet
             KeyBinding kb11 = new KeyBinding(commandf11, Key.F11, ModifierKeys.Alt);
             this.InputBindings.Add(kb11);
             changeOdeniaTitle();
-            //runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
+            //runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.Instance.c.Player.Id}");
         }
 
 
@@ -74,9 +75,9 @@ namespace Tibiafuskdotnet
         {
             if (Tibia.Version.CurrentVersionString == "7.72")
             {
-                IntPtr windowHandle = MemoryReader.GetWindowHandle("Odenia Online");
-                runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
-                CharacterWindows[MemoryReader.c.Player.Id] = windowHandle;
+                IntPtr windowHandle = MemoryReader.Instance.GetWindowHandle(TibiaConfig.ProcessName);
+                runeMakerViewModel.SetUniqueTitleToWindow("Odenia Online - Loka v1.3", $"Odenia Online - Loka v1.3 - {MemoryReader.Instance.c.Player.Id}");
+                CharacterWindows[MemoryReader.Instance.c.Player.Id] = windowHandle;
             }
         }
 
@@ -101,14 +102,14 @@ namespace Tibiafuskdotnet
         {
             
            
-            if (MemoryReader.light != 255)
+            if (MemoryReader.Instance.light != 255)
             {
-                MemoryReader.WriteValuesToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(255));
+                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Map.FullLightAdr, BitConverter.GetBytes(255));
 
             }
             else
             {
-                MemoryReader.WriteValuesToMemory(MemoryReader.LightAddr, BitConverter.GetBytes(0));
+                MemoryReader.Instance.WriteValuesToMemory(Tibia.Addresses.Map.FullLightAdr, BitConverter.GetBytes(0));
 
             }
         }
@@ -208,7 +209,7 @@ namespace Tibiafuskdotnet
         private void Icons_btn_Click(object sender, RoutedEventArgs e)
         {
 
-            // MessageBox.Show(MemoryReader.BattleList);
+            // MessageBox.Show(MemoryReader.Instance.battleList);
             
         }
 

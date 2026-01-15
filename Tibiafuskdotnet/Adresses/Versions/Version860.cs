@@ -260,6 +260,12 @@ namespace Tibia
             Player.AttackCount = 0x63DA40;
             Player.FollowCount = Player.AttackCount + 0x20;
 
+            Custom.XorKey = 0x934658;
+            Custom.ChatText = 0x27361B0;
+            Custom.CharacterName = 0x63FEFC;
+            Custom.OdeniaLightLow = 0x05C6924;
+            Custom.OdeniaLightHigh = 0x05C6928;
+
             TextDisplay.PrintName = 0x4F5823;
             TextDisplay.PrintFPS = 0x45A258;
             TextDisplay.ShowFPS = 0x63DB3C;

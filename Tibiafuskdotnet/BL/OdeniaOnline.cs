@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Tibiafuskdotnet.Config;
 
 namespace Tibiafuskdotnet.BL
 {
@@ -106,7 +107,7 @@ namespace Tibiafuskdotnet.BL
                 Thread.Sleep(100); // Add a small delay between sending each character
             }
 
-            string processName = "Odenia Online";
+            string processName = TibiaConfig.ProcessName;
             string searchString = "HelloHelloHelloHelloHelloHelloHelloHelloHello";
 
             Process[] processes = Process.GetProcessesByName(processName);
@@ -211,7 +212,7 @@ namespace Tibiafuskdotnet.BL
         const uint PROCESS_VM_OPERATION = 0x0008;
         public static void writetoOdenia (int inttemphex, string exura)
         {
-            Process[] processes = Process.GetProcessesByName("Odenia Online");
+            Process[] processes = TibiaConfig.GetProcesses();
             if (processes.Length == 0)
             {
                 Console.WriteLine("Odenia Online process not found.");

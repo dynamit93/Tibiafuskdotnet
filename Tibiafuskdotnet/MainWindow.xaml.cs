@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Input;
 using MySql.Data.MySqlClient;
@@ -6,6 +6,7 @@ using Tibiafuskdotnet.BL;
 using Tibia.Util;
 using System.Net;
 using System.Diagnostics;
+using Tibiafuskdotnet.Config;
 
 namespace Tibiafuskdotnet
 {
@@ -28,6 +29,8 @@ namespace Tibiafuskdotnet
 
             DataContext = this;
             InitializeComponent();
+
+            TibiaConfig.ApplyVersion();
 
             WebClient webClient = new WebClient();
 
@@ -56,7 +59,7 @@ namespace Tibiafuskdotnet
                 MessageBox.Show(Convert.ToString(ex));
             }
             
-            MemoryReader.Start(0, 0, 0);
+            MemoryReader.Instance.Start(0, 0, 0);
 
             Helper.Initialize();
             var data = Helper.ReadFromFile();
@@ -74,7 +77,7 @@ namespace Tibiafuskdotnet
             con = new MySqlConnection("Server=localhost;Database=test1;user=bot;Pwd=benny123;SslMode=none");
             //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
 
-            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName("Odenia Online");
+            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcessesByName(TibiaConfig.ProcessName);
             //Process[] ProcessList = Process.GetProcesses();
             /*
                         foreach (System.Diagnostics.Process p in localByName)
@@ -164,7 +167,7 @@ namespace Tibiafuskdotnet
         //        if ((premiumdays) >= 1)
         //        {
 
-        //            if (MemoryReader.AppRunning())
+        //            if (MemoryReader.Instance.AppRunning())
         //            {
         //                MainMenu Menu = new MainMenu();
         //                Menu.Show();
@@ -223,7 +226,7 @@ namespace Tibiafuskdotnet
                         int premiumdays = dr.GetInt32(0);
                         if (premiumdays >= 1)
                         {
-                            if (MemoryReader.AppRunning())
+                            if (MemoryReader.Instance.AppRunning())
                             {
                                 MainMenu Menu = new MainMenu();
                                 Menu.Show();

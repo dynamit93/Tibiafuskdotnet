@@ -1,4 +1,4 @@
-﻿using System.Media;
+using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,13 +40,13 @@ namespace Tibiafuskdotnet.MVVM.Views
             if (checkBox.IsChecked == true)
             {
                 runeaaa.RuneMakerCancellationTokenSource = new CancellationTokenSource();
-                runeaaa.TargetWindow = MainMenu.CharacterWindows[MemoryReader.c.Player.Id];
+                runeaaa.TargetWindow = MainMenu.CharacterWindows[MemoryReader.Instance.c.Player.Id];
 
                 await Task.Run(() =>
                 {
                     while (!runeaaa.RuneMakerCancellationTokenSource.Token.IsCancellationRequested)
                     {
-                        if (MemoryReader.c.Player.Mana >= runeaaa.RuneMakerManaverb)
+                        if (MemoryReader.Instance.c.Player.Mana >= runeaaa.RuneMakerManaverb)
                         {
                             runeaaa.RuneMaker(runeaaa.TargetWindow);
                         }
@@ -65,8 +65,8 @@ namespace Tibiafuskdotnet.MVVM.Views
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                uint currentPlayerX = MemoryReader.c.Player.X;
-                uint currentPlayerY = MemoryReader.c.Player.Y;
+                uint currentPlayerX = MemoryReader.Instance.c.Player.X;
+                uint currentPlayerY = MemoryReader.Instance.c.Player.Y;
 
                 if (_lastPlayerX.HasValue && (currentPlayerX != _lastPlayerX.Value || currentPlayerY != _lastPlayerY.Value) && Alert.IsChecked == true)
                 {

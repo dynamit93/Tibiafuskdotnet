@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using Tibiafuskdotnet;
 using Tibiafuskdotnet.BL;
@@ -258,6 +258,12 @@ namespace Tibia
             Player.Z = 0x5D16E8;
             Player.AttackCount = 0X5C67DC; //ökar med 5.5
             Player.FollowCount = Player.AttackCount + 0x20;
+
+            Custom.XorKey = 0;
+            Custom.ChatText = 0;
+            Custom.CharacterName = 0;
+            Custom.OdeniaLightLow = 0;
+            Custom.OdeniaLightHigh = 0;
 
             TextDisplay.PrintName = 0x4F5823;
             TextDisplay.PrintFPS = 0x45A258;

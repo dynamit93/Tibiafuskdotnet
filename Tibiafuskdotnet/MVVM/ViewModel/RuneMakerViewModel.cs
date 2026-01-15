@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -8,6 +8,7 @@ using Tibia.Constants;
 using Tibia.Objects;
 using Tibiafuskdotnet.BL;
 using Tibiafuskdotnet;
+using Tibiafuskdotnet.Config;
 using GalaSoft.MvvmLight;
 using System.Runtime.InteropServices;
 using System.Windows.Documents;
@@ -62,8 +63,8 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         private Client client;
         public RuneMakerViewModel()
         {
-            client = MemoryReader.c;
-            Tibia.Version.SetVersion772();
+            client = MemoryReader.Instance.c;
+            TibiaConfig.ApplyVersion();
             RuneMakerCancellationTokenSource = new CancellationTokenSource();
             RuneMakerManaverb = 0;
             RuneMakerSpell = "";
@@ -123,8 +124,6 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
 
         const uint PROCESS_VM_WRITE = 0x0020;
         const uint PROCESS_VM_OPERATION = 0x0008;
-        const string processName = "Odenia Online";
-
         public void SetUniqueTitleToWindow(string originalTitle, string uniqueTitle)
         {
             IntPtr hWnd = FindWindow(null, originalTitle); if (hWnd != IntPtr.Zero)
@@ -137,7 +136,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         {
             string targetAddressString = BL.Program.TempHex;
 
-            Process[] processes = Process.GetProcessesByName(processName);
+            Process[] processes = TibiaConfig.GetProcesses();
             if (processes.Length > 0)
             {
                 Process targetProcess = processes[0];
@@ -156,7 +155,7 @@ namespace Tibiafuskdotnet.MVVM.ViewModel
         {
             byte[] array_ascci = Encoding.ASCII.GetBytes(stext);
 
-            IntPtr hWnd = FindClientWindow($"Odenia Online - Loka v1.3 - {MemoryReader.c.Player.Id}");
+            IntPtr hWnd = FindClientWindow($"Odenia Online - Loka v1.3 - {MemoryReader.Instance.c.Player.Id}");
             if (hWnd == IntPtr.Zero)
             {
                 return;
